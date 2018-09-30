@@ -1,0 +1,11 @@
+Description: $[Type]
+
+Args:
+    ${args.var} {${args.type?}}: \${$[args]}
+
+Examples:$(
+    ${func.name}($[param1], $[param2])
+    # => $[result])
+
+Returns:
+    The ${return.type?}
