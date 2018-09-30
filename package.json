@@ -20,7 +20,23 @@
                 "command": "extension.EasyDoc",
                 "title": "EasyDoc"
             }
-        ]
+        ],
+        "configuration": {
+            "title": "EasyDoc configurations",
+            "type": "object",
+            "properties": {
+                "EasyDoc.tomdoc": {
+                    "type": "string",
+                    "default": "###",
+                    "description": "What characters can be typed to create this snippet."
+                },
+                "EasyDoc.tom": {
+                    "type": "string",
+                    "default": "<<<",
+                    "description": "What s can be typed to create this snippet."
+                }
+            }
+        }
     },
     "scripts": {
         "vscode:prepublish": "npm run compile",
