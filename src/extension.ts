@@ -8,7 +8,7 @@ export function activate(context: vs.ExtensionContext) {
         vs.commands.registerCommand('extension.EasyDoc', () => {
             vs.window.showInformationMessage('EasyDoc is active!');
             let easydoc = new EasyDoc();
-            easydoc.createDoc()
+            easydoc.checkDoc()
         })
     )
 }
