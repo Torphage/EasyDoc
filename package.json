@@ -23,17 +23,35 @@
         ],
         "configuration": {
             "title": "EasyDoc configurations",
-            "type": "object",
             "properties": {
                 "EasyDoc.tomdoc": {
-                    "type": "string",
-                    "default": "###",
-                    "description": "What characters can be typed to create this snippet."
+                    "type": "object",
+                    "default": {
+                        "triggerString": "###",
+                        "docType": "function"
+                    }
                 },
                 "EasyDoc.tom": {
-                    "type": "string",
-                    "default": "<<<",
-                    "description": "What s can be typed to create this snippet."
+                    "type": "object",
+                    "description": "What s can be typed to create this snippet.",
+                    "default": {
+                        "triggerString": "<<<",
+                        "docType": "function"
+                    }
+                },
+                "EasyDoc.lololol": {
+                    "type": "object",
+                    "default": {
+                        "triggerString": "$$$",
+                        "docType": false
+                    }
+                },
+                "EasyDoc.w": {
+                    "type": "object",
+                    "default": {
+                        "triggerString": "$$$",
+                        "docType": "function"
+                    }
                 }
             }
         }
