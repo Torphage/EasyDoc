@@ -25,7 +25,6 @@ class EasyDoc {
             let fileConfig: any = this.config.get(fileName);
             let triggerText = fileConfig.triggerString;
             if (this.getEditorText(triggerText) === triggerText) {
-                console.log(triggerText);
                 let filePath = path.join(this.dir + '/templates', fileName + '.txt');
                 let format = new Format(filePath, fileConfig);
                 format.createDoc();
