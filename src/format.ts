@@ -24,20 +24,21 @@ export class Format {
         this.document = vs.window.activeTextEditor.document;
     }
 
-    public createDoc() {
+    public createDoc(): void {
         let customTypes = this.getCustomTypes(this.syntaxFile);
         let languageID = this.document.languageId;
+        let docType = this.snippetConfig.docType;
         console.log(customTypes);
         switch (languageID) {
             case 'ruby':
-                this.workShop = new languages.Ruby()
+                this.workShop = new languages.Ruby(this.snippetConfig)
         }
-        this.workShop.generate(customTypes)
+        this.workShop.generate(customTypes, docType)
         console.log(this.snippetConfig)
         console.log(languageID);
     }
 
-    private getCustomTypes(fileRows: string) {
+    private getCustomTypes(fileRows: string): CustomTypes {
         let customDict: CustomTypes = {
             variables: this.getVariables(fileRows),
             parameters: this.getParameters(fileRows),
@@ -46,25 +47,25 @@ export class Format {
         return customDict;
     }
 
-    private getVariables(fileRows: string) {
+    private getVariables(fileRows: string): SyntaxType {
         let variables = new RegExp(/([^\\]\$\{[^\}]*\})/, 'g');
         let match = this.matchRegex(fileRows, variables);
         return match;
     }
 
-    private getParameters(fileRows: string) {
+    private getParameters(fileRows: string): SyntaxType {
         let parameters = new RegExp(/([^\\]\$\[[^\]]*\])/, 'g');
         let match = this.matchRegex(fileRows, parameters);
         return match;
     }
     
-    private getRepetitions(fileRows: string) {
+    private getRepetitions(fileRows: string): SyntaxType {
         let repetitions = new RegExp(/([^\\]\$\<\d*\>\((?:.|\s)*\))/, 'g');
         let match = this.matchRegex(fileRows, repetitions);
         return match;
     }
     
-    private matchRegex(fileRows: string, regex: RegExp) {
+    private matchRegex(fileRows: string, regex: RegExp): SyntaxType {
         let rawMatch: RegExpExecArray; 
         let match: SyntaxType = new Array();
         while ( (rawMatch = regex.exec(fileRows)) ) {

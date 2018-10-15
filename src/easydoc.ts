@@ -15,7 +15,7 @@ class EasyDoc {
         this.dir = vs.extensions.getExtension('Torphage.easydoc').extensionPath;
     }
     
-    public checkDoc() {
+    public checkDoc(): void {
         let customFiles = this.dirSync(this.dir + '/templates');
         customFiles.forEach(fileName => {
             let packageFiles = this.getPackageJSON().contributes.configuration.properties;
@@ -47,7 +47,7 @@ class EasyDoc {
         return json;
     }
 
-    private writeConfig(fileName) {
+    private writeConfig(fileName): void {
         let packageJSON = this.getPackageJSON();
         packageJSON.contributes.configuration.properties['EasyDoc.' + fileName] = {
             "type": "object",
