@@ -28,7 +28,8 @@
                     "type": "object",
                     "default": {
                         "triggerString": "###",
-                        "docType": "function"
+                        "docType": "function",
+                        "activateBeneathType": true
                     }
                 },
                 "EasyDoc.tom": {
@@ -36,21 +37,24 @@
                     "description": "What s can be typed to create this snippet.",
                     "default": {
                         "triggerString": "<<<",
-                        "docType": "function"
+                        "docType": "function",
+                        "activateBeneathType": true
                     }
                 },
                 "EasyDoc.lololol": {
                     "type": "object",
                     "default": {
                         "triggerString": "$$$",
-                        "docType": false
+                        "docType": false,
+                        "activateBeneathType": true
                     }
                 },
                 "EasyDoc.w": {
                     "type": "object",
                     "default": {
                         "triggerString": "$$$",
-                        "docType": "function"
+                        "docType": "function",
+                        "activateBeneathType": true
                     }
                 }
             }

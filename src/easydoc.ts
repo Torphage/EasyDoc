@@ -53,7 +53,8 @@ class EasyDoc {
             "type": "object",
             "default": {
                 "triggerString": "$$$",
-                "docType": "function"
+                "docType": "function",
+                "activateBeneathType": true
             }
         };
 
