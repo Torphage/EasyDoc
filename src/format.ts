@@ -1,31 +1,40 @@
 import * as vs from 'vscode';
 import * as fs from 'fs';
-// typescript.
+import * as languages from './languages/export'
 
+type SyntaxType = {
+    text: string;
+    start: number;
+    length: number;
+}[]
 
 type CustomTypes = {
-    variables: string[],
-    parameters: string[],
-    repetition: string[]
+    [key:string]: SyntaxType;
 }
 
-class Format {
-    filePath: string;
-    syntaxFile: string;
-    _snippet: vs.SnippetString;
-    snippetConfig: any;
+export class Format {
+    private syntaxFile: string;
+    private snippetConfig: any;
+    private document: vs.TextDocument;
+    private workShop: languages.BaseLanguage;
 
     constructor(filePath: string, snippetConfig: any) {
-        this.filePath = filePath;
         this.syntaxFile = fs.readFileSync(filePath, 'utf-8');
-        this._snippet = new vs.SnippetString();
         this.snippetConfig = snippetConfig;
+        this.document = vs.window.activeTextEditor.document;
     }
 
     public createDoc() {
-        // console.log(this.syntaxFile);
         let customTypes = this.getCustomTypes(this.syntaxFile);
+        let languageID = this.document.languageId;
         console.log(customTypes);
+        switch (languageID) {
+            case 'ruby':
+                this.workShop = new languages.Ruby()
+        }
+        this.workShop.generate(customTypes)
+        console.log(this.snippetConfig)
+        console.log(languageID);
     }
 
     private getCustomTypes(fileRows: string) {
@@ -56,13 +65,18 @@ class Format {
     }
     
     private matchRegex(fileRows: string, regex: RegExp) {
-        let rawMatch = fileRows.match(regex);
-        // A hack that removes the first character of each map. 
-        // Wanted to use negative lookbehind in the regex but this isn't supported in
-        // ES6.
-        let match = rawMatch.map(i => i.substring(1));
+        let rawMatch: RegExpExecArray; 
+        let match: SyntaxType = new Array();
+        while ( (rawMatch = regex.exec(fileRows)) ) {
+            let matchString = fileRows.substr(rawMatch.index+1, rawMatch[0].length-1)
+            let matchStart = rawMatch.index + 1;
+            let matchLength = rawMatch[0].length - 1;
+            match.push({
+                text: matchString,
+                start: matchStart,
+                length: matchLength
+            })
+        }
         return match;
     }
 }
-
-export { Format }
