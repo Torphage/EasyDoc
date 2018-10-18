@@ -8,4 +8,4 @@
 #     # => $[result])
 # 
 # Returns:
-#     The ${return.type?}
+#     The ${return.type?} $[Return Description]
