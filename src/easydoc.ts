@@ -54,7 +54,7 @@ class EasyDoc {
             "default": {
                 "triggerString": "$$$",
                 "docType": "function",
-                "activateBeneathType": true
+                "commentAboveTarget": false
             }
         };
 

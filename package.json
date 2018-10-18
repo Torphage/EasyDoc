@@ -29,7 +29,7 @@
                     "default": {
                         "triggerString": "###",
                         "docType": "function",
-                        "activateBeneathType": true
+                        "commentAboveTarget": false
                     }
                 },
                 "EasyDoc.tom": {
@@ -38,7 +38,7 @@
                     "default": {
                         "triggerString": "<<<",
                         "docType": "function",
-                        "activateBeneathType": true
+                        "commentAboveTarget": false
                     }
                 },
                 "EasyDoc.lololol": {
@@ -46,7 +46,7 @@
                     "default": {
                         "triggerString": "$$$",
                         "docType": false,
-                        "activateBeneathType": true
+                        "commentAboveTarget": false
                     }
                 },
                 "EasyDoc.w": {
@@ -54,7 +54,15 @@
                     "default": {
                         "triggerString": "$$$",
                         "docType": "function",
-                        "activateBeneathType": true
+                        "commentAboveTarget": false
+                    }
+                },
+                "EasyDoc.b": {
+                    "type": "object",
+                    "default": {
+                        "triggerString": "$$$",
+                        "docType": "function",
+                        "commentAboveTarget": false
                     }
                 }
             }
