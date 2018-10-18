@@ -1,22 +1,15 @@
 import * as vs from 'vscode';
 import * as fs from 'fs';
-import * as languages from './languages/export'
+import * as languages from './languages/export';
+import { SyntaxType, CustomTypes } from './types';
 
-type SyntaxType = {
-    text: string;
-    start: number;
-    length: number;
-}[]
 
-type CustomTypes = {
-    [key:string]: SyntaxType;
-}
 
 export class Format {
     private syntaxFile: string;
     private snippetConfig: any;
     private document: vs.TextDocument;
-    private workShop: languages.BaseLanguage;
+    private workShop: languages.WorkShop;
 
     constructor(filePath: string, snippetConfig: any) {
         this.syntaxFile = fs.readFileSync(filePath, 'utf-8');
@@ -28,14 +21,11 @@ export class Format {
         let customTypes = this.getCustomTypes(this.syntaxFile);
         let languageID = this.document.languageId;
         let docType = this.snippetConfig.docType;
-        console.log(customTypes);
         switch (languageID) {
             case 'ruby':
-                this.workShop = new languages.Ruby(this.snippetConfig)
+                this.workShop = new languages.Ruby()
         }
-        this.workShop.generate(customTypes, docType)
-        console.log(this.snippetConfig)
-        console.log(languageID);
+        this.workShop.generate(customTypes, docType, this.snippetConfig)
     }
 
     private getCustomTypes(fileRows: string): CustomTypes {
