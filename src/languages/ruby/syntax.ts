@@ -29,38 +29,4 @@ export class Ruby extends WorkShop {
             return false;
         }
     }
-
-    getBlock(rows: string[]): string[] {
-        let blockStarts = [
-            'begin',
-            'def',
-            'if',
-            'case',
-            'unless',
-            'do',
-            'class',
-            'module',
-        ];
-        let numOfBlocks = 0;
-        let functionRows: Array<string> = [];
-        for (let i = 0; i < rows.length; i++) {
-            for (let j = 0; j < blockStarts.length; j++) {
-                let matchBlockStart = new RegExp("^\\s*" + blockStarts[j] + "\\s").test(rows[i]);
-                let matchEnd = new RegExp("^\\s*end").test(rows[i]);
-                if (matchBlockStart) {
-                    numOfBlocks++;
-                    break;
-                }
-                if (matchEnd) {
-                    numOfBlocks--;
-                    break;
-                }
-            }
-            functionRows.push(rows[i]);
-            if (numOfBlocks === 0) {
-                break;
-            }    
-        }
-        return functionRows;
-    }
 }
