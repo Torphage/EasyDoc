@@ -46,22 +46,14 @@ export class Ruby extends WorkShop {
 
         let rightOfCurrentPos = syntaxText.slice(index);
         let rightIndex = rightOfCurrentPos.indexOf('\n');
-        // console.log(leftOfCurrentPos)
-        // console.log(rightOfCurrentPos)
-        // console.log(rightIndex);
+        
         if (rightIndex !== -1) {
             let fullLine = syntaxText.substring(leftIndex, leftOfCurrentPos.length + rightIndex);
-            console.log(fullLine);
             return fullLine.trim();
         } else {
             let fullLine = syntaxText.substring(leftOfCurrentPos.length + 2);
-            console.log(fullLine);
             return fullLine.trim();
         }
-        
-        // console.log(syntaxText);
-        // console.log(fullLine);
-        // return fullLine
     }
 
     getCurrentColumn(index: number): number {
