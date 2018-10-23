@@ -1,23 +1,26 @@
 import * as vs from 'vscode';
 import { WorkShop } from '../workshop';
 import { RubyParse } from './parse';
-import { stringify } from 'querystring';
+import { SyntaxVariable, CustomTypes } from '../../types';
+
 
 export class Ruby extends WorkShop {
     protected parse: RubyParse;
 
-    constructor() {
-        super();
+    constructor(syntaxFile: string, customTypes: CustomTypes) {
+        super(syntaxFile, customTypes);
         this.parse = new RubyParse();
     }
 
-    getFunctionLine(row: string): number {
+    getFunctionLines(rows: string): string[] {
         if (this.config.commentAboveTarget) {
             let functionLine = this.position.line + 1;
-            return functionLine;
+            let functionLineString = rows.split('\n').splice(functionLine);
+            return functionLineString;
         } else {
             let functionLine = this.position.line - 1;
-            return functionLine;
+            let functionLineString = rows.split('\n').splice(functionLine);
+            return functionLineString;
         }
     }
     
@@ -28,5 +31,43 @@ export class Ruby extends WorkShop {
         } else {
             return false;
         }
+    }
+
+    getVariables(): SyntaxVariable {
+        let variables: SyntaxVariable = {
+            "args.var": this.parse.parseParams(this.block)
+        }
+        return variables;
+    }
+
+    getCurrentLine(syntaxText: string, index: number): string {
+        let leftOfCurrentPos = syntaxText.slice(0, index);
+        let leftIndex = leftOfCurrentPos.lastIndexOf('\n');
+
+        let rightOfCurrentPos = syntaxText.slice(index);
+        let rightIndex = rightOfCurrentPos.indexOf('\n');
+        // console.log(leftOfCurrentPos)
+        // console.log(rightOfCurrentPos)
+        // console.log(rightIndex);
+        if (rightIndex !== -1) {
+            let fullLine = syntaxText.substring(leftIndex, leftOfCurrentPos.length + rightIndex);
+            console.log(fullLine);
+            return fullLine.trim();
+        } else {
+            let fullLine = syntaxText.substring(leftOfCurrentPos.length + 2);
+            console.log(fullLine);
+            return fullLine.trim();
+        }
+        
+        // console.log(syntaxText);
+        // console.log(fullLine);
+        // return fullLine
+    }
+
+    getCurrentColumn(index: number): number {
+        let leftOfCurrentPos = this.syntaxFile.slice(0, index);
+        let leftIndex = leftOfCurrentPos.lastIndexOf('\n');
+        let currentColumn = leftOfCurrentPos.length - leftIndex;
+        return currentColumn;
     }
 }

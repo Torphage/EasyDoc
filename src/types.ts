@@ -8,6 +8,10 @@ type CustomTypes = {
     [key:string]: SyntaxType;
 }
 
+type SyntaxVariable = {
+    [key:string]: any;
+}
+
 type VarTypes = {
     text: string;
     start: number;
@@ -15,4 +19,9 @@ type VarTypes = {
     value: any;
 }[]
 
-export { SyntaxType, CustomTypes, VarTypes }
+type DocumentationParts = {
+    name: string,
+    params: string[]
+}
+
+export { SyntaxType, CustomTypes, VarTypes, SyntaxVariable, DocumentationParts }

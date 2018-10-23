@@ -2,6 +2,7 @@ import * as vs from 'vscode';
 import * as fs from 'fs';
 import * as languages from './languages/export';
 import { SyntaxType, CustomTypes } from './types';
+import { CustomSyntax } from './syntax';
 
 
 
@@ -10,22 +11,25 @@ export class Format {
     private snippetConfig: any;
     private document: vs.TextDocument;
     private workShop: languages.WorkShop;
+    private syntax: CustomSyntax;
 
     constructor(filePath: string, snippetConfig: any) {
         this.syntaxFile = fs.readFileSync(filePath, 'utf-8');
         this.snippetConfig = snippetConfig;
         this.document = vs.window.activeTextEditor.document;
+        this.syntax = new CustomSyntax();
     }
 
     public createDoc(): void {
         let customTypes = this.getCustomTypes(this.syntaxFile);
         let languageID = this.document.languageId;
         let docType = this.snippetConfig.docType;
+        console.log(customTypes);
         switch (languageID) {
             case 'ruby':
-                this.workShop = new languages.Ruby()
+                this.workShop = new languages.Ruby(this.syntaxFile, customTypes);
         }
-        this.workShop.generate(customTypes, docType, this.snippetConfig)
+        this.workShop.generate(docType, this.snippetConfig)
     }
 
     private getCustomTypes(fileRows: string): CustomTypes {
