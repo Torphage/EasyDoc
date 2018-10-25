@@ -7,8 +7,8 @@ import { SyntaxVariable, CustomTypes } from '../../types';
 export class Ruby extends WorkShop {
     protected parse: RubyParse;
 
-    constructor(syntaxFile: string, customTypes: CustomTypes) {
-        super(syntaxFile, customTypes);
+    constructor(syntaxFile: string) {
+        super(syntaxFile);
         this.parse = new RubyParse();
     }
 
@@ -35,7 +35,8 @@ export class Ruby extends WorkShop {
 
     getVariables(): SyntaxVariable {
         let variables: SyntaxVariable = {
-            "args.var": this.parse.parseParams(this.block)
+            "NAME": this.parse.parseName(this.block),
+            "PARAMS": this.parse.parseParams(this.block)
         }
         return variables;
     }
