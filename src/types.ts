@@ -1,11 +1,13 @@
+type SyntaxTypes = SyntaxType[]
+
 type SyntaxType = {
     text: string;
     start: number;
     length: number;
-}[]
+}
 
 type CustomTypes = {
-    [key:string]: SyntaxType;
+    [key:string]: SyntaxTypes;
 }
 
 type SyntaxVariable = {
@@ -24,4 +26,4 @@ type DocumentationParts = {
     params: string[]
 }
 
-export { SyntaxType, CustomTypes, VarTypes, SyntaxVariable, DocumentationParts }
+export { SyntaxTypes, CustomTypes, VarTypes, SyntaxVariable, DocumentationParts }
