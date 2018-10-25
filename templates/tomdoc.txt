@@ -1,11 +1,11 @@
 # Description: $[Type]
 # 
 # Args:
-#     ${args.var} {${args.type?}}: \${$[args]}
+#     ${PARAMS} {${args.type?}}: \${$[args]}
 # 
-# Examples:$<3>(
-#     ${func.name}($[param1], $[param2])
-#     # => $[result])
-# 
+# Examples:
+$<3>(#     ${NAME}($[param1], $[param2])
+#     # => $[result]
+#)
 # Returns:
-#     The ${return.type?} $[Return Description]
+#     The \${return.type?} $[Return Description]
