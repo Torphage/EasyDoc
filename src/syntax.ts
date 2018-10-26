@@ -1,9 +1,8 @@
 import * as vs from 'vscode';
-import { SyntaxTypes, VarTypes, SyntaxVariable } from './types';
+import { SyntaxTypes } from './types';
 
 
 export class CustomSyntax {
-    private variables: SyntaxVariable;
 
     constructor() {
     }
@@ -13,7 +12,7 @@ export class CustomSyntax {
             return this.getVariables(fileRows);
         } else if (type === 'placeholders') {
             return this.getPlaceholders(fileRows);
-        } else if (type === 'repetition') {
+        } else if (type === 'repetitions') {
             return this.getRepetitions(fileRows);
         }
     }
