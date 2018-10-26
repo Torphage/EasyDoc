@@ -1,29 +1,37 @@
-type SyntaxTypes = SyntaxType[]
+type ISyntaxTypes = ISyntaxType[];
 
-type SyntaxType = {
+interface ISyntaxType {
     text: string;
     start: number;
     length: number;
 }
 
-type CustomTypes = {
-    [key:string]: SyntaxTypes;
+interface ICustomTypes {
+    [key: string]: ISyntaxTypes;
 }
 
-type SyntaxVariable = {
-    [key:string]: any;
+interface ISyntaxVariable {
+    [key: string]: any;
 }
 
-type VarTypes = {
+type IVarTypes = IVarType[];
+
+interface IVarType {
     text: string;
     start: number;
     length: number;
     value: any;
-}[]
-
-type DocumentationParts = {
-    name: string,
-    params: string[]
 }
 
-export { SyntaxTypes, SyntaxType, CustomTypes, VarTypes, SyntaxVariable, DocumentationParts }
+interface IDocumentationParts {
+    name: string;
+    params: string[];
+}
+
+interface IRepeater {
+    snippetStr: string;
+    stringToRepeat: string;
+    timesToRepeat: number;
+}
+
+export { ISyntaxTypes, ISyntaxType, ICustomTypes, IVarTypes, ISyntaxVariable, IDocumentationParts, IRepeater };

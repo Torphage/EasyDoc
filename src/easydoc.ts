@@ -1,32 +1,31 @@
-import * as vs from 'vscode';
-import * as fs from 'fs';
-import * as path from 'path';
-import { Format } from './format';
-
+import * as fs from "fs";
+import * as path from "path";
+import * as vs from "vscode";
+import { Format } from "./format";
 
 class EasyDoc {
-    config: vs.WorkspaceConfiguration;
-    document: vs.TextEditor;
-    dir: string;
+    private config: vs.WorkspaceConfiguration;
+    private document: vs.TextEditor;
+    private dir: string;
 
     constructor() {
-        this.config = vs.workspace.getConfiguration('EasyDoc');
+        this.config = vs.workspace.getConfiguration("EasyDoc");
         this.document = vs.window.activeTextEditor;
-        this.dir = vs.extensions.getExtension('Torphage.easydoc').extensionPath;
+        this.dir = vs.extensions.getExtension("Torphage.easydoc").extensionPath;
     }
-    
+
     public checkDoc(): void {
-        let customFiles = this.dirSync(this.dir + '/templates');
-        customFiles.forEach(fileName => {
-            let packageFiles = this.getPackageJSON().contributes.configuration.properties;
-            if (!('EasyDoc.' + fileName in packageFiles)) {
-                this.writeConfig(fileName)
+        const customFiles = this.dirSync(this.dir + "/templates");
+        customFiles.forEach((fileName) => {
+            const packageFiles = this.getPackageJSON().contributes.configuration.properties;
+            if (!("EasyDoc." + fileName in packageFiles)) {
+                this.writeConfig(fileName);
             }
-            let fileConfig: any = this.config.get(fileName);
-            let triggerText = fileConfig.triggerString;
+            const fileConfig: any = this.config.get(fileName);
+            const triggerText = fileConfig.triggerString;
             if (this.getEditorText(triggerText) === triggerText) {
-                let filePath = path.join(this.dir + '/templates', fileName + '.txt');
-                let format = new Format(filePath, fileConfig);
+                const filePath = path.join(this.dir + "/templates", fileName + ".txt");
+                const format = new Format(filePath, fileConfig);
                 format.createDoc();
             }
         });
@@ -35,44 +34,45 @@ class EasyDoc {
     // https://gist.github.com/kethinov/6658166
     private dirSync(dir: string): string[] {
         let filelist = [];
-        fs.readdirSync(dir).forEach(file => {
+        fs.readdirSync(dir).forEach((file) => {
             const dirFile = path.join(dir, file);
-            if (dirFile.includes('.')) filelist = [...filelist, path.basename(dirFile, '.txt')]
+            if (dirFile.includes(".")) {
+                filelist = [...filelist, path.basename(dirFile, ".txt")];
+            }
         });
         return filelist;
     }
 
     private getPackageJSON(): any {
-        let json = JSON.parse(fs.readFileSync(this.dir + '/package.json', 'utf-8'));
+        const json = JSON.parse(fs.readFileSync(this.dir + "/package.json", "utf-8"));
         return json;
     }
 
     private writeConfig(fileName): void {
-        let packageJSON = this.getPackageJSON();
-        packageJSON.contributes.configuration.properties['EasyDoc.' + fileName] = {
-            "type": "object",
-            "default": {
-                "triggerString": "$$$",
-                "docType": "function",
-                "commentAboveTarget": false
-            }
+        const packageJSON = this.getPackageJSON();
+        packageJSON.contributes.configuration.properties["EasyDoc." + fileName] = {
+            default: {
+                commentAboveTarget: false,
+                docType: "function",
+                triggerString: "$$$",
+            },
+            type: "object",
         };
 
-        fs.writeFile(this.dir + '/package.json', JSON.stringify(packageJSON, null, 4), (err) => {
+        fs.writeFile(this.dir + "/package.json", JSON.stringify(packageJSON, null, 4), (err) => {
             if (err) {
-                console.error(err);
                 return;
             }
-        })
+        });
     }
 
     private getEditorText(triggerText: string): string {
-        let cursorPostition = this.document.selection.active;
-        let cursorLine = this.document.document.lineAt(cursorPostition['line']);
-        let search = cursorLine['text'].substring(cursorPostition['character'] - triggerText.length, cursorPostition['character']);
+        const cursorPostition = this.document.selection.active;
+        const cursorLine = this.document.document.lineAt(cursorPostition.line);
+        const search = cursorLine.text.substring(
+            cursorPostition.character - triggerText.length, cursorPostition.character);
         return search;
     }
 }
 
-
-export { EasyDoc }
+export { EasyDoc };

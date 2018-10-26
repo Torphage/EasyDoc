@@ -1,29 +1,28 @@
-import * as vs from 'vscode';
-import { SyntaxVariable } from '../types';
-import { CustomSyntax } from '../syntax';
-
+import * as vs from "vscode";
+import { CustomSyntax } from "../syntax";
+import { ISyntaxVariable } from "../types";
 
 export abstract class BaseSyntaxType {
     protected customTypes: CustomSyntax;
-    protected vars: SyntaxVariable;
-    
-    constructor(vars?: SyntaxVariable) {
+    protected vars: ISyntaxVariable;
+
+    constructor(vars?: ISyntaxVariable) {
         this.customTypes = new CustomSyntax();
         this.vars = vars;
     }
 
     protected isNewLine(text: string, index: number) {
-        if (text[index - 1] === '\n' || text[index - 1] === undefined) {
+        if (text[index - 1] === "\n" || text[index - 1] === undefined) {
             return true;
         }
         return false;
     }
 
     protected removeEscapeCharacters(text: string): string {
-        let unescapedString = '';
+        let unescapedString = "";
         for (let i = 0; i < text.length; i++) {
-            if (text[i] === '\\') {
-                if (text[i - 1] === '\\' && text[i + 1] === '\\') {
+            if (text[i] === "\\") {
+                if (text[i - 1] === "\\" && text[i + 1] === "\\") {
                     unescapedString += text[i];
                 }
             } else {
@@ -34,25 +33,25 @@ export abstract class BaseSyntaxType {
     }
 
     protected getCurrentLine(syntaxText: string, index: number): string {
-        let leftOfCurrentPos = syntaxText.slice(0, index);
-        let leftIndex = leftOfCurrentPos.lastIndexOf('\n');
+        const leftOfCurrentPos = syntaxText.slice(0, index);
+        const leftIndex = leftOfCurrentPos.lastIndexOf("\n");
 
-        let rightOfCurrentPos = syntaxText.slice(index);
-        let rightIndex = rightOfCurrentPos.indexOf('\n');
-        
+        const rightOfCurrentPos = syntaxText.slice(index);
+        const rightIndex = rightOfCurrentPos.indexOf("\n");
+
         if (rightIndex !== -1) {
-            let fullLine = syntaxText.substring(leftIndex, leftOfCurrentPos.length + rightIndex);
+            const fullLine = syntaxText.substring(leftIndex, leftOfCurrentPos.length + rightIndex);
             return fullLine.trim();
         } else {
-            let fullLine = syntaxText.substring(leftOfCurrentPos.length + 2);
+            const fullLine = syntaxText.substring(leftOfCurrentPos.length + 2);
             return fullLine.trim();
         }
     }
 
     protected typeInLine(text: string) {
-        for (let key in this.vars) {
+        for (const key in this.vars) {
             if (text.includes(`\${${key}}`) && !(text.includes(`\\\${${key}}`))) {
-                return true
+                return true;
             }
         }
         return false;
@@ -60,9 +59,9 @@ export abstract class BaseSyntaxType {
 
     protected maxNumOfType(vars: any[]): number {
         let maxRepetitions = 0;
-        vars.forEach(locals => {
-            if (typeof locals !== 'string') {
-                let variable = this.vars[locals.text.slice(2, -1)]
+        vars.forEach((locals) => {
+            if (typeof locals !== "string") {
+                const variable = this.vars[locals.text.slice(2, -1)];
                 if (variable.length > maxRepetitions) {
                     maxRepetitions = variable.length;
                 }
@@ -71,8 +70,8 @@ export abstract class BaseSyntaxType {
         return maxRepetitions;
     }
 
-    abstract applyType(text: string): vs.SnippetString;
-    abstract isType(text: string, index: number): boolean;
-    abstract getType(text: string, index?: number, type?: string): any;
-    abstract createType(text: string, index: number): any;
+    protected abstract applyType(text: string): vs.SnippetString;
+    protected abstract isType(text: string, index: number): boolean;
+    protected abstract getType(text: string, index?: number, type?: string): any;
+    protected abstract createType(text: string, index: number): any;
 }

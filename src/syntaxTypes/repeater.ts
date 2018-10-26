@@ -1,21 +1,21 @@
 import * as vs from "vscode";
+import { IRepeater, ISyntaxType } from "../types";
 import { BaseSyntaxType } from "./base_type";
-import { SyntaxType } from "../types"
 
-export class Repeater extends BaseSyntaxType {    
+export class Repeater extends BaseSyntaxType {
     constructor() {
         super();
     }
 
-    applyType(text: string): vs.SnippetString {
-        let snippet = new vs.SnippetString();
+    public applyType(text: string): vs.SnippetString {
+        const snippet = new vs.SnippetString();
         for (let i = 0; i < text.length; i++) {
             if (this.isType(text, i)) {
-                let snippetObj = this.createType(text, i);
+                const snippetObj = this.createType(text, i);
                 snippet.appendText(
-                    this.removeEscapeCharacters(snippetObj.snippetStr)
+                    this.removeEscapeCharacters(snippetObj.snippetStr),
                 );
-                let offset = 4 + String(snippetObj.timesToRepeat).length;
+                const offset = 4 + String(snippetObj.timesToRepeat).length;
                 i += this.removeEscapeCharacters(snippetObj.stringToRepeat).length + offset;
             } else {
                 snippet.appendText(text[i]);
@@ -24,42 +24,45 @@ export class Repeater extends BaseSyntaxType {
         return snippet;
     }
 
-    isType(text: string, index: number): boolean {
-        let repetitions = this.customTypes.getSyntax(text, 'repetitions');
-        for (let i = 0; i < repetitions.length; i++) {
-            if (repetitions[i].start === index) {
+    protected isType(text: string, index: number): boolean {
+        const repetitions = this.customTypes.getSyntax(text, "repetitions");
+        for (const repetition of repetitions) {
+            if (repetition.start === index) {
                 return true;
             }
         }
         return false;
     }
 
-    getType(text: string, index: number): SyntaxType {
-        let repetitions = this.customTypes.getSyntax(text, 'repetitions');
-        for (let i = 0; i < repetitions.length; i++) {
-            if (repetitions[i].start === index) {
-                return repetitions[i];
+    protected getType(text: string, index: number): ISyntaxType {
+        const repetitions = this.customTypes.getSyntax(text, "repetitions");
+        for (const repetition of repetitions) {
+            if (repetition.start === index) {
+                return repetition;
             }
         }
     }
 
-    createType(text: string, index: number): {snippetStr: string, stringToRepeat: string, timesToRepeat: number} {
-        let repetition = this.getType(text, index);
-        // console.log("in create")
+    protected createType(text: string, index: number): IRepeater {
+        const repetition = this.getType(text, index);
 
-        let regex = new RegExp(/\<(\d*)|\((?:.|\s)*/, 'gm');
-        let result = repetition.text.match(regex);
+        const regex = new RegExp(/\<(\d*)|\((?:.|\s)*/, "gm");
+        const result = repetition.text.match(regex);
 
-        let timesToRepeat = +result[0].substring(1);
-        let stringToRepeat = result[1].substr(1, result[1].length - 2);
-        
-        let snippetStrArr: string[] = []
+        const timesToRepeat = +result[0].substring(1);
+        const stringToRepeat = result[1].substr(1, result[1].length - 2);
+
+        const snippetStrArr: string[] = [];
         for (let i = 0; i < timesToRepeat; i++) {
-            snippetStrArr.push(stringToRepeat)
+            snippetStrArr.push(stringToRepeat);
         }
 
-        let snippetStr = snippetStrArr.join('\n')
+        const snippetStr = snippetStrArr.join("\n");
 
-        return {snippetStr, stringToRepeat, timesToRepeat};
+        return {
+            snippetStr,
+            stringToRepeat,
+            timesToRepeat,
+        };
     }
 }

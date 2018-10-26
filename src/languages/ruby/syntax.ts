@@ -1,8 +1,6 @@
-import * as vs from 'vscode';
-import { WorkShop } from '../workshop';
-import { RubyParse } from './parse';
-import { SyntaxVariable, CustomTypes } from '../../types';
-
+import { ISyntaxVariable } from "../../types";
+import { WorkShop } from "../workshop";
+import { RubyParse } from "./parse";
 
 export class Ruby extends WorkShop {
     protected parse: RubyParse;
@@ -12,20 +10,20 @@ export class Ruby extends WorkShop {
         this.parse = new RubyParse();
     }
 
-    getFunctionLines(rows: string): string[] {
+    public getFunctionLines(rows: string): string[] {
         if (this.config.commentAboveTarget) {
-            let functionLine = this.position.line + 1;
-            let functionLineString = rows.split('\n').splice(functionLine);
+            const functionLine = this.position.line + 1;
+            const functionLineString = rows.split("\n").splice(functionLine);
             return functionLineString;
         } else {
-            let functionLine = this.position.line - 1;
-            let functionLineString = rows.split('\n').splice(functionLine);
+            const functionLine = this.position.line - 1;
+            const functionLineString = rows.split("\n").splice(functionLine);
             return functionLineString;
         }
     }
-    
-    correctlyPlacedFunction(functionLine: string): boolean {
-        let regex = /^\s*def\s/g;
+
+    public correctlyPlacedFunction(functionLine: string): boolean {
+        const regex = /^\s*def\s/g;
         if (regex.exec(functionLine) !== null) {
             return true;
         } else {
@@ -33,18 +31,18 @@ export class Ruby extends WorkShop {
         }
     }
 
-    getVariables(): SyntaxVariable {
-        let variables: SyntaxVariable = {
-            "NAME": this.parse.parseName(this.block),
-            "PARAMS": this.parse.parseParams(this.block)
-        }
+    public getVariables(): ISyntaxVariable {
+        const variables: ISyntaxVariable = {
+            NAME: this.parse.parseName(this.block),
+            PARAMS: this.parse.parseParams(this.block),
+        };
         return variables;
     }
 
-    getCurrentColumn(index: number): number {
-        let leftOfCurrentPos = this.syntaxFile.slice(0, index);
-        let leftIndex = leftOfCurrentPos.lastIndexOf('\n');
-        let currentColumn = leftOfCurrentPos.length - leftIndex;
+    public getCurrentColumn(index: number): number {
+        const leftOfCurrentPos = this.syntaxFile.slice(0, index);
+        const leftIndex = leftOfCurrentPos.lastIndexOf("\n");
+        const currentColumn = leftOfCurrentPos.length - leftIndex;
         return currentColumn;
     }
 }

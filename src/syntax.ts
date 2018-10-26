@@ -1,53 +1,50 @@
-import * as vs from 'vscode';
-import { SyntaxTypes } from './types';
-
+import { ISyntaxTypes } from "./types";
 
 export class CustomSyntax {
 
-    constructor() {
-    }
-
-    public getSyntax(fileRows: string, type: string): SyntaxTypes {
-        if (type === 'variables') {
+    public getSyntax(fileRows: string, type: string): ISyntaxTypes {
+        if (type === "variables") {
             return this.getVariables(fileRows);
-        } else if (type === 'placeholders') {
+        } else if (type === "placeholders") {
             return this.getPlaceholders(fileRows);
-        } else if (type === 'repetitions') {
+        } else if (type === "repetitions") {
             return this.getRepetitions(fileRows);
         }
     }
 
-    private getVariables(fileRows: string): SyntaxTypes {
-        let variables = new RegExp(/([^\\]\$\{[^\}]*\})/, 'g');
-        let match = this.matchRegex(fileRows, variables);
+    private getVariables(fileRows: string): ISyntaxTypes {
+        const variables = new RegExp(/([^\\]\$\{[^\}]*\})/, "g");
+        const match = this.matchRegex(fileRows, variables);
         return match;
     }
 
-    private getPlaceholders(fileRows: string): SyntaxTypes {
-        let placeholders = new RegExp(/([^\\]\$\[[^\]]*\])/, 'g');
-        let match = this.matchRegex(fileRows, placeholders);
+    private getPlaceholders(fileRows: string): ISyntaxTypes {
+        const placeholders = new RegExp(/([^\\]\$\[[^\]]*\])/, "g");
+        const match = this.matchRegex(fileRows, placeholders);
         return match;
     }
 
-    private getRepetitions(fileRows: string): SyntaxTypes {
-        let repetitions = new RegExp(/([^\\]\$\<\d*\>\((?:.|\s)*\))/, 'g');
-        let match = this.matchRegex(fileRows, repetitions);
+    private getRepetitions(fileRows: string): ISyntaxTypes {
+        const repetitions = new RegExp(/([^\\]\$\<\d*\>\((?:.|\s)*\))/, "g");
+        const match = this.matchRegex(fileRows, repetitions);
         return match;
     }
 
-    private matchRegex(fileRows: string, regex: RegExp): SyntaxTypes {
+    private matchRegex(fileRows: string, regex: RegExp): ISyntaxTypes {
         let rawMatch: RegExpExecArray;
-        let match: SyntaxTypes = new Array();
-        while ((rawMatch = regex.exec(fileRows))) {
-            let matchString = fileRows.substr(rawMatch.index + 1, rawMatch[0].length - 1)
-            let matchStart = rawMatch.index + 1;
-            let matchLength = rawMatch[0].length - 1;
+        const match: ISyntaxTypes = new Array();
+        do {
+            rawMatch = regex.exec(fileRows);
+            const matchString = fileRows.substr(rawMatch.index + 1, rawMatch[0].length - 1);
+            const matchStart = rawMatch.index + 1;
+            const matchLength = rawMatch[0].length - 1;
             match.push({
-                text: matchString,
+                length: matchLength,
                 start: matchStart,
-                length: matchLength
-            })
-        }
+                text: matchString,
+            });
+        } while (rawMatch);
+
         return match;
     }
 }

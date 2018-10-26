@@ -1,2 +1,2 @@
-export * from './ruby/syntax';
-export * from './workshop';
+export * from "./ruby/syntax";
+export * from "./workshop";
