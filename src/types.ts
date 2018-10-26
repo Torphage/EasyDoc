@@ -26,4 +26,4 @@ type DocumentationParts = {
     params: string[]
 }
 
-export { SyntaxTypes, CustomTypes, VarTypes, SyntaxVariable, DocumentationParts }
+export { SyntaxTypes, SyntaxType, CustomTypes, VarTypes, SyntaxVariable, DocumentationParts }
