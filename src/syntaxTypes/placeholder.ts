@@ -7,35 +7,31 @@ export class Placeholder extends BaseSyntaxType {
         super();
     }
 
-    public applyType(unexcapedText: string): vs.SnippetString {
+    public applyType(unescapedText: string): vs.SnippetString {
         const snippet = new vs.SnippetString();
-        const text = this.removeEscapeCharacters(unexcapedText);
+
+        const text = this.removeEscapeCharacters(unescapedText);
+        const placeholders = this.customTypes.getSyntax(text, "placeholders");
+
         for (let i = 0; i < text.length; i++) {
-            if (this.isType(text, i)) {
-                const snippetStr = this.createType(text, i);
-                snippet.appendPlaceholder(
-                    this.removeEscapeCharacters(snippetStr),
-                );
+            const placeholder = this.getType(placeholders, i);
+
+            if (placeholder) {
+                const snippetStr = this.getTypeText(placeholder);
+                const cleanStr = this.removeEscapeCharacters(snippetStr)
+
+                snippet.appendPlaceholder(cleanStr);
+
                 i += snippetStr.length + 2;
             } else {
                 snippet.appendText(text[i]);
             }
         }
+
         return snippet;
     }
 
-    protected isType(text: string, index: number): boolean {
-        const placeholders = this.customTypes.getSyntax(text, "placeholders");
-        for (const placeholder of placeholders) {
-            if (placeholder.start === index) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    protected getType(text: string, index: number): ISyntaxType {
-        const placeholders = this.customTypes.getSyntax(text, "placeholders");
+    protected getType(placeholders: ISyntaxType[], index: number): ISyntaxType {
         for (const placeholder of placeholders) {
             if (placeholder.start === index) {
                 return placeholder;
@@ -43,9 +39,9 @@ export class Placeholder extends BaseSyntaxType {
         }
     }
 
-    protected createType(text: string, index: number): string {
-        const placeholder = this.getType(text, index);
+    protected getTypeText(placeholder: ISyntaxType): string {
         const placeholderString = placeholder.text.slice(2, -1);
+
         return placeholderString;
     }
 }
