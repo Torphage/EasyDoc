@@ -16,9 +16,8 @@ export class Repeater extends BaseSyntaxType {
 
             if (repeater) {
                 const snippetObj = this.repeatObj(repeater);
-                const cleanStr = this.removeEscapeCharacters(snippetObj.snippetStr);
 
-                snippet.appendText(cleanStr);
+                snippet.appendText(snippetObj.snippetStr);
 
                 i += snippetObj.offset;
             } else {
@@ -48,7 +47,7 @@ export class Repeater extends BaseSyntaxType {
 
         for (let i = 0; i < timesToRepeat; i++) {
             snippetStrArr.push(
-                this.removeEscapeCharacters(this.applyType(this.removeEscapeCharacters(stringToRepeat.value)).value),
+                this.removeEscapeCharacters(stringToRepeat.value),
             );
         }
 

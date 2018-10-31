@@ -18,9 +18,8 @@ export class Placeholder extends BaseSyntaxType {
 
             if (placeholder) {
                 const snippetStr = this.getTypeText(placeholder);
-                const cleanStr = this.removeEscapeCharacters(snippetStr)
 
-                snippet.appendPlaceholder(cleanStr);
+                snippet.appendPlaceholder(snippetStr);
 
                 i += snippetStr.length + 2;
             } else {
