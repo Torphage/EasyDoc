@@ -16,15 +16,21 @@ class EasyDoc {
 
     public checkDoc(): void {
         const customFiles = this.dirSync(this.dir + "/templates");
+        const packageFiles = this.getPackageJSON().contributes.configuration.properties;
+
         customFiles.forEach((fileName) => {
-            const packageFiles = this.getPackageJSON().contributes.configuration.properties;
-            if (!("EasyDoc." + fileName in packageFiles)) {
-                this.writeConfig(fileName);
+            const configName = `EasyDoc.${fileName}`;
+
+            if (!(configName in packageFiles)) {
+                this.addConfig(fileName);
             }
+
             const fileConfig: any = this.config.get(fileName);
             const triggerText = fileConfig.triggerString;
+
             if (this.getEditorText(triggerText) === triggerText) {
-                const filePath = path.join(this.dir + "/templates", fileName + ".txt");
+                const filePath = `${this.dir}/templates/${fileName}.txt`;
+
                 const format = new Format(filePath, fileConfig);
                 format.createDoc();
             }
@@ -34,22 +40,27 @@ class EasyDoc {
     // https://gist.github.com/kethinov/6658166
     private dirSync(dir: string): string[] {
         let filelist = [];
+
         fs.readdirSync(dir).forEach((file) => {
             const dirFile = path.join(dir, file);
+
             if (dirFile.includes(".")) {
                 filelist = [...filelist, path.basename(dirFile, ".txt")];
             }
         });
+
         return filelist;
     }
 
     private getPackageJSON(): any {
-        const json = JSON.parse(fs.readFileSync(this.dir + "/package.json", "utf-8"));
+        const json = JSON.parse(fs.readFileSync(`${this.dir}/package.json`, "utf-8"));
+
         return json;
     }
 
-    private writeConfig(fileName): void {
+    private addConfig(fileName): void {
         const packageJSON = this.getPackageJSON();
+
         packageJSON.contributes.configuration.properties["EasyDoc." + fileName] = {
             default: {
                 commentAboveTarget: false,
@@ -69,8 +80,11 @@ class EasyDoc {
     private getEditorText(triggerText: string): string {
         const cursorPostition = this.document.selection.active;
         const cursorLine = this.document.document.lineAt(cursorPostition.line);
+
         const search = cursorLine.text.substring(
-            cursorPostition.character - triggerText.length, cursorPostition.character);
+            cursorPostition.character - triggerText.length, cursorPostition.character,
+        );
+
         return search;
     }
 }

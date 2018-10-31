@@ -10,21 +10,24 @@ export class Ruby extends WorkShop {
         this.parse = new RubyParse();
     }
 
-    public getFunctionLines(rows: string): string[] {
+    public getFunctionStartLine(rows: string): string[] {
+        let functionLineIndex: number;
+
         if (this.config.commentAboveTarget) {
-            const functionLine = this.position.line + 1;
-            const functionLineString = rows.split("\n").splice(functionLine);
-            return functionLineString;
+            functionLineIndex = this.position.line + 1;
         } else {
-            const functionLine = this.position.line - 1;
-            const functionLineString = rows.split("\n").splice(functionLine);
-            return functionLineString;
+            functionLineIndex = this.position.line - 1;
         }
+
+        const functionLineString = rows.split("\n").splice(functionLineIndex);
+
+        return functionLineString;
     }
 
-    public correctlyPlacedFunction(functionLine: string): boolean {
+    public correctlyPlacedFunction(functionLineIndex: string): boolean {
         const regex = /^\s*def\s/g;
-        if (regex.exec(functionLine) !== null) {
+
+        if (regex.exec(functionLineIndex) !== null) {
             return true;
         } else {
             return false;
@@ -35,7 +38,9 @@ export class Ruby extends WorkShop {
         const variables: ISyntaxVariable = {
             NAME: this.parse.parseName(this.block),
             PARAMS: this.parse.parseParams(this.block),
+            PARAMS_TEMPLATE: this.parse.parseParamsTemplate(this.block),
         };
+
         return variables;
     }
 

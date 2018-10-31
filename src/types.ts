@@ -1,5 +1,3 @@
-type ISyntaxTypes = ISyntaxType[];
-
 interface ISyntaxType {
     text: string;
     start: number;
@@ -7,7 +5,7 @@ interface ISyntaxType {
 }
 
 interface ICustomTypes {
-    [key: string]: ISyntaxTypes;
+    [key: string]: ISyntaxType[];
 }
 
 interface ISyntaxVariable {
@@ -29,9 +27,15 @@ interface IDocumentationParts {
 }
 
 interface IRepeater {
+    offset: number;
     snippetStr: string;
-    stringToRepeat: string;
-    timesToRepeat: number;
 }
 
-export { ISyntaxTypes, ISyntaxType, ICustomTypes, IVarTypes, ISyntaxVariable, IDocumentationParts, IRepeater };
+export {
+    ISyntaxType,
+    ICustomTypes,
+    IVarTypes,
+    ISyntaxVariable,
+    IDocumentationParts,
+    IRepeater,
+};

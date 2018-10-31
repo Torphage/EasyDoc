@@ -17,10 +17,12 @@ export class Format {
     public createDoc(): void {
         const languageID = this.document.languageId;
         const docType = this.snippetConfig.docType;
+
         switch (languageID) {
             case "ruby":
                 this.workShop = new languages.Ruby(this.syntaxFile);
         }
+
         this.workShop.generate(docType, this.snippetConfig);
     }
 }
