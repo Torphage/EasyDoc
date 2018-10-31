@@ -1,6 +1,6 @@
 import * as vs from "vscode";
 import { CustomSyntax } from "../syntax";
-import { ISyntaxVariable } from "../types";
+import { ISyntaxType, ISyntaxVariable } from "../types";
 
 export abstract class BaseSyntaxType {
     protected customTypes: CustomSyntax;
@@ -12,14 +12,16 @@ export abstract class BaseSyntaxType {
     }
 
     protected isNewLine(text: string, index: number) {
-        if (text[index - 1] === "\n" || text[index - 1] === undefined) {
+        if (text[index - 1] === ("\n" || undefined)) {
             return true;
         }
+
         return false;
     }
 
     protected removeEscapeCharacters(text: string): string {
         let unescapedString = "";
+
         for (let i = 0; i < text.length; i++) {
             if (text[i] === "\\") {
                 if (text[i - 1] === "\\" && text[i + 1] === "\\") {
@@ -29,6 +31,7 @@ export abstract class BaseSyntaxType {
                 unescapedString += text[i];
             }
         }
+
         return unescapedString;
     }
 
@@ -39,13 +42,15 @@ export abstract class BaseSyntaxType {
         const rightOfCurrentPos = syntaxText.slice(index);
         const rightIndex = rightOfCurrentPos.indexOf("\n");
 
+        let fullLine: string;
+
         if (rightIndex !== -1) {
-            const fullLine = syntaxText.substring(leftIndex, leftOfCurrentPos.length + rightIndex);
-            return fullLine.trim();
+            fullLine = syntaxText.substring(leftIndex, leftOfCurrentPos.length + rightIndex);
         } else {
-            const fullLine = syntaxText.substring(leftOfCurrentPos.length + 2);
-            return fullLine.trim();
+            fullLine = syntaxText.substring(leftOfCurrentPos.length + 2);
         }
+
+        return fullLine.trim();
     }
 
     protected typeInLine(text: string) {
@@ -54,24 +59,27 @@ export abstract class BaseSyntaxType {
                 return true;
             }
         }
+
         return false;
     }
 
-    protected maxNumOfType(vars: any[]): number {
-        let maxRepetitions = 0;
+    protected maxNumOfType(vars: any[]): any {
+        let maxRepeaters = 0;
+
         vars.forEach((locals) => {
             if (typeof locals !== "string") {
                 const variable = this.vars[locals.text.slice(2, -1)];
-                if (variable.length > maxRepetitions) {
-                    maxRepetitions = variable.length;
+
+                if (variable.length > maxRepeaters) {
+                    maxRepeaters = variable;
                 }
             }
         });
-        return maxRepetitions;
+
+        return maxRepeaters;
     }
 
     protected abstract applyType(text: string): vs.SnippetString;
-    protected abstract isType(text: string, index: number): boolean;
-    protected abstract getType(text: string, index?: number, type?: string): any;
-    protected abstract createType(text: string, index: number): any;
+    protected abstract getType(types: ISyntaxType[], index: number): ISyntaxType;
+    protected abstract getTypeText(types: ISyntaxType): any;
 }
