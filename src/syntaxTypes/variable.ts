@@ -1,5 +1,5 @@
 import * as vs from "vscode";
-import { ISyntaxVariable } from "../types";
+import { ISyntaxType, ISyntaxVariable } from "../types";
 import { BaseSyntaxType } from "./base_type";
 
 export class Variable extends BaseSyntaxType {
@@ -7,81 +7,115 @@ export class Variable extends BaseSyntaxType {
         super(vars);
     }
 
-    public applyType(unexcapedText: string): vs.SnippetString {
+    public applyType(unescapedText: string): vs.SnippetString {
         const snippet = new vs.SnippetString();
-        const text = this.removeEscapeCharacters(unexcapedText);
+        const text = this.removeEscapeCharacters(unescapedText);
+        const variables = this.customTypes.getSyntax(text, "variables");
+
         for (let i = 0; i < text.length; i++) {
+            const variable = this.getType(variables, i);
+
+            if (variable) {
+                const snippetStr = this.getTypeText(variable);
+                const value = this.vars[snippetStr];
+                const cleanStr = this.removeEscapeCharacters(value);
+
+                snippet.appendText(cleanStr);
+
+                i += snippetStr.length + 2;
+
+                continue;
+            }
+
             if (this.isNewLine(text, i)) {
                 const currentLine = this.getCurrentLine(text, i);
+
                 if (this.typeInLine(currentLine)) {
-                    const snippetStr = this.createType(currentLine, i);
-                    snippet.appendText(
-                        this.removeEscapeCharacters(snippetStr),
-                    );
+                    const snippetStr = this.createType(variables, i, currentLine);
+                    const cleanStr = this.removeEscapeCharacters(snippetStr);
+
+                    snippet.appendText(cleanStr);
+
                     i += currentLine.length;
-                } else {
-                    snippet.appendText(text[i]);
+
+                    continue;
                 }
-            } else {
-                snippet.appendText(text[i]);
             }
+
+            snippet.appendText(text[i]);
         }
+
         return snippet;
     }
 
-    protected isType(text: string, index: number): boolean {
-        const variables = this.customTypes.getSyntax(text, "variables");
+    protected getType(variables: ISyntaxType[], index: number): ISyntaxType {
         for (const variable of variables) {
             if (variable.start === index) {
-                return true;
+                if (variable.text.slice(2, -1) in this.vars) {
+                    return variable;
+                }
             }
         }
-        return false;
     }
 
-    protected getType(text: string, index: number, type: string): any {
-        const includedVars = [];
-        this.customTypes.getSyntax(text, type).forEach((obj) => {
-            if (text.includes(obj.text)) {
-                for (const key in this.vars) {
-                    if (obj.text.includes(key)) {
-                        includedVars.push(obj);
-                    }
-                }
-            }
-        });
-        return includedVars;
-    }
+    protected createType(variables: ISyntaxType[], index: number, text: string): string {
+        const localVars = this.getLocalTypes(text, variables, index);
+        const maxRepeaters = this.maxNumOfType(localVars);
 
-    protected createType(text: string, index: number): string {
-        const str = [];
-        const localVars = this.getType(text, undefined, "variables");
-        const maxRepetitions = this.maxNumOfType(localVars);
+        let str = [];
 
-        localVars.forEach((variable) => {
+        for (const variable of localVars) {
             const newVar = this.vars[variable.text.slice(2, -1)];
 
+            const tempStr = []
             if (typeof newVar === "string") {
-                const newStr = text.replace(variable.text, newVar);
-                const temp = this.applyType(newStr);
-                str.push(temp.value);
+                text = text.replace(variable.text, newVar);
+                const temp = this.applyType(text);
 
-            } else {
-                for (let i = 0; i < maxRepetitions; i++) {
+                tempStr.push(temp.value);
+                str = tempStr;
 
-                    if (newVar.length === maxRepetitions) {
-                        const newStr = text.replace(variable.text, newVar[i]);
-                        const temp = this.applyType(newStr);
-                        str.push(temp.value);
+                continue;
+            }
 
-                    } else {
-                        const newStr = text.replace(variable.text, newVar[0]);
-                        const temp = this.applyType(newStr);
-                        str.push(temp.value);
-                    }
+            for (let i = 0; i < maxRepeaters.length; i++) {
+                if (newVar.length === maxRepeaters.length) {
+                    const newText = text.replace(variable.text, newVar[i]);
+                    const temp = this.applyType(newText);
+
+                    tempStr.push(temp.value);
+
+                } else {
+                    const newText = text.replace(variable.text, newVar[0]);
+                    const temp = this.applyType(newText);
+
+                    tempStr.push(temp.value);
                 }
             }
-        });
+
+            str = tempStr;
+        }
+
         return str.join("\n");
+    }
+
+    protected getTypeText(variable: ISyntaxType): string {
+        const variableString = variable.text.slice(2, -1);
+
+        return variableString;
+    }
+
+    private getLocalTypes(text: string, variables: ISyntaxType[], index: number): any {
+        const includedVars = [];
+
+        for (const variable of variables) {
+            if (variable.start > index && variable.start + variable.length < index + text.length) {
+                if (variable.text.slice(2, -1) in this.vars) {
+                    includedVars.push(variable);
+                }
+            }
+        }
+
+        return includedVars;
     }
 }
