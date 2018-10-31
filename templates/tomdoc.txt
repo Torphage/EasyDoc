@@ -4,8 +4,8 @@
 #     ${PARAMS} {${args.type?}}: \${$[args]}
 # 
 # Examples:
-$<3>(#     ${NAME}($[param1], $[param2])
+$<3>(#     ${NAME}(${PARAMS_TEMPLATE})
 #     # => $[result]
-#)
-# Returns:
+#
+)# Returns:
 #     The \${return.type?} $[Return Description]
