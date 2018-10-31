@@ -3,66 +3,92 @@ import { IRepeater, ISyntaxType } from "../types";
 import { BaseSyntaxType } from "./base_type";
 
 export class Repeater extends BaseSyntaxType {
-    constructor() {
-        super();
+    constructor(vars) {
+        super(vars);
     }
 
     public applyType(text: string): vs.SnippetString {
         const snippet = new vs.SnippetString();
+        const repeaters = this.customTypes.getSyntax(text, "repeaters");
+
         for (let i = 0; i < text.length; i++) {
-            if (this.isType(text, i)) {
-                const snippetObj = this.createType(text, i);
-                snippet.appendText(
-                    this.removeEscapeCharacters(snippetObj.snippetStr),
-                );
-                const offset = 4 + String(snippetObj.timesToRepeat).length;
-                i += this.removeEscapeCharacters(snippetObj.stringToRepeat).length + offset;
+            const repeater = this.getType(repeaters, i);
+
+            if (repeater) {
+                const snippetObj = this.repeatObj(repeater);
+                const cleanStr = this.removeEscapeCharacters(snippetObj.snippetStr);
+
+                snippet.appendText(cleanStr);
+
+                i += snippetObj.offset;
             } else {
                 snippet.appendText(text[i]);
             }
         }
+
         return snippet;
     }
 
-    protected isType(text: string, index: number): boolean {
-        const repetitions = this.customTypes.getSyntax(text, "repetitions");
-        for (const repetition of repetitions) {
-            if (repetition.start === index) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    protected getType(text: string, index: number): ISyntaxType {
-        const repetitions = this.customTypes.getSyntax(text, "repetitions");
-        for (const repetition of repetitions) {
-            if (repetition.start === index) {
-                return repetition;
+    protected getType(repeaters: ISyntaxType[], index: number): ISyntaxType {
+        for (const repeater of repeaters) {
+            if (repeater.start === index) {
+                return repeater;
             }
         }
     }
 
-    protected createType(text: string, index: number): IRepeater {
-        const repetition = this.getType(text, index);
+    protected getTypeText(repeater: ISyntaxType): string[] {
+        const result = this.repeatRegex(repeater);
 
-        const regex = new RegExp(/\<(\d*)|\((?:.|\s)*/, "gm");
-        const result = repetition.text.match(regex);
-
-        const timesToRepeat = +result[0].substring(1);
-        const stringToRepeat = result[1].substr(1, result[1].length - 2);
+        const timesToRepeat = this.timesToRepeat(repeater);
+        const stringToRepeat = this.applyType(
+            result[1].substr(1, result[1].length - 2));
 
         const snippetStrArr: string[] = [];
+
         for (let i = 0; i < timesToRepeat; i++) {
-            snippetStrArr.push(stringToRepeat);
+            snippetStrArr.push(
+                this.removeEscapeCharacters(this.applyType(this.removeEscapeCharacters(stringToRepeat.value)).value),
+            );
         }
 
-        const snippetStr = snippetStrArr.join("\n");
+        return snippetStrArr;
+    }
+
+    private timesToRepeat(repeater: ISyntaxType): number {
+        const regexResult = this.repeatRegex(repeater);
+        const timesToRepeat = regexResult[0].substring(1);
+
+        let num: number;
+
+        if (isNaN(+timesToRepeat)) {
+            num = this.vars[timesToRepeat];
+        } else {
+            num = +timesToRepeat;
+        }
+
+        return num;
+    }
+
+    private repeatRegex(repeater: ISyntaxType): RegExpMatchArray {
+        const regex = /\<((\d|\w)*)|\((?:.|\s)*/gm;
+        const result = repeater.text.slice(0, -1).match(regex);
+
+        return result;
+    }
+
+    private repeatObj(repeater: ISyntaxType): IRepeater {
+        const snippetStrArr = this.getTypeText(repeater);
+        const snippetStr = snippetStrArr.join("");
+
+        const timesToRepeat = this.timesToRepeat(repeater);
+
+        const temp = 5 + String(timesToRepeat).length;
+        const offset = this.removeEscapeCharacters(snippetStrArr[0]).length + temp;
 
         return {
+            offset,
             snippetStr,
-            stringToRepeat,
-            timesToRepeat,
         };
     }
 }
