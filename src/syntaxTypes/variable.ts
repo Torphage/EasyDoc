@@ -7,9 +7,17 @@ export class Variable extends BaseSyntaxType {
         super(vars);
     }
 
-    public applyType(unescapedText: string): vs.SnippetString {
+    public applyType(unescapedText: string, alreadyEscaped: boolean): vs.SnippetString {
         const snippet = new vs.SnippetString();
-        const text = this.removeEscapeCharacters(unescapedText);
+
+        let text: string;
+
+        if (!(alreadyEscaped)) {
+            text = this.removeEscapeCharacters(unescapedText);
+        } else {
+            text = unescapedText;
+        }
+
         const variables = this.customTypes.getSyntax(text, "variables");
 
         for (let i = 0; i < text.length; i++) {
@@ -18,9 +26,8 @@ export class Variable extends BaseSyntaxType {
             if (variable) {
                 const snippetStr = this.getTypeText(variable);
                 const value = this.vars[snippetStr];
-                const cleanStr = this.removeEscapeCharacters(value);
 
-                snippet.appendText(cleanStr);
+                snippet.appendText(value);
 
                 i += snippetStr.length + 2;
 
@@ -32,9 +39,8 @@ export class Variable extends BaseSyntaxType {
 
                 if (this.typeInLine(currentLine)) {
                     const snippetStr = this.createType(variables, i, currentLine);
-                    const cleanStr = this.removeEscapeCharacters(snippetStr);
 
-                    snippet.appendText(cleanStr);
+                    snippet.appendText(snippetStr);
 
                     i += currentLine.length;
 
@@ -67,10 +73,11 @@ export class Variable extends BaseSyntaxType {
         for (const variable of localVars) {
             const newVar = this.vars[variable.text.slice(2, -1)];
 
-            const tempStr = []
+            const tempStr = [];
+
             if (typeof newVar === "string") {
-                text = text.replace(variable.text, newVar);
-                const temp = this.applyType(text);
+                const newText = text.replace(variable.text, newVar);
+                const temp = this.applyType(newText, false);
 
                 tempStr.push(temp.value);
                 str = tempStr;
@@ -81,13 +88,13 @@ export class Variable extends BaseSyntaxType {
             for (let i = 0; i < maxRepeaters.length; i++) {
                 if (newVar.length === maxRepeaters.length) {
                     const newText = text.replace(variable.text, newVar[i]);
-                    const temp = this.applyType(newText);
+                    const temp = this.applyType(newText, true);
 
-                    tempStr.push(temp.value);
+                    tempStr.push(this.removeEscapeCharacters(temp.value));
 
                 } else {
                     const newText = text.replace(variable.text, newVar[0]);
-                    const temp = this.applyType(newText);
+                    const temp = this.applyType(newText, false);
 
                     tempStr.push(temp.value);
                 }

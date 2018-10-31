@@ -26,6 +26,7 @@ export abstract class BaseSyntaxType {
             if (text[i] === "\\") {
                 if (text[i - 1] === "\\" && text[i + 1] === "\\") {
                     unescapedString += text[i];
+                    i++;
                 }
             } else {
                 unescapedString += text[i];
@@ -79,7 +80,7 @@ export abstract class BaseSyntaxType {
         return maxRepeaters;
     }
 
-    protected abstract applyType(text: string): vs.SnippetString;
+    protected abstract applyType(text: string, alreadyEscaped?: boolean): vs.SnippetString;
     protected abstract getType(types: ISyntaxType[], index: number): ISyntaxType;
     protected abstract getTypeText(types: ISyntaxType): any;
 }

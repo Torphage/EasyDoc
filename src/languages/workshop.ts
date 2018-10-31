@@ -22,7 +22,7 @@ export abstract class WorkShop {
         this.block = [];
         this.customTypes = new CustomSyntax();
     }
-    
+
     public generate(docType: any, config: any): void {
         this.config = config;
         this.getDocParts();
@@ -40,18 +40,25 @@ export abstract class WorkShop {
     protected abstract correctlyPlacedFunction(row: string): boolean;
 
     private generateFunction(text: string): void {
+        const editor = vs.window.activeTextEditor;
+
         const repeater = new Repeater(this.vars);
         const variable = new Variable(this.vars);
         const placeholder = new Placeholder();
 
-        let snippet = repeater.applyType(text);
-        snippet = variable.applyType(snippet.value);
-        snippet = placeholder.applyType(snippet.value);
+        const repSnippet = repeater.applyType(text);
+        const varSnippet = variable.applyType(repSnippet.value, false);
+        const placeSnippet = placeholder.applyType(varSnippet.value);
+
+        const cleanSnippet = new vs.SnippetString(this.UnescapeCustomSyntax(placeSnippet.value));
 
         this.delTriggerString();
 
-        const editor = vs.window.activeTextEditor;
-        editor.insertSnippet(snippet);
+        editor.insertSnippet(cleanSnippet);
+    }
+
+    private UnescapeCustomSyntax(text: string): string {
+        return text.replace(/\\\\\$/g, "$");
     }
 
     private getDocParts(): IDocumentationParts {
