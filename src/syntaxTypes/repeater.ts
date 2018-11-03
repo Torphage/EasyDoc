@@ -41,7 +41,7 @@ export class Repeater extends BaseSyntaxType {
 
         const timesToRepeat = this.timesToRepeat(repeater);
         const stringToRepeat = this.applyType(
-            result[1].substr(1, result[1].length - 2));
+            result[1].substr(1));
 
         const snippetStrArr: string[] = [];
 
@@ -82,8 +82,8 @@ export class Repeater extends BaseSyntaxType {
 
         const timesToRepeat = this.timesToRepeat(repeater);
 
-        const temp = 5 + String(timesToRepeat).length;
-        const offset = this.removeEscapeCharacters(snippetStrArr[0]).length + temp;
+        const temp = 4 + String(timesToRepeat).length;
+        const offset = snippetStrArr[0].length + temp;
 
         return {
             offset,
