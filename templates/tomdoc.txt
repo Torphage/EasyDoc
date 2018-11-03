@@ -1,11 +1,12 @@
 # Description: $[Type]
 # 
 # Args:
-#     ${PARAMS} {${args.type?}}: \${$[args]}
+#     ${NAME} {${args.type?}}: \${$[args]} ${PARAMS} ${PARAMS} ${NAME} h
+#     ${PARAMS} {${args.type?}}: ${PARAMS} ${NAME} ${NAME} \${NAME} \\${NAME} \\\${NAME}
 # 
-# Examples:
-$<3>(#     ${NAME}(${PARAMS_TEMPLATE})
+# Examples:$<3>(
+#     ${NAME}(${PARAMS_TEMPLATE}) ${PARAMS} ${NAME} \${NAME} \\${NAME} \\\${NAME}
 #     # => $[result]
-#
-)# Returns:
+#)
+# Returns:
 #     The \${return.type?} $[Return Description]
