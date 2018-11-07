@@ -15,6 +15,32 @@ export class CustomSyntax {
         }
     }
 
+    public matchRegex(fileRows: string, regex: RegExp): ISyntaxType[] {
+        const match: ISyntaxType[] = new Array();
+
+        let rawMatch: RegExpExecArray;
+
+        do {
+            rawMatch = regex.exec(fileRows);
+
+            if (rawMatch !== null) {
+                if (this.allowedMatch(fileRows, rawMatch)) {
+                    const matchStart = rawMatch.index;
+                    const matchLength = rawMatch[0].length ;
+                    const matchString = rawMatch[0];
+
+                    match.push({
+                        length: matchLength,
+                        start: matchStart,
+                        text: matchString,
+                    });
+                }
+            }
+        } while (rawMatch);
+
+        return match;
+    }
+
     private getVariables(fileRows: string): ISyntaxType[] {
         const variables = /(\$\{[^\}]*\})/g;
         const match = this.matchRegex(fileRows, variables);
@@ -30,33 +56,8 @@ export class CustomSyntax {
     }
 
     private getRepeaters(fileRows: string): ISyntaxType[] {
-        const repeaters = /(\$\<(?:\w*)\>\((?:.|\s)*\))/g;
+        const repeaters = /(\$\<[^>]*\>\((?:.|\s)*?(?=\)\$))/g;
         const match = this.matchRegex(fileRows, repeaters);
-        return match;
-    }
-
-    private matchRegex(fileRows: string, regex: RegExp): ISyntaxType[] {
-        const match: ISyntaxType[] = new Array();
-
-        let rawMatch: RegExpExecArray;
-
-        do {
-            rawMatch = regex.exec(fileRows);
-
-            if (rawMatch !== null) {
-                if (this.allowedMatch(fileRows, rawMatch)) {
-                    const matchStart = rawMatch.index;
-                    const matchLength = rawMatch[0].length ;
-                    const matchString = fileRows.substr(matchStart, matchLength);
-
-                    match.push({
-                        length: matchLength,
-                        start: matchStart,
-                        text: matchString,
-                    });
-                }
-            }
-        } while (rawMatch);
 
         return match;
     }
