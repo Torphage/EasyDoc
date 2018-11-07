@@ -2,8 +2,13 @@
     "name": "easydoc",
     "displayName": "EasyDoc",
     "description": "Makes custom formats of documentations of functions, classes, etc. for different languages extremely easy",
-    "version": "0.0.1",
+    "version": "0.1.0",
     "publisher": "Torphage",
+    "license": "MIT",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/torphage/easydoc"
+    },
     "engines": {
         "vscode": "^1.27.0"
     },
@@ -31,49 +36,9 @@
                         "docType": "function",
                         "commentAboveTarget": false
                     }
-                },
-                "EasyDoc.tom": {
-                    "type": "object",
-                    "description": "What s can be typed to create this snippet.",
-                    "default": {
-                        "triggerString": "<<<",
-                        "docType": "function",
-                        "commentAboveTarget": false
-                    }
-                },
-                "EasyDoc.lololol": {
-                    "type": "object",
-                    "default": {
-                        "triggerString": "$$$",
-                        "docType": false,
-                        "commentAboveTarget": false
-                    }
-                },
-                "EasyDoc.w": {
-                    "type": "object",
-                    "default": {
-                        "triggerString": "$$$",
-                        "docType": "function",
-                        "commentAboveTarget": false
-                    }
-                },
-                "EasyDoc.b": {
-                    "type": "object",
-                    "default": {
-                        "triggerString": "$$$",
-                        "docType": "function",
-                        "commentAboveTarget": false
-                    }
                 }
             }
         }
-    },
-    "scripts": {
-        "vscode:prepublish": "npm run compile",
-        "compile": "tsc -p ./",
-        "watch": "tsc -watch -p ./",
-        "postinstall": "node ./node_modules/vscode/bin/install",
-        "test": "npm run compile && node ./node_modules/vscode/bin/test"
     },
     "devDependencies": {
         "@types/mocha": "^2.2.42",
