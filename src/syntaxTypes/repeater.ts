@@ -7,8 +7,11 @@ export class Repeater extends BaseSyntaxType {
         super(vars);
     }
 
-    public applyType(text: string): vs.SnippetString {
+    public applyType(unescapedText: string): vs.SnippetString {
         const snippet = new vs.SnippetString();
+
+        const text = this.removeEscapeCharacters(unescapedText);
+
         const repeaters = this.customTypes.getSyntax(text, "repeaters");
 
         for (let i = 0; i < text.length; i++) {
@@ -40,14 +43,13 @@ export class Repeater extends BaseSyntaxType {
         const result = this.repeatRegex(repeater);
 
         const timesToRepeat = this.timesToRepeat(repeater);
-        const stringToRepeat = this.applyType(
-            result[1].substr(1));
+        const stringToRepeat = result[1].substr(1);
 
         const snippetStrArr: string[] = [];
 
         for (let i = 0; i < timesToRepeat; i++) {
             snippetStrArr.push(
-                this.removeEscapeCharacters(stringToRepeat.value),
+                stringToRepeat,
             );
         }
 

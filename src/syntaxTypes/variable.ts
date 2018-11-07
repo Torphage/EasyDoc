@@ -1,16 +1,15 @@
 import * as vs from "vscode";
 import { ISyntaxType, ISyntaxVariable } from "../types";
 import { BaseSyntaxType } from "./base_type";
+import * as utils from '../utils';
 
 export class Variable extends BaseSyntaxType {
     constructor(vars: ISyntaxVariable) {
         super(vars);
     }
 
-    public applyType(unescapedText: string): vs.SnippetString {
+    public applyType(text: string): vs.SnippetString {
         const snippet = new vs.SnippetString();
-
-        const text = this.removeEscapeCharacters(unescapedText);
 
         const variables = this.customTypes.getSyntax(text, "variables");
 
@@ -39,7 +38,7 @@ export class Variable extends BaseSyntaxType {
     protected getType(variables: ISyntaxType[], index: number): ISyntaxType {
         for (const variable of variables) {
             if (variable.start === index) {
-                if (variable.text.slice(2, -1) in this.vars) {
+                if (this.getVarName(variable.text.slice(2, -1)) in this.vars) {
                     return variable;
                 }
             }
@@ -61,8 +60,15 @@ export class Variable extends BaseSyntaxType {
             str = new Array(maxRepeaters.length).fill(text);
         }
 
+        // console.log(localVars)
         localVars.forEach((variable) => {
-            const newVar = this.vars[variable.text.slice(2, -1)];
+            const varName = this.getVarName(variable.text.slice(2, -1));
+            const tempVar = this.vars[varName];
+            // console.log("\n")
+            console.log(variable)
+            console.log(tempVar)
+            const newVar = this.translateVar(tempVar, variable.text.slice(2, -1));
+            console.log(newVar)
             const first = text.substring(0, variable.start + offset);
             const second = text.substring(variable.start + variable.length + offset);
 
@@ -112,12 +118,6 @@ export class Variable extends BaseSyntaxType {
         return str.join("\n");
     }
 
-    protected getTypeText(variable: ISyntaxType): string {
-        const variableString = variable.text.slice(2, -1);
-
-        return variableString;
-    }
-
     private getCurrentLine(syntaxText: string, index: number): string {
         const leftOfCurrentPos = syntaxText.slice(0, index);
         const leftIndex = leftOfCurrentPos.lastIndexOf("\n");
@@ -137,10 +137,9 @@ export class Variable extends BaseSyntaxType {
     }
 
     private typeInLine(text: string) {
-        for (const key in this.vars) {
-            if (text.includes(`\${${key}}`) && !(text.includes(`\\\${${key}}`))) {
-                return true;
-            }
+        const varMatch = this.customTypes.getSyntax(text, "variables")
+        if (varMatch.length > 0) {
+            return true;
         }
 
         return false;
@@ -150,7 +149,7 @@ export class Variable extends BaseSyntaxType {
         let maxRepeaters = 0;
 
         vars.forEach((locals) => {
-            const variable = this.vars[locals.text.slice(2, -1)];
+            const variable = this.vars[this.getVarName(locals.text.slice(2, -1))];
             if (typeof variable !== "string") {
 
                 if (variable.length > maxRepeaters) {
@@ -167,7 +166,7 @@ export class Variable extends BaseSyntaxType {
 
         for (const variable of variables) {
             if (variable.start >= index && variable.start + variable.length <= index + text.length) {
-                if (variable.text.slice(2, -1) in this.vars) {
+                if (this.getVarName(variable.text.slice(2, -1)) in this.vars) {
                     includedVars.push(variable);
                 }
             }
@@ -180,7 +179,7 @@ export class Variable extends BaseSyntaxType {
         const varNames = [];
 
         for (const varObj of variables) {
-            const variable = this.vars[varObj.text.slice(2, -1)];
+            const variable = this.vars[this.getVarName(varObj.text.slice(2, -1))];
 
             if (typeof variable !== "string") {
                 varNames.push(varObj);
@@ -188,5 +187,52 @@ export class Variable extends BaseSyntaxType {
         }
 
         return varNames;
+    }
+
+    private translateVar(varValue: any, text: string): any {
+        let varName = utils.copy(varValue);
+
+        const splitted = text.split("(");
+        const functions = splitted.pop().split(".").slice(1);
+
+        if (varValue.constructor === Array) {
+            for (const func of splitted) {
+                switch(func) {
+                    case "reverse":
+                        varName = varName.reverse();
+                }
+            }
+            for (const dot of functions) {
+                switch(dot) {
+                    case "length":
+                        varName = varName.length;
+                }
+            }
+        } else {
+            for (const func of splitted) {
+                switch(func) {
+                    case "reverse":
+                        varName = varName.split("").reverse().join("");
+                }
+            }
+
+            for (const dot of functions) {
+                switch(dot) {
+                    case "length":
+                        varName = String(varName.length);
+                }
+            }
+        }
+        return varName;
+    }
+
+    private getVarName(variable: string): string {
+        const splitted = variable.split(".")[0].split("(")
+
+        if (splitted.length > 1) {
+            return splitted[splitted.length - 1].replace(/\)/, "");
+        } else {
+            return splitted[0].replace(/\)/, "");
+        }
     }
 }
