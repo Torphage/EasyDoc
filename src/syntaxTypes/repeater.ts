@@ -43,7 +43,7 @@ export class Repeater extends BaseSyntaxType {
         const result = this.repeatRegex(repeater);
 
         const timesToRepeat = this.timesToRepeat(repeater);
-        const stringToRepeat = result[1].substr(1);
+        const stringToRepeat = result[2];
 
         const snippetStrArr: string[] = [];
 
@@ -58,7 +58,7 @@ export class Repeater extends BaseSyntaxType {
 
     private timesToRepeat(repeater: ISyntaxType): number {
         const regexResult = this.repeatRegex(repeater);
-        const timesToRepeat = regexResult[0].substring(1);
+        const timesToRepeat = regexResult[1];
 
         let num: number;
 
@@ -72,10 +72,21 @@ export class Repeater extends BaseSyntaxType {
     }
 
     private repeatRegex(repeater: ISyntaxType): RegExpMatchArray {
-        const regex = /\<((\w)*)|\((?:.|\s)*/gm;
-        const result = repeater.text.slice(0, -1).match(regex);
+        const regex = /\<(\w*)\>\(((?:.|\s)*)/gm;
+        const result: any[] = new Array();
 
-        return result;
+        let rawMatch: RegExpExecArray;
+
+        do {
+            rawMatch = regex.exec(repeater.text.slice(1));
+
+            if (rawMatch !== null) {
+
+                result.push(rawMatch);
+            }
+        } while (rawMatch);
+
+        return result[0];
     }
 
     private repeatObj(repeater: ISyntaxType): IRepeater {
@@ -84,7 +95,7 @@ export class Repeater extends BaseSyntaxType {
 
         const timesToRepeat = this.timesToRepeat(repeater);
 
-        const temp = 4 + String(timesToRepeat).length;
+        const temp = 6 + String(timesToRepeat).length;
         const offset = snippetStrArr[0].length + temp;
 
         return {
