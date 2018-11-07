@@ -1,12 +1,14 @@
 # Description: $[Type]
-# 
+#
 # Args:
-#     ${NAME} {${args.type?}}: \${$[args]} ${PARAMS} ${PARAMS} ${NAME} h
-#     ${PARAMS} {${args.type?}}: ${PARAMS} ${NAME} ${NAME} \${NAME} \\${NAME} \\\${NAME}
-# 
-# Examples:$<3>(
+#     ${NAME} {${args.type?}}: \${$[args]} ${PARAMS}${PARAMS} ${NAME} h
+#     ${PARAMS} {${args.type?}}: ${reverse(PARAMS)} ${reverse(NAME)} ${NAME.length} \${NAME} \\${NAME} \\\${NAME}
+#     ${PARAMS} {${args.type?}}: ${PARAMS} ${NAME} ${reverse(NAME).length} \${NAME} \\${NAME} \\\${NAME}
+#     ${PARAMS} {${args.type?}}: $<${reverse(PARAMS).each_length}>( )$ \${NAME} \\${NAME} \\\${NAME}
+#  
+# Examples:$<${NAME.length}>(
 #     ${NAME}(${PARAMS_TEMPLATE}) ${PARAMS} ${NAME} \${NAME} \\${NAME} \\\${NAME}
 #     # => $[result]
-#)
+#)$
 # Returns:
 #     The \${return.type?} $[Return Description]
