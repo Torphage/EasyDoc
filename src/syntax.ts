@@ -16,21 +16,21 @@ export class CustomSyntax {
     }
 
     private getVariables(fileRows: string): ISyntaxType[] {
-        const variables = /([^\\]\$\{[^\}]*\})/g;
+        const variables = /(\$\{[^\}]*\})/g;
         const match = this.matchRegex(fileRows, variables);
 
         return match;
     }
 
     private getPlaceholders(fileRows: string): ISyntaxType[] {
-        const placeholders = /([^\\]\$\[[^\]]*\])/g;
+        const placeholders = /(\$\[[^\]]*\])/g;
         const match = this.matchRegex(fileRows, placeholders);
 
         return match;
     }
 
     private getRepeaters(fileRows: string): ISyntaxType[] {
-        const repeaters = /([^\\]\$\<(?:\w*)\>\((?:.|\s)*\))/g;
+        const repeaters = /(\$\<(?:\w*)\>\((?:.|\s)*\))/g;
         const match = this.matchRegex(fileRows, repeaters);
         return match;
     }
@@ -44,18 +44,30 @@ export class CustomSyntax {
             rawMatch = regex.exec(fileRows);
 
             if (rawMatch !== null) {
-                const matchString = fileRows.substr(rawMatch.index + 1, rawMatch[0].length - 1);
-                const matchStart = rawMatch.index + 1;
-                const matchLength = rawMatch[0].length - 1;
+                if (this.allowedMatch(fileRows, rawMatch)) {
+                    const matchStart = rawMatch.index;
+                    const matchLength = rawMatch[0].length ;
+                    const matchString = fileRows.substr(matchStart, matchLength);
 
-                match.push({
-                    length: matchLength,
-                    start: matchStart,
-                    text: matchString,
-                });
+                    match.push({
+                        length: matchLength,
+                        start: matchStart,
+                        text: matchString,
+                    });
+                }
             }
         } while (rawMatch);
 
         return match;
+    }
+
+    private allowedMatch(fileRows: string, match: RegExpExecArray): boolean {
+        const previousChar = fileRows[match.index - 1];
+
+        if (previousChar !== "\\") {
+                return true;
+        }
+
+        return false;
     }
 }
