@@ -1,7 +1,7 @@
 import * as vs from "vscode";
 import { ISyntaxType, ISyntaxVariable } from "../types";
+import * as utils from "../utils";
 import { BaseSyntaxType } from "./base_type";
-import * as utils from '../utils';
 
 export class Variable extends BaseSyntaxType {
     constructor(vars: ISyntaxVariable) {
@@ -60,15 +60,11 @@ export class Variable extends BaseSyntaxType {
             str = new Array(maxRepeaters.length).fill(text);
         }
 
-        // console.log(localVars)
         localVars.forEach((variable) => {
             const varName = this.getVarName(variable.text.slice(2, -1));
             const tempVar = this.vars[varName];
-            // console.log("\n")
-            console.log(variable)
-            console.log(tempVar)
             const newVar = this.translateVar(tempVar, variable.text.slice(2, -1));
-            console.log(newVar)
+
             const first = text.substring(0, variable.start + offset);
             const second = text.substring(variable.start + variable.length + offset);
 
@@ -120,20 +116,19 @@ export class Variable extends BaseSyntaxType {
 
     private getCurrentLine(syntaxText: string, index: number): string {
         const leftOfCurrentPos = syntaxText.slice(0, index);
-        const leftIndex = leftOfCurrentPos.lastIndexOf("\n");
-
         const rightOfCurrentPos = syntaxText.slice(index);
+
         const rightIndex = rightOfCurrentPos.indexOf("\n");
 
         let fullLine: string;
 
         if (rightIndex !== -1) {
-            fullLine = syntaxText.substring(leftIndex, leftOfCurrentPos.length + rightIndex);
+            fullLine = rightOfCurrentPos.substring(0, rightIndex);
         } else {
             fullLine = syntaxText.substring(leftOfCurrentPos.length + 2);
         }
 
-        return fullLine.trim();
+        return fullLine;
     }
 
     private typeInLine(text: string) {
