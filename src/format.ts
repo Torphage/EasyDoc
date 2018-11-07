@@ -21,6 +21,8 @@ export class Format {
         switch (languageID) {
             case "ruby":
                 this.workShop = new languages.Ruby(this.syntaxFile);
+            case "python":
+                this.workShop = new languages.Python(this.syntaxFile);
         }
 
         this.workShop.generate(docType, this.snippetConfig);
