@@ -72,7 +72,7 @@ export class Repeater extends BaseSyntaxType {
     }
 
     private repeatRegex(repeater: ISyntaxType): RegExpMatchArray {
-        const regex = /\<((\d|\w)*)|\((?:.|\s)*/gm;
+        const regex = /\<((\w)*)|\((?:.|\s)*/gm;
         const result = repeater.text.slice(0, -1).match(regex);
 
         return result;

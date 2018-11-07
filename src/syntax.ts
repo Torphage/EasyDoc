@@ -30,7 +30,7 @@ export class CustomSyntax {
     }
 
     private getRepeaters(fileRows: string): ISyntaxType[] {
-        const repeaters = /([^\\]\$\<(?:\d*|\w*)\>\((?:.|\s)*\))/g;
+        const repeaters = /([^\\]\$\<(?:\w*)\>\((?:.|\s)*\))/g;
         const match = this.matchRegex(fileRows, repeaters);
         return match;
     }
