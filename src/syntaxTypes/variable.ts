@@ -192,27 +192,34 @@ export class Variable extends BaseSyntaxType {
 
         if (varValue.constructor === Array) {
             for (const func of splitted) {
-                switch(func) {
+                switch (func) {
                     case "reverse":
                         varName = varName.reverse();
                 }
             }
             for (const dot of functions) {
-                switch(dot) {
+                switch (dot) {
                     case "length":
-                        varName = varName.length;
+                        varName = String(varName.length);
+
+                    case "each_length":
+                        const temp: any[] = [];
+                        varName.forEach((element) => {
+                            temp.push(String(element.length));
+                        });
+                        varName = temp;
                 }
             }
         } else {
             for (const func of splitted) {
-                switch(func) {
+                switch (func) {
                     case "reverse":
                         varName = varName.split("").reverse().join("");
                 }
             }
 
             for (const dot of functions) {
-                switch(dot) {
+                switch (dot) {
                     case "length":
                         varName = String(varName.length);
                 }
