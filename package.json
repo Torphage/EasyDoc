@@ -36,6 +36,12 @@
                         "docType": "function",
                         "commentAboveTarget": false
                     }
+                },
+                "EasyDoc.dir": {
+                    "type": "array",
+                    "default": [
+                        "./templates"
+                    ]
                 }
             }
         }

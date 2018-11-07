@@ -15,26 +15,32 @@ class EasyDoc {
     }
 
     public checkDoc(): void {
-        const customFiles = this.dirSync(this.dir + "/templates");
         const packageFiles = this.getPackageJSON().contributes.configuration.properties;
 
-        customFiles.forEach((fileName) => {
-            const configName = `EasyDoc.${fileName}`;
+        const syntaxDir = packageFiles["EasyDoc.dir"];
 
-            if (!(configName in packageFiles)) {
-                this.addConfig(fileName);
-            }
+        for (const dir of syntaxDir) {
 
-            const fileConfig: any = this.config.get(fileName);
-            const triggerText = fileConfig.triggerString;
+            const customFiles = this.dirSync(dir);
 
-            if (this.getEditorText(triggerText) === triggerText) {
-                const filePath = `${this.dir}/templates/${fileName}.txt`;
+            customFiles.forEach((fileName) => {
+                const configName = `EasyDoc.${fileName}`;
 
-                const format = new Format(filePath, fileConfig);
-                format.createDoc();
-            }
-        });
+                if (!(configName in packageFiles)) {
+                    this.addConfig(fileName);
+                }
+
+                const fileConfig: any = this.config.get(fileName);
+                const triggerText = fileConfig.triggerString;
+
+                if (this.getEditorText(triggerText) === triggerText) {
+                    const filePath = `${this.dir}/templates/${fileName}.txt`;
+
+                    const format = new Format(filePath, fileConfig);
+                    format.createDoc();
+                }
+            });
+        }
     }
 
     // https://gist.github.com/kethinov/6658166
