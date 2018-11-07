@@ -132,7 +132,7 @@ export class Variable extends BaseSyntaxType {
     }
 
     private typeInLine(text: string) {
-        const varMatch = this.customTypes.getSyntax(text, "variables")
+        const varMatch = this.customTypes.getSyntax(text, "variables");
         if (varMatch.length > 0) {
             return true;
         }
@@ -229,7 +229,7 @@ export class Variable extends BaseSyntaxType {
     }
 
     private getVarName(variable: string): string {
-        const splitted = variable.split(".")[0].split("(")
+        const splitted = variable.split(".")[0].split("(");
 
         if (splitted.length > 1) {
             return splitted[splitted.length - 1].replace(/\)/, "");
