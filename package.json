@@ -38,7 +38,7 @@
                 "EasyDoc.tomdoc": {
                     "type": "object",
                     "default": {
-                        "triggerString": "###",
+                        "triggerString": "EasyDoc_tomdoc",
                         "docType": "function",
                         "commentAboveTarget": false
                     }
@@ -48,15 +48,7 @@
                     "default": {
                         "commentAboveTarget": false,
                         "docType": "function",
-                        "triggerString": "foobarbaz"
-                    }
-                },
-                "EasyDoc.b": {
-                    "type": "object",
-                    "default": {
-                        "commentAboveTarget": false,
-                        "docType": "function",
-                        "triggerString": "$$$"
+                        "triggerString": "EasyDoc_a"
                     }
                 }
             }
