@@ -29,6 +29,12 @@
         "configuration": {
             "title": "EasyDoc configurations",
             "properties": {
+                "EasyDoc.dir": {
+                    "type": "array",
+                    "default": [
+                        "./templates"
+                    ]
+                },
                 "EasyDoc.tomdoc": {
                     "type": "object",
                     "default": {
@@ -36,12 +42,22 @@
                         "docType": "function",
                         "commentAboveTarget": false
                     }
+                },                
+                "EasyDoc.a": {
+                    "type": "object",
+                    "default": {
+                        "commentAboveTarget": false,
+                        "docType": "function",
+                        "triggerString": "foobarbaz"
+                    }
                 },
-                "EasyDoc.dir": {
-                    "type": "array",
-                    "default": [
-                        "./templates"
-                    ]
+                "EasyDoc.b": {
+                    "type": "object",
+                    "default": {
+                        "commentAboveTarget": false,
+                        "docType": "function",
+                        "triggerString": "$$$"
+                    }
                 }
             }
         }

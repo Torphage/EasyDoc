@@ -14,14 +14,21 @@ class EasyDoc {
         this.dir = vs.extensions.getExtension("Torphage.easydoc").extensionPath;
     }
 
-    public checkDoc(): void {
+    // Checks whenever the triggertext
+    public checkDoc(onEnter): void {
         const packageFiles = this.getPackageJSON().contributes.configuration.properties;
 
-        const syntaxDir = packageFiles["EasyDoc.dir"];
+        const syntaxDir: string[] = packageFiles["EasyDoc.dir"].default;
 
         for (const dir of syntaxDir) {
 
-            const customFiles = this.dirSync(dir);
+            let customFiles: string[];
+
+            if (dir.startsWith("./")) {
+                customFiles = this.dirSync(`${this.dir}${dir.slice(1)}`);
+            } else {
+                customFiles = this.dirSync(dir);
+            }
 
             customFiles.forEach((fileName) => {
                 const configName = `EasyDoc.${fileName}`;
@@ -33,7 +40,7 @@ class EasyDoc {
                 const fileConfig: any = this.config.get(fileName);
                 const triggerText = fileConfig.triggerString;
 
-                if (this.getEditorText(triggerText) === triggerText) {
+                if (this.getEditorText(triggerText) === triggerText && onEnter) {
                     const filePath = `${this.dir}/templates/${fileName}.txt`;
 
                     const format = new Format(filePath, fileConfig);
@@ -64,16 +71,18 @@ class EasyDoc {
         return json;
     }
 
+    // Dynamically adds configuration to the package.json, only do this to be able
+    // to add configurations to the vscode config file instead of having my own
     private addConfig(fileName): void {
         const packageJSON = this.getPackageJSON();
 
         packageJSON.contributes.configuration.properties["EasyDoc." + fileName] = {
+            type: "object",
             default: {
                 commentAboveTarget: false,
                 docType: "function",
                 triggerString: "$$$",
             },
-            type: "object",
         };
 
         fs.writeFile(this.dir + "/package.json", JSON.stringify(packageJSON, null, 4), (err) => {
