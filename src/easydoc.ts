@@ -77,12 +77,12 @@ class EasyDoc {
         const packageJSON = this.getPackageJSON();
 
         packageJSON.contributes.configuration.properties["EasyDoc." + fileName] = {
-            type: "object",
             default: {
                 commentAboveTarget: false,
                 docType: "function",
                 triggerString: "$$$",
             },
+            type: "object",
         };
 
         fs.writeFile(this.dir + "/package.json", JSON.stringify(packageJSON, null, 4), (err) => {
