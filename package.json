@@ -2,7 +2,7 @@
     "name": "easydoc",
     "displayName": "EasyDoc",
     "description": "Makes custom formats of documentations of functions, classes, etc. for different languages extremely easy",
-    "version": "0.1.1",
+    "version": "0.2.0",
     "publisher": "Torphage",
     "license": "MIT",
     "repository": {
@@ -42,7 +42,7 @@
                         "docType": "function",
                         "commentAboveTarget": false
                     }
-                },                
+                },
                 "EasyDoc.a": {
                     "type": "object",
                     "default": {
