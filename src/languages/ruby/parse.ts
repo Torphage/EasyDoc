@@ -78,6 +78,7 @@ export class RubyParse extends BaseParse {
 
     public parseParams(rows: string[]): string[] {
         const regex = /(?:class|def)(?:\s|\sself.)\w*(?:\(|\s)(?!\()([^\)]+)*/g;
+
         const match = regex.exec(rows[0])[1];
         const params = match.replace(/\s/g, "").split(",");
 
