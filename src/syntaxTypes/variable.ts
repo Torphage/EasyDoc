@@ -184,6 +184,16 @@ export class Variable extends BaseSyntaxType {
         return varNames;
     }
 
+    private getVarName(variable: string): string {
+        const splitted = variable.split(".")[0].split("(");
+
+        if (splitted.length > 1) {
+            return splitted[splitted.length - 1].replace(/\)/, "");
+        } else {
+            return splitted[0].replace(/\)/, "");
+        }
+    }
+
     private translateVar(varValue: any, text: string): any {
         let varName = utils.copy(varValue);
 
@@ -195,12 +205,14 @@ export class Variable extends BaseSyntaxType {
                 switch (func) {
                     case "reverse":
                         varName = varName.reverse();
+                        break;
                 }
             }
             for (const dot of functions) {
                 switch (dot) {
                     case "length":
-                        varName = String(varName.length);
+                        varName = [...Array(varName.length)].map((i) => varName.length);
+                        break;
 
                     case "each_length":
                         const temp: any[] = [];
@@ -208,6 +220,7 @@ export class Variable extends BaseSyntaxType {
                             temp.push(String(element.length));
                         });
                         varName = temp;
+                        break;
                 }
             }
         } else {
@@ -215,6 +228,7 @@ export class Variable extends BaseSyntaxType {
                 switch (func) {
                     case "reverse":
                         varName = varName.split("").reverse().join("");
+                        break;
                 }
             }
 
@@ -222,19 +236,10 @@ export class Variable extends BaseSyntaxType {
                 switch (dot) {
                     case "length":
                         varName = String(varName.length);
+                        break;
                 }
             }
         }
         return varName;
-    }
-
-    private getVarName(variable: string): string {
-        const splitted = variable.split(".")[0].split("(");
-
-        if (splitted.length > 1) {
-            return splitted[splitted.length - 1].replace(/\)/, "");
-        } else {
-            return splitted[0].replace(/\)/, "");
-        }
     }
 }
