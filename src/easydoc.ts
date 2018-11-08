@@ -19,6 +19,7 @@ class EasyDoc {
         const packageFiles = this.getPackageJSON().contributes.configuration.properties;
 
         const syntaxDir: string[] = packageFiles["EasyDoc.dir"].default;
+        let cancel: boolean;
 
         for (const dir of syntaxDir) {
 
@@ -30,7 +31,7 @@ class EasyDoc {
                 customFiles = this.dirSync(dir);
             }
 
-            customFiles.forEach((fileName) => {
+            for (const fileName of customFiles) {
                 const configName = `EasyDoc.${fileName}`;
 
                 if (!(configName in packageFiles)) {
@@ -40,13 +41,20 @@ class EasyDoc {
                 const fileConfig: any = this.config.get(fileName);
                 const triggerText = fileConfig.triggerString;
 
-                if (this.getEditorText(triggerText) === triggerText && onEnter) {
+                if ((this.getEditorText(triggerText) === triggerText)) {
                     const filePath = `${this.dir}/templates/${fileName}.txt`;
 
                     const format = new Format(filePath, fileConfig);
                     format.createDoc();
+                    cancel = true;
+                    break;
                 }
-            });
+            }
+
+            if (cancel) {
+                console.log("yay")
+                break;
+            }
         }
     }
 
