@@ -1,8 +1,6 @@
 import { BaseParse } from "../parse";
 
 export class PythonParse extends BaseParse {
-    private blockStarts: string[];
-
     constructor() {
         super();
     }
@@ -41,8 +39,8 @@ export class PythonParse extends BaseParse {
     }
 
     public parseParams(rows: string[]): string[] {
-        const regex = /^\s*\w+\s*\w+\(([^)]*)\)*/g;
-            // (?:\s|\sself.)\w*(?:\(|\s)(?!\()([^\)]+)*/g;
+        const regex = /(?:\s|\sself.)\w*\(([^\)]+)*/g;
+
         const match = regex.exec(rows[0])[1];
         const params = match.replace(/\s/g, "").split(",");
 
