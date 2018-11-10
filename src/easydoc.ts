@@ -52,7 +52,6 @@ class EasyDoc {
             }
 
             if (cancel) {
-                console.log("yay")
                 break;
             }
         }
