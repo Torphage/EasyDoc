@@ -7,10 +7,8 @@ export class Repeater extends BaseSyntaxType {
         super(vars);
     }
 
-    public applyType(unescapedText: string): vs.SnippetString {
-        const snippet = new vs.SnippetString();
-
-        const text = this.removeEscapeCharacters(unescapedText);
+    public applyType(text: string): string {
+        const snippet = [];
 
         const repeaters = this.customTypes.getSyntax(text, "repeaters");
 
@@ -20,15 +18,15 @@ export class Repeater extends BaseSyntaxType {
             if (repeater) {
                 const snippetObj = this.repeatObj(repeater);
 
-                snippet.appendText(snippetObj.snippetStr);
+                snippet.push(snippetObj.snippetStr);
 
                 i += snippetObj.offset;
             } else {
-                snippet.appendText(text[i]);
+                snippet.push(text[i]);
             }
         }
 
-        return snippet;
+        return snippet.join("");
     }
 
     protected getType(repeaters: ISyntaxType[], index: number): ISyntaxType {

@@ -7,9 +7,8 @@ export class Placeholder extends BaseSyntaxType {
         super();
     }
 
-    public applyType(unescapedText: string): vs.SnippetString {
+    public applyType(text: string): vs.SnippetString {
         const snippet = new vs.SnippetString();
-        const text = this.removeEscapeCharacters(unescapedText);
 
         const placeholders = this.customTypes.getSyntax(text, "placeholders");
 

@@ -8,8 +8,8 @@ export class Variable extends BaseSyntaxType {
         super(vars);
     }
 
-    public applyType(text: string): vs.SnippetString {
-        const snippet = new vs.SnippetString();
+    public applyType(text: string): string {
+        const snippet = [];
 
         const variables = this.customTypes.getSyntax(text, "variables");
 
@@ -21,7 +21,7 @@ export class Variable extends BaseSyntaxType {
                 if (this.typeInLine(currentLine)) {
                     const snippetStr = this.createType(variables, i, currentLine);
 
-                    snippet.appendText(snippetStr);
+                    snippet.push(snippetStr);
 
                     i += currentLine.length;
 
@@ -29,10 +29,10 @@ export class Variable extends BaseSyntaxType {
                 }
             }
 
-            snippet.appendText(text[i]);
+            snippet.push(text[i]);
         }
 
-        return snippet;
+        return snippet.join("");
     }
 
     protected getType(variables: ISyntaxType[], index: number): ISyntaxType {

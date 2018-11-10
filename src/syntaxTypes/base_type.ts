@@ -19,25 +19,7 @@ export abstract class BaseSyntaxType {
         return false;
     }
 
-    protected removeEscapeCharacters(text: string): string {
-        let unescapedString = "";
-        text = text.replace(/\\\\\\\}/g, "}");
-
-        for (let i = 0; i < text.length; i++) {
-            if (text[i] === "\\") {
-                if (text[i - 1] === "\\" && text[i + 1] === "\\") {
-                    unescapedString += text[i];
-                    i++;
-                }
-            } else {
-                unescapedString += text[i];
-            }
-        }
-
-        return unescapedString;
-    }
-
-    protected abstract applyType(text: string): vs.SnippetString;
+    protected abstract applyType(text: string): any;
     protected abstract getType(types: ISyntaxType[], index: number): ISyntaxType;
     protected abstract getTypeValue(types: ISyntaxType, name?: string): any;
 }

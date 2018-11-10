@@ -47,8 +47,8 @@ export abstract class WorkShop {
         const placeholder = new Placeholder();
 
         const varSnippet = variable.applyType(text);
-        const repSnippet = repeater.applyType(varSnippet.value);
-        const placeSnippet = placeholder.applyType(repSnippet.value);
+        const repSnippet = repeater.applyType(varSnippet);
+        const placeSnippet = placeholder.applyType(repSnippet);
 
         const cleanSnippet = new vs.SnippetString(this.UnescapeCustomSyntax(placeSnippet.value));
 
