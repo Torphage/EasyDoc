@@ -63,7 +63,7 @@ export class Variable extends BaseSyntaxType {
         localVars.forEach((variable) => {
             const varName = this.getVarName(variable.text.slice(2, -1));
             const tempVar = this.vars[varName];
-            const newVar = this.translateVar(tempVar, variable.text.slice(2, -1));
+            const newVar = this.getTypeValue(tempVar, variable.text.slice(2, -1));
 
             const first = text.substring(0, variable.start + offset);
             const second = text.substring(variable.start + variable.length + offset);
@@ -112,6 +112,55 @@ export class Variable extends BaseSyntaxType {
         });
 
         return str.join("\n");
+    }
+
+    protected getTypeValue(varValue: any, text: string): any {
+        let varName = utils.copy(varValue);
+
+        const splitted = text.split("(");
+        const functions = splitted.pop().split(".").slice(1);
+
+        if (varValue.constructor === Array) {
+            for (const func of splitted) {
+                switch (func) {
+                    case "reverse":
+                        varName = varName.reverse();
+                        break;
+                }
+            }
+            for (const dot of functions) {
+                switch (dot) {
+                    case "length":
+                        varName = [...Array(varName.length)].map((i) => varName.length);
+                        break;
+
+                    case "each_length":
+                        const temp: any[] = [];
+                        varName.forEach((element) => {
+                            temp.push(String(element.length));
+                        });
+                        varName = temp;
+                        break;
+                }
+            }
+        } else {
+            for (const func of splitted) {
+                switch (func) {
+                    case "reverse":
+                        varName = varName.split("").reverse().join("");
+                        break;
+                }
+            }
+
+            for (const dot of functions) {
+                switch (dot) {
+                    case "length":
+                        varName = String(varName.length);
+                        break;
+                }
+            }
+        }
+        return varName;
     }
 
     private getCurrentLine(syntaxText: string, index: number): string {
@@ -192,54 +241,5 @@ export class Variable extends BaseSyntaxType {
         } else {
             return splitted[0].replace(/\)/, "");
         }
-    }
-
-    private translateVar(varValue: any, text: string): any {
-        let varName = utils.copy(varValue);
-
-        const splitted = text.split("(");
-        const functions = splitted.pop().split(".").slice(1);
-
-        if (varValue.constructor === Array) {
-            for (const func of splitted) {
-                switch (func) {
-                    case "reverse":
-                        varName = varName.reverse();
-                        break;
-                }
-            }
-            for (const dot of functions) {
-                switch (dot) {
-                    case "length":
-                        varName = [...Array(varName.length)].map((i) => varName.length);
-                        break;
-
-                    case "each_length":
-                        const temp: any[] = [];
-                        varName.forEach((element) => {
-                            temp.push(String(element.length));
-                        });
-                        varName = temp;
-                        break;
-                }
-            }
-        } else {
-            for (const func of splitted) {
-                switch (func) {
-                    case "reverse":
-                        varName = varName.split("").reverse().join("");
-                        break;
-                }
-            }
-
-            for (const dot of functions) {
-                switch (dot) {
-                    case "length":
-                        varName = String(varName.length);
-                        break;
-                }
-            }
-        }
-        return varName;
     }
 }

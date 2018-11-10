@@ -17,7 +17,7 @@ export class Placeholder extends BaseSyntaxType {
             const placeholder = this.getType(placeholders, i);
 
             if (placeholder) {
-                const snippetStr = this.getTypeText(placeholder);
+                const snippetStr = this.getTypeValue(placeholder);
 
                 snippet.appendPlaceholder(snippetStr);
 
@@ -38,7 +38,7 @@ export class Placeholder extends BaseSyntaxType {
         }
     }
 
-    protected getTypeText(placeholder: ISyntaxType): string {
+    protected getTypeValue(placeholder: ISyntaxType): string {
         const placeholderString = placeholder.text.slice(2, -1);
 
         return placeholderString;

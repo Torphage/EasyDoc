@@ -39,7 +39,7 @@ export class Repeater extends BaseSyntaxType {
         }
     }
 
-    protected getTypeText(repeater: ISyntaxType): string[] {
+    protected getTypeValue(repeater: ISyntaxType): string[] {
         const result = this.repeatRegex(repeater);
 
         const timesToRepeat = this.timesToRepeat(repeater);
@@ -90,7 +90,7 @@ export class Repeater extends BaseSyntaxType {
     }
 
     private repeatObj(repeater: ISyntaxType): IRepeater {
-        const snippetStrArr = this.getTypeText(repeater);
+        const snippetStrArr = this.getTypeValue(repeater);
         const snippetStr = snippetStrArr.join("");
 
         const timesToRepeat = this.timesToRepeat(repeater);

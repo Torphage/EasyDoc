@@ -39,5 +39,5 @@ export abstract class BaseSyntaxType {
 
     protected abstract applyType(text: string): vs.SnippetString;
     protected abstract getType(types: ISyntaxType[], index: number): ISyntaxType;
-    protected abstract getTypeText(types: ISyntaxType): any;
+    protected abstract getTypeValue(types: ISyntaxType, name?: string): any;
 }
