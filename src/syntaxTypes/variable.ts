@@ -126,6 +126,16 @@ export class Variable extends BaseSyntaxType {
                     case "reverse":
                         varName = varName.reverse();
                         break;
+
+                    case "align":
+                        let temp: any[];
+                        const maxValue = Math.max(...(varName.map((el) => el.length)));
+                        temp = [...varName].map((n) => maxValue - n.length);
+                        varName = [];
+                        temp.forEach((n) => {
+                            varName.push(" ".repeat(n));
+                        });
+                        break;
                 }
             }
             for (const dot of functions) {
@@ -135,11 +145,7 @@ export class Variable extends BaseSyntaxType {
                         break;
 
                     case "each_length":
-                        const temp: any[] = [];
-                        varName.forEach((element) => {
-                            temp.push(String(element.length));
-                        });
-                        varName = temp;
+                        varName = [...varName].map((n) => n.length);
                         break;
                 }
             }
