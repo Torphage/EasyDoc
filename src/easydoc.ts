@@ -19,7 +19,6 @@ class EasyDoc {
         const packageFiles = this.getPackageJSON().contributes.configuration.properties;
 
         const syntaxDir: string[] = packageFiles["EasyDoc.dir"].default;
-        let cancel: boolean;
 
         for (const dir of syntaxDir) {
 
@@ -44,15 +43,11 @@ class EasyDoc {
                 if ((this.getEditorText(triggerText) === triggerText)) {
                     const filePath = `${this.dir}/templates/${fileName}.txt`;
 
-                    const format = new Format(filePath, fileConfig);
+                    const format = new Format(filePath, fileConfig, onEnter);
                     format.createDoc();
-                    cancel = true;
-                    break;
-                }
-            }
 
-            if (cancel) {
-                break;
+                    return;
+                }
             }
         }
     }
