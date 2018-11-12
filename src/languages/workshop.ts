@@ -30,10 +30,15 @@ export abstract class WorkShop {
             case "function":
                 this.getDocParts();
                 this.vars = this.getVariables();
+
                 this.generateFunction(this.syntaxFile, onEnter);
+
+                break;
 
             case "block":
                 this.generateFunction(this.syntaxFile, onEnter);
+
+                break;
         }
     }
 
