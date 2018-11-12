@@ -42,28 +42,28 @@
                         "./templates"
                     ]
                 },
-                "EasyDoc.tomdoc": {
-                    "type": "object",
-                    "default": {
-                        "triggerString": "EasyDoc_tomdoc",
-                        "docType": "function",
-                        "commentAboveTarget": false
-                    }
-                },
-                "EasyDoc.a": {
+                "EasyDoc.testing": {
                     "type": "object",
                     "default": {
                         "commentAboveTarget": false,
                         "docType": "function",
-                        "triggerString": "EasyDoc_a"
+                        "triggerString": "EasyDoc_testing"
                     }
                 },
-                "EasyDoc.b": {
+                "EasyDoc.tomdoc": {
+                    "type": "object",
+                    "default": {
+                        "commentAboveTarget": true,
+                        "docType": "function",
+                        "triggerString": "EasyDoc_tomdoc"
+                    }
+                },
+                "EasyDoc.for_each": {
                     "type": "object",
                     "default": {
                         "commentAboveTarget": false,
                         "docType": "block",
-                        "triggerString": "EasyDoc_b"
+                        "triggerString": "EasyDoc_for_each"
                     }
                 }
             }
