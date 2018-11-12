@@ -50,6 +50,14 @@
                         "docType": "function",
                         "triggerString": "EasyDoc_a"
                     }
+                },
+                "EasyDoc.b": {
+                    "default": {
+                        "commentAboveTarget": false,
+                        "docType": "function",
+                        "triggerString": "$$$"
+                    },
+                    "type": "object"
                 }
             }
         }
