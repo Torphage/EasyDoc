@@ -17,7 +17,7 @@ class EasyDoc {
     // Checks whenever the triggertext
     public checkDoc(onEnter): void {
         const packageFiles = this.getPackageJSON().contributes.configuration.properties;
-        console.log(packageFiles)
+
         const syntaxDir: string[] = packageFiles["EasyDoc.dir"].default;
 
         let cancel: boolean;
