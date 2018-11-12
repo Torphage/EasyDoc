@@ -17,19 +17,22 @@ class EasyDoc {
     // Checks whenever the triggertext
     public checkDoc(onEnter): void {
         const packageFiles = this.getPackageJSON().contributes.configuration.properties;
-
+        console.log(packageFiles)
         const syntaxDir: string[] = packageFiles["EasyDoc.dir"].default;
+
         let cancel: boolean;
 
         for (const dir of syntaxDir) {
 
-            let customFiles: string[];
+            let dirPath: string;
 
             if (dir.startsWith("./")) {
-                customFiles = this.dirSync(`${this.dir}${dir.slice(1)}`);
+                dirPath = `${this.dir}${dir.slice(1)}`;
             } else {
-                customFiles = this.dirSync(dir);
+                dirPath = dir;
             }
+
+            const customFiles = this.dirSync(dirPath);
 
             for (const fileName of customFiles) {
                 const configName = `EasyDoc.${fileName}`;
@@ -42,10 +45,11 @@ class EasyDoc {
                 const triggerText = fileConfig.triggerString;
 
                 if ((this.getEditorText(triggerText) === triggerText)) {
-                    const filePath = `${this.dir}/templates/${fileName}.txt`;
+                    const filePath = `${dirPath}/${fileName}.txt`;
 
                     const format = new Format(filePath, fileConfig);
                     format.createDoc();
+
                     cancel = true;
                     break;
                 }
