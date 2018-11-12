@@ -3,8 +3,6 @@ import * as vs from "vscode";
 import { CustomSyntax } from "../syntax";
 import { Placeholder, Repeater, Variable } from "../syntaxTypes/export";
 import { IDocumentationParts, ISyntaxVariable } from "../types";
-import { copy } from "../utils";
-import { on } from "cluster";
 
 export abstract class WorkShop {
     protected syntaxFile: string;
