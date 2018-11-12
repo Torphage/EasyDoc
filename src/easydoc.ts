@@ -20,8 +20,6 @@ class EasyDoc {
 
         const syntaxDir: string[] = packageFiles["EasyDoc.dir"].default;
 
-        let cancel: boolean;
-
         for (const dir of syntaxDir) {
 
             let dirPath: string;
@@ -47,16 +45,11 @@ class EasyDoc {
                 if ((this.getEditorText(triggerText) === triggerText)) {
                     const filePath = `${dirPath}/${fileName}.txt`;
 
-                    const format = new Format(filePath, fileConfig);
+                    const format = new Format(filePath, fileConfig, onEnter);
                     format.createDoc();
 
-                    cancel = true;
-                    break;
+                    return;
                 }
-            }
-
-            if (cancel) {
-                break;
             }
         }
     }
