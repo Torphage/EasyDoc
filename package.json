@@ -20,6 +20,13 @@
     ],
     "main": "./out/extension",
     "contributes": {
+        "keybindings" : [
+            {
+                "command": "extension.EasyDoc",
+                "key": "ctrl+shift+alt+z",
+                "max": "cmd+shift+alt+z"
+            }
+        ],
         "commands": [
             {
                 "command": "extension.EasyDoc",
@@ -49,6 +56,14 @@
                         "commentAboveTarget": false,
                         "docType": "function",
                         "triggerString": "EasyDoc_a"
+                    }
+                },
+                "EasyDoc.b": {
+                    "type": "object",
+                    "default": {
+                        "commentAboveTarget": false,
+                        "docType": "block",
+                        "triggerString": "EasyDoc_b"
                     }
                 }
             }
