@@ -27,15 +27,14 @@ export abstract class WorkShop {
 
     public generate(docType: any, config: any, onEnter: boolean): void {
         this.config = config;
-        this.getDocParts();
-        this.vars = this.getVariables();
 
         switch (docType) {
             case "function":
+                this.getDocParts();
+                this.vars = this.getVariables();
                 this.generateFunction(this.syntaxFile, onEnter);
 
             case "block":
-                console.log("block");
                 this.generateFunction(this.syntaxFile, onEnter);
         }
     }

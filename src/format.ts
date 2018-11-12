@@ -34,8 +34,10 @@ export class Format {
                 break;
         }
 
-        if (this.workShop !== undefined) {
-            this.workShop.generate(docType, this.snippetConfig, this.onEnter);
+        if (this.workShop === undefined) {
+            this.workShop = new languages.Base(this.syntaxFile);
         }
+
+        this.workShop.generate(docType, this.snippetConfig, this.onEnter);
     }
 }
