@@ -5,12 +5,14 @@ import * as languages from "./languages/export";
 export class Format {
     private syntaxFile: string;
     private snippetConfig: any;
+    private onEnter: boolean;
     private document: vs.TextDocument;
     private workShop: languages.WorkShop;
 
-    constructor(filePath: string, snippetConfig: any) {
+    constructor(filePath: string, snippetConfig: any, onEnter: boolean) {
         this.syntaxFile = fs.readFileSync(filePath, "utf-8");
         this.snippetConfig = snippetConfig;
+        this.onEnter = onEnter;
         this.document = vs.window.activeTextEditor.document;
     }
 
@@ -32,6 +34,8 @@ export class Format {
                 break;
         }
 
-        this.workShop.generate(docType, this.snippetConfig);
+        if (this.workShop !== undefined) {
+            this.workShop.generate(docType, this.snippetConfig, this.onEnter);
+        }
     }
 }
