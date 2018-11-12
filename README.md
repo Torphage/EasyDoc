@@ -23,4 +23,4 @@ Install the extension from the [Visual Studio Code Marketplace](https://marketpl
 
 4. After you have created a file and ran the extension once a configuration have been added for that specific file. These will also be found in [settings.json](/.vscode/settings.json).
 
-5. Learn how to create a snippet [here](https://github.com/Torphage/EasyDoc/wiki/Template-Syntax)
+5. Learn how to create a snippet [here](https://github.com/Torphage/EasyDoc/wiki/Template-Syntax). Examples of working template files can be found [here](https://github.com/Torphage/EasyDoc/wiki/Template-Examples)
