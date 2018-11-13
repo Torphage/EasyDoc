@@ -17,31 +17,33 @@ class EasyDoc {
     // Checks whenever the triggertext
     public checkDoc(onEnter): void {
         const packageFiles = this.getPackageJSON().contributes.configuration.properties;
+        const syntaxDir: string[] = this.config.dir;
 
-        const syntaxDir: string[] = packageFiles["EasyDoc.dir"].default;
+        this.removeConfigWithRemovalOfFile(syntaxDir);
 
         for (const dir of syntaxDir) {
-
-            let customFiles: string[];
+            let dirPath: string;
 
             if (dir.startsWith("./")) {
-                customFiles = this.dirSync(`${this.dir}${dir.slice(1)}`);
+                dirPath = `${this.dir}${dir.slice(1)}`;
             } else {
-                customFiles = this.dirSync(dir);
+                dirPath = dir;
             }
 
-            for (const fileName of customFiles) {
-                const configName = `EasyDoc.${fileName}`;
+            const customFiles = this.dirSync(dirPath);
 
-                if (!(configName in packageFiles)) {
+            for (const fileName of customFiles) {
+
+                if (!(`EasyDoc.${fileName}` in packageFiles)) {
                     this.addConfig(fileName);
                 }
 
                 const fileConfig: any = this.config.get(fileName);
+
                 const triggerText = fileConfig.triggerString;
 
                 if ((this.getEditorText(triggerText) === triggerText)) {
-                    const filePath = `${this.dir}/templates/${fileName}.txt`;
+                    const filePath = `${dirPath}/${fileName}.txt`;
 
                     const format = new Format(filePath, fileConfig, onEnter);
                     format.createDoc();
@@ -77,7 +79,6 @@ class EasyDoc {
     // to add configurations to the vscode config file instead of having my own
     private addConfig(fileName): void {
         const packageJSON = this.getPackageJSON();
-
         packageJSON.contributes.configuration.properties["EasyDoc." + fileName] = {
             default: {
                 commentAboveTarget: false,
@@ -92,6 +93,48 @@ class EasyDoc {
                 return;
             }
         });
+    }
+
+    private removeConfigWithRemovalOfFile(syntaxDir: string[]): void {
+        const packageJSON = this.getPackageJSON();
+        const configs = packageJSON.contributes.configuration.properties;
+
+        const allFiles = this.allFilesInDirs(syntaxDir);
+
+        for (const key in configs) {
+            if (!(allFiles.includes(key.replace("EasyDoc.", ""))) && key !== "EasyDoc.dir") {
+                delete configs[key];
+            }
+        }
+
+        fs.writeFile(this.dir + "/package.json", JSON.stringify(packageJSON, null, 4), (err) => {
+            if (err) {
+                return;
+            }
+        });
+    }
+
+    private allFilesInDirs(dirs: string[]) {
+        const allFiles: string[] = [];
+
+        for (const dir of dirs) {
+            let dirPath: string;
+
+            if (dir.startsWith("./")) {
+                dirPath = `${this.dir}${dir.slice(1)}`;
+            } else {
+                dirPath = dir;
+            }
+
+            const customFiles = this.dirSync(dirPath);
+
+            for (const fileName of customFiles) {
+
+                allFiles.push(fileName);
+            }
+        }
+
+        return allFiles;
     }
 
     private getEditorText(triggerText: string): string {
