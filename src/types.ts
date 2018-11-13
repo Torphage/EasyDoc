@@ -4,21 +4,8 @@ interface ISyntaxType {
     length: number;
 }
 
-interface ICustomTypes {
-    [key: string]: ISyntaxType[];
-}
-
 interface ISyntaxVariable {
     [key: string]: any;
-}
-
-type IVarTypes = IVarType[];
-
-interface IVarType {
-    text: string;
-    start: number;
-    length: number;
-    value: any;
 }
 
 interface IDocumentationParts {
@@ -33,8 +20,6 @@ interface IRepeater {
 
 export {
     ISyntaxType,
-    ICustomTypes,
-    IVarTypes,
     ISyntaxVariable,
     IDocumentationParts,
     IRepeater,
