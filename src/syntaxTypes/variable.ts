@@ -1,7 +1,6 @@
-import * as vs from "vscode";
 import { ISyntaxType, ISyntaxVariable } from "../types";
-import * as utils from "../utils";
 import { BaseSyntaxType } from "./base_type";
+import { VariableTranslator } from "./translate";
 
 export class Variable extends BaseSyntaxType {
     constructor(vars: ISyntaxVariable) {
@@ -35,17 +34,7 @@ export class Variable extends BaseSyntaxType {
         return snippet.join("");
     }
 
-    protected getType(variables: ISyntaxType[], index: number): ISyntaxType {
-        for (const variable of variables) {
-            if (variable.start === index) {
-                if (this.getVarName(variable.text.slice(2, -1)) in this.vars) {
-                    return variable;
-                }
-            }
-        }
-    }
-
-    protected createType(variables: ISyntaxType[], index: number, text: string): string {
+    private createType(variables: ISyntaxType[], index: number, text: string): string {
         const localVars = this.getLocalTypes(text, variables, index);
         const maxRepeaters = this.maxNumOfType(localVars);
 
@@ -61,9 +50,7 @@ export class Variable extends BaseSyntaxType {
         }
 
         localVars.forEach((variable) => {
-            const varName = this.getVarName(variable.text.slice(2, -1));
-            const tempVar = this.vars[varName];
-            const newVar = this.getTypeValue(tempVar, variable.text.slice(2, -1));
+            const newVar = this.getTypeValue(variable);
 
             const first = text.substring(0, variable.start + offset);
             const second = text.substring(variable.start + variable.length + offset);
@@ -114,59 +101,14 @@ export class Variable extends BaseSyntaxType {
         return str.join("\n");
     }
 
-    protected getTypeValue(varValue: any, text: string): any {
-        let varName = utils.copy(varValue);
+    private getTypeValue(variable: ISyntaxType): any {
+        const varName = this.getVarName(variable.text.slice(2, -1));
+        const tempVar = this.vars[varName];
 
-        const splitted = text.split("(");
-        const functions = splitted.pop().split(".").slice(1);
+        const lexer = new VariableTranslator(
+            variable.text.slice(2, -1), varName, tempVar);
 
-        if (varValue.constructor === Array) {
-            for (const func of splitted) {
-                switch (func) {
-                    case "reverse":
-                        varName = varName.reverse();
-                        break;
-
-                    case "align":
-                        let temp: any[];
-                        const maxValue = Math.max(...(varName.map((el) => el.length)));
-                        temp = [...varName].map((n) => maxValue - n.length);
-                        varName = [];
-                        temp.forEach((n) => {
-                            varName.push(" ".repeat(n));
-                        });
-                        break;
-                }
-            }
-            for (const dot of functions) {
-                switch (dot) {
-                    case "length":
-                        varName = [...Array(varName.length)].map((i) => varName.length);
-                        break;
-
-                    case "each_length":
-                        varName = [...varName].map((n) => n.length);
-                        break;
-                }
-            }
-        } else {
-            for (const func of splitted) {
-                switch (func) {
-                    case "reverse":
-                        varName = varName.split("").reverse().join("");
-                        break;
-                }
-            }
-
-            for (const dot of functions) {
-                switch (dot) {
-                    case "length":
-                        varName = String(varName.length);
-                        break;
-                }
-            }
-        }
-        return varName;
+        return lexer.translate();
     }
 
     private getCurrentLine(syntaxText: string, index: number): string {
@@ -211,7 +153,7 @@ export class Variable extends BaseSyntaxType {
         return maxRepeaters;
     }
 
-    private getLocalTypes(text: string, variables: ISyntaxType[], index: number): any[] {
+    private getLocalTypes(text: string, variables: ISyntaxType[], index: number): ISyntaxType[] {
         const includedVars = [];
 
         for (const variable of variables) {

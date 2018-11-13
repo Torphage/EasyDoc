@@ -23,14 +23,22 @@ export abstract class WorkShop {
         this.customTypes = new CustomSyntax();
     }
 
-    public generate(docType: any, config: any): void {
+    public generate(docType: any, config: any, onEnter: boolean): void {
         this.config = config;
-        this.getDocParts();
-        this.vars = this.getVariables();
 
         switch (docType) {
             case "function":
-                this.generateFunction(this.syntaxFile);
+                this.getDocParts();
+                this.vars = this.getVariables();
+
+                this.generateFunction(this.syntaxFile, onEnter);
+
+                break;
+
+            case "block":
+                this.generateFunction(this.syntaxFile, onEnter);
+
+                break;
         }
     }
 
@@ -39,7 +47,7 @@ export abstract class WorkShop {
     protected abstract getFunctionStartLine(row: string): string[];
     protected abstract correctlyPlacedFunction(row: string): boolean;
 
-    private generateFunction(text: string): void {
+    private generateFunction(text: string, onEnter: boolean): void {
         const editor = vs.window.activeTextEditor;
 
         const repeater = new Repeater(this.vars);
@@ -52,7 +60,7 @@ export abstract class WorkShop {
 
         const cleanSnippet = new vs.SnippetString(this.UnescapeCustomSyntax(placeSnippet.value));
 
-        this.delTriggerString();
+        this.delTriggerString(onEnter);
 
         editor.insertSnippet(cleanSnippet);
     }
@@ -80,11 +88,20 @@ export abstract class WorkShop {
         return parts;
     }
 
-    private delTriggerString() {
+    private delTriggerString(onEnter: boolean) {
         const line = this.position.line;
         const character = this.position.character - this.config.triggerString.length;
+
+        let currentChar: vs.Position;
+
+        if (onEnter) {
+            currentChar = new vs.Position(this.position.line + 1, this.position.character);
+        } else {
+            currentChar = new vs.Position(this.position.line, this.position.character);
+        }
+
         const pos = new vs.Position(line, character);
-        const selection = new vs.Selection(pos, this.position);
+        const selection = new vs.Selection(pos, currentChar);
 
         vs.window.activeTextEditor.edit((builder) => {
             builder.replace(selection, "");

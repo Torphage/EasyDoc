@@ -2,7 +2,7 @@
     "name": "easydoc",
     "displayName": "EasyDoc",
     "description": "Makes custom formats of documentations of functions, classes, etc. for different languages extremely easy",
-    "version": "0.2.2",
+    "version": "0.2.3",
     "publisher": "Torphage",
     "license": "MIT",
     "repository": {
@@ -20,6 +20,13 @@
     ],
     "main": "./out/extension",
     "contributes": {
+        "keybindings": [
+            {
+                "command": "extension.EasyDoc",
+                "key": "ctrl+shift+alt+z",
+                "max": "cmd+shift+alt+z"
+            }
+        ],
         "commands": [
             {
                 "command": "extension.EasyDoc",
@@ -35,29 +42,29 @@
                         "./templates"
                     ]
                 },
+                "EasyDoc.testing": {
+                    "type": "object",
+                    "default": {
+                        "commentAboveTarget": false,
+                        "docType": "function",
+                        "triggerString": "EasyDoc_testing"
+                    }
+                },
                 "EasyDoc.tomdoc": {
                     "type": "object",
                     "default": {
-                        "triggerString": "EasyDoc_tomdoc",
+                        "commentAboveTarget": true,
                         "docType": "function",
-                        "commentAboveTarget": false
+                        "triggerString": "EasyDoc_tomdoc"
                     }
                 },
-                "EasyDoc.a": {
+                "EasyDoc.for_each": {
                     "type": "object",
                     "default": {
                         "commentAboveTarget": false,
-                        "docType": "function",
-                        "triggerString": "EasyDoc_a"
+                        "docType": "block",
+                        "triggerString": "EasyDoc_for_each"
                     }
-                },
-                "EasyDoc.b": {
-                    "default": {
-                        "commentAboveTarget": false,
-                        "docType": "function",
-                        "triggerString": "$$$"
-                    },
-                    "type": "object"
                 }
             }
         }
