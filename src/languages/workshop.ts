@@ -27,17 +27,15 @@ export abstract class WorkShop {
         this.config = config;
 
         switch (docType) {
+            case "block":
+                this.generateFunction(this.syntaxFile, onEnter);
+                break;
+
             case "function":
                 this.getDocParts();
                 this.vars = this.getVariables();
 
                 this.generateFunction(this.syntaxFile, onEnter);
-
-                break;
-
-            case "block":
-                this.generateFunction(this.syntaxFile, onEnter);
-
                 break;
         }
     }
@@ -54,9 +52,9 @@ export abstract class WorkShop {
         const variable = new Variable(this.vars);
         const placeholder = new Placeholder();
 
-        const varSnippet = variable.applyType(text);
-        const repSnippet = repeater.applyType(varSnippet);
-        const placeSnippet = placeholder.applyType(repSnippet);
+        const varSnippet = variable.generate(text);
+        const repSnippet = repeater.generate(varSnippet);
+        const placeSnippet = placeholder.generate(repSnippet);
 
         const cleanSnippet = new vs.SnippetString(this.UnescapeCustomSyntax(placeSnippet.value));
 

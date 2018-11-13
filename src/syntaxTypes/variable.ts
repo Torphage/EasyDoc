@@ -1,13 +1,17 @@
+import { CustomSyntax } from "../syntax";
 import { ISyntaxType, ISyntaxVariable } from "../types";
-import { BaseSyntaxType } from "./base_type";
 import { VariableTranslator } from "./translate";
 
-export class Variable extends BaseSyntaxType {
+export class Variable {
+    private customTypes: CustomSyntax;
+    private vars: ISyntaxVariable;
+
     constructor(vars: ISyntaxVariable) {
-        super(vars);
+        this.customTypes = new CustomSyntax();
+        this.vars = vars;
     }
 
-    public applyType(text: string): string {
+    public generate(text: string): string {
         const snippet = [];
 
         const variables = this.customTypes.getSyntax(text, "variables");
@@ -101,14 +105,22 @@ export class Variable extends BaseSyntaxType {
         return str.join("\n");
     }
 
+    private isNewLine(text: string, index: number) {
+        if (text[index - 1] === ("\n" || undefined)) {
+            return true;
+        }
+
+        return false;
+    }
+
     private getTypeValue(variable: ISyntaxType): any {
-        const varName = this.getVarName(variable.text.slice(2, -1));
+        const varName = this.getVarName(variable.text);
         const tempVar = this.vars[varName];
 
-        const lexer = new VariableTranslator(
+        const translator = new VariableTranslator(
             variable.text.slice(2, -1), varName, tempVar);
 
-        return lexer.translate();
+        return translator.translate();
     }
 
     private getCurrentLine(syntaxText: string, index: number): string {
@@ -141,7 +153,7 @@ export class Variable extends BaseSyntaxType {
         let maxRepeaters = 0;
 
         vars.forEach((locals) => {
-            const variable = this.vars[this.getVarName(locals.text.slice(2, -1))];
+            const variable = this.vars[this.getVarName(locals.text)];
             if (typeof variable !== "string") {
 
                 if (variable.length > maxRepeaters) {
@@ -158,7 +170,7 @@ export class Variable extends BaseSyntaxType {
 
         for (const variable of variables) {
             if (variable.start >= index && variable.start + variable.length <= index + text.length) {
-                if (this.getVarName(variable.text.slice(2, -1)) in this.vars) {
+                if (this.getVarName(variable.text) in this.vars) {
                     includedVars.push(variable);
                 }
             }
@@ -171,7 +183,7 @@ export class Variable extends BaseSyntaxType {
         const varNames = [];
 
         for (const varObj of variables) {
-            const variable = this.vars[this.getVarName(varObj.text.slice(2, -1))];
+            const variable = this.vars[this.getVarName(varObj.text)];
 
             if (typeof variable !== "string") {
                 varNames.push(varObj);
@@ -182,12 +194,8 @@ export class Variable extends BaseSyntaxType {
     }
 
     private getVarName(variable: string): string {
-        const splitted = variable.split(".")[0].split("(");
+        const splitted = variable.slice(2, -1).split(".")[0].split("(");
 
-        if (splitted.length > 1) {
-            return splitted[splitted.length - 1].replace(/\)/, "");
-        } else {
-            return splitted[0].replace(/\)/, "");
-        }
+        return splitted[splitted.length - 1].split(")")[0].replace(/\)/, "");
     }
 }

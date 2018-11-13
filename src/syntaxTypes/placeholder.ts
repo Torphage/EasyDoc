@@ -1,22 +1,24 @@
 import * as vs from "vscode";
+import { CustomSyntax } from "../syntax";
 import { ISyntaxType } from "../types";
-import { BaseSyntaxType } from "./base_type";
 
-export class Placeholder extends BaseSyntaxType {
+export class Placeholder {
+    private customTypes: CustomSyntax;
+
     constructor() {
-        super();
+        this.customTypes = new CustomSyntax();
     }
 
-    public applyType(text: string): vs.SnippetString {
+    public generate(text: string): vs.SnippetString {
         const snippet = new vs.SnippetString();
 
         const placeholders = this.customTypes.getSyntax(text, "placeholders");
 
         for (let i = 0; i < text.length; i++) {
-            const placeholder = this.getType(placeholders, i);
+            const placeholder = this.getPlaceholderAtIndex(placeholders, i);
 
             if (placeholder) {
-                const snippetStr = this.getTypeValue(placeholder);
+                const snippetStr = this.getPlaceholderText(placeholder);
 
                 snippet.appendPlaceholder(snippetStr);
 
@@ -29,7 +31,7 @@ export class Placeholder extends BaseSyntaxType {
         return snippet;
     }
 
-    protected getType(placeholders: ISyntaxType[], index: number): ISyntaxType {
+    private getPlaceholderAtIndex(placeholders: ISyntaxType[], index: number): ISyntaxType {
         for (const placeholder of placeholders) {
             if (placeholder.start === index) {
                 return placeholder;
@@ -37,7 +39,7 @@ export class Placeholder extends BaseSyntaxType {
         }
     }
 
-    protected getTypeValue(placeholder: ISyntaxType): string {
+    private getPlaceholderText(placeholder: ISyntaxType): string {
         const placeholderString = placeholder.text.slice(2, -1);
 
         return placeholderString;

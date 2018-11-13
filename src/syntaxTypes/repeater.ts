@@ -1,19 +1,22 @@
-import * as vs from "vscode";
-import { IRepeater, ISyntaxType } from "../types";
-import { BaseSyntaxType } from "./base_type";
+import { CustomSyntax } from "../syntax";
+import { IRepeater, ISyntaxType, ISyntaxVariable } from "../types";
 
-export class Repeater extends BaseSyntaxType {
-    constructor(vars) {
-        super(vars);
+export class Repeater {
+    private customTypes: CustomSyntax;
+    private vars: ISyntaxVariable;
+
+    constructor(vars: ISyntaxVariable) {
+        this.customTypes = new CustomSyntax();
+        this.vars = vars;
     }
 
-    public applyType(text: string): string {
+    public generate(text: string): string {
         const snippet = [];
 
         const repeaters = this.customTypes.getSyntax(text, "repeaters");
 
         for (let i = 0; i < text.length; i++) {
-            const repeater = this.getType(repeaters, i);
+            const repeater = this.getRepeaterAtIndex(repeaters, i);
 
             if (repeater) {
                 const snippetObj = this.repeatObj(repeater);
@@ -29,7 +32,7 @@ export class Repeater extends BaseSyntaxType {
         return snippet.join("");
     }
 
-    protected getType(repeaters: ISyntaxType[], index: number): ISyntaxType {
+    private getRepeaterAtIndex(repeaters: ISyntaxType[], index: number): ISyntaxType {
         for (const repeater of repeaters) {
             if (repeater.start === index) {
                 return repeater;
@@ -37,7 +40,7 @@ export class Repeater extends BaseSyntaxType {
         }
     }
 
-    protected getTypeValue(repeater: ISyntaxType): string[] {
+    private getTextToRepeat(repeater: ISyntaxType): string[] {
         const result = this.repeatRegex(repeater);
 
         const timesToRepeat = this.timesToRepeat(repeater);
@@ -79,7 +82,6 @@ export class Repeater extends BaseSyntaxType {
             rawMatch = regex.exec(repeater.text.slice(1));
 
             if (rawMatch !== null) {
-
                 result.push(rawMatch);
             }
         } while (rawMatch);
@@ -88,7 +90,7 @@ export class Repeater extends BaseSyntaxType {
     }
 
     private repeatObj(repeater: ISyntaxType): IRepeater {
-        const snippetStrArr = this.getTypeValue(repeater);
+        const snippetStrArr = this.getTextToRepeat(repeater);
         const snippetStr = snippetStrArr.join("");
 
         const timesToRepeat = this.timesToRepeat(repeater);
