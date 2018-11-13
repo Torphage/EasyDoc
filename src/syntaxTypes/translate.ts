@@ -1,3 +1,5 @@
+import { copy } from "../utils";
+
 export class VariableTranslator {
     private text: string;
     private varName: string;
@@ -11,8 +13,8 @@ export class VariableTranslator {
 
     public translate(): any {
         let advancedSyntax: RegExpMatchArray;
-        let varName = this.copy(this.varValue);
-        let text: string = this.copy(this.text);
+        let varName = copy(this.varValue);
+        let text: string = copy(this.text);
 
         do {
             advancedSyntax = this.isAdvancedSyntax(text);
@@ -97,23 +99,10 @@ export class VariableTranslator {
             switch (prop) {
                 case "length":
                     returnValue = String(value.length);
-                    console.log(value)
-                    console.log(returnValue)
                     break;
             }
         }
 
         return returnValue;
-    }
-
-    private copy(variable: any): any {
-        let clone: any;
-
-        if (typeof variable === "string") {
-            clone = variable.split("").join("");
-        } else {
-            clone = Object.assign([], variable)
-        }
-        return clone;
     }
 }
