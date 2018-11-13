@@ -26,7 +26,7 @@ export class CustomSyntax {
             if (rawMatch !== null) {
                 if (this.allowedMatch(fileRows, rawMatch)) {
                     const matchStart = rawMatch.index;
-                    const matchLength = rawMatch[0].length ;
+                    const matchLength = rawMatch[0].length;
                     const matchString = rawMatch[0];
 
                     match.push({
