@@ -7,16 +7,17 @@ class EasyDoc {
     private config: vs.WorkspaceConfiguration;
     private document: vs.TextEditor;
     private dir: string;
+    private packageFiles: any;
 
     constructor() {
         this.config = vs.workspace.getConfiguration("EasyDoc");
         this.document = vs.window.activeTextEditor;
         this.dir = vs.extensions.getExtension("Torphage.easydoc").extensionPath;
+        this.packageFiles = this.getPackageJSON();
     }
 
     // Checks whenever the triggertext
     public checkDoc(onEnter): void {
-        const packageFiles = this.getPackageJSON().contributes.configuration.properties;
         const syntaxDir: string[] = this.config.dir;
 
         this.removeConfigWithRemovalOfFile(syntaxDir);
@@ -34,11 +35,19 @@ class EasyDoc {
 
             for (const fileName of customFiles) {
 
-                if (!(`EasyDoc.${fileName}` in packageFiles)) {
-                    this.addConfig(fileName);
+                const localPackage = this.packageFiles.contributes.configuration.properties;
+                const extensionName = `EasyDoc.${fileName}`;
+                const fileConfig: any = this.config.get(fileName);
+
+                if (!(extensionName in localPackage)) {
+                    this.addConfig(localPackage[extensionName], fileName);
                 }
 
-                const fileConfig: any = this.config.get(fileName);
+                const missingKeys = this.getMissingKeys(localPackage[extensionName]);
+
+                if (missingKeys) {
+                    this.addMissingKeys(localPackage[extensionName], missingKeys);
+                }
 
                 const triggerText = fileConfig.triggerString;
 
@@ -77,10 +86,12 @@ class EasyDoc {
 
     // Dynamically adds configuration to the package.json, only do this to be able
     // to add configurations to the vscode config file instead of having my own
-    private addConfig(fileName): void {
+    private addConfig(config: any, fileName: string): void {
         const packageJSON = this.getPackageJSON();
-        packageJSON.contributes.configuration.properties["EasyDoc." + fileName] = {
+
+        config = {
             default: {
+                alignIndentation: true,
                 commentAboveTarget: false,
                 docType: "function",
                 triggerString: "$$$",
@@ -88,7 +99,41 @@ class EasyDoc {
             type: "object",
         };
 
-        fs.writeFile(this.dir + "/package.json", JSON.stringify(packageJSON, null, 4), (err) => {
+        fs.writeFile(this.dir + "/package.json", JSON.stringify(this.packageFiles, null, 4), (err) => {
+            if (err) {
+                return;
+            }
+        });
+    }
+
+    private getMissingKeys(fileConfig: any): string[] {
+        const ConfigKeys: any = {
+            alignIndentation: true,
+            commentAboveTarget: false,
+            docType: "function",
+            triggerString: "$$$",
+        };
+
+        const missingKeys = [];
+
+        for (const key in ConfigKeys) {
+            if (!(Object.keys(fileConfig.default).includes(key))) {
+                missingKeys.push({
+                    keyName: key,
+                    keyValue: ConfigKeys[key],
+                });
+            }
+        }
+
+        return missingKeys;
+    }
+
+    private addMissingKeys(fileConfig: any, missingKeys: any[]): void {
+        for (const key of missingKeys) {
+            fileConfig.default[key.keyName] = key.keyValue;
+        }
+
+        fs.writeFile(this.dir + "/package.json", JSON.stringify(this.packageFiles, null, 4), (err) => {
             if (err) {
                 return;
             }
