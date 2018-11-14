@@ -45,6 +45,7 @@
                 "EasyDoc.testing": {
                     "type": "object",
                     "default": {
+                        "alignIndentation": true,
                         "commentAboveTarget": false,
                         "docType": "function",
                         "triggerString": "EasyDoc_testing"
@@ -55,7 +56,8 @@
                     "default": {
                         "commentAboveTarget": true,
                         "docType": "function",
-                        "triggerString": "EasyDoc_tomdoc"
+                        "triggerString": "EasyDoc_tomdoc",
+                        "alignIndentation": true
                     }
                 },
                 "EasyDoc.for_each": {
@@ -63,7 +65,8 @@
                     "default": {
                         "commentAboveTarget": false,
                         "docType": "block",
-                        "triggerString": "EasyDoc_for_each"
+                        "alignIndentation": true,
+                        "triggerString": "$$$"
                     }
                 }
             }
