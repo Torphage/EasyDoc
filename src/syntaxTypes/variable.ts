@@ -1,50 +1,55 @@
+import { ISyntaxType, ISyntaxVariable } from "../interfaces";
 import { CustomSyntax } from "../syntax";
-import { ISyntaxType, ISyntaxVariable } from "../types";
+import { ErrorHandler } from "./error_handler";
 import { VariableTranslator } from "./translate";
 
 export class Variable {
-    private customTypes: CustomSyntax;
     private vars: ISyntaxVariable;
+    private text: string;
+
+    private customTypes = new CustomSyntax();
+    private index = 0;
 
     constructor(vars: ISyntaxVariable) {
-        this.customTypes = new CustomSyntax();
         this.vars = vars;
     }
 
     public generate(text: string): string {
+        this.text = text;
+
         const snippet = [];
 
-        const variables = this.customTypes.getSyntax(text, "variables");
+        const variables = this.customTypes.getSyntax(this.text, "variables");
 
-        for (let i = 0; i < text.length; i++) {
+        for (this.index = 0; this.index < this.text.length; this.index++) {
 
-            if (this.isNewLine(text, i)) {
-                const currentLine = this.getCurrentLine(text, i);
+            if (this.isNewLine(this.text)) {
+                const currentLine = this.getCurrentLine(this.text);
 
                 if (this.typeInLine(currentLine)) {
-                    const snippetStr = this.createType(variables, i, currentLine);
+                    const snippetStr = this.createType(variables, currentLine);
 
                     snippet.push(snippetStr);
 
-                    i += currentLine.length;
+                    this.index += currentLine.length;
 
                     continue;
                 }
             }
 
-            snippet.push(text[i]);
+            snippet.push(this.text[this.index]);
         }
 
         return snippet.join("");
     }
 
-    private createType(variables: ISyntaxType[], index: number, text: string): string {
-        const localVars = this.getLocalTypes(text, variables, index);
+    private createType(variables: ISyntaxType[], text: string): string {
+        const localVars = this.getLocalTypes(text, variables);
         const maxRepeaters = this.maxNumOfType(localVars);
 
         let repeatEachLine: boolean;
         let str: string[] = [];
-        let offset = -index;
+        let offset = -this.index;
 
         const arrayVars = this.getArrayVars(localVars);
 
@@ -105,8 +110,8 @@ export class Variable {
         return str.join("\n");
     }
 
-    private isNewLine(text: string, index: number) {
-        if (text[index - 1] === ("\n" || undefined)) {
+    private isNewLine(text: string) {
+        if (text[this.index - 1] === ("\n" || undefined)) {
             return true;
         }
 
@@ -117,15 +122,17 @@ export class Variable {
         const varName = this.getVarName(variable.text);
         const tempVar = this.vars[varName];
 
+        if (tempVar === undefined) { return tempVar; }
+
         const translator = new VariableTranslator(
             variable.text.slice(2, -1), varName, tempVar);
 
         return translator.translate();
     }
 
-    private getCurrentLine(syntaxText: string, index: number): string {
-        const leftOfCurrentPos = syntaxText.slice(0, index);
-        const rightOfCurrentPos = syntaxText.slice(index);
+    private getCurrentLine(syntaxText: string): string {
+        const leftOfCurrentPos = syntaxText.slice(0, this.index);
+        const rightOfCurrentPos = syntaxText.slice(this.index);
 
         const rightIndex = rightOfCurrentPos.indexOf("\n");
 
@@ -150,13 +157,12 @@ export class Variable {
     }
 
     private maxNumOfType(vars: any[]): any {
-        let maxRepeaters = 0;
+        let maxRepeaters = [];
 
         vars.forEach((locals) => {
             const variable = this.vars[this.getVarName(locals.text)];
-            if (typeof variable !== "string") {
-
-                if (variable.length > maxRepeaters) {
+            if (Array.isArray(variable)) {
+                if (variable.length > maxRepeaters.length) {
                     maxRepeaters = variable;
                 }
             }
@@ -165,11 +171,11 @@ export class Variable {
         return maxRepeaters;
     }
 
-    private getLocalTypes(text: string, variables: ISyntaxType[], index: number): ISyntaxType[] {
+    private getLocalTypes(text: string, variables: ISyntaxType[]): ISyntaxType[] {
         const includedVars = [];
 
         for (const variable of variables) {
-            if (variable.start >= index && variable.start + variable.length <= index + text.length) {
+            if (variable.start >= this.index && variable.start + variable.length <= this.index + text.length) {
                 if (this.getVarName(variable.text) in this.vars) {
                     includedVars.push(variable);
                 }
@@ -185,7 +191,7 @@ export class Variable {
         for (const varObj of variables) {
             const variable = this.vars[this.getVarName(varObj.text)];
 
-            if (typeof variable !== "string") {
+            if (Array.isArray(variable)) {
                 varNames.push(varObj);
             }
         }
