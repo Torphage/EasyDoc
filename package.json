@@ -16,7 +16,7 @@
         "Other"
     ],
     "activationEvents": [
-        "onCommand:extension.EasyDoc"
+        "*"
     ],
     "main": "./out/extension",
     "contributes": {
