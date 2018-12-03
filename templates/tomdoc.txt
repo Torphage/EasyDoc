@@ -1,10 +1,10 @@
 # $[Status]: $[Type].
-#
+#$|
 # ${PARAMS}${align(PARAMS)} - $[Description].
-#  
+#|$$|
 # Examples
 #$<3>(
 #   ${NAME}(${PARAMS_TEMPLATE})
 #   # => $[result]
-#)$
+#)$|$
 # Returns $[Description].
