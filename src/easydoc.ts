@@ -3,7 +3,7 @@ import * as path from "path";
 import * as vs from "vscode";
 import { Format } from "./format";
 
-class EasyDoc {
+export class EasyDoc {
     private config: vs.WorkspaceConfiguration;
     private document: vs.TextEditor;
     private dir: string;
@@ -52,7 +52,7 @@ class EasyDoc {
                 const triggerText = fileConfig.triggerString;
 
                 if ((this.getEditorText(triggerText) === triggerText)) {
-                    const filePath = `${dirPath}/${fileName}.txt`;
+                    const filePath = path.join(dirPath, `${fileName}.txt`);
 
                     const format = new Format(filePath, fileConfig, onEnter);
                     format.createDoc();
@@ -193,5 +193,3 @@ class EasyDoc {
         return search;
     }
 }
-
-export { EasyDoc };
