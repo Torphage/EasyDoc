@@ -1,4 +1,4 @@
-import { ISyntaxVariable } from "../types";
+import { ISyntaxVariable } from "../interfaces";
 import { WorkShop } from "./workshop";
 
 export class Base extends WorkShop {

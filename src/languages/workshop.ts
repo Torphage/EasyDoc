@@ -1,8 +1,8 @@
 import * as fs from "fs";
 import * as vs from "vscode";
+import { IDocumentationParts, ISyntaxVariable } from "../interfaces";
 import { CustomSyntax } from "../syntax";
-import { Placeholder, Repeater, Variable } from "../syntaxTypes/export";
-import { IDocumentationParts, ISyntaxVariable } from "../types";
+import { ErrorHandler, Placeholder, Repeater, Variable } from "../syntaxTypes/export";
 
 export abstract class WorkShop {
     protected syntaxFile: string;
@@ -48,23 +48,21 @@ export abstract class WorkShop {
     private generateFunction(text: string, onEnter: boolean): void {
         const editor = vs.window.activeTextEditor;
 
+        const errorHandler = new ErrorHandler(this.vars);
         const repeater = new Repeater(this.vars);
         const variable = new Variable(this.vars);
         const placeholder = new Placeholder();
 
-        const varSnippet = variable.generate(text);
+        const cleanText = errorHandler.handle(text);
+        const varSnippet = variable.generate(cleanText);
         const repSnippet = repeater.generate(varSnippet);
         const placeSnippet = placeholder.generate(repSnippet);
 
-        const cleanSnippet = new vs.SnippetString(this.UnescapeCustomSyntax(placeSnippet.value));
+        if (onEnter) {
+            this.delTriggerString();
+        }
 
-        this.delTriggerString(onEnter);
-
-        editor.insertSnippet(cleanSnippet);
-    }
-
-    private UnescapeCustomSyntax(text: string): string {
-        return text.replace(/\\\\\$/g, "$");
+        editor.insertSnippet(placeSnippet);
     }
 
     private getDocParts(): IDocumentationParts {
@@ -86,17 +84,13 @@ export abstract class WorkShop {
         return parts;
     }
 
-    private delTriggerString(onEnter: boolean) {
+    private delTriggerString() {
         const line = this.position.line;
         const character = this.position.character - this.config.triggerString.length;
 
         let currentChar: vs.Position;
 
-        if (onEnter) {
-            currentChar = new vs.Position(this.position.line + 1, this.position.character);
-        } else {
-            currentChar = new vs.Position(this.position.line, this.position.character);
-        }
+        currentChar = new vs.Position(this.position.line, this.position.character);
 
         const pos = new vs.Position(line, character);
         const selection = new vs.Selection(pos, currentChar);

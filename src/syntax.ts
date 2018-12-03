@@ -1,4 +1,4 @@
-import { ISyntaxType } from "./types";
+import { ISyntaxType } from "./interfaces";
 
 export class CustomSyntax {
 
