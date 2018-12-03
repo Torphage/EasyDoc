@@ -1,18 +1,14 @@
 import * as vs from "vscode";
+import { ISyntaxType } from "../interfaces";
 import { CustomSyntax } from "../syntax";
-import { ISyntaxType } from "../types";
 
 export class Placeholder {
-    private customTypes: CustomSyntax;
-
-    constructor() {
-        this.customTypes = new CustomSyntax();
-    }
 
     public generate(text: string): vs.SnippetString {
         const snippet = new vs.SnippetString();
 
-        const placeholders = this.customTypes.getSyntax(text, "placeholders");
+        const customTypes = new CustomSyntax();
+        const placeholders = customTypes.getSyntax(text, "placeholders");
 
         for (let i = 0; i < text.length; i++) {
             const placeholder = this.getPlaceholderAtIndex(placeholders, i);

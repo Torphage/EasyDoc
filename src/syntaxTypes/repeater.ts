@@ -1,19 +1,18 @@
+import { IRepeater, ISyntaxType, ISyntaxVariable } from "../interfaces";
 import { CustomSyntax } from "../syntax";
-import { IRepeater, ISyntaxType, ISyntaxVariable } from "../types";
 
 export class Repeater {
-    private customTypes: CustomSyntax;
     private vars: ISyntaxVariable;
 
     constructor(vars: ISyntaxVariable) {
-        this.customTypes = new CustomSyntax();
         this.vars = vars;
     }
 
     public generate(text: string): string {
         const snippet = [];
 
-        const repeaters = this.customTypes.getSyntax(text, "repeaters");
+        const customTypes = new CustomSyntax();
+        const repeaters = customTypes.getSyntax(text, "repeaters");
 
         for (let i = 0; i < text.length; i++) {
             const repeater = this.getRepeaterAtIndex(repeaters, i);
