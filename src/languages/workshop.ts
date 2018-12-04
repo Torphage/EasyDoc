@@ -6,21 +6,16 @@ import { ErrorHandler, Placeholder, Repeater, Variable } from "../syntaxTypes/ex
 
 export abstract class WorkShop {
     protected syntaxFile: string;
-    protected document: vs.TextDocument;
-    protected position: vs.Position;
     protected config: any;
-    protected parse: any;
-    protected snippet: vs.SnippetString;
-    protected block: string[];
     protected vars: ISyntaxVariable;
-    protected customTypes: CustomSyntax;
+
+    protected document = vs.window.activeTextEditor.document;
+    protected position = vs.window.activeTextEditor.selection.active;
+    protected block: string[] = [];
+    protected customTypes = new CustomSyntax();
 
     constructor(syntaxFile: string) {
         this.syntaxFile = syntaxFile;
-        this.document = vs.window.activeTextEditor.document;
-        this.position = vs.window.activeTextEditor.selection.active;
-        this.block = [];
-        this.customTypes = new CustomSyntax();
     }
 
     public generate(docType: any, config: any, onEnter: boolean): void {
@@ -28,14 +23,14 @@ export abstract class WorkShop {
 
         switch (docType) {
             case "block":
-                this.generateFunction(this.syntaxFile, onEnter);
+                this.generateFunction(onEnter);
                 break;
 
             case "function":
                 this.getDocParts();
                 this.vars = this.getVariables();
 
-                this.generateFunction(this.syntaxFile, onEnter);
+                this.generateFunction(onEnter);
                 break;
         }
     }
@@ -45,7 +40,7 @@ export abstract class WorkShop {
     protected abstract getFunctionStartLine(row: string): string[];
     protected abstract correctlyPlacedFunction(row: string): boolean;
 
-    private generateFunction(text: string, onEnter: boolean): void {
+    private generateFunction(onEnter: boolean): void {
         const editor = vs.window.activeTextEditor;
 
         const errorHandler = new ErrorHandler(this.vars);
@@ -53,7 +48,7 @@ export abstract class WorkShop {
         const variable = new Variable(this.vars);
         const placeholder = new Placeholder();
 
-        const cleanText = errorHandler.handle(text);
+        const cleanText = errorHandler.handle(this.syntaxFile);
         const varSnippet = variable.generate(cleanText);
         const repSnippet = repeater.generate(varSnippet);
         const placeSnippet = placeholder.generate(repSnippet);
