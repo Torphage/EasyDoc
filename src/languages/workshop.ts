@@ -90,7 +90,7 @@ export abstract class WorkShop {
 
         let currentChar: vs.Position;
 
-        currentChar = new vs.Position(this.position.line, this.position.character);
+        currentChar = new vs.Position(this.position.line + 1, this.position.character);
 
         const pos = new vs.Position(line, character);
         const selection = new vs.Selection(pos, currentChar);
