@@ -8,7 +8,6 @@ export class EasyDoc {
     private config: vs.WorkspaceConfiguration;
     private document: vs.TextEditor;
     private dir: string;
-    private packageFiles: any;
 
     constructor() {
         this.config = vs.workspace.getConfiguration("EasyDoc");
@@ -52,7 +51,7 @@ export class EasyDoc {
                 const fileConfig: any = this.config.get(fileName);
 
                 if (!(extensionName in localPackage)) {
-                    config.addConfig(localPackage[extensionName], fileName);
+                    config.addConfig(localPackage[extensionName]);
                 }
 
                 const missingKeys = config.getMissingKeys(localPackage[extensionName]);

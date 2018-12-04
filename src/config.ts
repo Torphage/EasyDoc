@@ -30,9 +30,7 @@ export class Config {
 
     // Dynamically adds configuration to the package.json, only do this to be able
     // to add configurations to the vscode config file instead of having my own
-    public addConfig(config: any, fileName: string): void {
-        const packageJSON = this.getPackageJSON();
-
+    public addConfig(config: any): void {
         config = {
             default: {
                 alignIndentation: true,
