@@ -8,6 +8,7 @@ export abstract class WorkShop {
     protected syntaxFile: string;
     protected config: any;
     protected vars: ISyntaxVariable;
+    protected parse: any;
 
     protected document = vs.window.activeTextEditor.document;
     protected position = vs.window.activeTextEditor.selection.active;
