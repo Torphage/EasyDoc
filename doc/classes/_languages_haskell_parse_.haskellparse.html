@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>CustomSyntax | easydoc</title>
+	<title>HaskellParse | easydoc</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -56,13 +56,13 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="../modules/_syntax_.html">&quot;syntax&quot;</a>
+					<a href="../modules/_languages_haskell_parse_.html">&quot;languages/haskell/parse&quot;</a>
 				</li>
 				<li>
-					<a href="_syntax_.customsyntax.html">CustomSyntax</a>
+					<a href="_languages_haskell_parse_.haskellparse.html">HaskellParse</a>
 				</li>
 			</ul>
-			<h1>Class CustomSyntax</h1>
+			<h1>Class HaskellParse</h1>
 		</div>
 	</div>
 </header>
@@ -73,7 +73,12 @@
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">CustomSyntax</span>
+						<a href="_languages_parse_.baseparse.html" class="tsd-signature-type">BaseParse</a>
+						<ul class="tsd-hierarchy">
+							<li>
+								<span class="target">HaskellParse</span>
+							</li>
+						</ul>
 					</li>
 				</ul>
 			</section>
@@ -82,165 +87,161 @@
 				<section class="tsd-panel tsd-index-panel">
 					<div class="tsd-index-content">
 						<section class="tsd-index-section ">
+							<h3>Constructors</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-constructor tsd-parent-kind-class"><a href="_languages_haskell_parse_.haskellparse.html#constructor" class="tsd-kind-icon">constructor</a></li>
+							</ul>
+						</section>
+						<section class="tsd-index-section ">
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><a href="_syntax_.customsyntax.html#allowedmatch" class="tsd-kind-icon">allowed<wbr>Match</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><a href="_syntax_.customsyntax.html#getplaceholders" class="tsd-kind-icon">get<wbr>Placeholders</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><a href="_syntax_.customsyntax.html#getrepeaters" class="tsd-kind-icon">get<wbr>Repeaters</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_syntax_.customsyntax.html#getsyntax" class="tsd-kind-icon">get<wbr>Syntax</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><a href="_syntax_.customsyntax.html#getvariables" class="tsd-kind-icon">get<wbr>Variables</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_syntax_.customsyntax.html#matchregex" class="tsd-kind-icon">match<wbr>Regex</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite"><a href="_languages_haskell_parse_.haskellparse.html#parseblock" class="tsd-kind-icon">parse<wbr>Block</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite"><a href="_languages_haskell_parse_.haskellparse.html#parsename" class="tsd-kind-icon">parse<wbr>Name</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite"><a href="_languages_haskell_parse_.haskellparse.html#parseparams" class="tsd-kind-icon">parse<wbr>Params</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_languages_haskell_parse_.haskellparse.html#parseparamstemplate" class="tsd-kind-icon">parse<wbr>Params<wbr>Template</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><a href="_languages_haskell_parse_.haskellparse.html#splitlines" class="tsd-kind-icon">split<wbr>Lines</a></li>
 							</ul>
 						</section>
 					</div>
 				</section>
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
+				<h2>Constructors</h2>
+				<section class="tsd-panel tsd-member tsd-kind-constructor tsd-parent-kind-class">
+					<a name="constructor" class="tsd-anchor"></a>
+					<h3>constructor</h3>
+					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">new <wbr>Haskell<wbr>Parse<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_languages_haskell_parse_.haskellparse.html" class="tsd-signature-type">HaskellParse</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/Torphage/EasyDoc/blob/82d46e1/src/languages/haskell/parse.ts#L3">languages/haskell/parse.ts:3</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-returns-title">Returns <a href="_languages_haskell_parse_.haskellparse.html" class="tsd-signature-type">HaskellParse</a></h4>
+						</li>
+					</ul>
+				</section>
+			</section>
+			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Methods</h2>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-private">
-					<a name="allowedmatch" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagPrivate">Private</span> allowed<wbr>Match</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-private">
-						<li class="tsd-signature tsd-kind-icon">allowed<wbr>Match<span class="tsd-signature-symbol">(</span>fileRows<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, match<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">RegExpExecArray</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-overwrite">
+					<a name="parseblock" class="tsd-anchor"></a>
+					<h3>parse<wbr>Block</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-overwrite">
+						<li class="tsd-signature tsd-kind-icon">parse<wbr>Block<span class="tsd-signature-symbol">(</span>newlineRows<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
+								<p>Overrides <a href="_languages_parse_.baseparse.html">BaseParse</a>.<a href="_languages_parse_.baseparse.html#parseblock">parseBlock</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/Torphage/EasyDoc/blob/82d46e1/src/syntax.ts#L65">syntax.ts:65</a></li>
+									<li>Defined in <a href="https://github.com/Torphage/EasyDoc/blob/82d46e1/src/languages/haskell/parse.ts#L8">languages/haskell/parse.ts:8</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>fileRows: <span class="tsd-signature-type">string</span></h5>
-								</li>
-								<li>
-									<h5>match: <span class="tsd-signature-type">RegExpExecArray</span></h5>
+									<h5>newlineRows: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></h5>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></h4>
 						</li>
 					</ul>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-private">
-					<a name="getplaceholders" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagPrivate">Private</span> get<wbr>Placeholders</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-private">
-						<li class="tsd-signature tsd-kind-icon">get<wbr>Placeholders<span class="tsd-signature-symbol">(</span>fileRows<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../interfaces/_interfaces_.isyntaxtype.html" class="tsd-signature-type">ISyntaxType</a><span class="tsd-signature-symbol">[]</span></li>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-overwrite">
+					<a name="parsename" class="tsd-anchor"></a>
+					<h3>parse<wbr>Name</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-overwrite">
+						<li class="tsd-signature tsd-kind-icon">parse<wbr>Name<span class="tsd-signature-symbol">(</span>rows<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
+								<p>Overrides <a href="_languages_parse_.baseparse.html">BaseParse</a>.<a href="_languages_parse_.baseparse.html#parsename">parseName</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/Torphage/EasyDoc/blob/82d46e1/src/syntax.ts#L51">syntax.ts:51</a></li>
+									<li>Defined in <a href="https://github.com/Torphage/EasyDoc/blob/82d46e1/src/languages/haskell/parse.ts#L31">languages/haskell/parse.ts:31</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>fileRows: <span class="tsd-signature-type">string</span></h5>
+									<h5>rows: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></h5>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="../interfaces/_interfaces_.isyntaxtype.html" class="tsd-signature-type">ISyntaxType</a><span class="tsd-signature-symbol">[]</span></h4>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
 						</li>
 					</ul>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-private">
-					<a name="getrepeaters" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagPrivate">Private</span> get<wbr>Repeaters</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-private">
-						<li class="tsd-signature tsd-kind-icon">get<wbr>Repeaters<span class="tsd-signature-symbol">(</span>fileRows<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../interfaces/_interfaces_.isyntaxtype.html" class="tsd-signature-type">ISyntaxType</a><span class="tsd-signature-symbol">[]</span></li>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-overwrite">
+					<a name="parseparams" class="tsd-anchor"></a>
+					<h3>parse<wbr>Params</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-overwrite">
+						<li class="tsd-signature tsd-kind-icon">parse<wbr>Params<span class="tsd-signature-symbol">(</span>rows<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
+								<p>Overrides <a href="_languages_parse_.baseparse.html">BaseParse</a>.<a href="_languages_parse_.baseparse.html#parseparams">parseParams</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/Torphage/EasyDoc/blob/82d46e1/src/syntax.ts#L58">syntax.ts:58</a></li>
+									<li>Defined in <a href="https://github.com/Torphage/EasyDoc/blob/82d46e1/src/languages/haskell/parse.ts#L41">languages/haskell/parse.ts:41</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>fileRows: <span class="tsd-signature-type">string</span></h5>
+									<h5>rows: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></h5>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="../interfaces/_interfaces_.isyntaxtype.html" class="tsd-signature-type">ISyntaxType</a><span class="tsd-signature-symbol">[]</span></h4>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="getsyntax" class="tsd-anchor"></a>
-					<h3>get<wbr>Syntax</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">get<wbr>Syntax<span class="tsd-signature-symbol">(</span>fileRows<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, type<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../interfaces/_interfaces_.isyntaxtype.html" class="tsd-signature-type">ISyntaxType</a><span class="tsd-signature-symbol">[]</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/Torphage/EasyDoc/blob/82d46e1/src/syntax.ts#L5">syntax.ts:5</a></li>
-								</ul>
-							</aside>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>fileRows: <span class="tsd-signature-type">string</span></h5>
-								</li>
-								<li>
-									<h5>type: <span class="tsd-signature-type">string</span></h5>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="../interfaces/_interfaces_.isyntaxtype.html" class="tsd-signature-type">ISyntaxType</a><span class="tsd-signature-symbol">[]</span></h4>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-private">
-					<a name="getvariables" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagPrivate">Private</span> get<wbr>Variables</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-private">
-						<li class="tsd-signature tsd-kind-icon">get<wbr>Variables<span class="tsd-signature-symbol">(</span>fileRows<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../interfaces/_interfaces_.isyntaxtype.html" class="tsd-signature-type">ISyntaxType</a><span class="tsd-signature-symbol">[]</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/Torphage/EasyDoc/blob/82d46e1/src/syntax.ts#L44">syntax.ts:44</a></li>
-								</ul>
-							</aside>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>fileRows: <span class="tsd-signature-type">string</span></h5>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="../interfaces/_interfaces_.isyntaxtype.html" class="tsd-signature-type">ISyntaxType</a><span class="tsd-signature-symbol">[]</span></h4>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></h4>
 						</li>
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="matchregex" class="tsd-anchor"></a>
-					<h3>match<wbr>Regex</h3>
+					<a name="parseparamstemplate" class="tsd-anchor"></a>
+					<h3>parse<wbr>Params<wbr>Template</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">match<wbr>Regex<span class="tsd-signature-symbol">(</span>fileRows<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, regex<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">RegExp</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../interfaces/_interfaces_.isyntaxtype.html" class="tsd-signature-type">ISyntaxType</a><span class="tsd-signature-symbol">[]</span></li>
+						<li class="tsd-signature tsd-kind-icon">parse<wbr>Params<wbr>Template<span class="tsd-signature-symbol">(</span>rows<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/Torphage/EasyDoc/blob/82d46e1/src/syntax.ts#L18">syntax.ts:18</a></li>
+									<li>Defined in <a href="https://github.com/Torphage/EasyDoc/blob/82d46e1/src/languages/haskell/parse.ts#L52">languages/haskell/parse.ts:52</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>fileRows: <span class="tsd-signature-type">string</span></h5>
-								</li>
-								<li>
-									<h5>regex: <span class="tsd-signature-type">RegExp</span></h5>
+									<h5>rows: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></h5>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="../interfaces/_interfaces_.isyntaxtype.html" class="tsd-signature-type">ISyntaxType</a><span class="tsd-signature-symbol">[]</span></h4>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-private">
+					<a name="splitlines" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagPrivate">Private</span> split<wbr>Lines</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-private">
+						<li class="tsd-signature tsd-kind-icon">split<wbr>Lines<span class="tsd-signature-symbol">(</span>rows<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/Torphage/EasyDoc/blob/82d46e1/src/languages/haskell/parse.ts#L65">languages/haskell/parse.ts:65</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>rows: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -273,7 +274,7 @@
 					<li class=" tsd-kind-external-module">
 						<a href="../modules/_languages_export_.html">"languages/export"</a>
 					</li>
-					<li class=" tsd-kind-external-module">
+					<li class="current tsd-kind-external-module">
 						<a href="../modules/_languages_haskell_parse_.html">"languages/haskell/parse"</a>
 					</li>
 					<li class=" tsd-kind-external-module">
@@ -297,7 +298,7 @@
 					<li class=" tsd-kind-external-module">
 						<a href="../modules/_languages_workshop_.html">"languages/workshop"</a>
 					</li>
-					<li class="current tsd-kind-external-module">
+					<li class=" tsd-kind-external-module">
 						<a href="../modules/_syntax_.html">"syntax"</a>
 					</li>
 					<li class=" tsd-kind-external-module">
@@ -328,25 +329,25 @@
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-class tsd-parent-kind-external-module">
-						<a href="_syntax_.customsyntax.html" class="tsd-kind-icon">Custom<wbr>Syntax</a>
+						<a href="_languages_haskell_parse_.haskellparse.html" class="tsd-kind-icon">Haskell<wbr>Parse</a>
 						<ul>
-							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-private">
-								<a href="_syntax_.customsyntax.html#allowedmatch" class="tsd-kind-icon">allowed<wbr>Match</a>
+							<li class=" tsd-kind-constructor tsd-parent-kind-class">
+								<a href="_languages_haskell_parse_.haskellparse.html#constructor" class="tsd-kind-icon">constructor</a>
 							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-private">
-								<a href="_syntax_.customsyntax.html#getplaceholders" class="tsd-kind-icon">get<wbr>Placeholders</a>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-overwrite">
+								<a href="_languages_haskell_parse_.haskellparse.html#parseblock" class="tsd-kind-icon">parse<wbr>Block</a>
 							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-private">
-								<a href="_syntax_.customsyntax.html#getrepeaters" class="tsd-kind-icon">get<wbr>Repeaters</a>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-overwrite">
+								<a href="_languages_haskell_parse_.haskellparse.html#parsename" class="tsd-kind-icon">parse<wbr>Name</a>
 							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="_syntax_.customsyntax.html#getsyntax" class="tsd-kind-icon">get<wbr>Syntax</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-private">
-								<a href="_syntax_.customsyntax.html#getvariables" class="tsd-kind-icon">get<wbr>Variables</a>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-overwrite">
+								<a href="_languages_haskell_parse_.haskellparse.html#parseparams" class="tsd-kind-icon">parse<wbr>Params</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="_syntax_.customsyntax.html#matchregex" class="tsd-kind-icon">match<wbr>Regex</a>
+								<a href="_languages_haskell_parse_.haskellparse.html#parseparamstemplate" class="tsd-kind-icon">parse<wbr>Params<wbr>Template</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-private">
+								<a href="_languages_haskell_parse_.haskellparse.html#splitlines" class="tsd-kind-icon">split<wbr>Lines</a>
 							</li>
 						</ul>
 					</li>

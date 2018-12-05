@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>CustomSyntax | easydoc</title>
+	<title>VariableTranslator | easydoc</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -56,13 +56,13 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="../modules/_syntax_.html">&quot;syntax&quot;</a>
+					<a href="../modules/_syntaxtypes_translate_.html">&quot;syntaxTypes/translate&quot;</a>
 				</li>
 				<li>
-					<a href="_syntax_.customsyntax.html">CustomSyntax</a>
+					<a href="_syntaxtypes_translate_.variabletranslator.html">VariableTranslator</a>
 				</li>
 			</ul>
-			<h1>Class CustomSyntax</h1>
+			<h1>Class VariableTranslator</h1>
 		</div>
 	</div>
 </header>
@@ -73,7 +73,7 @@
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">CustomSyntax</span>
+						<span class="target">VariableTranslator</span>
 					</li>
 				</ul>
 			</section>
@@ -82,165 +82,187 @@
 				<section class="tsd-panel tsd-index-panel">
 					<div class="tsd-index-content">
 						<section class="tsd-index-section ">
+							<h3>Constructors</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-constructor tsd-parent-kind-class"><a href="_syntaxtypes_translate_.variabletranslator.html#constructor" class="tsd-kind-icon">constructor</a></li>
+							</ul>
+						</section>
+						<section class="tsd-index-section tsd-is-private tsd-is-private-protected">
+							<h3>Properties</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="_syntaxtypes_translate_.variabletranslator.html#text" class="tsd-kind-icon">text</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="_syntaxtypes_translate_.variabletranslator.html#varname" class="tsd-kind-icon">var<wbr>Name</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="_syntaxtypes_translate_.variabletranslator.html#varvalue" class="tsd-kind-icon">var<wbr>Value</a></li>
+							</ul>
+						</section>
+						<section class="tsd-index-section ">
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><a href="_syntax_.customsyntax.html#allowedmatch" class="tsd-kind-icon">allowed<wbr>Match</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><a href="_syntax_.customsyntax.html#getplaceholders" class="tsd-kind-icon">get<wbr>Placeholders</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><a href="_syntax_.customsyntax.html#getrepeaters" class="tsd-kind-icon">get<wbr>Repeaters</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_syntax_.customsyntax.html#getsyntax" class="tsd-kind-icon">get<wbr>Syntax</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><a href="_syntax_.customsyntax.html#getvariables" class="tsd-kind-icon">get<wbr>Variables</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_syntax_.customsyntax.html#matchregex" class="tsd-kind-icon">match<wbr>Regex</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><a href="_syntaxtypes_translate_.variabletranslator.html#handlefunction" class="tsd-kind-icon">handle<wbr>Function</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><a href="_syntaxtypes_translate_.variabletranslator.html#handleproperty" class="tsd-kind-icon">handle<wbr>Property</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><a href="_syntaxtypes_translate_.variabletranslator.html#isadvancedsyntax" class="tsd-kind-icon">is<wbr>Advanced<wbr>Syntax</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_syntaxtypes_translate_.variabletranslator.html#translate" class="tsd-kind-icon">translate</a></li>
 							</ul>
 						</section>
 					</div>
 				</section>
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
+				<h2>Constructors</h2>
+				<section class="tsd-panel tsd-member tsd-kind-constructor tsd-parent-kind-class">
+					<a name="constructor" class="tsd-anchor"></a>
+					<h3>constructor</h3>
+					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">new <wbr>Variable<wbr>Translator<span class="tsd-signature-symbol">(</span>text<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, varName<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, varValue<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_syntaxtypes_translate_.variabletranslator.html" class="tsd-signature-type">VariableTranslator</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/Torphage/EasyDoc/blob/82d46e1/src/syntaxTypes/translate.ts#L6">syntaxTypes/translate.ts:6</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>text: <span class="tsd-signature-type">string</span></h5>
+								</li>
+								<li>
+									<h5>varName: <span class="tsd-signature-type">string</span></h5>
+								</li>
+								<li>
+									<h5>varValue: <span class="tsd-signature-type">any</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="_syntaxtypes_translate_.variabletranslator.html" class="tsd-signature-type">VariableTranslator</a></h4>
+						</li>
+					</ul>
+				</section>
+			</section>
+			<section class="tsd-panel-group tsd-member-group tsd-is-private tsd-is-private-protected">
+				<h2>Properties</h2>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
+					<a name="text" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagPrivate">Private</span> text</h3>
+					<div class="tsd-signature tsd-kind-icon">text<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/Torphage/EasyDoc/blob/82d46e1/src/syntaxTypes/translate.ts#L4">syntaxTypes/translate.ts:4</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
+					<a name="varname" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagPrivate">Private</span> var<wbr>Name</h3>
+					<div class="tsd-signature tsd-kind-icon">var<wbr>Name<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/Torphage/EasyDoc/blob/82d46e1/src/syntaxTypes/translate.ts#L5">syntaxTypes/translate.ts:5</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
+					<a name="varvalue" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagPrivate">Private</span> var<wbr>Value</h3>
+					<div class="tsd-signature tsd-kind-icon">var<wbr>Value<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/Torphage/EasyDoc/blob/82d46e1/src/syntaxTypes/translate.ts#L6">syntaxTypes/translate.ts:6</a></li>
+						</ul>
+					</aside>
+				</section>
+			</section>
+			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Methods</h2>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-private">
-					<a name="allowedmatch" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagPrivate">Private</span> allowed<wbr>Match</h3>
+					<a name="handlefunction" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagPrivate">Private</span> handle<wbr>Function</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-private">
-						<li class="tsd-signature tsd-kind-icon">allowed<wbr>Match<span class="tsd-signature-symbol">(</span>fileRows<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, match<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">RegExpExecArray</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+						<li class="tsd-signature tsd-kind-icon">handle<wbr>Function<span class="tsd-signature-symbol">(</span>func<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/Torphage/EasyDoc/blob/82d46e1/src/syntax.ts#L65">syntax.ts:65</a></li>
+									<li>Defined in <a href="https://github.com/Torphage/EasyDoc/blob/82d46e1/src/syntaxTypes/translate.ts#L56">syntaxTypes/translate.ts:56</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>fileRows: <span class="tsd-signature-type">string</span></h5>
+									<h5>func: <span class="tsd-signature-type">string</span></h5>
 								</li>
 								<li>
-									<h5>match: <span class="tsd-signature-type">RegExpExecArray</span></h5>
+									<h5>value: <span class="tsd-signature-type">any</span></h5>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">any</span></h4>
 						</li>
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-private">
-					<a name="getplaceholders" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagPrivate">Private</span> get<wbr>Placeholders</h3>
+					<a name="handleproperty" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagPrivate">Private</span> handle<wbr>Property</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-private">
-						<li class="tsd-signature tsd-kind-icon">get<wbr>Placeholders<span class="tsd-signature-symbol">(</span>fileRows<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../interfaces/_interfaces_.isyntaxtype.html" class="tsd-signature-type">ISyntaxType</a><span class="tsd-signature-symbol">[]</span></li>
+						<li class="tsd-signature tsd-kind-icon">handle<wbr>Property<span class="tsd-signature-symbol">(</span>prop<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/Torphage/EasyDoc/blob/82d46e1/src/syntax.ts#L51">syntax.ts:51</a></li>
+									<li>Defined in <a href="https://github.com/Torphage/EasyDoc/blob/82d46e1/src/syntaxTypes/translate.ts#L85">syntaxTypes/translate.ts:85</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>fileRows: <span class="tsd-signature-type">string</span></h5>
+									<h5>prop: <span class="tsd-signature-type">string</span></h5>
+								</li>
+								<li>
+									<h5>value: <span class="tsd-signature-type">any</span></h5>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="../interfaces/_interfaces_.isyntaxtype.html" class="tsd-signature-type">ISyntaxType</a><span class="tsd-signature-symbol">[]</span></h4>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">any</span></h4>
 						</li>
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-private">
-					<a name="getrepeaters" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagPrivate">Private</span> get<wbr>Repeaters</h3>
+					<a name="isadvancedsyntax" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagPrivate">Private</span> is<wbr>Advanced<wbr>Syntax</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-private">
-						<li class="tsd-signature tsd-kind-icon">get<wbr>Repeaters<span class="tsd-signature-symbol">(</span>fileRows<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../interfaces/_interfaces_.isyntaxtype.html" class="tsd-signature-type">ISyntaxType</a><span class="tsd-signature-symbol">[]</span></li>
+						<li class="tsd-signature tsd-kind-icon">is<wbr>Advanced<wbr>Syntax<span class="tsd-signature-symbol">(</span>text<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">RegExpMatchArray</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/Torphage/EasyDoc/blob/82d46e1/src/syntax.ts#L58">syntax.ts:58</a></li>
+									<li>Defined in <a href="https://github.com/Torphage/EasyDoc/blob/82d46e1/src/syntaxTypes/translate.ts#L49">syntaxTypes/translate.ts:49</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>fileRows: <span class="tsd-signature-type">string</span></h5>
+									<h5>text: <span class="tsd-signature-type">string</span></h5>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="../interfaces/_interfaces_.isyntaxtype.html" class="tsd-signature-type">ISyntaxType</a><span class="tsd-signature-symbol">[]</span></h4>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">RegExpMatchArray</span></h4>
 						</li>
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="getsyntax" class="tsd-anchor"></a>
-					<h3>get<wbr>Syntax</h3>
+					<a name="translate" class="tsd-anchor"></a>
+					<h3>translate</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">get<wbr>Syntax<span class="tsd-signature-symbol">(</span>fileRows<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, type<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../interfaces/_interfaces_.isyntaxtype.html" class="tsd-signature-type">ISyntaxType</a><span class="tsd-signature-symbol">[]</span></li>
+						<li class="tsd-signature tsd-kind-icon">translate<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/Torphage/EasyDoc/blob/82d46e1/src/syntax.ts#L5">syntax.ts:5</a></li>
+									<li>Defined in <a href="https://github.com/Torphage/EasyDoc/blob/82d46e1/src/syntaxTypes/translate.ts#L14">syntaxTypes/translate.ts:14</a></li>
 								</ul>
 							</aside>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>fileRows: <span class="tsd-signature-type">string</span></h5>
-								</li>
-								<li>
-									<h5>type: <span class="tsd-signature-type">string</span></h5>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="../interfaces/_interfaces_.isyntaxtype.html" class="tsd-signature-type">ISyntaxType</a><span class="tsd-signature-symbol">[]</span></h4>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-private">
-					<a name="getvariables" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagPrivate">Private</span> get<wbr>Variables</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-private">
-						<li class="tsd-signature tsd-kind-icon">get<wbr>Variables<span class="tsd-signature-symbol">(</span>fileRows<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../interfaces/_interfaces_.isyntaxtype.html" class="tsd-signature-type">ISyntaxType</a><span class="tsd-signature-symbol">[]</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/Torphage/EasyDoc/blob/82d46e1/src/syntax.ts#L44">syntax.ts:44</a></li>
-								</ul>
-							</aside>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>fileRows: <span class="tsd-signature-type">string</span></h5>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="../interfaces/_interfaces_.isyntaxtype.html" class="tsd-signature-type">ISyntaxType</a><span class="tsd-signature-symbol">[]</span></h4>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="matchregex" class="tsd-anchor"></a>
-					<h3>match<wbr>Regex</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">match<wbr>Regex<span class="tsd-signature-symbol">(</span>fileRows<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, regex<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">RegExp</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../interfaces/_interfaces_.isyntaxtype.html" class="tsd-signature-type">ISyntaxType</a><span class="tsd-signature-symbol">[]</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/Torphage/EasyDoc/blob/82d46e1/src/syntax.ts#L18">syntax.ts:18</a></li>
-								</ul>
-							</aside>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>fileRows: <span class="tsd-signature-type">string</span></h5>
-								</li>
-								<li>
-									<h5>regex: <span class="tsd-signature-type">RegExp</span></h5>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="../interfaces/_interfaces_.isyntaxtype.html" class="tsd-signature-type">ISyntaxType</a><span class="tsd-signature-symbol">[]</span></h4>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">any</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -297,7 +319,7 @@
 					<li class=" tsd-kind-external-module">
 						<a href="../modules/_languages_workshop_.html">"languages/workshop"</a>
 					</li>
-					<li class="current tsd-kind-external-module">
+					<li class=" tsd-kind-external-module">
 						<a href="../modules/_syntax_.html">"syntax"</a>
 					</li>
 					<li class=" tsd-kind-external-module">
@@ -312,7 +334,7 @@
 					<li class=" tsd-kind-external-module">
 						<a href="../modules/_syntaxtypes_repeater_.html">"syntax<wbr>Types/repeater"</a>
 					</li>
-					<li class=" tsd-kind-external-module">
+					<li class="current tsd-kind-external-module">
 						<a href="../modules/_syntaxtypes_translate_.html">"syntax<wbr>Types/translate"</a>
 					</li>
 					<li class=" tsd-kind-external-module">
@@ -328,25 +350,31 @@
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-class tsd-parent-kind-external-module">
-						<a href="_syntax_.customsyntax.html" class="tsd-kind-icon">Custom<wbr>Syntax</a>
+						<a href="_syntaxtypes_translate_.variabletranslator.html" class="tsd-kind-icon">Variable<wbr>Translator</a>
 						<ul>
-							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-private">
-								<a href="_syntax_.customsyntax.html#allowedmatch" class="tsd-kind-icon">allowed<wbr>Match</a>
+							<li class=" tsd-kind-constructor tsd-parent-kind-class">
+								<a href="_syntaxtypes_translate_.variabletranslator.html#constructor" class="tsd-kind-icon">constructor</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
+								<a href="_syntaxtypes_translate_.variabletranslator.html#text" class="tsd-kind-icon">text</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
+								<a href="_syntaxtypes_translate_.variabletranslator.html#varname" class="tsd-kind-icon">var<wbr>Name</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
+								<a href="_syntaxtypes_translate_.variabletranslator.html#varvalue" class="tsd-kind-icon">var<wbr>Value</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-private">
-								<a href="_syntax_.customsyntax.html#getplaceholders" class="tsd-kind-icon">get<wbr>Placeholders</a>
+								<a href="_syntaxtypes_translate_.variabletranslator.html#handlefunction" class="tsd-kind-icon">handle<wbr>Function</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-private">
-								<a href="_syntax_.customsyntax.html#getrepeaters" class="tsd-kind-icon">get<wbr>Repeaters</a>
+								<a href="_syntaxtypes_translate_.variabletranslator.html#handleproperty" class="tsd-kind-icon">handle<wbr>Property</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-private">
+								<a href="_syntaxtypes_translate_.variabletranslator.html#isadvancedsyntax" class="tsd-kind-icon">is<wbr>Advanced<wbr>Syntax</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="_syntax_.customsyntax.html#getsyntax" class="tsd-kind-icon">get<wbr>Syntax</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-private">
-								<a href="_syntax_.customsyntax.html#getvariables" class="tsd-kind-icon">get<wbr>Variables</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="_syntax_.customsyntax.html#matchregex" class="tsd-kind-icon">match<wbr>Regex</a>
+								<a href="_syntaxtypes_translate_.variabletranslator.html#translate" class="tsd-kind-icon">translate</a>
 							</li>
 						</ul>
 					</li>

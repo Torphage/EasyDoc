@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>CustomSyntax | easydoc</title>
+	<title>Config | easydoc</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -56,13 +56,13 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="../modules/_syntax_.html">&quot;syntax&quot;</a>
+					<a href="../modules/_config_.html">&quot;config&quot;</a>
 				</li>
 				<li>
-					<a href="_syntax_.customsyntax.html">CustomSyntax</a>
+					<a href="_config_.config.html">Config</a>
 				</li>
 			</ul>
-			<h1>Class CustomSyntax</h1>
+			<h1>Class Config</h1>
 		</div>
 	</div>
 </header>
@@ -73,7 +73,7 @@
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">CustomSyntax</span>
+						<span class="target">Config</span>
 					</li>
 				</ul>
 			</section>
@@ -82,165 +82,236 @@
 				<section class="tsd-panel tsd-index-panel">
 					<div class="tsd-index-content">
 						<section class="tsd-index-section ">
+							<h3>Properties</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="_config_.config.html#config" class="tsd-kind-icon">config</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="_config_.config.html#dir" class="tsd-kind-icon">dir</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="_config_.config.html#packagefiles" class="tsd-kind-icon">package<wbr>Files</a></li>
+							</ul>
+						</section>
+						<section class="tsd-index-section ">
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><a href="_syntax_.customsyntax.html#allowedmatch" class="tsd-kind-icon">allowed<wbr>Match</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><a href="_syntax_.customsyntax.html#getplaceholders" class="tsd-kind-icon">get<wbr>Placeholders</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><a href="_syntax_.customsyntax.html#getrepeaters" class="tsd-kind-icon">get<wbr>Repeaters</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_syntax_.customsyntax.html#getsyntax" class="tsd-kind-icon">get<wbr>Syntax</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><a href="_syntax_.customsyntax.html#getvariables" class="tsd-kind-icon">get<wbr>Variables</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_syntax_.customsyntax.html#matchregex" class="tsd-kind-icon">match<wbr>Regex</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_config_.config.html#addconfig" class="tsd-kind-icon">add<wbr>Config</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_config_.config.html#addmissingkeys" class="tsd-kind-icon">add<wbr>Missing<wbr>Keys</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_config_.config.html#allfilesindirs" class="tsd-kind-icon">all<wbr>Files<wbr>InDirs</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_config_.config.html#dirsync" class="tsd-kind-icon">dir<wbr>Sync</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_config_.config.html#getmissingkeys" class="tsd-kind-icon">get<wbr>Missing<wbr>Keys</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_config_.config.html#getpackagejson" class="tsd-kind-icon">get<wbr>PackageJSON</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_config_.config.html#removeconfigwithremovaloffile" class="tsd-kind-icon">remove<wbr>Config<wbr>With<wbr>Removal<wbr>OfFile</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_config_.config.html#writetopackage" class="tsd-kind-icon">write<wbr>ToPackage</a></li>
 							</ul>
 						</section>
 					</div>
 				</section>
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
+				<h2>Properties</h2>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
+					<a name="config" class="tsd-anchor"></a>
+					<h3>config</h3>
+					<div class="tsd-signature tsd-kind-icon">config<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">WorkspaceConfiguration</span><span class="tsd-signature-symbol"> =&nbsp;vs.workspace.getConfiguration(&quot;EasyDoc&quot;)</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/Torphage/EasyDoc/blob/82d46e1/src/config.ts#L6">config.ts:6</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
+					<a name="dir" class="tsd-anchor"></a>
+					<h3>dir</h3>
+					<div class="tsd-signature tsd-kind-icon">dir<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;vs.extensions.getExtension(&quot;Torphage.easydoc&quot;).extensionPath</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/Torphage/EasyDoc/blob/82d46e1/src/config.ts#L7">config.ts:7</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
+					<a name="packagefiles" class="tsd-anchor"></a>
+					<h3>package<wbr>Files</h3>
+					<div class="tsd-signature tsd-kind-icon">package<wbr>Files<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">any</span><span class="tsd-signature-symbol"> =&nbsp;this.getPackageJSON()</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/Torphage/EasyDoc/blob/82d46e1/src/config.ts#L8">config.ts:8</a></li>
+						</ul>
+					</aside>
+				</section>
+			</section>
+			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Methods</h2>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-private">
-					<a name="allowedmatch" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagPrivate">Private</span> allowed<wbr>Match</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-private">
-						<li class="tsd-signature tsd-kind-icon">allowed<wbr>Match<span class="tsd-signature-symbol">(</span>fileRows<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, match<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">RegExpExecArray</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="addconfig" class="tsd-anchor"></a>
+					<h3>add<wbr>Config</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">add<wbr>Config<span class="tsd-signature-symbol">(</span>config<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/Torphage/EasyDoc/blob/82d46e1/src/syntax.ts#L65">syntax.ts:65</a></li>
+									<li>Defined in <a href="https://github.com/Torphage/EasyDoc/blob/82d46e1/src/config.ts#L33">config.ts:33</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>fileRows: <span class="tsd-signature-type">string</span></h5>
-								</li>
-								<li>
-									<h5>match: <span class="tsd-signature-type">RegExpExecArray</span></h5>
+									<h5>config: <span class="tsd-signature-type">any</span></h5>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-private">
-					<a name="getplaceholders" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagPrivate">Private</span> get<wbr>Placeholders</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-private">
-						<li class="tsd-signature tsd-kind-icon">get<wbr>Placeholders<span class="tsd-signature-symbol">(</span>fileRows<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../interfaces/_interfaces_.isyntaxtype.html" class="tsd-signature-type">ISyntaxType</a><span class="tsd-signature-symbol">[]</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/Torphage/EasyDoc/blob/82d46e1/src/syntax.ts#L51">syntax.ts:51</a></li>
-								</ul>
-							</aside>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>fileRows: <span class="tsd-signature-type">string</span></h5>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="../interfaces/_interfaces_.isyntaxtype.html" class="tsd-signature-type">ISyntaxType</a><span class="tsd-signature-symbol">[]</span></h4>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-private">
-					<a name="getrepeaters" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagPrivate">Private</span> get<wbr>Repeaters</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-private">
-						<li class="tsd-signature tsd-kind-icon">get<wbr>Repeaters<span class="tsd-signature-symbol">(</span>fileRows<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../interfaces/_interfaces_.isyntaxtype.html" class="tsd-signature-type">ISyntaxType</a><span class="tsd-signature-symbol">[]</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/Torphage/EasyDoc/blob/82d46e1/src/syntax.ts#L58">syntax.ts:58</a></li>
-								</ul>
-							</aside>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>fileRows: <span class="tsd-signature-type">string</span></h5>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="../interfaces/_interfaces_.isyntaxtype.html" class="tsd-signature-type">ISyntaxType</a><span class="tsd-signature-symbol">[]</span></h4>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
 						</li>
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="getsyntax" class="tsd-anchor"></a>
-					<h3>get<wbr>Syntax</h3>
+					<a name="addmissingkeys" class="tsd-anchor"></a>
+					<h3>add<wbr>Missing<wbr>Keys</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">get<wbr>Syntax<span class="tsd-signature-symbol">(</span>fileRows<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, type<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../interfaces/_interfaces_.isyntaxtype.html" class="tsd-signature-type">ISyntaxType</a><span class="tsd-signature-symbol">[]</span></li>
+						<li class="tsd-signature tsd-kind-icon">add<wbr>Missing<wbr>Keys<span class="tsd-signature-symbol">(</span>fileConfig<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span>, missingKeys<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/Torphage/EasyDoc/blob/82d46e1/src/syntax.ts#L5">syntax.ts:5</a></li>
+									<li>Defined in <a href="https://github.com/Torphage/EasyDoc/blob/82d46e1/src/config.ts#L73">config.ts:73</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>fileRows: <span class="tsd-signature-type">string</span></h5>
+									<h5>fileConfig: <span class="tsd-signature-type">any</span></h5>
 								</li>
 								<li>
-									<h5>type: <span class="tsd-signature-type">string</span></h5>
+									<h5>missingKeys: <span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">[]</span></h5>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="../interfaces/_interfaces_.isyntaxtype.html" class="tsd-signature-type">ISyntaxType</a><span class="tsd-signature-symbol">[]</span></h4>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-private">
-					<a name="getvariables" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagPrivate">Private</span> get<wbr>Variables</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-private">
-						<li class="tsd-signature tsd-kind-icon">get<wbr>Variables<span class="tsd-signature-symbol">(</span>fileRows<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../interfaces/_interfaces_.isyntaxtype.html" class="tsd-signature-type">ISyntaxType</a><span class="tsd-signature-symbol">[]</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/Torphage/EasyDoc/blob/82d46e1/src/syntax.ts#L44">syntax.ts:44</a></li>
-								</ul>
-							</aside>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>fileRows: <span class="tsd-signature-type">string</span></h5>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="../interfaces/_interfaces_.isyntaxtype.html" class="tsd-signature-type">ISyntaxType</a><span class="tsd-signature-symbol">[]</span></h4>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
 						</li>
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="matchregex" class="tsd-anchor"></a>
-					<h3>match<wbr>Regex</h3>
+					<a name="allfilesindirs" class="tsd-anchor"></a>
+					<h3>all<wbr>Files<wbr>InDirs</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">match<wbr>Regex<span class="tsd-signature-symbol">(</span>fileRows<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, regex<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">RegExp</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../interfaces/_interfaces_.isyntaxtype.html" class="tsd-signature-type">ISyntaxType</a><span class="tsd-signature-symbol">[]</span></li>
+						<li class="tsd-signature tsd-kind-icon">all<wbr>Files<wbr>InDirs<span class="tsd-signature-symbol">(</span>dirs<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/Torphage/EasyDoc/blob/82d46e1/src/syntax.ts#L18">syntax.ts:18</a></li>
+									<li>Defined in <a href="https://github.com/Torphage/EasyDoc/blob/82d46e1/src/config.ts#L96">config.ts:96</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>fileRows: <span class="tsd-signature-type">string</span></h5>
-								</li>
-								<li>
-									<h5>regex: <span class="tsd-signature-type">RegExp</span></h5>
+									<h5>dirs: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></h5>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="../interfaces/_interfaces_.isyntaxtype.html" class="tsd-signature-type">ISyntaxType</a><span class="tsd-signature-symbol">[]</span></h4>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="dirsync" class="tsd-anchor"></a>
+					<h3>dir<wbr>Sync</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">dir<wbr>Sync<span class="tsd-signature-symbol">(</span>dir<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/Torphage/EasyDoc/blob/82d46e1/src/config.ts#L11">config.ts:11</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>dir: <span class="tsd-signature-type">string</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="getmissingkeys" class="tsd-anchor"></a>
+					<h3>get<wbr>Missing<wbr>Keys</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Missing<wbr>Keys<span class="tsd-signature-symbol">(</span>fileConfig<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/Torphage/EasyDoc/blob/82d46e1/src/config.ts#L51">config.ts:51</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>fileConfig: <span class="tsd-signature-type">any</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="getpackagejson" class="tsd-anchor"></a>
+					<h3>get<wbr>PackageJSON</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>PackageJSON<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/Torphage/EasyDoc/blob/82d46e1/src/config.ts#L25">config.ts:25</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">any</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="removeconfigwithremovaloffile" class="tsd-anchor"></a>
+					<h3>remove<wbr>Config<wbr>With<wbr>Removal<wbr>OfFile</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">remove<wbr>Config<wbr>With<wbr>Removal<wbr>OfFile<span class="tsd-signature-symbol">(</span>syntaxDir<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/Torphage/EasyDoc/blob/82d46e1/src/config.ts#L81">config.ts:81</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>syntaxDir: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="writetopackage" class="tsd-anchor"></a>
+					<h3>write<wbr>ToPackage</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">write<wbr>ToPackage<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/Torphage/EasyDoc/blob/82d46e1/src/config.ts#L119">config.ts:119</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -252,7 +323,7 @@
 					<li class="globals  ">
 						<a href="../globals.html"><em>Globals</em></a>
 					</li>
-					<li class=" tsd-kind-external-module">
+					<li class="current tsd-kind-external-module">
 						<a href="../modules/_config_.html">"config"</a>
 					</li>
 					<li class=" tsd-kind-external-module">
@@ -297,7 +368,7 @@
 					<li class=" tsd-kind-external-module">
 						<a href="../modules/_languages_workshop_.html">"languages/workshop"</a>
 					</li>
-					<li class="current tsd-kind-external-module">
+					<li class=" tsd-kind-external-module">
 						<a href="../modules/_syntax_.html">"syntax"</a>
 					</li>
 					<li class=" tsd-kind-external-module">
@@ -328,25 +399,40 @@
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-class tsd-parent-kind-external-module">
-						<a href="_syntax_.customsyntax.html" class="tsd-kind-icon">Custom<wbr>Syntax</a>
+						<a href="_config_.config.html" class="tsd-kind-icon">Config</a>
 						<ul>
-							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-private">
-								<a href="_syntax_.customsyntax.html#allowedmatch" class="tsd-kind-icon">allowed<wbr>Match</a>
+							<li class=" tsd-kind-property tsd-parent-kind-class">
+								<a href="_config_.config.html#config" class="tsd-kind-icon">config</a>
 							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-private">
-								<a href="_syntax_.customsyntax.html#getplaceholders" class="tsd-kind-icon">get<wbr>Placeholders</a>
+							<li class=" tsd-kind-property tsd-parent-kind-class">
+								<a href="_config_.config.html#dir" class="tsd-kind-icon">dir</a>
 							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-private">
-								<a href="_syntax_.customsyntax.html#getrepeaters" class="tsd-kind-icon">get<wbr>Repeaters</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="_syntax_.customsyntax.html#getsyntax" class="tsd-kind-icon">get<wbr>Syntax</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-private">
-								<a href="_syntax_.customsyntax.html#getvariables" class="tsd-kind-icon">get<wbr>Variables</a>
+							<li class=" tsd-kind-property tsd-parent-kind-class">
+								<a href="_config_.config.html#packagefiles" class="tsd-kind-icon">package<wbr>Files</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="_syntax_.customsyntax.html#matchregex" class="tsd-kind-icon">match<wbr>Regex</a>
+								<a href="_config_.config.html#addconfig" class="tsd-kind-icon">add<wbr>Config</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="_config_.config.html#addmissingkeys" class="tsd-kind-icon">add<wbr>Missing<wbr>Keys</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="_config_.config.html#allfilesindirs" class="tsd-kind-icon">all<wbr>Files<wbr>InDirs</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="_config_.config.html#dirsync" class="tsd-kind-icon">dir<wbr>Sync</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="_config_.config.html#getmissingkeys" class="tsd-kind-icon">get<wbr>Missing<wbr>Keys</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="_config_.config.html#getpackagejson" class="tsd-kind-icon">get<wbr>PackageJSON</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="_config_.config.html#removeconfigwithremovaloffile" class="tsd-kind-icon">remove<wbr>Config<wbr>With<wbr>Removal<wbr>OfFile</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="_config_.config.html#writetopackage" class="tsd-kind-icon">write<wbr>ToPackage</a>
 							</li>
 						</ul>
 					</li>

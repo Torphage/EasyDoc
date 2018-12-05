@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>IRepeater | easydoc</title>
+	<title>IDocumentationParts | easydoc</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -56,13 +56,13 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="../modules/_types_.html">&quot;types&quot;</a>
+					<a href="../modules/_interfaces_.html">&quot;interfaces&quot;</a>
 				</li>
 				<li>
-					<a href="_types_.irepeater.html">IRepeater</a>
+					<a href="_interfaces_.idocumentationparts.html">IDocumentationParts</a>
 				</li>
 			</ul>
-			<h1>Interface IRepeater</h1>
+			<h1>Interface IDocumentationParts</h1>
 		</div>
 	</div>
 </header>
@@ -73,7 +73,7 @@
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">IRepeater</span>
+						<span class="target">IDocumentationParts</span>
 					</li>
 				</ul>
 			</section>
@@ -84,8 +84,8 @@
 						<section class="tsd-index-section tsd-is-not-exported">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-not-exported"><a href="_types_.irepeater.html#offset" class="tsd-kind-icon">offset</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-not-exported"><a href="_types_.irepeater.html#snippetstr" class="tsd-kind-icon">snippet<wbr>Str</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-not-exported"><a href="_interfaces_.idocumentationparts.html#name" class="tsd-kind-icon">name</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-not-exported"><a href="_interfaces_.idocumentationparts.html#params" class="tsd-kind-icon">params</a></li>
 							</ul>
 						</section>
 					</div>
@@ -94,22 +94,22 @@
 			<section class="tsd-panel-group tsd-member-group tsd-is-not-exported">
 				<h2>Properties</h2>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-not-exported">
-					<a name="offset" class="tsd-anchor"></a>
-					<h3>offset</h3>
-					<div class="tsd-signature tsd-kind-icon">offset<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
+					<a name="name" class="tsd-anchor"></a>
+					<h3>name</h3>
+					<div class="tsd-signature tsd-kind-icon">name<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/Torphage/EasyDoc/blob/49d6b66/src/types.ts#L30">types.ts:30</a></li>
+							<li>Defined in <a href="https://github.com/Torphage/EasyDoc/blob/82d46e1/src/interfaces.ts#L12">interfaces.ts:12</a></li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-not-exported">
-					<a name="snippetstr" class="tsd-anchor"></a>
-					<h3>snippet<wbr>Str</h3>
-					<div class="tsd-signature tsd-kind-icon">snippet<wbr>Str<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<a name="params" class="tsd-anchor"></a>
+					<h3>params</h3>
+					<div class="tsd-signature tsd-kind-icon">params<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/Torphage/EasyDoc/blob/49d6b66/src/types.ts#L31">types.ts:31</a></li>
+							<li>Defined in <a href="https://github.com/Torphage/EasyDoc/blob/82d46e1/src/interfaces.ts#L13">interfaces.ts:13</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -122,6 +122,9 @@
 						<a href="../globals.html"><em>Globals</em></a>
 					</li>
 					<li class=" tsd-kind-external-module">
+						<a href="../modules/_config_.html">"config"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
 						<a href="../modules/_easydoc_.html">"easydoc"</a>
 					</li>
 					<li class=" tsd-kind-external-module">
@@ -130,11 +133,29 @@
 					<li class=" tsd-kind-external-module">
 						<a href="../modules/_format_.html">"format"</a>
 					</li>
+					<li class="current tsd-kind-external-module">
+						<a href="../modules/_interfaces_.html">"interfaces"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="../modules/_languages_base_.html">"languages/base"</a>
+					</li>
 					<li class=" tsd-kind-external-module">
 						<a href="../modules/_languages_export_.html">"languages/export"</a>
 					</li>
 					<li class=" tsd-kind-external-module">
+						<a href="../modules/_languages_haskell_parse_.html">"languages/haskell/parse"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="../modules/_languages_haskell_syntax_.html">"languages/haskell/syntax"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
 						<a href="../modules/_languages_parse_.html">"languages/parse"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="../modules/_languages_python_parse_.html">"languages/python/parse"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="../modules/_languages_python_syntax_.html">"languages/python/syntax"</a>
 					</li>
 					<li class=" tsd-kind-external-module">
 						<a href="../modules/_languages_ruby_parse_.html">"languages/ruby/parse"</a>
@@ -149,7 +170,7 @@
 						<a href="../modules/_syntax_.html">"syntax"</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="../modules/_syntaxtypes_base_type_.html">"syntax<wbr>Types/base_<wbr>type"</a>
+						<a href="../modules/_syntaxtypes_error_handler_.html">"syntax<wbr>Types/error_<wbr>handler"</a>
 					</li>
 					<li class=" tsd-kind-external-module">
 						<a href="../modules/_syntaxtypes_export_.html">"syntax<wbr>Types/export"</a>
@@ -161,53 +182,41 @@
 						<a href="../modules/_syntaxtypes_repeater_.html">"syntax<wbr>Types/repeater"</a>
 					</li>
 					<li class=" tsd-kind-external-module">
+						<a href="../modules/_syntaxtypes_translate_.html">"syntax<wbr>Types/translate"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
 						<a href="../modules/_syntaxtypes_variable_.html">"syntax<wbr>Types/variable"</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="../modules/_test_extension_test_.html">"test/extension.test"</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="../modules/_test_index_.html">"test/index"</a>
-					</li>
-					<li class="current tsd-kind-external-module">
-						<a href="../modules/_types_.html">"types"</a>
+						<a href="../modules/_utils_.html">"utils"</a>
 					</li>
 				</ul>
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
-					<li class=" tsd-kind-interface tsd-parent-kind-external-module tsd-is-not-exported">
-						<a href="_types_.icustomtypes.html" class="tsd-kind-icon">ICustom<wbr>Types</a>
-					</li>
-					<li class=" tsd-kind-interface tsd-parent-kind-external-module tsd-is-not-exported">
-						<a href="_types_.idocumentationparts.html" class="tsd-kind-icon">IDocumentation<wbr>Parts</a>
-					</li>
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-interface tsd-parent-kind-external-module tsd-is-not-exported">
-						<a href="_types_.irepeater.html" class="tsd-kind-icon">IRepeater</a>
+						<a href="_interfaces_.idocumentationparts.html" class="tsd-kind-icon">IDocumentation<wbr>Parts</a>
 						<ul>
 							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-not-exported">
-								<a href="_types_.irepeater.html#offset" class="tsd-kind-icon">offset</a>
+								<a href="_interfaces_.idocumentationparts.html#name" class="tsd-kind-icon">name</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-not-exported">
-								<a href="_types_.irepeater.html#snippetstr" class="tsd-kind-icon">snippet<wbr>Str</a>
+								<a href="_interfaces_.idocumentationparts.html#params" class="tsd-kind-icon">params</a>
 							</li>
 						</ul>
 					</li>
 				</ul>
 				<ul class="after-current">
 					<li class=" tsd-kind-interface tsd-parent-kind-external-module tsd-is-not-exported">
-						<a href="_types_.isyntaxtype.html" class="tsd-kind-icon">ISyntax<wbr>Type</a>
+						<a href="_interfaces_.irepeater.html" class="tsd-kind-icon">IRepeater</a>
 					</li>
 					<li class=" tsd-kind-interface tsd-parent-kind-external-module tsd-is-not-exported">
-						<a href="_types_.isyntaxvariable.html" class="tsd-kind-icon">ISyntax<wbr>Variable</a>
+						<a href="_interfaces_.isyntaxtype.html" class="tsd-kind-icon">ISyntax<wbr>Type</a>
 					</li>
 					<li class=" tsd-kind-interface tsd-parent-kind-external-module tsd-is-not-exported">
-						<a href="_types_.ivartype.html" class="tsd-kind-icon">IVar<wbr>Type</a>
-					</li>
-					<li class=" tsd-kind-type-alias tsd-parent-kind-external-module tsd-is-not-exported">
-						<a href="../modules/_types_.html#ivartypes" class="tsd-kind-icon">IVar<wbr>Types</a>
+						<a href="_interfaces_.isyntaxvariable.html" class="tsd-kind-icon">ISyntax<wbr>Variable</a>
 					</li>
 				</ul>
 			</nav>

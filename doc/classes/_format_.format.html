@@ -91,6 +91,7 @@
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="_format_.format.html#document" class="tsd-kind-icon">document</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="_format_.format.html#onenter" class="tsd-kind-icon">on<wbr>Enter</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="_format_.format.html#snippetconfig" class="tsd-kind-icon">snippet<wbr>Config</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="_format_.format.html#syntaxfile" class="tsd-kind-icon">syntax<wbr>File</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="_format_.format.html#workshop" class="tsd-kind-icon">work<wbr>Shop</a></li>
@@ -111,13 +112,13 @@
 					<a name="constructor" class="tsd-anchor"></a>
 					<h3>constructor</h3>
 					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">new <wbr>Format<span class="tsd-signature-symbol">(</span>filePath<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, snippetConfig<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_format_.format.html" class="tsd-signature-type">Format</a></li>
+						<li class="tsd-signature tsd-kind-icon">new <wbr>Format<span class="tsd-signature-symbol">(</span>filePath<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, snippetConfig<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span>, onEnter<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_format_.format.html" class="tsd-signature-type">Format</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/Torphage/EasyDoc/blob/49d6b66/src/format.ts#L9">format.ts:9</a></li>
+									<li>Defined in <a href="https://github.com/Torphage/EasyDoc/blob/82d46e1/src/format.ts#L10">format.ts:10</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -127,6 +128,9 @@
 								</li>
 								<li>
 									<h5>snippetConfig: <span class="tsd-signature-type">any</span></h5>
+								</li>
+								<li>
+									<h5>onEnter: <span class="tsd-signature-type">boolean</span></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <a href="_format_.format.html" class="tsd-signature-type">Format</a></h4>
@@ -142,7 +146,17 @@
 					<div class="tsd-signature tsd-kind-icon">document<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">vs.TextDocument</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/Torphage/EasyDoc/blob/49d6b66/src/format.ts#L8">format.ts:8</a></li>
+							<li>Defined in <a href="https://github.com/Torphage/EasyDoc/blob/82d46e1/src/format.ts#L9">format.ts:9</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
+					<a name="onenter" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagPrivate">Private</span> on<wbr>Enter</h3>
+					<div class="tsd-signature tsd-kind-icon">on<wbr>Enter<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/Torphage/EasyDoc/blob/82d46e1/src/format.ts#L8">format.ts:8</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -152,7 +166,7 @@
 					<div class="tsd-signature tsd-kind-icon">snippet<wbr>Config<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">any</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/Torphage/EasyDoc/blob/49d6b66/src/format.ts#L7">format.ts:7</a></li>
+							<li>Defined in <a href="https://github.com/Torphage/EasyDoc/blob/82d46e1/src/format.ts#L7">format.ts:7</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -162,7 +176,7 @@
 					<div class="tsd-signature tsd-kind-icon">syntax<wbr>File<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/Torphage/EasyDoc/blob/49d6b66/src/format.ts#L6">format.ts:6</a></li>
+							<li>Defined in <a href="https://github.com/Torphage/EasyDoc/blob/82d46e1/src/format.ts#L6">format.ts:6</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -172,7 +186,7 @@
 					<div class="tsd-signature tsd-kind-icon">work<wbr>Shop<span class="tsd-signature-symbol">:</span> <a href="_languages_workshop_.workshop.html" class="tsd-signature-type">WorkShop</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/Torphage/EasyDoc/blob/49d6b66/src/format.ts#L9">format.ts:9</a></li>
+							<li>Defined in <a href="https://github.com/Torphage/EasyDoc/blob/82d46e1/src/format.ts#L10">format.ts:10</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -189,7 +203,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/Torphage/EasyDoc/blob/49d6b66/src/format.ts#L17">format.ts:17</a></li>
+									<li>Defined in <a href="https://github.com/Torphage/EasyDoc/blob/82d46e1/src/format.ts#L19">format.ts:19</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -205,6 +219,9 @@
 						<a href="../globals.html"><em>Globals</em></a>
 					</li>
 					<li class=" tsd-kind-external-module">
+						<a href="../modules/_config_.html">"config"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
 						<a href="../modules/_easydoc_.html">"easydoc"</a>
 					</li>
 					<li class=" tsd-kind-external-module">
@@ -214,10 +231,28 @@
 						<a href="../modules/_format_.html">"format"</a>
 					</li>
 					<li class=" tsd-kind-external-module">
+						<a href="../modules/_interfaces_.html">"interfaces"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="../modules/_languages_base_.html">"languages/base"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
 						<a href="../modules/_languages_export_.html">"languages/export"</a>
 					</li>
 					<li class=" tsd-kind-external-module">
+						<a href="../modules/_languages_haskell_parse_.html">"languages/haskell/parse"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="../modules/_languages_haskell_syntax_.html">"languages/haskell/syntax"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
 						<a href="../modules/_languages_parse_.html">"languages/parse"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="../modules/_languages_python_parse_.html">"languages/python/parse"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="../modules/_languages_python_syntax_.html">"languages/python/syntax"</a>
 					</li>
 					<li class=" tsd-kind-external-module">
 						<a href="../modules/_languages_ruby_parse_.html">"languages/ruby/parse"</a>
@@ -232,7 +267,7 @@
 						<a href="../modules/_syntax_.html">"syntax"</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="../modules/_syntaxtypes_base_type_.html">"syntax<wbr>Types/base_<wbr>type"</a>
+						<a href="../modules/_syntaxtypes_error_handler_.html">"syntax<wbr>Types/error_<wbr>handler"</a>
 					</li>
 					<li class=" tsd-kind-external-module">
 						<a href="../modules/_syntaxtypes_export_.html">"syntax<wbr>Types/export"</a>
@@ -244,16 +279,13 @@
 						<a href="../modules/_syntaxtypes_repeater_.html">"syntax<wbr>Types/repeater"</a>
 					</li>
 					<li class=" tsd-kind-external-module">
+						<a href="../modules/_syntaxtypes_translate_.html">"syntax<wbr>Types/translate"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
 						<a href="../modules/_syntaxtypes_variable_.html">"syntax<wbr>Types/variable"</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="../modules/_test_extension_test_.html">"test/extension.test"</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="../modules/_test_index_.html">"test/index"</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="../modules/_types_.html">"types"</a>
+						<a href="../modules/_utils_.html">"utils"</a>
 					</li>
 				</ul>
 			</nav>
@@ -269,6 +301,9 @@
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
 								<a href="_format_.format.html#document" class="tsd-kind-icon">document</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
+								<a href="_format_.format.html#onenter" class="tsd-kind-icon">on<wbr>Enter</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
 								<a href="_format_.format.html#snippetconfig" class="tsd-kind-icon">snippet<wbr>Config</a>
