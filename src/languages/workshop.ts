@@ -14,6 +14,7 @@ export abstract class WorkShop {
     protected position = vs.window.activeTextEditor.selection.active;
     protected block: string[] = [];
     protected customTypes = new CustomSyntax();
+    protected editor = vs.window.activeTextEditor;
 
     constructor(syntaxFile: string) {
         this.syntaxFile = syntaxFile;
@@ -28,7 +29,7 @@ export abstract class WorkShop {
                 break;
 
             case "function":
-                this.getDocParts();
+                this.getDocParts(onEnter);
                 this.vars = this.getVariables();
 
                 this.generateFunction(onEnter);
@@ -38,12 +39,10 @@ export abstract class WorkShop {
 
     protected abstract getCurrentColumn(index: number): number;
     protected abstract getVariables(): ISyntaxVariable;
-    protected abstract getFunctionStartLine(row: string): string[];
+    protected abstract getFunctionStartLine(row: string, onEnter: boolean): string[];
     protected abstract correctlyPlacedFunction(row: string): boolean;
 
     private generateFunction(onEnter: boolean): void {
-        const editor = vs.window.activeTextEditor;
-
         const errorHandler = new ErrorHandler(this.vars);
         const repeater = new Repeater(this.vars);
         const variable = new Variable(this.vars);
@@ -58,13 +57,31 @@ export abstract class WorkShop {
             this.delTriggerString();
         }
 
-        editor.insertSnippet(placeSnippet);
+        this.editor.insertSnippet(placeSnippet);
     }
 
-    private getDocParts(): IDocumentationParts {
+    private getDocParts(onEnter: boolean): IDocumentationParts {
         const docRows = fs.readFileSync(this.document.fileName, "utf-8");
-        const functionLineString = this.getFunctionStartLine(docRows);
+        const functionLineString = this.getFunctionStartLine(docRows, onEnter);
         const correctlyPlacedFunction = this.correctlyPlacedFunction(functionLineString[0]);
+
+        if (functionLineString.length === docRows.split("\n").splice(this.position.line).length) {
+            if (this.config.commentAboveTarget) {
+                vs.commands.executeCommand("editor.action.insertLineBefore");
+            } else {
+                vs.commands.executeCommand("editor.action.insertLineAfter");
+                this.editor.selection = new vs.Selection(
+                    new vs.Position(
+                        this.editor.selection.anchor.line + 1,
+                        this.editor.selection.anchor.character,
+                    ),
+                    new vs.Position(
+                        this.editor.selection.active.line + 1,
+                        this.editor.selection.active.character,
+                    ),
+                );
+            }
+        }
 
         if (!correctlyPlacedFunction) {
             return;

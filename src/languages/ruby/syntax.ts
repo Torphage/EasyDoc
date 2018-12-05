@@ -10,10 +10,12 @@ export class Ruby extends WorkShop {
         this.parse = new RubyParse();
     }
 
-    public getFunctionStartLine(rows: string): string[] {
+    public getFunctionStartLine(rows: string, onEnter: boolean): string[] {
         let functionLineIndex: number;
 
-        if (this.config.commentAboveTarget) {
+        if (!onEnter) {
+            functionLineIndex = this.position.line;
+        } else if (this.config.commentAboveTarget) {
             functionLineIndex = this.position.line + 1;
         } else {
             functionLineIndex = this.position.line - 1;
