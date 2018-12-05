@@ -111,7 +111,7 @@ export class Variable {
     }
 
     private isNewLine(text: string) {
-        if (text[this.index - 1] === ("\n" || undefined)) {
+        if (text[this.index - 1] === ("\n" || this.index === 0)) {
             return true;
         }
 
