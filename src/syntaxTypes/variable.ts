@@ -1,6 +1,5 @@
 import { ISyntaxType, ISyntaxVariable } from "../interfaces";
 import { CustomSyntax } from "../syntax";
-import { ErrorHandler } from "./error_handler";
 import { VariableTranslator } from "./translate";
 
 export class Variable {
