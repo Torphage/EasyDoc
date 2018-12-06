@@ -1,26 +1,55 @@
 # EasyDoc
 
+Makes 
+
 An extension that makes it easier to document your code with the help of custom made template files.
 
 ## Features
 
 * Generates snippet from custom made template files
-* Built with documentation in mind but support normal snippets as well
+* Built with documentation in mind but support normal snippets just as well
 * Aims to support every documentation format
 * Currently supports Haskell, Python and Ruby with more to come
 
 ## Installation
 
-Install the extension from the [Visual Studio Code Marketplace](https://marketplace.visualstudio.com/items?itemName=Torphage.easydoc)
+First, install the extension from either [Visual Studio Code Marketplace](https://marketplace.visualstudio.com/items?itemName=Torphage.easydoc)
 
-## Getting Started
+or by downloading it from the [Extensions]() tab in VS-Code:
 
-1. Start of by opening the VS Code [settings.json](/.vscode/settings.json) file.
+1. Pressing `Ctrl+Shift+X`
+2. Search for `EasyDoc`
+3. Select the extension and install it by pressing the `Install` button
 
-2. Find the configuration "EasyDoc.dir", add your desired directories as abosolute paths to where you want to store the custom made template.
+## Usage
 
-3. Create a .txt file in one of the directories chosen above. This is the files that the snippets will be created from.
+In [settings.json](/.vscode/settings.json), locate:
 
-4. After you have created a file and ran the extension once a configuration have been added for that specific file. These will also be found in [settings.json](/.vscode/settings.json).
+```JSON
+"EasyDoc.dir": [
+    "./templates"
+]
+```
 
-5. Learn how to create a snippet [here](https://github.com/Torphage/EasyDoc/wiki/Template-Syntax). Examples of working template files can be found [here](https://github.com/Torphage/EasyDoc/wiki/Template-Examples)
+> `"./templates"` is the path of example testing templates located within the extension folder. For custom paths you need to use **absolute paths**.
+
+This is where EasyDoc finds all the directories that includes template files.
+
+When naming a template file, make sure the extension ends with `.txt`. The base name is what the configuration name also will be named. **Naming your template file `dir.txt` is due to that `EasyDoc.dir` already is defined**.
+
+> When adding a new template file for the extension read from a restart of the editor is required.
+
+After adding a template file and restarted the editor, run the extension once and a new configuration will have been made in [settings.json](/.vscode/settings.json). On a file named `foo.txt` the default configuration would look like this:
+
+
+```JSON
+"EasyDoc.foo": {
+    "alignIndentation": true,
+    "commentAboveTarget": false,
+    "docType": "function",
+    "triggerString": "$$$"
+}
+```
+
+* A detailed explanation for the syntax of the template file can be found [here](https://github.com/Torphage/EasyDoc/wiki/Template-Syntax)
+* Examples of working template files can be found [here](https://github.com/Torphage/EasyDoc/wiki/Template-Examples)
