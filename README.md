@@ -35,7 +35,7 @@ In [settings.json](/.vscode/settings.json), locate:
 
 This is where EasyDoc finds all the directories that includes template files.
 
-When naming a template file, make sure the extension ends with `.txt`. The base name is what the configuration name also will be named. **Naming your template file `dir.txt` is due to that `EasyDoc.dir` already is defined**.
+When naming a template file, make sure the extension ends with `.txt`. The base name is what the configuration name also will be named. **Naming your template file `dir.txt` is not allowed due to `EasyDoc.dir` already being defined**.
 
 > When adding a new template file for the extension read from a restart of the editor is required.
 
