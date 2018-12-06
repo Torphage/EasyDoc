@@ -1,7 +1,5 @@
 # EasyDoc
 
-Makes 
-
 An extension that makes it easier to document your code with the help of custom made template files.
 
 ## Features
