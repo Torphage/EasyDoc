@@ -70,6 +70,15 @@
                     }
                 }
             }
+        },
+        "menus": {
+            "editor/context": [
+                {
+                    "when": "editorFocus",
+                    "command": "extension.EasyDoc",
+                    "group": "EasyDoc@1"
+                }
+            ]
         }
     },
     "scripts": {
