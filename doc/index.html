@@ -69,25 +69,42 @@
 				<h2 id="features">Features</h2>
 				<ul>
 					<li>Generates snippet from custom made template files</li>
-					<li>Built with documentation in mind but support normal snippets as well</li>
+					<li>Built with documentation in mind but support normal snippets just as well</li>
 					<li>Aims to support every documentation format</li>
 					<li>Currently supports Haskell, Python and Ruby with more to come</li>
 				</ul>
 				<h2 id="installation">Installation</h2>
-				<p>Install the extension from the <a href="https://marketplace.visualstudio.com/items?itemName=Torphage.easydoc">Visual Studio Code Marketplace</a></p>
-				<h2 id="getting-started">Getting Started</h2>
+				<p>First, install the extension from either <a href="https://marketplace.visualstudio.com/items?itemName=Torphage.easydoc">Visual Studio Code Marketplace</a></p>
+				<p>or by downloading it from the <a href="">Extensions</a> tab in VS-Code:</p>
 				<ol>
-					<li><p>Start of by opening the VS Code <a href="/.vscode/settings.json">settings.json</a> file.</p>
-					</li>
-					<li><p>Find the configuration &quot;EasyDoc.dir&quot;, add your desired directories as abosolute paths to where you want to store the custom made template.</p>
-					</li>
-					<li><p>Create a .txt file in one of the directories chosen above. This is the files that the snippets will be created from.</p>
-					</li>
-					<li><p>After you have created a file and ran the extension once a configuration have been added for that specific file. These will also be found in <a href="/.vscode/settings.json">settings.json</a>.</p>
-					</li>
-					<li><p>Learn how to create a snippet <a href="https://github.com/Torphage/EasyDoc/wiki/Template-Syntax">here</a>. Examples of working template files can be found <a href="https://github.com/Torphage/EasyDoc/wiki/Template-Examples">here</a></p>
-					</li>
+					<li>Pressing <code>Ctrl+Shift+X</code></li>
+					<li>Search for <code>EasyDoc</code></li>
+					<li>Select the extension and install it by pressing the <code>Install</code> button</li>
 				</ol>
+				<h2 id="usage">Usage</h2>
+				<p>In <a href="/.vscode/settings.json">settings.json</a>, locate:</p>
+				<pre><code class="language-JSON">&quot;EasyDoc.dir&quot;: [
+    &quot;./templates&quot;
+]</code></pre>
+				<blockquote>
+					<p><code>&quot;./templates&quot;</code> is the path of example testing templates located within the extension folder. For custom paths you need to use <strong>absolute paths</strong>.</p>
+				</blockquote>
+				<p>This is where EasyDoc finds all the directories that includes template files.</p>
+				<p>When naming a template file, make sure the extension ends with <code>.txt</code>. The base name is what the configuration name also will be named. <strong>Naming your template file <code>dir.txt</code> is not allowed due to <code>EasyDoc.dir</code> already being defined</strong>.</p>
+				<blockquote>
+					<p>When adding a new template file for the extension read from a restart of the editor is required.</p>
+				</blockquote>
+				<p>After adding a template file and restarted the editor, run the extension once and a new configuration will have been made in <a href="/.vscode/settings.json">settings.json</a>. On a file named <code>foo.txt</code> the default configuration would look like this:</p>
+				<pre><code class="language-JSON">&quot;EasyDoc.foo&quot;: {
+    &quot;alignIndentation&quot;: true,
+    &quot;commentAboveTarget&quot;: false,
+    &quot;docType&quot;: &quot;function&quot;,
+    &quot;triggerString&quot;: &quot;$$$&quot;
+}</code></pre>
+				<ul>
+					<li>A detailed explanation for the syntax of the template file can be found <a href="https://github.com/Torphage/EasyDoc/wiki/Template-Syntax">here</a></li>
+					<li>Examples of working template files can be found <a href="https://github.com/Torphage/EasyDoc/wiki/Template-Examples">here</a></li>
+				</ul>
 			</div>
 		</div>
 		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
