@@ -90,13 +90,13 @@
     "devDependencies": {
         "@types/mocha": "^2.2.42",
         "@types/node": "^7.10.2",
+        "tslint": "^5.11.0",
         "typedoc": "^0.13.0",
         "typescript": "^2.6.1",
-        "tslint": "^5.11.0",
+        "vscode": "^1.1.26"
     },
     "dependencies": {
         "fs": "0.0.1-security",
-        "path": "^0.12.7",
-        "vscode": "^1.1.26"
+        "path": "^0.12.7"
     }
 }
