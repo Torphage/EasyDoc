@@ -73,13 +73,13 @@ export class EasyDoc {
         }
     }
 
-    private async quickPick(config: Config) {
-        const items = await this.getAllItems(config);
-        const pick = await vs.window.showQuickPick(items);
+    private quickPick(config: Config): Thenable<string> {
+        const items = this.getAllItems(config);
+        const pick = vs.window.showQuickPick(items);
         return pick;
     }
 
-    private async getAllItems(config: Config): Promise<string[]> {
+    private getAllItems(config: Config): string[] {
         const items: string[] = [];
 
         for (const dir of this.config.dir) {

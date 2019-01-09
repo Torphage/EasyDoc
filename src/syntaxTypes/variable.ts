@@ -17,38 +17,36 @@ export class Variable {
         this.text = text;
 
         const snippet = [];
+        const textLines = this.text.split("\n");
 
-        const variables = this.customTypes.getSyntax(this.text, "variables");
+        for (this.index = 0; this.index < textLines.length; this.index++) {
 
-        for (this.index = 0; this.index < this.text.length; this.index++) {
+            const currentLine = textLines[this.index];
 
-            if (this.isNewLine(this.text)) {
-                const currentLine = this.getCurrentLine(this.text);
-
-                if (this.typeInLine(currentLine)) {
-                    const snippetStr = this.createType(variables, currentLine);
-
-                    snippet.push(snippetStr);
-
-                    this.index += currentLine.length;
-
-                    continue;
-                }
+            if (this.index !== 0) {
+                snippet.push("\n");
             }
 
-            snippet.push(this.text[this.index]);
+            if (this.typeInLine(currentLine)) {
+                const snippetStr = this.createType(currentLine);
+                snippet.push(snippetStr);
+
+                continue;
+            }
+
+            snippet.push(textLines[this.index]);
         }
 
         return snippet.join("");
     }
 
-    private createType(variables: ISyntaxType[], text: string): string {
-        const localVars = this.getLocalTypes(text, variables);
+    private createType(text: string): string {
+        const localVars = this.getLocalTypes(text);
         const maxRepeaters = this.maxNumOfType(localVars);
 
         let repeatEachLine: boolean;
         let str: string[] = [];
-        let offset = -this.index;
+        let offset = 0;
 
         const arrayVars = this.getArrayVars(localVars);
 
@@ -109,14 +107,6 @@ export class Variable {
         return str.join("\n");
     }
 
-    private isNewLine(text: string) {
-        if (text[this.index - 1] === ("\n" || this.index === 0)) {
-            return true;
-        }
-
-        return false;
-    }
-
     private getTypeValue(variable: ISyntaxType): any {
         const varName = this.getVarName(variable.text);
         const tempVar = this.vars[varName];
@@ -129,24 +119,7 @@ export class Variable {
         return translator.translate();
     }
 
-    private getCurrentLine(syntaxText: string): string {
-        const leftOfCurrentPos = syntaxText.slice(0, this.index);
-        const rightOfCurrentPos = syntaxText.slice(this.index);
-
-        const rightIndex = rightOfCurrentPos.indexOf("\n");
-
-        let fullLine: string;
-
-        if (rightIndex !== -1) {
-            fullLine = rightOfCurrentPos.substring(0, rightIndex);
-        } else {
-            fullLine = syntaxText.substring(leftOfCurrentPos.length + 2);
-        }
-
-        return fullLine;
-    }
-
-    private typeInLine(text: string) {
+    private typeInLine(text: string): boolean {
         const varMatch = this.customTypes.getSyntax(text, "variables");
         if (varMatch.length > 0) {
             return true;
@@ -170,14 +143,13 @@ export class Variable {
         return maxRepeaters;
     }
 
-    private getLocalTypes(text: string, variables: ISyntaxType[]): ISyntaxType[] {
-        const includedVars = [];
+    private getLocalTypes(text: string): ISyntaxType[] {
+        const variables = this.customTypes.getSyntax(text, "variables");
 
+        const includedVars = [];
         for (const variable of variables) {
-            if (variable.start >= this.index && variable.start + variable.length <= this.index + text.length) {
-                if (this.getVarName(variable.text) in this.vars) {
-                    includedVars.push(variable);
-                }
+            if (this.getVarName(variable.text) in this.vars) {
+                includedVars.push(variable);
             }
         }
 
