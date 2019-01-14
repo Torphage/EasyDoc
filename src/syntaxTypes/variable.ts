@@ -22,12 +22,13 @@ export class Variable {
         for (this.index = 0; this.index < textLines.length; this.index++) {
 
             const currentLine = textLines[this.index];
+            const lineVars = this.getLocalTypes(currentLine);
 
             if (this.index !== 0) {
                 snippet.push("\n");
             }
 
-            if (this.typeInLine(currentLine)) {
+            if (lineVars.length > 0) {
                 const snippetStr = this.createType(currentLine);
                 snippet.push(snippetStr);
 
@@ -117,15 +118,6 @@ export class Variable {
             variable.text.slice(2, -1), varName, tempVar);
 
         return translator.translate();
-    }
-
-    private typeInLine(text: string): boolean {
-        const varMatch = this.customTypes.getSyntax(text, "variables");
-        if (varMatch.length > 0) {
-            return true;
-        }
-
-        return false;
     }
 
     private maxNumOfType(vars: any[]): any {
