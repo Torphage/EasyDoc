@@ -49,5 +49,5 @@ After adding a template file and restarted the editor, run the extension once an
 }
 ```
 
-* A detailed explanation for the syntax of the template file can be found [here](https://github.com/Torphage/EasyDoc/wiki/Template-Syntax)
+* A simple explanation for the syntax of the template file can be found [here](https://github.com/Torphage/EasyDoc/wiki/Simple-Syntax-Explanation). A detailed one can be found here [here](https://github.com/Torphage/EasyDoc/wiki/Template-Syntax)
 * Examples of working template files can be found [here](https://github.com/Torphage/EasyDoc/wiki/Template-Examples)
