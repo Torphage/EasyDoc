@@ -19,7 +19,7 @@ or by downloading it from the [Extensions]() tab in VS-Code:
 2. Search for `EasyDoc`
 3. Select the extension and install it by pressing the `Install` button
 
-## Usage
+## Setup
 
 In [settings.json](/.vscode/settings.json), locate:
 
@@ -48,6 +48,12 @@ After adding a template file and restarted the editor, run the extension once an
     "triggerString": "$$$"
 }
 ```
+
+## Usage
+
+The usage of EasyDoc can be found [here](https://github.com/Torphage/EasyDoc/wiki/usage).
+
+## Notes
 
 * A detailed explanation for the syntax of the template file can be found [here](https://github.com/Torphage/EasyDoc/wiki/Template-Syntax). Additional examples to help can be found here [here](https://github.com/Torphage/EasyDoc/wiki/Simple-Syntax-Explanation)
 * Examples of working template files can be found [here](https://github.com/Torphage/EasyDoc/wiki/Template-Examples)
