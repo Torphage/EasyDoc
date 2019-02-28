@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>EasyDoc | easydoc</title>
+	<title>JavascriptParse | easydoc</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -56,13 +56,13 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="../modules/_easydoc_.html">&quot;easydoc&quot;</a>
+					<a href="../modules/_languages_javascript_parse_.html">&quot;languages/javascript/parse&quot;</a>
 				</li>
 				<li>
-					<a href="_easydoc_.easydoc.html">EasyDoc</a>
+					<a href="_languages_javascript_parse_.javascriptparse.html">JavascriptParse</a>
 				</li>
 			</ul>
-			<h1>Class EasyDoc</h1>
+			<h1>Class JavascriptParse</h1>
 		</div>
 	</div>
 </header>
@@ -73,7 +73,12 @@
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">EasyDoc</span>
+						<a href="_languages_parse_.baseparse.html" class="tsd-signature-type">BaseParse</a>
+						<ul class="tsd-hierarchy">
+							<li>
+								<span class="target">JavascriptParse</span>
+							</li>
+						</ul>
 					</li>
 				</ul>
 			</section>
@@ -84,24 +89,17 @@
 						<section class="tsd-index-section ">
 							<h3>Constructors</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-constructor tsd-parent-kind-class"><a href="_easydoc_.easydoc.html#constructor" class="tsd-kind-icon">constructor</a></li>
-							</ul>
-						</section>
-						<section class="tsd-index-section tsd-is-private tsd-is-private-protected">
-							<h3>Properties</h3>
-							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="_easydoc_.easydoc.html#config" class="tsd-kind-icon">config</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="_easydoc_.easydoc.html#dir" class="tsd-kind-icon">dir</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="_easydoc_.easydoc.html#document" class="tsd-kind-icon">document</a></li>
+								<li class="tsd-kind-constructor tsd-parent-kind-class"><a href="_languages_javascript_parse_.javascriptparse.html#constructor" class="tsd-kind-icon">constructor</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section ">
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_easydoc_.easydoc.html#checkdoc" class="tsd-kind-icon">check<wbr>Doc</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><a href="_easydoc_.easydoc.html#getallitems" class="tsd-kind-icon">get<wbr>All<wbr>Items</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><a href="_easydoc_.easydoc.html#geteditortext" class="tsd-kind-icon">get<wbr>Editor<wbr>Text</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><a href="_easydoc_.easydoc.html#quickpick" class="tsd-kind-icon">quick<wbr>Pick</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite"><a href="_languages_javascript_parse_.javascriptparse.html#parseblock" class="tsd-kind-icon">parse<wbr>Block</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite"><a href="_languages_javascript_parse_.javascriptparse.html#parsename" class="tsd-kind-icon">parse<wbr>Name</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite"><a href="_languages_javascript_parse_.javascriptparse.html#parseparams" class="tsd-kind-icon">parse<wbr>Params</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_languages_javascript_parse_.javascriptparse.html#parseparamstemplate" class="tsd-kind-icon">parse<wbr>Params<wbr>Template</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><a href="_languages_javascript_parse_.javascriptparse.html#splitlines" class="tsd-kind-icon">split<wbr>Lines</a></li>
 							</ul>
 						</section>
 					</div>
@@ -113,118 +111,111 @@
 					<a name="constructor" class="tsd-anchor"></a>
 					<h3>constructor</h3>
 					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">new <wbr>Easy<wbr>Doc<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_easydoc_.easydoc.html" class="tsd-signature-type">EasyDoc</a></li>
+						<li class="tsd-signature tsd-kind-icon">new <wbr>Javascript<wbr>Parse<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_languages_javascript_parse_.javascriptparse.html" class="tsd-signature-type">JavascriptParse</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/Torphage/EasyDoc/blob/eca731b/src/easydoc.ts#L9">easydoc.ts:9</a></li>
+									<li>Defined in <a href="https://github.com/Torphage/EasyDoc/blob/eca731b/src/languages/javascript/parse.ts#L4">languages/javascript/parse.ts:4</a></li>
 								</ul>
 							</aside>
-							<h4 class="tsd-returns-title">Returns <a href="_easydoc_.easydoc.html" class="tsd-signature-type">EasyDoc</a></h4>
+							<h4 class="tsd-returns-title">Returns <a href="_languages_javascript_parse_.javascriptparse.html" class="tsd-signature-type">JavascriptParse</a></h4>
 						</li>
 					</ul>
-				</section>
-			</section>
-			<section class="tsd-panel-group tsd-member-group tsd-is-private tsd-is-private-protected">
-				<h2>Properties</h2>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
-					<a name="config" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagPrivate">Private</span> config</h3>
-					<div class="tsd-signature tsd-kind-icon">config<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">vs.WorkspaceConfiguration</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/Torphage/EasyDoc/blob/eca731b/src/easydoc.ts#L7">easydoc.ts:7</a></li>
-						</ul>
-					</aside>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
-					<a name="dir" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagPrivate">Private</span> dir</h3>
-					<div class="tsd-signature tsd-kind-icon">dir<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/Torphage/EasyDoc/blob/eca731b/src/easydoc.ts#L9">easydoc.ts:9</a></li>
-						</ul>
-					</aside>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
-					<a name="document" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagPrivate">Private</span> document</h3>
-					<div class="tsd-signature tsd-kind-icon">document<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">vs.TextEditor</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/Torphage/EasyDoc/blob/eca731b/src/easydoc.ts#L8">easydoc.ts:8</a></li>
-						</ul>
-					</aside>
 				</section>
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Methods</h2>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="checkdoc" class="tsd-anchor"></a>
-					<h3>check<wbr>Doc</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">check<wbr>Doc<span class="tsd-signature-symbol">(</span>onEnter<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span></li>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-overwrite">
+					<a name="parseblock" class="tsd-anchor"></a>
+					<h3>parse<wbr>Block</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-overwrite">
+						<li class="tsd-signature tsd-kind-icon">parse<wbr>Block<span class="tsd-signature-symbol">(</span>newlineRows<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
+								<p>Overrides <a href="_languages_parse_.baseparse.html">BaseParse</a>.<a href="_languages_parse_.baseparse.html#parseblock">parseBlock</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/Torphage/EasyDoc/blob/eca731b/src/easydoc.ts#L18">easydoc.ts:18</a></li>
+									<li>Defined in <a href="https://github.com/Torphage/EasyDoc/blob/eca731b/src/languages/javascript/parse.ts#L9">languages/javascript/parse.ts:9</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>onEnter: <span class="tsd-signature-type">boolean</span></h5>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span></h4>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-private">
-					<a name="getallitems" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagPrivate">Private</span> get<wbr>All<wbr>Items</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-private">
-						<li class="tsd-signature tsd-kind-icon">get<wbr>All<wbr>Items<span class="tsd-signature-symbol">(</span>config<span class="tsd-signature-symbol">: </span><a href="_config_.config.html" class="tsd-signature-type">Config</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/Torphage/EasyDoc/blob/eca731b/src/easydoc.ts#L82">easydoc.ts:82</a></li>
-								</ul>
-							</aside>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>config: <a href="_config_.config.html" class="tsd-signature-type">Config</a></h5>
+									<h5>newlineRows: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></h4>
 						</li>
 					</ul>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-private">
-					<a name="geteditortext" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagPrivate">Private</span> get<wbr>Editor<wbr>Text</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-private">
-						<li class="tsd-signature tsd-kind-icon">get<wbr>Editor<wbr>Text<span class="tsd-signature-symbol">(</span>triggerText<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-overwrite">
+					<a name="parsename" class="tsd-anchor"></a>
+					<h3>parse<wbr>Name</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-overwrite">
+						<li class="tsd-signature tsd-kind-icon">parse<wbr>Name<span class="tsd-signature-symbol">(</span>rows<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
+								<p>Overrides <a href="_languages_parse_.baseparse.html">BaseParse</a>.<a href="_languages_parse_.baseparse.html#parsename">parseName</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/Torphage/EasyDoc/blob/eca731b/src/easydoc.ts#L104">easydoc.ts:104</a></li>
+									<li>Defined in <a href="https://github.com/Torphage/EasyDoc/blob/eca731b/src/languages/javascript/parse.ts#L34">languages/javascript/parse.ts:34</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>triggerText: <span class="tsd-signature-type">string</span></h5>
+									<h5>rows: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-overwrite">
+					<a name="parseparams" class="tsd-anchor"></a>
+					<h3>parse<wbr>Params</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-overwrite">
+						<li class="tsd-signature tsd-kind-icon">parse<wbr>Params<span class="tsd-signature-symbol">(</span>rows<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../interfaces/_interfaces_.iparams.html" class="tsd-signature-type">IParams</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Overrides <a href="_languages_parse_.baseparse.html">BaseParse</a>.<a href="_languages_parse_.baseparse.html#parseparams">parseParams</a></p>
+								<ul>
+									<li>Defined in <a href="https://github.com/Torphage/EasyDoc/blob/eca731b/src/languages/javascript/parse.ts#L42">languages/javascript/parse.ts:42</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>rows: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="../interfaces/_interfaces_.iparams.html" class="tsd-signature-type">IParams</a></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="parseparamstemplate" class="tsd-anchor"></a>
+					<h3>parse<wbr>Params<wbr>Template</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">parse<wbr>Params<wbr>Template<span class="tsd-signature-symbol">(</span>rows<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/Torphage/EasyDoc/blob/eca731b/src/languages/javascript/parse.ts#L55">languages/javascript/parse.ts:55</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>rows: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
@@ -232,25 +223,25 @@
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-private">
-					<a name="quickpick" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagPrivate">Private</span> quick<wbr>Pick</h3>
+					<a name="splitlines" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagPrivate">Private</span> split<wbr>Lines</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-private">
-						<li class="tsd-signature tsd-kind-icon">quick<wbr>Pick<span class="tsd-signature-symbol">(</span>config<span class="tsd-signature-symbol">: </span><a href="_config_.config.html" class="tsd-signature-type">Config</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Thenable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">split<wbr>Lines<span class="tsd-signature-symbol">(</span>rows<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/Torphage/EasyDoc/blob/eca731b/src/easydoc.ts#L76">easydoc.ts:76</a></li>
+									<li>Defined in <a href="https://github.com/Torphage/EasyDoc/blob/eca731b/src/languages/javascript/parse.ts#L68">languages/javascript/parse.ts:68</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>config: <a href="_config_.config.html" class="tsd-signature-type">Config</a></h5>
+									<h5>rows: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></h5>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Thenable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -263,7 +254,7 @@
 						<a href="../globals.html"><em>Globals</em></a>
 					</li>
 					<li class="current tsd-kind-external-module">
-						<a href="../modules/_easydoc_.html">"easydoc"</a>
+						<a href="../modules/_languages_javascript_parse_.html">"languages/javascript/parse"</a>
 					</li>
 				</ul>
 			</nav>
@@ -272,31 +263,25 @@
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-class tsd-parent-kind-external-module">
-						<a href="_easydoc_.easydoc.html" class="tsd-kind-icon">Easy<wbr>Doc</a>
+						<a href="_languages_javascript_parse_.javascriptparse.html" class="tsd-kind-icon">Javascript<wbr>Parse</a>
 						<ul>
 							<li class=" tsd-kind-constructor tsd-parent-kind-class">
-								<a href="_easydoc_.easydoc.html#constructor" class="tsd-kind-icon">constructor</a>
+								<a href="_languages_javascript_parse_.javascriptparse.html#constructor" class="tsd-kind-icon">constructor</a>
 							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
-								<a href="_easydoc_.easydoc.html#config" class="tsd-kind-icon">config</a>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-overwrite">
+								<a href="_languages_javascript_parse_.javascriptparse.html#parseblock" class="tsd-kind-icon">parse<wbr>Block</a>
 							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
-								<a href="_easydoc_.easydoc.html#dir" class="tsd-kind-icon">dir</a>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-overwrite">
+								<a href="_languages_javascript_parse_.javascriptparse.html#parsename" class="tsd-kind-icon">parse<wbr>Name</a>
 							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
-								<a href="_easydoc_.easydoc.html#document" class="tsd-kind-icon">document</a>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-overwrite">
+								<a href="_languages_javascript_parse_.javascriptparse.html#parseparams" class="tsd-kind-icon">parse<wbr>Params</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="_easydoc_.easydoc.html#checkdoc" class="tsd-kind-icon">check<wbr>Doc</a>
+								<a href="_languages_javascript_parse_.javascriptparse.html#parseparamstemplate" class="tsd-kind-icon">parse<wbr>Params<wbr>Template</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-private">
-								<a href="_easydoc_.easydoc.html#getallitems" class="tsd-kind-icon">get<wbr>All<wbr>Items</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-private">
-								<a href="_easydoc_.easydoc.html#geteditortext" class="tsd-kind-icon">get<wbr>Editor<wbr>Text</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-private">
-								<a href="_easydoc_.easydoc.html#quickpick" class="tsd-kind-icon">quick<wbr>Pick</a>
+								<a href="_languages_javascript_parse_.javascriptparse.html#splitlines" class="tsd-kind-icon">split<wbr>Lines</a>
 							</li>
 						</ul>
 					</li>
