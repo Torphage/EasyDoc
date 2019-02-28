@@ -1,46 +1,46 @@
 import { IParams } from "../../interfaces";
 import { BaseParse } from "../parse";
 
-export class PythonParse extends BaseParse {
+export class JavascriptParse extends BaseParse {
     constructor() {
         super();
     }
 
     public parseBlock(newlineRows: string[]): string[] {
         const lines = this.splitLines(newlineRows);
-        const functionRows: string[] = [lines[0]];
-        const regex = /^(\s)*/g;
+        const functionRows: string[] = [];
 
-        const startIndentation = lines[0].match(regex);
+        let openingBracket = 0;
+        let closingBracket = 0;
 
-        for (const line of lines.slice(1)) {
-            const indentation = line.match(regex);
-            if (line.length === 0) {
-                continue;
+        for (const line of lines) {
+            if (line.includes("{")) {
+                openingBracket += 1;
             }
-
-            if (indentation <= startIndentation) {
-                break;
+            if (line.includes("}")) {
+                closingBracket += 1;
             }
 
             functionRows.push(line);
+
+            if (openingBracket <= closingBracket) {
+                break;
+            }
         }
 
         return functionRows;
     }
 
     public parseName(rows: string[]): string {
-        const row = rows[0];
+        const regex = /^\s*(\w*)/g;
 
-        const regex = /^\s*\w+\s+(\w+)/g;
+        const match = regex.exec(rows[0])[1];
 
-        const match = regex.exec(row);
-
-        return match[1];
+        return match;
     }
 
     public parseParams(rows: string[]): IParams {
-        const regex = /(?:\s|\sself.)\w*\(([^\)]+)*/g;
+        const regex = /\w*\(([^\)]+)*/g;
 
         const match = regex.exec(rows[0])[1];
         if (match === undefined) { return undefined; }

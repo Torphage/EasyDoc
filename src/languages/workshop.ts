@@ -1,6 +1,7 @@
 import * as fs from "fs";
 import * as vs from "vscode";
-import { IDocumentationParts, ISyntaxVariable } from "../interfaces";
+import commentFile from "../config/comments";
+import { ISyntaxVariable } from "../interfaces";
 import { CustomSyntax } from "../syntax";
 import { ErrorHandler, Placeholder, Repeater, Variable } from "../syntaxTypes/export";
 
@@ -9,6 +10,7 @@ export abstract class WorkShop {
     protected config: any;
     protected vars: ISyntaxVariable;
     protected parse: any;
+    protected blockStartIndex: 0;
 
     protected document = vs.window.activeTextEditor.document;
     protected position = vs.window.activeTextEditor.selection.active;
@@ -44,6 +46,10 @@ export abstract class WorkShop {
     protected abstract getFunctionStartLine(row: string, onEnter: boolean): string[];
     protected abstract correctlyPlacedFunction(row: string): boolean;
 
+    protected getComment(variable: string): string {
+        return commentFile[this.constructor.name][variable];
+    }
+
     private async generateFunction(onEnter: boolean, strictPlace: boolean): Promise<void> {
         const errorHandler = new ErrorHandler(this.vars);
         const repeater = new Repeater(this.vars);
@@ -54,6 +60,12 @@ export abstract class WorkShop {
         const varSnippet = variable.generate(cleanText);
         const repSnippet = repeater.generate(varSnippet);
         const placeSnippet = placeholder.generate(repSnippet);
+
+        if (!this.config.commentAboveTarget) {
+            for (let i = 0; i < this.blockStartIndex; i++) {
+                await this.stepDownInEditor();
+            }
+        }
 
         if (onEnter && placeSnippet.value.length !== 0) {
             this.delTriggerString();
@@ -82,6 +94,13 @@ export abstract class WorkShop {
                 reject(undefined);
             });
         }
+    }
+
+    private stepDownInEditor(): Promise<Thenable<{}>|undefined> {
+        return new Promise((resolve, reject) => {
+            resolve(vs.commands.executeCommand("cursorDown"));
+            reject(undefined);
+        });
     }
 
     private setCodeBlock(onEnter: boolean): void {

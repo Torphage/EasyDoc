@@ -1,3 +1,4 @@
+import { IParams } from "../../interfaces";
 import { BaseParse } from "../parse";
 
 export class HaskellParse extends BaseParse {
@@ -38,7 +39,7 @@ export class HaskellParse extends BaseParse {
         return match[1];
     }
 
-    public parseParams(rows: string[]): string[] {
+    public parseParams(rows: string[]): IParams {
         const regex = /^\w+\s*(.*|\s*)= do/gm;
 
         const match = regex.exec(rows[0])[1];
@@ -46,7 +47,9 @@ export class HaskellParse extends BaseParse {
 
         const params = match.trim().split(/\s/g);
 
-        return params;
+        return {
+            paramList: params,
+        };
     }
 
     public parseParamsTemplate(rows: string[]): string {

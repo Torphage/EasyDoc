@@ -1,13 +1,13 @@
 import { ISyntaxVariable } from "../../interfaces";
 import { WorkShop } from "../workshop";
-import { RubyParse } from "./parse";
+import { CppParse } from "./parse";
 
-export class Ruby extends WorkShop {
-    protected parse: RubyParse;
+export class Cpp extends WorkShop {
+    protected parse: CppParse;
 
     constructor(syntaxFile: string) {
         super(syntaxFile);
-        this.parse = new RubyParse();
+        this.parse = new CppParse();
     }
 
     public getFunctionStartLine(rows: string, onEnter: boolean): string[] {
@@ -27,7 +27,7 @@ export class Ruby extends WorkShop {
     }
 
     public correctlyPlacedFunction(functionLineIndex: string): boolean {
-        const regex = /^\s*def\s/g;
+        const regex = /\w*\(|function \s*\(/g;
 
         if (regex.exec(functionLineIndex) !== null) {
             return true;
@@ -40,11 +40,14 @@ export class Ruby extends WorkShop {
         const variables: ISyntaxVariable = {
             NAME: this.parse.parseName(this.block),
             PARAMS: this.parse.parseParams(this.block).paramList,
+            PARAMS_TYPES: this.parse.parseParams(this.block).paramTypes,
             PARAMS_TEMPLATE: this.parse.parseParamsTemplate(this.block),
             BLOCK_COMMENT_START: this.getComment("BLOCK_COMMENT_START"),
             BLOCK_COMMENT_END: this.getComment("BLOCK_COMMENT_END"),
             COMMENT: this.getComment("COMMENT"),
         };
+
+        this.blockStartIndex = this.parse.blockStartIndex;
 
         return variables;
     }

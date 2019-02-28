@@ -15,7 +15,7 @@ export class EasyDoc {
     }
 
     // Checks whenever the triggertext
-    public async checkDoc(onEnter): Promise<any> {
+    public async checkDoc(onEnter: boolean): Promise<any> {
         const syntaxDir: string[] = this.config.dir;
 
         const config = new Config();

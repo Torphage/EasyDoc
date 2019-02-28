@@ -18,9 +18,32 @@ interface IRepeater {
     snippetStr: string;
 }
 
+interface IName {
+    name: string;
+}
+
+interface IParams {
+    paramList: string[];
+    paramTypes?: string[];
+}
+
+interface IReturn {
+    name: string;
+    type?: string;
+}
+
+interface IParse {
+    name: IName;
+    class?: string;
+    params?: IParams;
+    return?: IReturn;
+}
+
 export {
     ISyntaxType,
     ISyntaxVariable,
     IDocumentationParts,
     IRepeater,
+    IParams,
+    IParse,
 };

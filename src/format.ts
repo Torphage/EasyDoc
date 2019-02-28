@@ -21,21 +21,33 @@ export class Format {
         const docType = this.snippetConfig.docType;
 
         switch (languageID) {
-            case "ruby":
-                this.workShop = new languages.Ruby(this.syntaxFile);
+            case "cpp":
+                this.workShop = new languages.Cpp(this.syntaxFile);
+                break;
+
+            case "haskell":
+                this.workShop = new languages.Haskell(this.syntaxFile);
+                break;
+
+            case "javascript":
+                this.workShop = new languages.Javascript(this.syntaxFile);
                 break;
 
             case "python":
                 this.workShop = new languages.Python(this.syntaxFile);
                 break;
 
-            case "haskell":
-                this.workShop = new languages.Haskell(this.syntaxFile);
+            case "ruby":
+                this.workShop = new languages.Ruby(this.syntaxFile);
                 break;
-        }
 
-        if (this.workShop === undefined) {
-            this.workShop = new languages.Base(this.syntaxFile);
+            case "typescript":
+                this.workShop = new languages.Typescript(this.syntaxFile);
+                break;
+
+            default:
+                this.workShop = new languages.Base(this.syntaxFile);
+                break;
         }
 
         this.workShop.generate(docType, this.snippetConfig, this.onEnter);

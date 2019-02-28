@@ -1,3 +1,4 @@
+import { IParams } from "../../interfaces";
 import { BaseParse } from "../parse";
 
 export class RubyParse extends BaseParse {
@@ -76,7 +77,7 @@ export class RubyParse extends BaseParse {
         }
     }
 
-    public parseParams(rows: string[]): string[] {
+    public parseParams(rows: string[]): IParams {
         const regex = /(?:class|def)(?:\s|\sself.)\w*(?:\(|\s)(?!\()([^\)]+)*/g;
 
         const match = regex.exec(rows[0])[1];
@@ -84,7 +85,9 @@ export class RubyParse extends BaseParse {
 
         const params = match.replace(/\s/g, "").split(",");
 
-        return params;
+        return {
+            paramList: params,
+        };
     }
 
     public parseParamsTemplate(rows: string[]): string {
