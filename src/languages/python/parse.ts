@@ -58,7 +58,7 @@ export class PythonParse extends BaseParse {
 
         let str: string = `$[${params[0]}]`;
 
-        for (const param of params.slice(1)) {
+        for (const param of params.paramList.slice(1)) {
             str += `, $[${param}]`;
         }
 
