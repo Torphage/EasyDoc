@@ -56,7 +56,7 @@ export class JavascriptParse extends BaseParse {
         const params = this.parseParams(rows);
         if (params === undefined) { return undefined; }
 
-        let str: string = `$[${params[0]}]`;
+        let str: string = `$[${params.paramList[0]}]`;
 
         for (const param of params.paramList.slice(1)) {
             str += `, $[${param}]`;

@@ -2,7 +2,7 @@
     "name": "easydoc",
     "displayName": "EasyDoc",
     "description": "Makes custom formats of documentations of functions, classes, etc. for different languages extremely easy",
-    "version": "0.4.0",
+    "version": "0.4.1",
     "publisher": "Torphage",
     "license": "MIT",
     "repository": {
@@ -90,8 +90,8 @@
     },
     "devDependencies": {
         "@types/mocha": "^2.2.42",
-        "@types/node": "^7.10.2",
-        "tslint": "^5.11.0",
+        "@types/node": "^7.10.3",
+        "tslint": "^5.13.0",
         "typedoc": "^0.13.0",
         "typescript": "^2.6.1",
         "vscode": "^1.1.26"
