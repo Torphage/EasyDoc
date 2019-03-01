@@ -47,7 +47,15 @@ export abstract class WorkShop {
     protected abstract correctlyPlacedFunction(row: string): boolean;
 
     protected getComment(variable: string): string {
-        return commentFile[this.constructor.name][variable];
+        let commentString: string;
+
+        if (this.constructor.name in commentFile) {
+            commentString = commentFile[this.constructor.name][variable];
+        } else {
+            commentString = "";
+        }
+
+        return commentString;
     }
 
     private async generateFunction(onEnter: boolean, strictPlace: boolean): Promise<void> {

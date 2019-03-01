@@ -8,6 +8,14 @@ export class Base extends WorkShop {
 
     public getFunctionStartLine(rows: string): string[] { return; }
     public correctlyPlacedFunction(functionLineIndex: string): boolean { return; }
-    public getVariables(): ISyntaxVariable { return; }
     public getCurrentColumn(index: number): number { return; }
+    public getVariables(): ISyntaxVariable {
+        const variables: ISyntaxVariable = {
+            BLOCK_COMMENT_START: this.getComment("BLOCK_COMMENT_START"),
+            BLOCK_COMMENT_END: this.getComment("BLOCK_COMMENT_END"),
+            COMMENT: this.getComment("COMMENT"),
+        };
+
+        return variables;
+    }
 }
