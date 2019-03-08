@@ -3,7 +3,7 @@ import * as vs from "vscode";
 import { Config } from "./config";
 import { Format } from "./format";
 
-export class EasyDoc {
+export class Choice {
     private config: vs.WorkspaceConfiguration;
     private document: vs.TextEditor;
     private dir: string;

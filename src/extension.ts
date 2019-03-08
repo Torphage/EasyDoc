@@ -1,17 +1,17 @@
 "use strict";
 import * as vs from "vscode";
-import { EasyDoc } from "./easydoc";
+import { Choice } from "./choice";
 
 export function activate(context: vs.ExtensionContext) {
     context.subscriptions.push(
         vs.commands.registerCommand("extension.EasyDoc", () => {
-            const easydoc = new EasyDoc();
-            easydoc.checkDoc(false);
+            const choice = new Choice();
+            choice.checkDoc(false);
         }),
         vs.workspace.onDidChangeTextDocument((event) => {
             if (generateOnEnter(event)) {
-                const easydoc = new EasyDoc();
-                easydoc.checkDoc(true);
+                const choice = new Choice();
+                choice.checkDoc(true);
             }
         }),
     );
