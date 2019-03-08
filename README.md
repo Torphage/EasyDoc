@@ -7,7 +7,13 @@ An extension that makes it easier to document your code with the help of custom 
 * Generates snippet from custom made template files
 * Built with documentation in mind but support normal snippets just as well
 * Aims to support every documentation format
-* Currently supports Haskell, Python and Ruby with more to come
+* Currently supports, with more to come:
+  * C++
+  * Haskell
+  * Javascript
+  * Python
+  * Ruby
+  * Typescript
 
 ## Installation
 
@@ -38,7 +44,6 @@ When naming a template file, make sure the extension ends with `.txt`. The base 
 > When adding a new template file for the extension read from a restart of the editor is required.
 
 After adding a template file and restarted the editor, run the extension once and a new configuration will have been made in [settings.json](/.vscode/settings.json). On a file named `foo.txt` the default configuration would look like this:
-
 
 ```JSON
 "EasyDoc.foo": {
