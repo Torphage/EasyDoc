@@ -78,11 +78,15 @@ export class RubyParse extends BaseParse {
     }
 
     public parseParams(rows: string[]): IParams {
-        const regex = /(?:class|def)(?:\s|\sself.)\w*(?:\(|\s)(?!\()([^\)]+)*/g;
+        const regex = /(?:class|def|module)(?:\s|\sself.)\w*\s*(?:\(|\s)(?!\()([^\)]+)*/g;
 
         const match = regex.exec(rows[0])[1];
         console.log(match);
-        if (match === undefined) { return undefined; }
+        if (match === undefined) {
+            return {
+                paramList: undefined,
+            };
+        }
 
         const params = match.replace(/\s/g, "").split(",");
 
@@ -93,7 +97,7 @@ export class RubyParse extends BaseParse {
 
     public parseParamsTemplate(rows: string[]): string {
         const params = this.parseParams(rows);
-        if (params === undefined) { return undefined; }
+        if (params.paramList === undefined) { return undefined; }
 
         let str: string = `$[${params.paramList[0]}]`;
 

@@ -10,7 +10,6 @@ export abstract class WorkShop {
     protected config: any;
     protected vars: ISyntaxVariable;
     protected parse: any;
-    protected blockStartIndex: 0;
 
     protected document = vs.window.activeTextEditor.document;
     protected position = vs.window.activeTextEditor.selection.active;
@@ -70,7 +69,7 @@ export abstract class WorkShop {
         const placeSnippet = placeholder.generate(repSnippet);
 
         if (!this.config.commentAboveTarget) {
-            for (let i = 0; i < this.blockStartIndex; i++) {
+            for (let i = 0; i < this.parse.blockStartIndex; i++) {
                 await this.stepDownInEditor();
             }
         }

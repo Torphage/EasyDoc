@@ -47,8 +47,6 @@ export class Cpp extends WorkShop {
             COMMENT: this.getComment("COMMENT"),
         };
 
-        this.blockStartIndex = this.parse.blockStartIndex;
-
         return variables;
     }
 

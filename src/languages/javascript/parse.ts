@@ -12,38 +12,51 @@ export class JavascriptParse extends BaseParse {
 
         let openingBracket = 0;
         let closingBracket = 0;
+        let blockStarted = false;
 
         for (const line of lines) {
             if (line.includes("{")) {
-                openingBracket += 1;
+                blockStarted = true;
+                openingBracket++;
             }
+
             if (line.includes("}")) {
-                closingBracket += 1;
+                closingBracket++;
             }
 
             functionRows.push(line);
+
+            if (!blockStarted) {
+                this.blockStartIndex++;
+                continue;
+            }
 
             if (openingBracket <= closingBracket) {
                 break;
             }
         }
 
+
         return functionRows;
     }
 
     public parseName(rows: string[]): string {
-        const regex = /^\s*(\w*)/g;
-
+        const regex = /\s*(\w*)\([^\)]*/g;
         const match = regex.exec(rows[0])[1];
+        console.log(match)
 
         return match;
     }
 
     public parseParams(rows: string[]): IParams {
-        const regex = /\w*\(([^\)]+)*/g;
+        const regex = /\w*\s*\(([^\)]+)*/g;
 
         const match = regex.exec(rows[0])[1];
-        if (match === undefined) { return undefined; }
+        if (match === undefined) {
+            return {
+                paramList: undefined,
+            };
+        }
 
         const params = match.replace(/\s/g, "").split(",");
 
@@ -54,7 +67,7 @@ export class JavascriptParse extends BaseParse {
 
     public parseParamsTemplate(rows: string[]): string {
         const params = this.parseParams(rows);
-        if (params === undefined) { return undefined; }
+        if (params.paramList === undefined) { return undefined; }
 
         let str: string = `$[${params.paramList[0]}]`;
 

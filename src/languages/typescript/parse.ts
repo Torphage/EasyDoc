@@ -2,11 +2,8 @@ import { IParams, IParse } from "../../interfaces";
 import { BaseParse } from "../parse";
 
 export class TypescriptParse extends BaseParse {
-    public blockStartIndex;
-
     constructor() {
         super();
-        this.blockStartIndex = 0;
     }
 
     public parseBlock(newlineRows: string[]): string[] {
@@ -43,14 +40,14 @@ export class TypescriptParse extends BaseParse {
     }
 
     public parseName(rows: string[]): string {
-        const regex = /\s*(\w*)\([^\)]*/g;
+        const regex = /\s*(\w*)\s*\([^\)]*/g;
 
         const match = regex.exec(rows[0])[1];
         return match;
     }
 
     public parseParams(rows: string[]): IParams {
-        const regex = /\s*\w*\(([^\)]+)/g;
+        const regex = /\s*\w*\s*\(([^\)]+)/g;
 
         let i: number = 1;
         let row: string;
@@ -63,7 +60,12 @@ export class TypescriptParse extends BaseParse {
         const text = rows.slice(0, i).join("");
         const match = regex.exec(text)[1];
 
-        if (match === undefined) { return undefined; }
+        if (match === undefined) {
+            return {
+                paramList: undefined,
+                paramTypes: undefined,
+            };
+        }
 
         const params = match.split(",");
 
@@ -72,7 +74,7 @@ export class TypescriptParse extends BaseParse {
 
     public parseParamsTemplate(rows: string[]): string {
         const params = this.parseParams(rows);
-        if (params === undefined) { return undefined; }
+        if (params.paramList === undefined) { return undefined; }
 
         let str: string = `$[${params.paramList[0]}]`;
 

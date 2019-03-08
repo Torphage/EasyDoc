@@ -43,7 +43,11 @@ export class HaskellParse extends BaseParse {
         const regex = /^\w+\s*(.*|\s*)= do/gm;
 
         const match = regex.exec(rows[0])[1];
-        if (match === undefined) { return undefined; }
+        if (match === undefined) {
+            return {
+                paramList: undefined,
+            };
+        }
 
         const params = match.trim().split(/\s/g);
 
@@ -54,7 +58,7 @@ export class HaskellParse extends BaseParse {
 
     public parseParamsTemplate(rows: string[]): string {
         const params = this.parseParams(rows);
-        if (params === undefined) { return undefined; }
+        if (params.paramList === undefined) { return undefined; }
 
         let str: string = `$[${params.paramList[0]}]`;
 

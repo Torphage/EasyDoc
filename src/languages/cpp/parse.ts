@@ -2,11 +2,8 @@ import { IParams } from "../../interfaces";
 import { BaseParse } from "../parse";
 
 export class CppParse extends BaseParse {
-    public blockStartIndex;
-
     constructor() {
         super();
-        this.blockStartIndex = 0;
     }
 
     public parseBlock(newlineRows: string[]): string[] {
@@ -63,7 +60,12 @@ export class CppParse extends BaseParse {
         const text = rows.slice(0, i).join("");
         const match = regex.exec(text)[1];
 
-        if (match === undefined) { return undefined; }
+        if (match === undefined) {
+            return {
+                paramList: undefined,
+                paramTypes: undefined,
+            };
+        }
 
         const params = match.split(",");
 
@@ -72,7 +74,7 @@ export class CppParse extends BaseParse {
 
     public parseParamsTemplate(rows: string[]): string {
         const params = this.parseParams(rows);
-        if (params === undefined) { return undefined; }
+        if (params.paramList === undefined) { return undefined; }
 
         let str: string = `$[${params.paramList[0]}]`;
 
