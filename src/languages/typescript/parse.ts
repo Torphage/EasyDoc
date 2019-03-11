@@ -2,8 +2,8 @@ import { IParams, IParse } from "../../interfaces";
 import { BaseParse } from "../parse";
 
 export class TypescriptParse extends BaseParse {
-    constructor() {
-        super();
+    constructor(docType: string) {
+        super(docType);
     }
 
     public parseBlock(newlineRows: string[]): string[] {
@@ -37,13 +37,6 @@ export class TypescriptParse extends BaseParse {
         }
 
         return functionRows;
-    }
-
-    public parseName(rows: string[]): string {
-        const regex = /\s*(\w*)\s*\([^\)]*/g;
-
-        const match = regex.exec(rows[0])[1];
-        return match;
     }
 
     public parseParams(rows: string[]): IParams {

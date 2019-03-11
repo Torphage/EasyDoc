@@ -5,9 +5,9 @@ import { HaskellParse } from "./parse";
 export class Haskell extends WorkShop {
     protected parse: HaskellParse;
 
-    constructor(syntaxFile: string) {
+    constructor(syntaxFile: string, docType: string) {
         super(syntaxFile);
-        this.parse = new HaskellParse();
+        this.parse = new HaskellParse(docType);
     }
 
     public getFunctionStartLine(rows: string, onEnter: boolean): string[] {

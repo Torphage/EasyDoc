@@ -22,27 +22,27 @@ export class Format {
 
         switch (languageID) {
             case "cpp":
-                this.workShop = new languages.Cpp(this.syntaxFile);
+                this.workShop = new languages.Cpp(this.syntaxFile, docType);
                 break;
 
             case "haskell":
-                this.workShop = new languages.Haskell(this.syntaxFile);
+                this.workShop = new languages.Haskell(this.syntaxFile, docType);
                 break;
 
             case "javascript":
-                this.workShop = new languages.Javascript(this.syntaxFile);
+                this.workShop = new languages.Javascript(this.syntaxFile, docType);
                 break;
 
             case "python":
-                this.workShop = new languages.Python(this.syntaxFile);
+                this.workShop = new languages.Python(this.syntaxFile, docType);
                 break;
 
             case "ruby":
-                this.workShop = new languages.Ruby(this.syntaxFile);
+                this.workShop = new languages.Ruby(this.syntaxFile, docType);
                 break;
 
             case "typescript":
-                this.workShop = new languages.Typescript(this.syntaxFile);
+                this.workShop = new languages.Typescript(this.syntaxFile, docType);
                 break;
 
             default:

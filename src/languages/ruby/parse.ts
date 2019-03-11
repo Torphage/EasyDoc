@@ -55,28 +55,6 @@ export class RubyParse extends BaseParse {
         return functionRows;
     }
 
-    public parseName(rows: string[]): string {
-        let row = rows[0];
-
-        for (const block of this.blockStarts) {
-            const regex = new RegExp("^\\s*" + block + "\\s*(\\w*)");
-            const match = regex.exec(row);
-
-            if (match !== null) {
-                if (match[1] === "self") {
-                    row = row.slice(row.indexOf("self.") + 5);
-
-                    const reg = new RegExp("(\\w*)");
-                    const mat = reg.exec(row);
-
-                    return mat[1];
-                } else {
-                    return match[1];
-                }
-            }
-        }
-    }
-
     public parseParams(rows: string[]): IParams {
         const regex = /(?:class|def|module)(?:\s|\sself.)\w*\s*(?:\(|\s)(?!\()([^\)]+)*/g;
 

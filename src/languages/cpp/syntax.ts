@@ -5,9 +5,9 @@ import { CppParse } from "./parse";
 export class Cpp extends WorkShop {
     protected parse: CppParse;
 
-    constructor(syntaxFile: string) {
+    constructor(syntaxFile: string, docType: string) {
         super(syntaxFile);
-        this.parse = new CppParse();
+        this.parse = new CppParse(docType);
     }
 
     public getFunctionStartLine(rows: string, onEnter: boolean): string[] {

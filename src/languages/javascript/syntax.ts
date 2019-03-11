@@ -5,9 +5,9 @@ import { JavascriptParse } from "./parse";
 export class Javascript extends WorkShop {
     protected parse: JavascriptParse;
 
-    constructor(syntaxFile: string) {
+    constructor(syntaxFile: string, docType: string) {
         super(syntaxFile);
-        this.parse = new JavascriptParse();
+        this.parse = new JavascriptParse(docType);
     }
 
     public getFunctionStartLine(rows: string, onEnter: boolean): string[] {

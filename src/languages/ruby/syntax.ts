@@ -5,9 +5,9 @@ import { RubyParse } from "./parse";
 export class Ruby extends WorkShop {
     protected parse: RubyParse;
 
-    constructor(syntaxFile: string) {
+    constructor(syntaxFile: string, docType: string) {
         super(syntaxFile);
-        this.parse = new RubyParse();
+        this.parse = new RubyParse(docType);
     }
 
     public getFunctionStartLine(rows: string, onEnter: boolean): string[] {

@@ -2,8 +2,8 @@ import { IParams } from "../../interfaces";
 import { BaseParse } from "../parse";
 
 export class JavascriptParse extends BaseParse {
-    constructor() {
-        super();
+    constructor(docType: string) {
+        super(docType);
     }
 
     public parseBlock(newlineRows: string[]): string[] {
@@ -36,16 +36,7 @@ export class JavascriptParse extends BaseParse {
             }
         }
 
-
         return functionRows;
-    }
-
-    public parseName(rows: string[]): string {
-        const regex = /\s*(\w*)\([^\)]*/g;
-        const match = regex.exec(rows[0])[1];
-        console.log(match)
-
-        return match;
     }
 
     public parseParams(rows: string[]): IParams {
