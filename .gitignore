@@ -1,4 +1,6 @@
 out
+**/*.ai
+**/*.psd
 node_modules
 .vscode-test/
 .vsix
