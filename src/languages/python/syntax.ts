@@ -10,22 +10,6 @@ export class Python extends WorkShop {
         this.parse = new PythonParse();
     }
 
-    public getFunctionStartLine(rows: string, onEnter: boolean): string[] {
-        let functionLineIndex: number;
-
-        if (!onEnter) {
-            functionLineIndex = this.position.line;
-        } else if (this.config.commentAboveTarget) {
-            functionLineIndex = this.position.line + 1;
-        } else {
-            functionLineIndex = this.position.line - 1;
-        }
-
-        const functionLineString = rows.split("\n").splice(functionLineIndex);
-
-        return functionLineString;
-    }
-
     public correctlyPlacedFunction(functionLineIndex: string): boolean {
         const regex = /^\s*def\s/g;
 

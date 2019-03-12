@@ -42,7 +42,6 @@ export abstract class WorkShop {
 
     protected abstract getCurrentColumn(index: number): number;
     protected abstract getVariables(): ISyntaxVariable;
-    protected abstract getFunctionStartLine(row: string, onEnter: boolean): string[];
     protected abstract correctlyPlacedFunction(row: string): boolean;
 
     protected getComment(variable: string): string {
@@ -108,6 +107,22 @@ export abstract class WorkShop {
             resolve(vs.commands.executeCommand("cursorDown"));
             reject(undefined);
         });
+    }
+
+    private getFunctionStartLine(rows: string, onEnter: boolean): string[] {
+        let functionLineIndex: number;
+
+        if (!onEnter) {
+            functionLineIndex = this.position.line;
+        } else if (this.config.commentAboveTarget) {
+            functionLineIndex = this.position.line + 1;
+        } else {
+            functionLineIndex = this.position.line - 1;
+        }
+
+        const functionLineString = rows.split("\n").splice(functionLineIndex);
+
+        return functionLineString;
     }
 
     private setCodeBlock(onEnter: boolean): void {
