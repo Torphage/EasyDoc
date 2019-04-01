@@ -2,23 +2,29 @@
     "name": "easydoc",
     "displayName": "EasyDoc",
     "description": "Makes custom formats of documentations of functions, classes, etc. for different languages extremely easy",
-    "version": "0.4.1",
+    "version": "0.4.3",
     "publisher": "Torphage",
     "license": "MIT",
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/torphage/easydoc"
-    },
-    "engines": {
-        "vscode": "^1.27.0"
-    },
     "categories": [
         "Snippets",
         "Formatters"
     ],
+    "icon": "resources/images/logo.png",
+    "galleryBanner": {
+        "color": "#282C34",
+        "theme": "dark"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/torphage/easydoc.git"
+    },
+    "homepage": "https://github.com/Torphage/EasyDoc/blob/master/README.md",
     "activationEvents": [
         "*"
     ],
+    "engines": {
+        "vscode": "^1.27.0"
+    },
     "main": "./out/extension",
     "contributes": {
         "keybindings": [
@@ -93,7 +99,7 @@
         "@types/node": "^7.10.3",
         "tslint": "^5.13.0",
         "typedoc": "^0.13.0",
-        "typescript": "^2.6.1",
+        "typescript": "^3.3.3",
         "vscode": "^1.1.26"
     },
     "dependencies": {

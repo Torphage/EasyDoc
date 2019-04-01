@@ -39,6 +39,16 @@ interface IParse {
     return?: IReturn;
 }
 
+interface IRegexFunc {
+    name: RegExp[];
+    params: IParams;
+}
+
+interface IRegex {
+    function: IRegexFunc;
+}
+
+
 export {
     ISyntaxType,
     ISyntaxVariable,
@@ -46,4 +56,6 @@ export {
     IRepeater,
     IParams,
     IParse,
+    IRegex,
+    IRegexFunc,
 };

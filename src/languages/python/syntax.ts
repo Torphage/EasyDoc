@@ -5,9 +5,9 @@ import { PythonParse } from "./parse";
 export class Python extends WorkShop {
     protected parse: PythonParse;
 
-    constructor(syntaxFile: string) {
+    constructor(syntaxFile: string, docType: string) {
         super(syntaxFile);
-        this.parse = new PythonParse();
+        this.parse = new PythonParse(docType);
     }
 
     public correctlyPlacedFunction(functionLineIndex: string): boolean {

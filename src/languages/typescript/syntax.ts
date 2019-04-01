@@ -5,9 +5,9 @@ import { TypescriptParse } from "./parse";
 export class Typescript extends WorkShop {
     protected parse: TypescriptParse;
 
-    constructor(syntaxFile: string) {
+    constructor(syntaxFile: string, docType: string) {
         super(syntaxFile);
-        this.parse = new TypescriptParse();
+        this.parse = new TypescriptParse(docType);
     }
 
     public correctlyPlacedFunction(functionLineIndex: string): boolean {
