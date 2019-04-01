@@ -4,8 +4,8 @@ import { BaseParse } from "../parse";
 export class RubyParse extends BaseParse {
     private blockStarts: string[];
 
-    constructor() {
-        super();
+    constructor(docType: string) {
+        super(docType);
         this.blockStarts = [
             "begin",
             "def",
@@ -56,7 +56,7 @@ export class RubyParse extends BaseParse {
     }
 
     public parseParams(rows: string[]): IParams {
-        const regex = /(?:class|def|module)(?:\s|\sself.)\w*\s*(?:\(|\s)(?!\()([^\)]+)*/g;
+        const regex = this.regex.params.name;
 
         const match = regex.exec(rows[0])[1];
         console.log(match);

@@ -30,7 +30,7 @@ export class PythonParse extends BaseParse {
     }
 
     public parseParams(rows: string[]): IParams {
-        const regex = /(?:\s|\sself.)\w*\(([^\)]+)*/g;
+        const regex = this.regex.params.name;
 
         const match = regex.exec(rows[0])[1];
         if (match === undefined) {

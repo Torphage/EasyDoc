@@ -7,6 +7,8 @@ export class TypescriptParse extends BaseParse {
     }
 
     public parseBlock(newlineRows: string[]): string[] {
+        const regex = /(["'])(?:(?=(\\?))\2.)*?\1/g;
+        const escapeRegex = /[{}]/g;
         const lines = this.splitLines(newlineRows);
         const functionRows: string[] = [];
 
@@ -15,21 +17,39 @@ export class TypescriptParse extends BaseParse {
         let blockStarted = false;
 
         for (const line of lines) {
-            if (line.includes("{")) {
-                blockStarted = true;
-                openingBracket++;
+            let convertedLine = line;
+
+            const stringBlocks = line.match(regex);
+
+            for (const stringBlock of stringBlocks) {
+                convertedLine = line.replace(stringBlock, stringBlock.replace(escapeRegex, "\\$&"));
             }
 
-            if (line.includes("}")) {
-                closingBracket++;
+            const matches = convertedLine.match(escapeRegex);
+            if (matches === null) { continue; }
+
+            for (const match of matches.slice(1)) {
+                switch (match) {
+                    case "{":
+                        blockStarted = true;
+                        openingBracket++;
+                        break;
+                    case "}":
+                        closingBracket++;
+                        break;
+                }
+
+                if (!blockStarted) {
+                    this.blockStartIndex++;
+                    continue;
+                }
+
+                if (openingBracket <= closingBracket) {
+                    break;
+                }
             }
 
             functionRows.push(line);
-
-            if (!blockStarted) {
-                this.blockStartIndex++;
-                continue;
-            }
 
             if (openingBracket <= closingBracket) {
                 break;
@@ -40,7 +60,8 @@ export class TypescriptParse extends BaseParse {
     }
 
     public parseParams(rows: string[]): IParams {
-        const regex = /\s*\w*\s*\(([^\)]+)/g;
+        console.log("param begin")
+        const regex = this.regex.params.name;
 
         let i: number = 1;
         let row: string;
@@ -57,18 +78,26 @@ export class TypescriptParse extends BaseParse {
             return {
                 paramList: undefined,
                 paramTypes: undefined,
+                template: undefined,
             };
         }
 
         const params = match.split(",");
 
-        return this.extractTypeAndName(params);
+        console.log("param end")
+
+        const paramType = this.extractTypeAndName(params);
+
+        const paramTemplate = this.parseParamsTemplate(paramType);
+
+        return {
+            paramList: undefined,
+            paramTypes: undefined,
+            template: paramTemplate,
+        };
     }
 
-    public parseParamsTemplate(rows: string[]): string {
-        const params = this.parseParams(rows);
-        if (params.paramList === undefined) { return undefined; }
-
+    private parseParamsTemplate(params: { paramList: string[], paramTypes: string[] }): string {
         let str: string = `$[${params.paramList[0]}]`;
 
         for (const param of params.paramList.slice(1)) {
@@ -105,7 +134,7 @@ export class TypescriptParse extends BaseParse {
         return outStr;
     }
 
-    private extractTypeAndName(varName: string[]): IParams {
+    private extractTypeAndName(varName: string[]): { paramList: string[], paramTypes: string[] } {
         const names: string[] = [];
         const types: string[] = [];
 

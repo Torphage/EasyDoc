@@ -40,7 +40,7 @@ export class CppParse extends BaseParse {
     }
 
     public parseParams(rows: string[]): IParams {
-        const regex = /\s*\w*\(([^\)]+)/g;
+        const regex = this.regex.params.name;
 
         let i: number = 1;
         let row: string;

@@ -1,6 +1,6 @@
 ${COMMENT} $[Description]
 ${COMMENT} $|
-${COMMENT} ${PARAMS}${align(PARAMS)} - $[Description].
+${COMMENT} ${PARAMS}${PARAMS_TYPES}${align(PARAMS)} - $[Description].
 ${COMMENT} |$$|
 ${COMMENT} Examples
 ${COMMENT} $<3>(

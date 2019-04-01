@@ -36,8 +36,9 @@ export class Typescript extends WorkShop {
         }
     }
 
-    public getVariables(): ISyntaxVariable {
-        const variables: ISyntaxVariable = {
+    public getVariables(): Promise<ISyntaxVariable> {
+        console.log("var begin")
+        const variables: ISyntaxVariable =  {
             NAME: this.parse.parseName(this.block),
             PARAMS: this.parse.parseParams(this.block).paramList,
             PARAMS_TYPES: this.parse.parseParams(this.block).paramTypes,
@@ -46,8 +47,12 @@ export class Typescript extends WorkShop {
             BLOCK_COMMENT_END: this.getComment("BLOCK_COMMENT_END"),
             COMMENT: this.getComment("COMMENT"),
         };
+        console.log("var done")
 
-        return variables;
+        return new Promise((resolve, reject) => {
+            resolve(variables);
+            reject(undefined);
+        })
     }
 
     public getCurrentColumn(index: number): number {

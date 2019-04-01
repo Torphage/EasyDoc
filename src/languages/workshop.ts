@@ -1,6 +1,6 @@
 import * as fs from "fs";
 import * as vs from "vscode";
-import commentFile from "../config/comments";
+import regexFile from "../config/languages";
 import { ISyntaxVariable } from "../interfaces";
 import { CustomSyntax } from "../syntax";
 import { ErrorHandler, Placeholder, Repeater, Variable } from "../syntaxTypes/export";
@@ -23,7 +23,7 @@ export abstract class WorkShop {
         this.docRows = fs.readFileSync(this.document.fileName, "utf-8");
     }
 
-    public generate(docType: any, config: any, onEnter: boolean): void {
+    public async generate(docType: any, config: any, onEnter: boolean): Promise<void> {
         this.config = config;
 
         switch (docType) {
@@ -33,7 +33,9 @@ export abstract class WorkShop {
 
             case "function":
                 this.setCodeBlock(onEnter);
-                this.vars = this.getVariables();
+                console.log("beginvar")
+                this.vars = await this.getVariables();
+                console.log("donevar")
 
                 this.generateFunction(onEnter, true);
                 break;
@@ -41,15 +43,15 @@ export abstract class WorkShop {
     }
 
     protected abstract getCurrentColumn(index: number): number;
-    protected abstract getVariables(): ISyntaxVariable;
+    protected abstract getVariables(): Promise<ISyntaxVariable>;
     protected abstract getFunctionStartLine(row: string, onEnter: boolean): string[];
     protected abstract correctlyPlacedFunction(row: string): boolean;
 
     protected getComment(variable: string): string {
         let commentString: string;
 
-        if (this.constructor.name in commentFile) {
-            commentString = commentFile[this.constructor.name][variable];
+        if (this.constructor.name in regexFile) {
+            commentString = regexFile[this.constructor.name].syntax.comment[variable];
         } else {
             commentString = "";
         }

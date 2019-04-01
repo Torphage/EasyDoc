@@ -40,7 +40,7 @@ export class JavascriptParse extends BaseParse {
     }
 
     public parseParams(rows: string[]): IParams {
-        const regex = /\w*\s*\(([^\)]+)*/g;
+        const regex = this.regex.params.name;
 
         const match = regex.exec(rows[0])[1];
         if (match === undefined) {

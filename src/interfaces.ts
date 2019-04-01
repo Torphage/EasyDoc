@@ -25,6 +25,7 @@ interface IName {
 interface IParams {
     paramList: string[];
     paramTypes?: string[];
+    template: string;
 }
 
 interface IReturn {
@@ -39,13 +40,43 @@ interface IParse {
     return?: IReturn;
 }
 
+interface IRegexParams {
+    name: RegExp;
+    type?: RegExp;
+}
+
 interface IRegexFunc {
     name: RegExp[];
-    params: IParams;
+    params: IRegexParams;
+}
+
+interface IRegexLanguageSyntax {
+    string: Array<[string, string]>;
+    comment: {
+        BLOCK_COMMENT_START: string;
+        BLOCK_COMMENT_END: string;
+        COMMENT: string;
+    };
 }
 
 interface IRegex {
     function: IRegexFunc;
+}
+
+interface ILanguage {
+    regex: {
+        function: IRegexFunc;
+    };
+    syntax: IRegexLanguageSyntax;
+}
+
+interface ILanguages {
+    Cpp: ILanguage;
+    Haskell: ILanguage;
+    Javascript: ILanguage;
+    Python: ILanguage;
+    Ruby: ILanguage;
+    Typescript: ILanguage;
 }
 
 
@@ -53,6 +84,7 @@ export {
     ISyntaxType,
     ISyntaxVariable,
     IDocumentationParts,
+    ILanguages,
     IRepeater,
     IParams,
     IParse,
