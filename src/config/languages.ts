@@ -140,7 +140,7 @@ const languageSyntax: ILanguages = {
     },
     Typescript: {
         regex: {
-            function: /\s*(?<name>\w+)\s*\((?<params>[^)]*)\)\:\s*(?<returnType>\w*)/g,
+            function: /\s*(?<name>\w+)\s*\((?<params>[^)]*)\)\:\s*(?<returnType>[^{]*)/g,
         },
         syntax: {
             string: [
