@@ -9,13 +9,16 @@ export class Base extends WorkShop {
     public getFunctionStartLine(rows: string): string[] { return; }
     public correctlyPlacedFunction(functionLineIndex: string): boolean { return; }
     public getCurrentColumn(index: number): number { return; }
-    public getVariables(): ISyntaxVariable {
+    public getVariables(): Promise<ISyntaxVariable> {
         const variables: ISyntaxVariable = {
             BLOCK_COMMENT_START: this.getComment("BLOCK_COMMENT_START"),
             BLOCK_COMMENT_END: this.getComment("BLOCK_COMMENT_END"),
             COMMENT: this.getComment("COMMENT"),
         };
 
-        return variables;
+        return new Promise((resolve, reject) => {
+            resolve(variables);
+            reject(undefined);
+        });
     }
 }
