@@ -10,7 +10,10 @@
             "es2018.intl"
         ],
         "sourceMap": true,
-        "rootDir": "src"
+        "rootDir": "src",
+        "typeRoots": [
+            "typings"
+        ]
     },
     "exclude": [
         "node_modules",
