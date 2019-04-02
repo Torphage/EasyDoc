@@ -125,6 +125,22 @@ export abstract class WorkShop {
         });
     }
 
+    private getFunctionStartLine(rows: string, onEnter: boolean): string[] {
+        let functionLineIndex: number;
+
+        if (!onEnter) {
+            functionLineIndex = this.position.line;
+        } else if (this.config.commentAboveTarget) {
+            functionLineIndex = this.position.line + 1;
+        } else {
+            functionLineIndex = this.position.line - 1;
+        }
+
+        const functionLineString = rows.split("\n").splice(functionLineIndex);
+
+        return functionLineString;
+    }
+
     private setCodeBlock(onEnter: boolean): void {
         const functionLineString = this.getFunctionStartLine(this.docRows, onEnter);
         const correctlyPlacedFunction = this.correctlyPlacedFunction(functionLineString[0]);
