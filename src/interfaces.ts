@@ -25,11 +25,12 @@ interface IName {
 interface IParams {
     paramList: string[];
     paramTypes?: string[];
+    template: string;
 }
 
 interface IReturn {
     name: string;
-    type?: string;
+    params: string;
 }
 
 interface IParse {
@@ -39,23 +40,53 @@ interface IParse {
     return?: IReturn;
 }
 
-interface IRegexFunc {
-    name: RegExp[];
-    params: IParams;
-}
-
 interface IRegex {
-    function: IRegexFunc;
+    name: RegExp;
+    type?: RegExp;
 }
 
+interface IRegexRegex {
+    function: RegExp;
+}
+
+interface IRegexString {
+    value: string;
+    multi: boolean;
+    interpolate: boolean;
+    escape: boolean;
+}
+
+interface IRegexLanguageSyntax {
+    string: IRegexString[];
+    comment: {
+        BLOCK_COMMENT_START: string;
+        BLOCK_COMMENT_END: string;
+        COMMENT: string;
+    };
+}
+
+interface ILanguage {
+    regex: IRegexRegex;
+    syntax: IRegexLanguageSyntax;
+}
+
+interface ILanguages {
+    Cpp: ILanguage;
+    Haskell: ILanguage;
+    Javascript: ILanguage;
+    Python: ILanguage;
+    Ruby: ILanguage;
+    Typescript: ILanguage;
+}
 
 export {
     ISyntaxType,
     ISyntaxVariable,
     IDocumentationParts,
+    ILanguage,
+    ILanguages,
     IRepeater,
+    IReturn,
     IParams,
     IParse,
-    IRegex,
-    IRegexFunc,
 };

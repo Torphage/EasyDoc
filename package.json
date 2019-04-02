@@ -75,6 +75,15 @@
                         "alignIndentation": true,
                         "triggerString": "$$$"
                     }
+                },
+                "EasyDoc.jsdoc": {
+                    "type": "object",
+                    "default": {
+                        "alignIndentation": true,
+                        "commentAboveTarget": true,
+                        "docType": "function",
+                        "triggerString": "///"
+                    }
                 }
             }
         },

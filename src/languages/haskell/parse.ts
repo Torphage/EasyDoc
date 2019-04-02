@@ -29,34 +29,21 @@ export class HaskellParse extends BaseParse {
         return functionRows;
     }
 
-    public parseParams(rows: string[]): IParams {
-        const regex = /^\w+\s*(.*|\s*)= do/gm;
+    public parseParams(params: string): IParams {
+        const paramList = params.replace(/[^,\w:]+/g, "").split(",");
+        const template = paramList.join(", ");
 
-        const match = regex.exec(rows[0])[1];
-        if (match === undefined) {
+        if (paramList.length === 1 && paramList[0].length === 0) {
             return {
                 paramList: undefined,
+                template: undefined,
             };
         }
 
-        const params = match.trim().split(/\s/g);
-
         return {
-            paramList: params,
+            paramList,
+            template,
         };
-    }
-
-    public parseParamsTemplate(rows: string[]): string {
-        const params = this.parseParams(rows);
-        if (params.paramList === undefined) { return undefined; }
-
-        let str: string = `$[${params.paramList[0]}]`;
-
-        for (const param of params.paramList.slice(1)) {
-            str += `, $[${param}]`;
-        }
-
-        return str;
     }
 
     private splitLines(rows: string[]): string[] {

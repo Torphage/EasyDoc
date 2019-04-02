@@ -1,6 +1,6 @@
 import * as fs from "fs";
 import * as vs from "vscode";
-import commentFile from "../config/comments";
+import regexFile from "../config/languages";
 import { ISyntaxVariable } from "../interfaces";
 import { CustomSyntax } from "../syntax";
 import { ErrorHandler, Placeholder, Repeater, Variable } from "../syntaxTypes/export";
@@ -23,7 +23,7 @@ export abstract class WorkShop {
         this.docRows = fs.readFileSync(this.document.fileName, "utf-8");
     }
 
-    public generate(docType: any, config: any, onEnter: boolean): void {
+    public async generate(docType: any, config: any, onEnter: boolean): Promise<void> {
         this.config = config;
 
         switch (docType) {
@@ -33,7 +33,7 @@ export abstract class WorkShop {
 
             case "function":
                 this.setCodeBlock(onEnter);
-                this.vars = this.getVariables();
+                this.vars = await this.getVariables();
 
                 this.generateFunction(onEnter, true);
                 break;
@@ -41,14 +41,14 @@ export abstract class WorkShop {
     }
 
     protected abstract getCurrentColumn(index: number): number;
-    protected abstract getVariables(): ISyntaxVariable;
+    protected abstract getVariables(): Promise<ISyntaxVariable>;
     protected abstract correctlyPlacedFunction(row: string): boolean;
 
     protected getComment(variable: string): string {
         let commentString: string;
 
-        if (this.constructor.name in commentFile) {
-            commentString = commentFile[this.constructor.name][variable];
+        if (this.constructor.name in regexFile) {
+            commentString = regexFile[this.constructor.name].syntax.comment[variable];
         } else {
             commentString = "";
         }
@@ -58,8 +58,8 @@ export abstract class WorkShop {
 
     private async generateFunction(onEnter: boolean, strictPlace: boolean): Promise<void> {
         const errorHandler = new ErrorHandler(this.vars);
-        const repeater = new Repeater(this.vars);
         const variable = new Variable(this.vars);
+        const repeater = new Repeater(this.vars);
         const placeholder = new Placeholder();
 
         const cleanText = errorHandler.handle(this.syntaxFile);
@@ -67,14 +67,14 @@ export abstract class WorkShop {
         const repSnippet = repeater.generate(varSnippet);
         const placeSnippet = placeholder.generate(repSnippet);
 
+        if (onEnter && placeSnippet.value.length !== 0) {
+            await this.delTriggerString();
+        }
+
         if (!this.config.commentAboveTarget) {
             for (let i = 0; i < this.parse.blockStartIndex; i++) {
                 await this.stepDownInEditor();
             }
-        }
-
-        if (onEnter && placeSnippet.value.length !== 0) {
-            this.delTriggerString();
         }
 
         const functionLineString = this.getFunctionStartLine(this.docRows, onEnter);
@@ -86,6 +86,22 @@ export abstract class WorkShop {
         }
 
         this.editor.insertSnippet(placeSnippet);
+    }
+
+    private getFunctionStartLine(rows: string, onEnter: boolean): string[] {
+        let functionLineIndex: number;
+
+        if (!onEnter) {
+            functionLineIndex = this.position.line;
+        } else if (this.config.commentAboveTarget) {
+            functionLineIndex = this.position.line + 1;
+        } else {
+            functionLineIndex = this.position.line - 1;
+        }
+
+        const functionLineString = rows.split("\n").splice(functionLineIndex);
+
+        return functionLineString;
     }
 
     private waitForInsertLine(): Promise<Thenable<{}>|undefined> {
@@ -136,17 +152,21 @@ export abstract class WorkShop {
         this.block = this.parse.parseBlock(functionLineString);
     }
 
-    private delTriggerString() {
-        const line = this.position.line;
-        const character = this.position.character - this.config.triggerString.length;
+    private delTriggerString(): Promise<Thenable<{}>|undefined> {
+        const character = this.config.triggerString.length;
 
-        const currentChar = new vs.Position(this.position.line + 1, this.position.character);
+        const currentPosition = vs.window.activeTextEditor.selection.active;
 
-        const pos = new vs.Position(line, character);
-        const selection = new vs.Selection(pos, currentChar);
+        const pos = new vs.Position(this.position.line, this.position.character - character);
+        const range = new vs.Range(pos, currentPosition);
 
-        vs.window.activeTextEditor.edit((builder) => {
-            builder.replace(selection, "");
+        return new Promise((resolve, reject) => {
+            resolve(
+                this.editor.edit((builder: vs.TextEditorEdit) => {
+                    builder.delete(range);
+                }),
+            );
+            reject(undefined);
         });
     }
 }

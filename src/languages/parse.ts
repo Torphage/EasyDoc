@@ -1,28 +1,54 @@
-import regexExpressions from "../config/regex";
-import { IParams, IRegexFunc } from "../interfaces";
+import regexExpressions from "../config/languages";
+import { ILanguage, IParams, IReturn } from "../interfaces";
 
 export abstract class BaseParse {
     public blockStartIndex: number = 0;
-    protected regex: IRegexFunc;
+    protected allRegex: ILanguage;
+    protected regex: RegExp;
 
     constructor(docType: string) {
-        this.regex = regexExpressions[this.constructor.name][docType];
-        console.log(docType);
-        console.log(this.constructor.name);
-        console.log(this.regex);
+        this.allRegex = regexExpressions[this.constructor.name.slice(0, -5)];
+        this.regex = this.allRegex.regex[docType];
     }
 
     public abstract parseBlock(rows: string[]): string[];
+    public abstract parseParams(params: string): IParams;
 
-    public parseName(rows: string[]): string {
-        const regexes = this.regex.name;
+    public parse(rows: string[]): {[key: string]: string} {
+        this.regex.lastIndex = 0;
+        const match = this.regex.exec(rows[0]);
 
-        let regex: RegExp;
-        for (regex of regexes) {
-            const match = regex.exec(rows[0])[1];
-
-            if (match !== undefined) { return match; }
-        }
+        return match.groups;
     }
-    public abstract parseParams(row: string[]): IParams;
-}
+
+    protected preParse(rows: string[]): Promise<string[]> {
+        const charToEscape = /(?<!\\)([(){}])/g;
+        const whenToEscape = this.allRegex.syntax.string;
+
+        const newRows: string[] = [];
+
+        let row: string;
+        for (row of rows) {
+            let tempStr = row;
+
+            let stringSyntax: string[];
+            for (stringSyntax of whenToEscape) {
+                const regex = new RegExp(`(?<!\\\\)${stringSyntax[0]}.*?(?<!\\\\)${stringSyntax[1]}`, "g");
+                const match = row.match(regex);
+
+                if (match === null) { continue; }
+
+                let regexMatch: string;
+                for (regexMatch of match) {
+                    tempStr = tempStr.replace(regexMatch, regexMatch.replace(charToEscape, "\\$1"));
+                }
+            }
+
+            newRows.push(tempStr);
+        }
+
+        return new Promise((resolve, reject) => {
+            resolve(newRows);
+            reject(undefined);
+        });
+    }}

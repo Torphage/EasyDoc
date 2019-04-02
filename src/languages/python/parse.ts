@@ -1,4 +1,5 @@
 import { IParams } from "../../interfaces";
+import { removeStringBetweenChar } from "../../utils";
 import { BaseParse } from "../parse";
 
 export class PythonParse extends BaseParse {
@@ -29,34 +30,21 @@ export class PythonParse extends BaseParse {
         return functionRows;
     }
 
-    public parseParams(rows: string[]): IParams {
-        const regex = /(?:\s|\sself.)\w*\(([^\)]+)*/g;
+    public parseParams(params: string): IParams {
+        const paramList = params.replace(/[^,\w:]+/g, "").split(",");
+        const template = paramList.join(", ");
 
-        const match = regex.exec(rows[0])[1];
-        if (match === undefined) {
+        if (paramList.length === 1 && paramList[0].length === 0) {
             return {
                 paramList: undefined,
+                template: undefined,
             };
         }
 
-        const params = match.replace(/\s/g, "").split(",");
-
         return {
-            paramList: params,
+            paramList,
+            template,
         };
-    }
-
-    public parseParamsTemplate(rows: string[]): string {
-        const params = this.parseParams(rows);
-        if (params.paramList === undefined) { return undefined; }
-
-        let str: string = `$[${params.paramList[0]}]`;
-
-        for (const param of params.paramList.slice(1)) {
-            str += `, $[${param}]`;
-        }
-
-        return str;
     }
 
     private splitLines(rows: string[]): string[] {

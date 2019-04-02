@@ -1,4 +1,5 @@
 import { IParams } from "../../interfaces";
+import { copy, removeStringBetweenChar } from "../../utils";
 import { BaseParse } from "../parse";
 
 export class CppParse extends BaseParse {
@@ -8,13 +9,21 @@ export class CppParse extends BaseParse {
 
     public parseBlock(newlineRows: string[]): string[] {
         const lines = this.splitLines(newlineRows);
-        const functionRows: string[] = [];
+
+        let tempStr: string = copy(newlineRows.join("\n"));
+        for (const temp of this.allRegex.syntax.string) {
+            const char = temp.value;
+            tempStr = removeStringBetweenChar(tempStr, char);
+        }
+
+        const tmpStr = tempStr.split("\n");
 
         let openingBracket = 0;
         let closingBracket = 0;
         let blockStarted = false;
+        let blockIndex = 0;
 
-        for (const line of lines) {
+        for (const line of tmpStr) {
             if (line.includes("{")) {
                 blockStarted = true;
                 openingBracket++;
@@ -24,7 +33,7 @@ export class CppParse extends BaseParse {
                 closingBracket++;
             }
 
-            functionRows.push(line);
+            blockIndex++;
 
             if (!blockStarted) {
                 this.blockStartIndex++;
@@ -36,46 +45,29 @@ export class CppParse extends BaseParse {
             }
         }
 
-        return functionRows;
+        return lines.slice(0, blockIndex);
     }
 
-    public parseParams(rows: string[]): IParams {
-        const regex = /\s*\w*\(([^\)]+)/g;
+    public parseParams(params: string): IParams {
+        const paramsObj = params.replace(/[^,\w:]+/g, "").split(",");
 
-        let i: number = 1;
-        let row: string;
+        const paramList = paramsObj.map((param) => param.split(" ")[-1]);
+        const paramTypes = paramsObj.map((param) => param.replace(` ${param.split(" ")[-1]}`, ""));
+        const template = paramList.join(", ");
 
-        for (row of rows) {
-            if (row.includes(")")) { break; }
-            i++;
-        }
-
-        const text = rows.slice(0, i).join("");
-        const match = regex.exec(text)[1];
-
-        if (match === undefined) {
+        if (paramList.length === 1 && paramList[0].length === 0) {
             return {
                 paramList: undefined,
                 paramTypes: undefined,
+                template: undefined,
             };
         }
 
-        const params = match.split(",");
-
-        return this.extractTypeAndName(params);
-    }
-
-    public parseParamsTemplate(rows: string[]): string {
-        const params = this.parseParams(rows);
-        if (params.paramList === undefined) { return undefined; }
-
-        let str: string = `$[${params.paramList[0]}]`;
-
-        for (const param of params.paramList.slice(1)) {
-            str += `, $[${param}]`;
-        }
-
-        return str;
+        return {
+            paramList,
+            paramTypes,
+            template,
+        };
     }
 
     private splitLines(rows: string[]): string[] {
@@ -103,23 +95,5 @@ export class CppParse extends BaseParse {
         }
 
         return outStr;
-    }
-
-    private extractTypeAndName(varName: string[]): IParams {
-        const names: string[] = [];
-        const types: string[] = [];
-
-        let param: string;
-        for (param of varName) {
-            if (param.length === 1) { continue; }
-            const name = param.split(/\s/g);
-            names.push(name[name.length - 1]);
-            types.push(name.slice(0, name.length - 1).join(" ").trim());
-        }
-
-        return {
-            paramList: names,
-            paramTypes: types,
-        };
     }
 }
