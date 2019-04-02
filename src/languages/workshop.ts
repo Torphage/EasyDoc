@@ -33,9 +33,7 @@ export abstract class WorkShop {
 
             case "function":
                 this.setCodeBlock(onEnter);
-                console.log("beginvar")
                 this.vars = await this.getVariables();
-                console.log("donevar")
 
                 this.generateFunction(onEnter, true);
                 break;
@@ -61,8 +59,8 @@ export abstract class WorkShop {
 
     private async generateFunction(onEnter: boolean, strictPlace: boolean): Promise<void> {
         const errorHandler = new ErrorHandler(this.vars);
-        const repeater = new Repeater(this.vars);
         const variable = new Variable(this.vars);
+        const repeater = new Repeater(this.vars);
         const placeholder = new Placeholder();
 
         const cleanText = errorHandler.handle(this.syntaxFile);
