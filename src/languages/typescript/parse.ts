@@ -8,8 +8,6 @@ export class TypescriptParse extends BaseParse {
     }
 
     public parseBlock(newlineRows: string[]): string[] {
-        // const regex = /(["'])(?:(?=(\\?))\2.)*?\1/g;
-        // const escapeRegex = /[{}]/g;
         const lines = this.splitLines(newlineRows);
 
         let tempStr: string = copy(newlineRows.join("\n"));
