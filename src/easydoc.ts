@@ -22,10 +22,15 @@ export class EasyDoc {
         config.removeConfigWithRemovalOfFile(syntaxDir);
 
         if (!onEnter) {
-            const choice = await this.quickPick(config);
-            const fileConfig: any = this.config.get(choice.split("    ")[0]);
 
-            const filePath = path.join(choice.split("    ")[1], `${choice.split("    ")[0]}.txt`);
+            const choice = await this.quickPick(config);
+
+            const fileName = choice.split("    ")[0];
+            const dirPath = choice.split("    ")[1];
+            const filePath = path.join(dirPath, `${fileName}.txt`);
+
+            const fileConfig = this.fixConfig(config, fileName);
+
             const format = new Format(filePath, fileConfig, onEnter);
             format.createDoc();
 
@@ -45,19 +50,7 @@ export class EasyDoc {
 
             for (const fileName of customFiles) {
 
-                const localPackage = config.packageFiles.contributes.configuration.properties;
-                const extensionName = `EasyDoc.${fileName}`;
-                const fileConfig: any = this.config.get(fileName);
-
-                if (!(extensionName in localPackage)) {
-                    config.addConfig(localPackage[extensionName]);
-                }
-
-                const missingKeys = config.getMissingKeys(localPackage[extensionName]);
-
-                if (missingKeys) {
-                    config.addMissingKeys(localPackage[extensionName], missingKeys);
-                }
+                const fileConfig = this.fixConfig(config, fileName);
 
                 const triggerText = fileConfig.triggerString;
 
@@ -71,6 +64,32 @@ export class EasyDoc {
                 }
             }
         }
+    }
+
+    private fixConfig(config: any, fileName: string): any {
+        const extensionPackage = config.packageFiles.contributes.configuration.properties;
+
+        const configName = `EasyDoc.${fileName}`;
+
+        if (!(configName in extensionPackage)) {
+            config.addConfig(configName);
+        }
+
+        const missingKeys = config.getMissingKeys(configName);
+
+        if (missingKeys) {
+            config.addMissingKeys(configName, missingKeys);
+        }
+
+        let fileConfig: any;
+
+        fileConfig = vs.workspace.getConfiguration("EasyDoc").get(fileName);
+
+        if (fileConfig === undefined) {
+            fileConfig = extensionPackage[configName].default;
+        }
+
+        return fileConfig;
     }
 
     private quickPick(config: Config): Thenable<string> {

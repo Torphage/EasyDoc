@@ -30,15 +30,15 @@ export class Config {
 
     // Dynamically adds configuration to the package.json, only do this to be able
     // to add configurations to the vscode config file instead of having my own
-    public addConfig(config: any): void {
-        config = {
+    public addConfig(configName: any): void {
+        this.packageFiles.contributes.configuration.properties[configName] = {
+            type: "object",
             default: {
                 alignIndentation: true,
                 commentAboveTarget: false,
                 docType: "function",
                 triggerString: "$$$",
             },
-            type: "object",
         };
 
         fs.writeFile(this.dir + "/package.json", JSON.stringify(this.packageFiles, null, 4), (err) => {
@@ -48,7 +48,7 @@ export class Config {
         });
     }
 
-    public getMissingKeys(fileConfig: any): string[] {
+    public getMissingKeys(fileConfig: string): string[] {
         const ConfigKeys: any = {
             alignIndentation: true,
             commentAboveTarget: false,
@@ -58,8 +58,9 @@ export class Config {
 
         const missingKeys = [];
 
+        const config = this.packageFiles.contributes.configuration.properties[fileConfig].default;
         for (const key in ConfigKeys) {
-            if (!(Object.keys(fileConfig.default).includes(key))) {
+            if (!(Object.keys(config).includes(key))) {
                 missingKeys.push({
                     keyName: key,
                     keyValue: ConfigKeys[key],
@@ -72,7 +73,7 @@ export class Config {
 
     public addMissingKeys(fileConfig: any, missingKeys: any[]): void {
         for (const key of missingKeys) {
-            fileConfig.default[key.keyName] = key.keyValue;
+            this.packageFiles.contributes.configuration.properties[fileConfig].default[key.keyName] = key.keyValue;
         }
 
         this.writeToPackage();
