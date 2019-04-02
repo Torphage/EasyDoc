@@ -1,20 +1,19 @@
 import { ILanguages } from "../interfaces";
 
+// function: /\s*(?<name>\w*)\((?:(?<paramType>\w*)+\s+(?<paramName>\w*)[,)])*/g,
 const languageSyntax: ILanguages = {
     Cpp: {
         regex: {
-            function: {
-                name: [
-                    /\s*(\w*)\([^\)]*/g,
-                ],
-                params: {
-                    name: /\s*\w*\(([^\)]+)/g,
-                },
-            },
+            function: /\s*(?<returnType>\w+)\s+(?<name>\w+)\s*\((?<params>[^)]*)/g,
         },
         syntax: {
             string: [
-                ["\"", "'"],
+                {
+                    value: "\"",
+                    multi: false,
+                    interpolate: false,
+                    escape: false,
+                },
             ],
             comment: {
                 BLOCK_COMMENT_START: "*/",
@@ -25,18 +24,22 @@ const languageSyntax: ILanguages = {
     },
     Haskell: {
         regex: {
-            function: {
-                name: [
-                    /^\s*(\w+)\s+/g,
-                ],
-                params: {
-                    name: /^\w+\s*(.*|\s*)= do/gm,
-                },
-            },
+            function: /^\s*(?<name>\w+)\s*(?<params>[^\n]*\sdo)/g,
         },
         syntax: {
             string: [
-                ["\"", "'"],
+                {
+                    value: "\"",
+                    multi: false,
+                    interpolate: false,
+                    escape: false,
+                },
+                {
+                    value: "'",
+                    multi: false,
+                    interpolate: false,
+                    escape: false,
+                },
             ],
             comment: {
                 BLOCK_COMMENT_START: "{-",
@@ -47,19 +50,28 @@ const languageSyntax: ILanguages = {
     },
     Javascript: {
         regex: {
-            function: {
-                name: [
-                    /\s*(\w*)\([^\)]*/g,
-                ],
-                params: {
-                    name: /\w*\s*\(([^\)]+)*/g,
-                },
-            },
+            function: /\s*(?<name>\w+)\s*\((?<params>[^)]*)/g,
         },
         syntax: {
             string: [
-                ["`", "`"],
-                ["\"", "'"],
+                {
+                    value: "`",
+                    multi: true,
+                    interpolate: true,
+                    escape: true,
+                },
+                {
+                    value: "\"",
+                    multi: false,
+                    interpolate: false,
+                    escape: true,
+                },
+                {
+                    value: "'",
+                    multi: false,
+                    interpolate: false,
+                    escape: true,
+                },
             ],
             comment: {
                 BLOCK_COMMENT_START: "/*",
@@ -70,19 +82,28 @@ const languageSyntax: ILanguages = {
     },
     Python: {
         regex: {
-            function: {
-                name: [
-                    /^\s*(?:class|def)\s+\w+\s+(\w+)/g,
-                ],
-                params: {
-                    name: /(?:\s|\sself.)\w*\(([^\)]+)*/g,
-                },
-            },
+            function: /^\s*(?:class|def)\s+(?<name>\w+)\s*\((?:self, |)(?<params>[^)]*)/g,
         },
         syntax: {
             string: [
-                ["\"\"\"", "\"\"\""],
-                ["\"", "'"],
+                {
+                    value: "\"\"\"",
+                    multi: true,
+                    interpolate: false,
+                    escape: false,
+                },
+                {
+                    value: "\"",
+                    multi: false,
+                    interpolate: true,
+                    escape: true,
+                },
+                {
+                    value: "'",
+                    multi: false,
+                    interpolate: true,
+                    escape: true,
+                },
             ],
             comment: {
                 BLOCK_COMMENT_START: "\"\"\"",
@@ -93,20 +114,24 @@ const languageSyntax: ILanguages = {
     },
     Ruby: {
         regex: {
-            function: {
-                name: [
-                    /^\s*(?:module|class|def)\s+(?:self.(\w*)|(\w*))/g,
-                ],
-                params: {
-                    name: /(?:class|def|module)(?:\s|\sself.)\w*\s*(?:\(|\s)(?!\()([^\)]+)*/g,
-                },
-            },
+            function: /^\s*(?:module|class|def)(?:\s|\sself)(?<name>\w+[\=\?\!]?)\s*\(?(?<params>[^)\n]*)/g,
         },
         syntax: {
             string: [
-                ["\"", "'"],
+                {
+                    value: "\"",
+                    multi: false,
+                    interpolate: true,
+                    escape: true,
+                },
+                {
+                    value: "'",
+                    multi: false,
+                    interpolate: false,
+                    escape: false,
+                },
             ],
-            lineComment: {
+            comment: {
                 BLOCK_COMMENT_START: "=begin",
                 BLOCK_COMMENT_END: "=end",
                 COMMENT: "#",
@@ -115,19 +140,28 @@ const languageSyntax: ILanguages = {
     },
     Typescript: {
         regex: {
-            function: {
-                name: [
-                    /\s*(\w*)\s*\([^\)]*/g,
-                ],
-                params: {
-                    name: /(\()(?:(?=(\\?))\2.)*?\1/g,
-                },
-            },
+            function: /\s*(?<name>\w+)\s*\((?<params>[^)]*)\)\:\s*(?<returnType>\w*)/g,
         },
         syntax: {
             string: [
-                ["`", "`"],
-                ["'", "\""],
+                {
+                    value: "`",
+                    multi: true,
+                    interpolate: true,
+                    escape: true,
+                },
+                {
+                    value: "\"",
+                    multi: false,
+                    interpolate: false,
+                    escape: true,
+                },
+                {
+                    value: "'",
+                    multi: false,
+                    interpolate: false,
+                    escape: true,
+                },
             ],
             comment: {
                 BLOCK_COMMENT_START: "/*",
