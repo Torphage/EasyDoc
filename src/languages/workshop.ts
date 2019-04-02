@@ -68,14 +68,14 @@ export abstract class WorkShop {
         const repSnippet = repeater.generate(varSnippet);
         const placeSnippet = placeholder.generate(repSnippet);
 
+        if (onEnter && placeSnippet.value.length !== 0) {
+            await this.delTriggerString();
+        }
+
         if (!this.config.commentAboveTarget) {
             for (let i = 0; i < this.parse.blockStartIndex; i++) {
                 await this.stepDownInEditor();
             }
-        }
-
-        if (onEnter && placeSnippet.value.length !== 0) {
-            this.delTriggerString();
         }
 
         const functionLineString = this.getFunctionStartLine(this.docRows, onEnter);
@@ -121,17 +121,21 @@ export abstract class WorkShop {
         this.block = this.parse.parseBlock(functionLineString);
     }
 
-    private delTriggerString() {
-        const line = this.position.line;
-        const character = this.position.character - this.config.triggerString.length;
+    private delTriggerString(): Promise<Thenable<{}>|undefined> {
+        const character = this.config.triggerString.length;
 
-        const currentChar = new vs.Position(this.position.line + 1, this.position.character);
+        const currentPosition = vs.window.activeTextEditor.selection.active;
 
-        const pos = new vs.Position(line, character);
-        const selection = new vs.Selection(pos, currentChar);
+        const pos = new vs.Position(this.position.line, this.position.character - character);
+        const range = new vs.Range(pos, currentPosition);
 
-        vs.window.activeTextEditor.edit((builder) => {
-            builder.replace(selection, "");
+        return new Promise((resolve, reject) => {
+            resolve(
+                this.editor.edit((builder: vs.TextEditorEdit) => {
+                    builder.delete(range);
+                }),
+            );
+            reject(undefined);
         });
     }
 }
