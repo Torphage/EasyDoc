@@ -30,7 +30,7 @@ interface IParams {
 
 interface IReturn {
     name: string;
-    type?: string;
+    params: string;
 }
 
 interface IParse {
@@ -40,18 +40,24 @@ interface IParse {
     return?: IReturn;
 }
 
-interface IRegexParams {
+interface IRegex {
     name: RegExp;
     type?: RegExp;
 }
 
-interface IRegexFunc {
-    name: RegExp[];
-    params: IRegexParams;
+interface IRegexRegex {
+    function: RegExp;
+}
+
+interface IRegexString {
+    value: string;
+    multi: boolean;
+    interpolate: boolean;
+    escape: boolean;
 }
 
 interface IRegexLanguageSyntax {
-    string: Array<[string, string]>;
+    string: IRegexString[];
     comment: {
         BLOCK_COMMENT_START: string;
         BLOCK_COMMENT_END: string;
@@ -59,14 +65,8 @@ interface IRegexLanguageSyntax {
     };
 }
 
-interface IRegex {
-    function: IRegexFunc;
-}
-
 interface ILanguage {
-    regex: {
-        function: IRegexFunc;
-    };
+    regex: IRegexRegex;
     syntax: IRegexLanguageSyntax;
 }
 
@@ -79,15 +79,14 @@ interface ILanguages {
     Typescript: ILanguage;
 }
 
-
 export {
     ISyntaxType,
     ISyntaxVariable,
     IDocumentationParts,
+    ILanguage,
     ILanguages,
     IRepeater,
+    IReturn,
     IParams,
     IParse,
-    IRegex,
-    IRegexFunc,
 };
