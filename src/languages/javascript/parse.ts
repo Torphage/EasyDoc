@@ -1,4 +1,5 @@
 import { IParams } from "../../interfaces";
+import { copy, removeStringBetweenChar } from "../../utils";
 import { BaseParse } from "../parse";
 
 export class JavascriptParse extends BaseParse {
@@ -8,13 +9,21 @@ export class JavascriptParse extends BaseParse {
 
     public parseBlock(newlineRows: string[]): string[] {
         const lines = this.splitLines(newlineRows);
-        const functionRows: string[] = [];
+
+        let tempStr: string = copy(newlineRows.join("\n"));
+        for (const temp of this.allRegex.syntax.string) {
+            const char = temp.value;
+            tempStr = removeStringBetweenChar(tempStr, char);
+        }
+
+        const tmpStr = tempStr.split("\n");
 
         let openingBracket = 0;
         let closingBracket = 0;
         let blockStarted = false;
+        let blockIndex = 0;
 
-        for (const line of lines) {
+        for (const line of tmpStr) {
             if (line.includes("{")) {
                 blockStarted = true;
                 openingBracket++;
@@ -24,7 +33,7 @@ export class JavascriptParse extends BaseParse {
                 closingBracket++;
             }
 
-            functionRows.push(line);
+            blockIndex++;
 
             if (!blockStarted) {
                 this.blockStartIndex++;
@@ -36,37 +45,24 @@ export class JavascriptParse extends BaseParse {
             }
         }
 
-        return functionRows;
+        return lines.slice(0, blockIndex);
     }
 
-    public parseParams(rows: string[]): IParams {
-        const regex = this.regex.params.name;
+    public parseParams(params: string): IParams {
+        const paramList = params.replace(/[^,\w:]+/g, "").split(",");
+        const template = paramList.join(", ");
 
-        const match = regex.exec(rows[0])[1];
-        if (match === undefined) {
+        if (paramList.length === 1 && paramList[0].length === 0) {
             return {
                 paramList: undefined,
+                template: undefined,
             };
         }
 
-        const params = match.replace(/\s/g, "").split(",");
-
         return {
-            paramList: params,
+            paramList,
+            template,
         };
-    }
-
-    public parseParamsTemplate(rows: string[]): string {
-        const params = this.parseParams(rows);
-        if (params.paramList === undefined) { return undefined; }
-
-        let str: string = `$[${params.paramList[0]}]`;
-
-        for (const param of params.paramList.slice(1)) {
-            str += `, $[${param}]`;
-        }
-
-        return str;
     }
 
     private splitLines(rows: string[]): string[] {

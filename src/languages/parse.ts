@@ -1,35 +1,24 @@
 import regexExpressions from "../config/languages";
-import { IParams, IRegex, IRegexFunc } from "../interfaces";
+import { ILanguage, IParams, IReturn } from "../interfaces";
 
 export abstract class BaseParse {
     public blockStartIndex: number = 0;
-    protected allRegex: IRegex;
-    protected regex: IRegexFunc;
+    protected allRegex: ILanguage;
+    protected regex: RegExp;
 
     constructor(docType: string) {
         this.allRegex = regexExpressions[this.constructor.name.slice(0, -5)];
-        this.regex = this.allRegex[docType];
+        this.regex = this.allRegex.regex[docType];
     }
 
     public abstract parseBlock(rows: string[]): string[];
-    public abstract parseParams(row: string[]): IParams;
+    public abstract parseParams(params: string): IParams;
 
-    public parseName(rows: string[]): string | undefined {
-        console.log(0)
-        // const l = await this.preParse(rows);
-        console.log(1)
-        // console.log(l);
-        console.log(2)
-        const regexes = this.regex.name;
+    public parse(rows: string[]): {[key: string]: string} {
+        this.regex.lastIndex = 0;
+        const match = this.regex.exec(rows[0]);
 
-        let regex: RegExp;
-        for (regex of regexes) {
-            const match = regex.exec(rows[0])[1];
-
-            if (match !== undefined) { return match; }
-        }
-
-        return undefined;
+        return match.groups;
     }
 
     protected preParse(rows: string[]): Promise<string[]> {
