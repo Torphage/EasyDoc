@@ -1,4 +1,4 @@
 /**
-  * $[Description] $|
-  * @param ${PARAMS} $[Description]|$
-  */
+ * $[Description] $|
+ * @param ${PARAMS} $[Description]|$
+ */
