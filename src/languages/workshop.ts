@@ -88,22 +88,6 @@ export abstract class WorkShop {
         this.editor.insertSnippet(placeSnippet);
     }
 
-    private getFunctionStartLine(rows: string, onEnter: boolean): string[] {
-        let functionLineIndex: number;
-
-        if (!onEnter) {
-            functionLineIndex = this.position.line;
-        } else if (this.config.commentAboveTarget) {
-            functionLineIndex = this.position.line + 1;
-        } else {
-            functionLineIndex = this.position.line - 1;
-        }
-
-        const functionLineString = rows.split("\n").splice(functionLineIndex);
-
-        return functionLineString;
-    }
-
     private waitForInsertLine(): Promise<Thenable<{}>|undefined> {
         if (this.config.commentAboveTarget) {
             return new Promise((resolve, reject) => {
