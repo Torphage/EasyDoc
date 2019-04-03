@@ -69,6 +69,20 @@
 <div class="container container-main">
 	<div class="row">
 		<div class="col-8 col-content">
+			<section class="tsd-panel tsd-comment">
+				<div class="tsd-comment tsd-typography">
+					<div class="lead">
+						<p>Handle repeaters, converts their content and replaces the syntax with them.</p>
+					</div>
+					<dl class="tsd-comment-tags">
+						<dt>export</dt>
+						<dd></dd>
+						<dt>class</dt>
+						<dd><p>Repeater</p>
+						</dd>
+					</dl>
+				</div>
+			</section>
 			<section class="tsd-panel tsd-hierarchy">
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
@@ -119,9 +133,19 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/Torphage/EasyDoc/blob/eca731b/src/syntaxTypes/repeater.ts#L5">syntaxTypes/repeater.ts:5</a></li>
+									<li>Defined in <a href="https://github.com/Torphage/EasyDoc/blob/a42a424/src/syntaxTypes/repeater.ts#L14">syntaxTypes/repeater.ts:14</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Creates an instance of Repeater.</p>
+								</div>
+								<dl class="tsd-comment-tags">
+									<dt>memberof</dt>
+									<dd><p>Repeater</p>
+									</dd>
+								</dl>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
@@ -141,7 +165,7 @@
 					<div class="tsd-signature tsd-kind-icon">vars<span class="tsd-signature-symbol">:</span> <a href="../interfaces/_interfaces_.isyntaxvariable.html" class="tsd-signature-type">ISyntaxVariable</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/Torphage/EasyDoc/blob/eca731b/src/syntaxTypes/repeater.ts#L5">syntaxTypes/repeater.ts:5</a></li>
+							<li>Defined in <a href="https://github.com/Torphage/EasyDoc/blob/a42a424/src/syntaxTypes/repeater.ts#L14">syntaxTypes/repeater.ts:14</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -158,16 +182,31 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/Torphage/EasyDoc/blob/eca731b/src/syntaxTypes/repeater.ts#L11">syntaxTypes/repeater.ts:11</a></li>
+									<li>Defined in <a href="https://github.com/Torphage/EasyDoc/blob/a42a424/src/syntaxTypes/repeater.ts#L34">syntaxTypes/repeater.ts:34</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Generate the repeaters, loops through the text by row and search for repeaters found withing.
+									Handles them if they are found.</p>
+								</div>
+								<dl class="tsd-comment-tags">
+									<dt>memberof</dt>
+									<dd><p>Repeater</p>
+									</dd>
+								</dl>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>text: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The text to search for repeaters from.</p>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
+							<p>The text with converted repeaters.</p>
 						</li>
 					</ul>
 				</section>
@@ -181,19 +220,36 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/Torphage/EasyDoc/blob/eca731b/src/syntaxTypes/repeater.ts#L34">syntaxTypes/repeater.ts:34</a></li>
+									<li>Defined in <a href="https://github.com/Torphage/EasyDoc/blob/a42a424/src/syntaxTypes/repeater.ts#L66">syntaxTypes/repeater.ts:66</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Search for repeaters at a specific index.</p>
+								</div>
+								<dl class="tsd-comment-tags">
+									<dt>memberof</dt>
+									<dd><p>Repeater</p>
+									</dd>
+								</dl>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>repeaters: <a href="../interfaces/_interfaces_.isyntaxtype.html" class="tsd-signature-type">ISyntaxType</a><span class="tsd-signature-symbol">[]</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The repeaters to search with.</p>
+									</div>
 								</li>
 								<li>
 									<h5>index: <span class="tsd-signature-type">number</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The index to search at.</p>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <a href="../interfaces/_interfaces_.isyntaxtype.html" class="tsd-signature-type">ISyntaxType</a></h4>
+							<p>The repeater at the specific index.</p>
 						</li>
 					</ul>
 				</section>
@@ -207,16 +263,30 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/Torphage/EasyDoc/blob/eca731b/src/syntaxTypes/repeater.ts#L42">syntaxTypes/repeater.ts:42</a></li>
+									<li>Defined in <a href="https://github.com/Torphage/EasyDoc/blob/a42a424/src/syntaxTypes/repeater.ts#L82">syntaxTypes/repeater.ts:82</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Get text to repeat from withing the repeater.</p>
+								</div>
+								<dl class="tsd-comment-tags">
+									<dt>memberof</dt>
+									<dd><p>Repeater</p>
+									</dd>
+								</dl>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>repeater: <a href="../interfaces/_interfaces_.isyntaxtype.html" class="tsd-signature-type">ISyntaxType</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The repeater with the text to repeat.</p>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></h4>
+							<p>The string after it has been repeated.</p>
 						</li>
 					</ul>
 				</section>
@@ -230,16 +300,30 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/Torphage/EasyDoc/blob/eca731b/src/syntaxTypes/repeater.ts#L91">syntaxTypes/repeater.ts:91</a></li>
+									<li>Defined in <a href="https://github.com/Torphage/EasyDoc/blob/a42a424/src/syntaxTypes/repeater.ts#L155">syntaxTypes/repeater.ts:155</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Repeat a repeater object.</p>
+								</div>
+								<dl class="tsd-comment-tags">
+									<dt>memberof</dt>
+									<dd><p>Repeater</p>
+									</dd>
+								</dl>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>repeater: <a href="../interfaces/_interfaces_.isyntaxtype.html" class="tsd-signature-type">ISyntaxType</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The repeater that values will get repeated.</p>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <a href="../interfaces/_interfaces_.irepeater.html" class="tsd-signature-type">IRepeater</a></h4>
+							<p>The offset and what to insert into the real text.</p>
 						</li>
 					</ul>
 				</section>
@@ -253,16 +337,30 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/Torphage/EasyDoc/blob/eca731b/src/syntaxTypes/repeater.ts#L74">syntaxTypes/repeater.ts:74</a></li>
+									<li>Defined in <a href="https://github.com/Torphage/EasyDoc/blob/a42a424/src/syntaxTypes/repeater.ts#L130">syntaxTypes/repeater.ts:130</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Get the number of times to repeat and what to repeat based on the repeater.</p>
+								</div>
+								<dl class="tsd-comment-tags">
+									<dt>memberof</dt>
+									<dd><p>Repeater</p>
+									</dd>
+								</dl>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>repeater: <a href="../interfaces/_interfaces_.isyntaxtype.html" class="tsd-signature-type">ISyntaxType</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The repeater to parse from.</p>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">RegExpMatchArray</span></h4>
+							<p>Number of tiems to repeat and what to repeat.</p>
 						</li>
 					</ul>
 				</section>
@@ -276,16 +374,30 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/Torphage/EasyDoc/blob/eca731b/src/syntaxTypes/repeater.ts#L59">syntaxTypes/repeater.ts:59</a></li>
+									<li>Defined in <a href="https://github.com/Torphage/EasyDoc/blob/a42a424/src/syntaxTypes/repeater.ts#L107">syntaxTypes/repeater.ts:107</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Get number of times to repeat the repeater&#39;s value.</p>
+								</div>
+								<dl class="tsd-comment-tags">
+									<dt>memberof</dt>
+									<dd><p>Repeater</p>
+									</dd>
+								</dl>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>repeater: <a href="../interfaces/_interfaces_.isyntaxtype.html" class="tsd-signature-type">ISyntaxType</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The repeater to get the value to repeat.</p>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4>
+							<p>The number of times to repeat.</p>
 						</li>
 					</ul>
 				</section>

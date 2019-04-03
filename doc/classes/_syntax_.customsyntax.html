@@ -69,6 +69,21 @@
 <div class="container container-main">
 	<div class="row">
 		<div class="col-8 col-content">
+			<section class="tsd-panel tsd-comment">
+				<div class="tsd-comment tsd-typography">
+					<div class="lead">
+						<p>Handle the custom syntax and gets the start and end index, and the text value
+						of the variables, placehodlers and repeaters.</p>
+					</div>
+					<dl class="tsd-comment-tags">
+						<dt>export</dt>
+						<dd></dd>
+						<dt>class</dt>
+						<dd><p>CustomSyntax</p>
+						</dd>
+					</dl>
+				</div>
+			</section>
 			<section class="tsd-panel tsd-hierarchy">
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
@@ -85,11 +100,12 @@
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><a href="_syntax_.customsyntax.html#allowedmatch" class="tsd-kind-icon">allowed<wbr>Match</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><a href="_syntax_.customsyntax.html#geterrorhandlers" class="tsd-kind-icon">get<wbr>Error<wbr>Handlers</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><a href="_syntax_.customsyntax.html#getplaceholders" class="tsd-kind-icon">get<wbr>Placeholders</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><a href="_syntax_.customsyntax.html#getrepeaters" class="tsd-kind-icon">get<wbr>Repeaters</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_syntax_.customsyntax.html#getsyntax" class="tsd-kind-icon">get<wbr>Syntax</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><a href="_syntax_.customsyntax.html#getvariables" class="tsd-kind-icon">get<wbr>Variables</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_syntax_.customsyntax.html#matchregex" class="tsd-kind-icon">match<wbr>Regex</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><a href="_syntax_.customsyntax.html#matchregex" class="tsd-kind-icon">match<wbr>Regex</a></li>
 							</ul>
 						</section>
 					</div>
@@ -107,19 +123,73 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/Torphage/EasyDoc/blob/eca731b/src/syntax.ts#L65">syntax.ts:65</a></li>
+									<li>Defined in <a href="https://github.com/Torphage/EasyDoc/blob/a42a424/src/syntax.ts#L142">syntax.ts:142</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Check if the match is allowed and is not preceded by a backslash.</p>
+								</div>
+								<dl class="tsd-comment-tags">
+									<dt>memberof</dt>
+									<dd><p>CustomSyntax</p>
+									</dd>
+								</dl>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>fileRows: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The file rows of which to match.</p>
+									</div>
 								</li>
 								<li>
 									<h5>match: <span class="tsd-signature-type">RegExpExecArray</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The match to check if valid.</p>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
+							<p>If the match is valid.</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-private">
+					<a name="geterrorhandlers" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagPrivate">Private</span> get<wbr>Error<wbr>Handlers</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-private">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Error<wbr>Handlers<span class="tsd-signature-symbol">(</span>fileRows<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../interfaces/_interfaces_.isyntaxtype.html" class="tsd-signature-type">ISyntaxType</a><span class="tsd-signature-symbol">[]</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/Torphage/EasyDoc/blob/a42a424/src/syntax.ts#L126">syntax.ts:126</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Get the error block.</p>
+								</div>
+								<dl class="tsd-comment-tags">
+									<dt>memberof</dt>
+									<dd><p>ErrorHandler</p>
+									</dd>
+								</dl>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>fileRows: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The text to search for errors.</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="../interfaces/_interfaces_.isyntaxtype.html" class="tsd-signature-type">ISyntaxType</a><span class="tsd-signature-symbol">[]</span></h4>
+							<p>The error handlers.</p>
 						</li>
 					</ul>
 				</section>
@@ -133,16 +203,30 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/Torphage/EasyDoc/blob/eca731b/src/syntax.ts#L51">syntax.ts:51</a></li>
+									<li>Defined in <a href="https://github.com/Torphage/EasyDoc/blob/a42a424/src/syntax.ts#L96">syntax.ts:96</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Get the list of all the placeholder&#39; position and value.</p>
+								</div>
+								<dl class="tsd-comment-tags">
+									<dt>memberof</dt>
+									<dd><p>CustomSyntax</p>
+									</dd>
+								</dl>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>fileRows: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The file rows of which to match.</p>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <a href="../interfaces/_interfaces_.isyntaxtype.html" class="tsd-signature-type">ISyntaxType</a><span class="tsd-signature-symbol">[]</span></h4>
+							<p>The list of the location and values of a specific type.</p>
 						</li>
 					</ul>
 				</section>
@@ -156,16 +240,30 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/Torphage/EasyDoc/blob/eca731b/src/syntax.ts#L58">syntax.ts:58</a></li>
+									<li>Defined in <a href="https://github.com/Torphage/EasyDoc/blob/a42a424/src/syntax.ts#L111">syntax.ts:111</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Get the list of all the repeater&#39; position and value.</p>
+								</div>
+								<dl class="tsd-comment-tags">
+									<dt>memberof</dt>
+									<dd><p>CustomSyntax</p>
+									</dd>
+								</dl>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>fileRows: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The file rows of which to match.</p>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <a href="../interfaces/_interfaces_.isyntaxtype.html" class="tsd-signature-type">ISyntaxType</a><span class="tsd-signature-symbol">[]</span></h4>
+							<p>The list of the location and values of a specific type.</p>
 						</li>
 					</ul>
 				</section>
@@ -179,19 +277,36 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/Torphage/EasyDoc/blob/eca731b/src/syntax.ts#L5">syntax.ts:5</a></li>
+									<li>Defined in <a href="https://github.com/Torphage/EasyDoc/blob/a42a424/src/syntax.ts#L23">syntax.ts:23</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Get the location and vlaue for the variables, placeholders or repeaters.</p>
+								</div>
+								<dl class="tsd-comment-tags">
+									<dt>memberof</dt>
+									<dd><p>CustomSyntax</p>
+									</dd>
+								</dl>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>fileRows: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The file rows of which to get the position and value of a specific syntax type.</p>
+									</div>
 								</li>
 								<li>
 									<h5>type: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The type to get the list of. Can be either &quot;variables&quot;, &quot;placeholders&quot; or &quot;repeaters&quot;.</p>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <a href="../interfaces/_interfaces_.isyntaxtype.html" class="tsd-signature-type">ISyntaxType</a><span class="tsd-signature-symbol">[]</span></h4>
+							<p>The list of the location and values of a specific type.</p>
 						</li>
 					</ul>
 				</section>
@@ -205,42 +320,73 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/Torphage/EasyDoc/blob/eca731b/src/syntax.ts#L44">syntax.ts:44</a></li>
+									<li>Defined in <a href="https://github.com/Torphage/EasyDoc/blob/a42a424/src/syntax.ts#L81">syntax.ts:81</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Get the list of all the variables&#39; position and value.</p>
+								</div>
+								<dl class="tsd-comment-tags">
+									<dt>memberof</dt>
+									<dd><p>CustomSyntax</p>
+									</dd>
+								</dl>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>fileRows: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The file rows of which to match.</p>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <a href="../interfaces/_interfaces_.isyntaxtype.html" class="tsd-signature-type">ISyntaxType</a><span class="tsd-signature-symbol">[]</span></h4>
+							<p>The list of the location and values of a specific type.</p>
 						</li>
 					</ul>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-private">
 					<a name="matchregex" class="tsd-anchor"></a>
-					<h3>match<wbr>Regex</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+					<h3><span class="tsd-flag ts-flagPrivate">Private</span> match<wbr>Regex</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-private">
 						<li class="tsd-signature tsd-kind-icon">match<wbr>Regex<span class="tsd-signature-symbol">(</span>fileRows<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, regex<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">RegExp</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../interfaces/_interfaces_.isyntaxtype.html" class="tsd-signature-type">ISyntaxType</a><span class="tsd-signature-symbol">[]</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/Torphage/EasyDoc/blob/eca731b/src/syntax.ts#L18">syntax.ts:18</a></li>
+									<li>Defined in <a href="https://github.com/Torphage/EasyDoc/blob/a42a424/src/syntax.ts#L47">syntax.ts:47</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Match the file rows with a regex.</p>
+								</div>
+								<dl class="tsd-comment-tags">
+									<dt>memberof</dt>
+									<dd><p>CustomSyntax</p>
+									</dd>
+								</dl>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>fileRows: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The file rows of which to match.</p>
+									</div>
 								</li>
 								<li>
 									<h5>regex: <span class="tsd-signature-type">RegExp</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The regex to match with.</p>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <a href="../interfaces/_interfaces_.isyntaxtype.html" class="tsd-signature-type">ISyntaxType</a><span class="tsd-signature-symbol">[]</span></h4>
+							<p>The list of the location and values of a specific type.</p>
 						</li>
 					</ul>
 				</section>
@@ -268,6 +414,9 @@
 								<a href="_syntax_.customsyntax.html#allowedmatch" class="tsd-kind-icon">allowed<wbr>Match</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-private">
+								<a href="_syntax_.customsyntax.html#geterrorhandlers" class="tsd-kind-icon">get<wbr>Error<wbr>Handlers</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-private">
 								<a href="_syntax_.customsyntax.html#getplaceholders" class="tsd-kind-icon">get<wbr>Placeholders</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-private">
@@ -279,7 +428,7 @@
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-private">
 								<a href="_syntax_.customsyntax.html#getvariables" class="tsd-kind-icon">get<wbr>Variables</a>
 							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class">
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-private">
 								<a href="_syntax_.customsyntax.html#matchregex" class="tsd-kind-icon">match<wbr>Regex</a>
 							</li>
 						</ul>

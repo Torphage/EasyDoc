@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>IName | easydoc</title>
+	<title>IRegexLanguageSyntax | easydoc</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -59,21 +59,33 @@
 					<a href="../modules/_interfaces_.html">&quot;interfaces&quot;</a>
 				</li>
 				<li>
-					<a href="_interfaces_.iname.html">IName</a>
+					<a href="_interfaces_.iregexlanguagesyntax.html">IRegexLanguageSyntax</a>
 				</li>
 			</ul>
-			<h1>Interface IName</h1>
+			<h1>Interface IRegexLanguageSyntax</h1>
 		</div>
 	</div>
 </header>
 <div class="container container-main">
 	<div class="row">
 		<div class="col-8 col-content">
+			<section class="tsd-panel tsd-comment">
+				<div class="tsd-comment tsd-typography">
+					<div class="lead">
+						<p>The syntax for each language.</p>
+					</div>
+					<dl class="tsd-comment-tags">
+						<dt>interface</dt>
+						<dd><p>IRegexLanguageSyntax</p>
+						</dd>
+					</dl>
+				</div>
+			</section>
 			<section class="tsd-panel tsd-hierarchy">
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">IName</span>
+						<span class="target">IRegexLanguageSyntax</span>
 					</li>
 				</ul>
 			</section>
@@ -84,7 +96,8 @@
 						<section class="tsd-index-section tsd-is-not-exported">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-not-exported"><a href="_interfaces_.iname.html#name" class="tsd-kind-icon">name</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-not-exported"><a href="_interfaces_.iregexlanguagesyntax.html#comment" class="tsd-kind-icon">comment</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-not-exported"><a href="_interfaces_.iregexlanguagesyntax.html#string" class="tsd-kind-icon">string</a></li>
 							</ul>
 						</section>
 					</div>
@@ -93,14 +106,47 @@
 			<section class="tsd-panel-group tsd-member-group tsd-is-not-exported">
 				<h2>Properties</h2>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-not-exported">
-					<a name="name" class="tsd-anchor"></a>
-					<h3>name</h3>
-					<div class="tsd-signature tsd-kind-icon">name<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<a name="comment" class="tsd-anchor"></a>
+					<h3>comment</h3>
+					<div class="tsd-signature tsd-kind-icon">comment<span class="tsd-signature-symbol">:</span> <a href="_interfaces_.iregexcomments.html" class="tsd-signature-type">IRegexComments</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/Torphage/EasyDoc/blob/eca731b/src/interfaces.ts#L22">interfaces.ts:22</a></li>
+							<li>Defined in <a href="https://github.com/Torphage/EasyDoc/blob/a42a424/src/interfaces.ts#L247">interfaces.ts:247</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<dl class="tsd-comment-tags">
+							<dt>type</dt>
+							<dd><p>{IRegexComments}</p>
+							</dd>
+							<dt>memberof</dt>
+							<dd><p>IRegexLanguageSyntax</p>
+							</dd>
+						</dl>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-not-exported">
+					<a name="string" class="tsd-anchor"></a>
+					<h3>string</h3>
+					<div class="tsd-signature tsd-kind-icon">string<span class="tsd-signature-symbol">:</span> <a href="_interfaces_.iregexstring.html" class="tsd-signature-type">IRegexString</a><span class="tsd-signature-symbol">[]</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/Torphage/EasyDoc/blob/a42a424/src/interfaces.ts#L239">interfaces.ts:239</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>The supported string for each language.</p>
+						</div>
+						<dl class="tsd-comment-tags">
+							<dt>type</dt>
+							<dd><p>{IRegexString[]}</p>
+							</dd>
+							<dt>memberof</dt>
+							<dd><p>IRegexLanguageSyntax</p>
+							</dd>
+						</dl>
+					</div>
 				</section>
 			</section>
 		</div>
@@ -118,20 +164,11 @@
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
 					<li class=" tsd-kind-interface tsd-parent-kind-external-module tsd-is-not-exported">
-						<a href="_interfaces_.idocumentationparts.html" class="tsd-kind-icon">IDocumentation<wbr>Parts</a>
+						<a href="_interfaces_.ilanguage.html" class="tsd-kind-icon">ILanguage</a>
 					</li>
-				</ul>
-				<ul class="current">
-					<li class="current tsd-kind-interface tsd-parent-kind-external-module tsd-is-not-exported">
-						<a href="_interfaces_.iname.html" class="tsd-kind-icon">IName</a>
-						<ul>
-							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-not-exported">
-								<a href="_interfaces_.iname.html#name" class="tsd-kind-icon">name</a>
-							</li>
-						</ul>
+					<li class=" tsd-kind-interface tsd-parent-kind-external-module tsd-is-not-exported">
+						<a href="_interfaces_.ilanguages.html" class="tsd-kind-icon">ILanguages</a>
 					</li>
-				</ul>
-				<ul class="after-current">
 					<li class=" tsd-kind-interface tsd-parent-kind-external-module tsd-is-not-exported">
 						<a href="_interfaces_.iparams.html" class="tsd-kind-icon">IParams</a>
 					</li>
@@ -139,10 +176,31 @@
 						<a href="_interfaces_.iparse.html" class="tsd-kind-icon">IParse</a>
 					</li>
 					<li class=" tsd-kind-interface tsd-parent-kind-external-module tsd-is-not-exported">
-						<a href="_interfaces_.irepeater.html" class="tsd-kind-icon">IRepeater</a>
+						<a href="_interfaces_.iregexcomments.html" class="tsd-kind-icon">IRegex<wbr>Comments</a>
+					</li>
+				</ul>
+				<ul class="current">
+					<li class="current tsd-kind-interface tsd-parent-kind-external-module tsd-is-not-exported">
+						<a href="_interfaces_.iregexlanguagesyntax.html" class="tsd-kind-icon">IRegex<wbr>Language<wbr>Syntax</a>
+						<ul>
+							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-not-exported">
+								<a href="_interfaces_.iregexlanguagesyntax.html#comment" class="tsd-kind-icon">comment</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-not-exported">
+								<a href="_interfaces_.iregexlanguagesyntax.html#string" class="tsd-kind-icon">string</a>
+							</li>
+						</ul>
+					</li>
+				</ul>
+				<ul class="after-current">
+					<li class=" tsd-kind-interface tsd-parent-kind-external-module tsd-is-not-exported">
+						<a href="_interfaces_.iregexregex.html" class="tsd-kind-icon">IRegex<wbr>Regex</a>
 					</li>
 					<li class=" tsd-kind-interface tsd-parent-kind-external-module tsd-is-not-exported">
-						<a href="_interfaces_.ireturn.html" class="tsd-kind-icon">IReturn</a>
+						<a href="_interfaces_.iregexstring.html" class="tsd-kind-icon">IRegex<wbr>String</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-external-module tsd-is-not-exported">
+						<a href="_interfaces_.irepeater.html" class="tsd-kind-icon">IRepeater</a>
 					</li>
 					<li class=" tsd-kind-interface tsd-parent-kind-external-module tsd-is-not-exported">
 						<a href="_interfaces_.isyntaxtype.html" class="tsd-kind-icon">ISyntax<wbr>Type</a>

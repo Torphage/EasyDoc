@@ -69,6 +69,21 @@
 <div class="container container-main">
 	<div class="row">
 		<div class="col-8 col-content">
+			<section class="tsd-panel tsd-comment">
+				<div class="tsd-comment tsd-typography">
+					<div class="lead">
+						<p>Class that handle requirements if triggerString are met if a press on Enter was,
+						detected. Otherwise if a command triggered the extension.</p>
+					</div>
+					<dl class="tsd-comment-tags">
+						<dt>export</dt>
+						<dd></dd>
+						<dt>class</dt>
+						<dd><p>EasyDoc</p>
+						</dd>
+					</dl>
+				</div>
+			</section>
 			<section class="tsd-panel tsd-hierarchy">
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
@@ -99,6 +114,7 @@
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_easydoc_.easydoc.html#checkdoc" class="tsd-kind-icon">check<wbr>Doc</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><a href="_easydoc_.easydoc.html#fixconfig" class="tsd-kind-icon">fix<wbr>Config</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><a href="_easydoc_.easydoc.html#getallitems" class="tsd-kind-icon">get<wbr>All<wbr>Items</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><a href="_easydoc_.easydoc.html#geteditortext" class="tsd-kind-icon">get<wbr>Editor<wbr>Text</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><a href="_easydoc_.easydoc.html#quickpick" class="tsd-kind-icon">quick<wbr>Pick</a></li>
@@ -119,9 +135,19 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/Torphage/EasyDoc/blob/eca731b/src/easydoc.ts#L9">easydoc.ts:9</a></li>
+									<li>Defined in <a href="https://github.com/Torphage/EasyDoc/blob/a42a424/src/easydoc.ts#L19">easydoc.ts:19</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Creates an instance of EasyDoc.</p>
+								</div>
+								<dl class="tsd-comment-tags">
+									<dt>memberof</dt>
+									<dd><p>EasyDoc</p>
+									</dd>
+								</dl>
+							</div>
 							<h4 class="tsd-returns-title">Returns <a href="_easydoc_.easydoc.html" class="tsd-signature-type">EasyDoc</a></h4>
 						</li>
 					</ul>
@@ -135,7 +161,7 @@
 					<div class="tsd-signature tsd-kind-icon">config<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">vs.WorkspaceConfiguration</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/Torphage/EasyDoc/blob/eca731b/src/easydoc.ts#L7">easydoc.ts:7</a></li>
+							<li>Defined in <a href="https://github.com/Torphage/EasyDoc/blob/a42a424/src/easydoc.ts#L17">easydoc.ts:17</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -145,7 +171,7 @@
 					<div class="tsd-signature tsd-kind-icon">dir<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/Torphage/EasyDoc/blob/eca731b/src/easydoc.ts#L9">easydoc.ts:9</a></li>
+							<li>Defined in <a href="https://github.com/Torphage/EasyDoc/blob/a42a424/src/easydoc.ts#L19">easydoc.ts:19</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -155,7 +181,7 @@
 					<div class="tsd-signature tsd-kind-icon">document<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">vs.TextEditor</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/Torphage/EasyDoc/blob/eca731b/src/easydoc.ts#L8">easydoc.ts:8</a></li>
+							<li>Defined in <a href="https://github.com/Torphage/EasyDoc/blob/a42a424/src/easydoc.ts#L18">easydoc.ts:18</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -166,22 +192,79 @@
 					<a name="checkdoc" class="tsd-anchor"></a>
 					<h3>check<wbr>Doc</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">check<wbr>Doc<span class="tsd-signature-symbol">(</span>onEnter<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">check<wbr>Doc<span class="tsd-signature-symbol">(</span>onEnter<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/Torphage/EasyDoc/blob/eca731b/src/easydoc.ts#L18">easydoc.ts:18</a></li>
+									<li>Defined in <a href="https://github.com/Torphage/EasyDoc/blob/a42a424/src/easydoc.ts#L40">easydoc.ts:40</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Check each configuration and if the requirements are met.</p>
+								</div>
+								<dl class="tsd-comment-tags">
+									<dt>memberof</dt>
+									<dd><p>EasyDoc</p>
+									</dd>
+								</dl>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>onEnter: <span class="tsd-signature-type">boolean</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>A boolean value if the extension was triggered by pressing Enter.</p>
+									</div>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<p>void.</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-private">
+					<a name="fixconfig" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagPrivate">Private</span> fix<wbr>Config</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-private">
+						<li class="tsd-signature tsd-kind-icon">fix<wbr>Config<span class="tsd-signature-symbol">(</span>config<span class="tsd-signature-symbol">: </span><a href="_config_.config.html" class="tsd-signature-type">Config</a>, fileName<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/Torphage/EasyDoc/blob/a42a424/src/easydoc.ts#L106">easydoc.ts:106</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Add, updates and removes configuration</p>
+								</div>
+								<dl class="tsd-comment-tags">
+									<dt>memberof</dt>
+									<dd><p>EasyDoc</p>
+									</dd>
+								</dl>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>config: <a href="_config_.config.html" class="tsd-signature-type">Config</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The local package.json as an object, used to get the configurations.</p>
+									</div>
+								</li>
+								<li>
+									<h5>fileName: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The filename of the configuration that is handled.</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">any</span></h4>
+							<p>the most best configurations based on multiple factors.</p>
 						</li>
 					</ul>
 				</section>
@@ -195,16 +278,30 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/Torphage/EasyDoc/blob/eca731b/src/easydoc.ts#L82">easydoc.ts:82</a></li>
+									<li>Defined in <a href="https://github.com/Torphage/EasyDoc/blob/a42a424/src/easydoc.ts#L155">easydoc.ts:155</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Get every file&#39;s name and diretory inside a given dir based on the configuration.</p>
+								</div>
+								<dl class="tsd-comment-tags">
+									<dt>memberof</dt>
+									<dd><p>EasyDoc</p>
+									</dd>
+								</dl>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>config: <a href="_config_.config.html" class="tsd-signature-type">Config</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The configuration of EasyDoc.</p>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></h4>
+							<p>List of file&#39;s name and directory.</p>
 						</li>
 					</ul>
 				</section>
@@ -218,16 +315,30 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/Torphage/EasyDoc/blob/eca731b/src/easydoc.ts#L104">easydoc.ts:104</a></li>
+									<li>Defined in <a href="https://github.com/Torphage/EasyDoc/blob/a42a424/src/easydoc.ts#L185">easydoc.ts:185</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Get the text of the editor in front of the cursor, with the length of the triggerText.</p>
+								</div>
+								<dl class="tsd-comment-tags">
+									<dt>memberof</dt>
+									<dd><p>EasyDoc</p>
+									</dd>
+								</dl>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>triggerText: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The text that the length of the result will be.</p>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
+							<p>A string before the cursor with the length of triggerText..</p>
 						</li>
 					</ul>
 				</section>
@@ -241,16 +352,31 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/Torphage/EasyDoc/blob/eca731b/src/easydoc.ts#L76">easydoc.ts:76</a></li>
+									<li>Defined in <a href="https://github.com/Torphage/EasyDoc/blob/a42a424/src/easydoc.ts#L141">easydoc.ts:141</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Initialize and show a QuickPick menu. This QuickPick will
+									show different files withing the dir attribute of config.</p>
+								</div>
+								<dl class="tsd-comment-tags">
+									<dt>memberof</dt>
+									<dd><p>EasyDoc</p>
+									</dd>
+								</dl>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>config: <a href="_config_.config.html" class="tsd-signature-type">Config</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>he configuration of EasyDoc.</p>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Thenable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<p>A promise that resolves to the selection.</p>
 						</li>
 					</ul>
 				</section>
@@ -288,6 +414,9 @@
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="_easydoc_.easydoc.html#checkdoc" class="tsd-kind-icon">check<wbr>Doc</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-private">
+								<a href="_easydoc_.easydoc.html#fixconfig" class="tsd-kind-icon">fix<wbr>Config</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-private">
 								<a href="_easydoc_.easydoc.html#getallitems" class="tsd-kind-icon">get<wbr>All<wbr>Items</a>
