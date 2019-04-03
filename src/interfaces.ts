@@ -1,8 +1,4 @@
 /**
- * Store all interfaces in use throughout the extension here.
- */
-
-/**
  * Store information about a syntax type's text value and its location.
  *
  * @interface ISyntaxType
