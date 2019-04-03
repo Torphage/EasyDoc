@@ -4,7 +4,6 @@ doc/**
 out/test/**
 out/**/*.map
 src/**
-resources/**
 .gitignore
 tsconfig.json
 vsc-extension-quickstart.md

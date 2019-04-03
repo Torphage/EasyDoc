@@ -1,5 +1,5 @@
 import regexExpressions from "../config/languages";
-import { ILanguage, IParams, IReturn } from "../interfaces";
+import { ILanguage, IParams } from "../interfaces";
 
 export abstract class BaseParse {
     public blockStartIndex: number = 0;
@@ -20,35 +20,4 @@ export abstract class BaseParse {
 
         return match.groups;
     }
-
-    protected preParse(rows: string[]): Promise<string[]> {
-        const charToEscape = /(?<!\\)([(){}])/g;
-        const whenToEscape = this.allRegex.syntax.string;
-
-        const newRows: string[] = [];
-
-        let row: string;
-        for (row of rows) {
-            let tempStr = row;
-
-            let stringSyntax: string[];
-            for (stringSyntax of whenToEscape) {
-                const regex = new RegExp(`(?<!\\\\)${stringSyntax[0]}.*?(?<!\\\\)${stringSyntax[1]}`, "g");
-                const match = row.match(regex);
-
-                if (match === null) { continue; }
-
-                let regexMatch: string;
-                for (regexMatch of match) {
-                    tempStr = tempStr.replace(regexMatch, regexMatch.replace(charToEscape, "\\$1"));
-                }
-            }
-
-            newRows.push(tempStr);
-        }
-
-        return new Promise((resolve, reject) => {
-            resolve(newRows);
-            reject(undefined);
-        });
-    }}
+}
