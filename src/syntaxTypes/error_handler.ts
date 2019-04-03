@@ -1,20 +1,42 @@
+/**
+ * Handle the error handlers.
+ */
 import { ISyntaxType, ISyntaxVariable } from "../interfaces";
 import { CustomSyntax } from "../syntax";
 
+/**
+ * Handle the error handlers.
+ *
+ * @export
+ * @class ErrorHandler
+ */
 export class ErrorHandler {
     private customTypes = new CustomSyntax();
 
     private vars: ISyntaxVariable;
 
+    /**
+     * Creates an instance of ErrorHandler.
+     *
+     * @param {ISyntaxVariable} vars
+     * @memberof ErrorHandler
+     */
     constructor(vars: ISyntaxVariable) {
         this.vars = vars;
     }
 
+    /**
+     * Search for errors and handles them.
+     *
+     * @param {string} text The text to search for error from.
+     * @returns {string} The string after error have been handles.
+     * @memberof ErrorHandler
+     */
     public handle(text: string): string {
         let block: ISyntaxType;
 
         do {
-            block = this.getErrorBlocks(text)[0];
+            block = this.customTypes.getSyntax(text, "errorhandlers")[0];
             if (block === undefined) { break; }
 
             const variables = this.customTypes.getSyntax(block.text, "variables");
@@ -42,13 +64,14 @@ export class ErrorHandler {
         return text;
     }
 
-    private getErrorBlocks(text: string): ISyntaxType[] {
-        const regex = /\$\|((.|\s)*?\|\$)/g;
-        const match = this.customTypes.matchRegex(text, regex);
-
-        return match;
-    }
-
+    /**
+     * Get the variable name from the variable found within the template file.
+     *
+     * @private
+     * @param {string} variable The variable as it was found within the template file.
+     * @returns {string} The variables name.
+     * @memberof Variable
+     */
     private getVarName(variable: string): string {
         const splitted = variable.slice(2, -1).split(".")[0].split("(");
 

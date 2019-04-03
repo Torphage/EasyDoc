@@ -226,7 +226,7 @@ export class Variable {
     }
 
     /**
-     * Get the var name from the variable found within the template file.
+     * Get the variable name from the variable found within the template file.
      *
      * @private
      * @param {string} variable The variable as it was found within the template file.
