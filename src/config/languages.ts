@@ -113,7 +113,7 @@ const languageSyntax: ILanguages = {
     },
     Ruby: {
         regex: {
-            function: /^\s*(?:module|class|def)(?:\s|\sself)(?<name>\w+[\=\?\!]?)\s*\(?(?<params>[^)\n]*)/g,
+            function: /^\s*(?:module|class|def)(?:\s*self\.|\s*)(?<name>\w+[\=\?\!]?)\s*\(?(?<params>[^)\n]*)/g,
         },
         syntax: {
             string: [
