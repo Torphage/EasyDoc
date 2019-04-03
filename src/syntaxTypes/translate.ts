@@ -1,16 +1,39 @@
+/**
+ * Translates variables.
+ */
 import { copy } from "../utils";
 
+/**
+ * Translator for the Variable class.
+ *
+ * @export
+ * @class VariableTranslator
+ */
 export class VariableTranslator {
     private text: string;
     private varName: string;
     private varValue: string;
 
+    /**
+     * Creates an instance of VariableTranslator.
+     *
+     * @param {string} text The text to translate.
+     * @param {string} varName The variable name.
+     * @param {*} varValue The variable value.
+     * @memberof VariableTranslator
+     */
     constructor(text: string, varName: string, varValue: any) {
         this.text = text.replace(/(\s)/g, "");
         this.varName = varName;
         this.varValue = varValue;
     }
 
+    /**
+     * Translate a variable.
+     *
+     * @returns {*} The value of the translated variable.
+     * @memberof VariableTranslator
+     */
     public translate(): any {
         let advancedSyntax: RegExpMatchArray;
         let varName = copy(this.varValue);
@@ -46,6 +69,14 @@ export class VariableTranslator {
         return varName;
     }
 
+    /**
+     * Check if text has an advanced syntax. If it includes any functions or properties.
+     *
+     * @private
+     * @param {string} text The text to match.
+     * @returns {RegExpMatchArray} The match. If the match is not empty it will be used as true.
+     * @memberof VariableTranslator
+     */
     private isAdvancedSyntax(text: string): RegExpMatchArray {
         const regex = /([.()])/g;
         const result = text.match(regex);
@@ -53,6 +84,15 @@ export class VariableTranslator {
         return result;
     }
 
+    /**
+     * Applies the function to the value..
+     *
+     * @private
+     * @param {string} func The function to apply.
+     * @param {*} value The value to apply to.
+     * @returns {*} The value with the applied function.
+     * @memberof VariableTranslator
+     */
     private handleFunction(func: string, value: any): any {
         let returnValue: any = value;
 
@@ -82,6 +122,15 @@ export class VariableTranslator {
         return returnValue;
     }
 
+    /**
+     * Applies the property to the value..
+     *
+     * @private
+     * @param {string} pro The property to apply.
+     * @param {*} value The value to apply to.
+     * @returns {*} The value with the applied property.
+     * @memberof VariableTranslator
+     */
     private handleProperty(prop: string, value: any): any {
         let returnValue: any;
 

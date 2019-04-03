@@ -1,7 +1,16 @@
+/**
+ * Handle everything about the variable type.
+ */
 import { ISyntaxType, ISyntaxVariable } from "../interfaces";
 import { CustomSyntax } from "../syntax";
 import { VariableTranslator } from "./translate";
 
+/**
+ * Handle variable, converts them to their correct values and so on.
+ *
+ * @export
+ * @class Variable
+ */
 export class Variable {
     private vars: ISyntaxVariable;
     private text: string;
@@ -9,10 +18,24 @@ export class Variable {
     private customTypes = new CustomSyntax();
     private index = 0;
 
+    /**
+     * Creates an instance of Variable.
+     *
+     * @param {ISyntaxVariable} vars The available variables, defined by the Syntax class.
+     * @memberof Variable
+     */
     constructor(vars: ISyntaxVariable) {
         this.vars = vars;
     }
 
+    /**
+     * Generate the variables, loops through the text by row and search for variables found withing.
+     * Handles them if they are found.
+     *
+     * @param {string} text The text to search for variables from.
+     * @returns {string} The text with converted variables.
+     * @memberof Variable
+     */
     public generate(text: string): string {
         this.text = text;
 
@@ -41,6 +64,14 @@ export class Variable {
         return snippet.join("");
     }
 
+    /**
+     * Convert the text line with variables to a strin with the variables converted.
+     *
+     * @private
+     * @param {string} text The text line to convert the variables within.
+     * @returns {string} The string with the variables converted.
+     * @memberof Variable
+     */
     private createType(text: string): string {
         const localVars = this.getLocalTypes(text);
         const maxRepeaters = this.maxNumOfType(localVars);
@@ -108,6 +139,14 @@ export class Variable {
         return str.join("\n");
     }
 
+    /**
+     * Get the real value of the variable.
+     *
+     * @private
+     * @param {ISyntaxType} variable The variable to get the converted value from.
+     * @returns {*} The variable's converted value.
+     * @memberof Variable
+     */
     private getTypeValue(variable: ISyntaxType): any {
         const varName = this.getVarName(variable.text);
         const tempVar = this.vars[varName];
@@ -120,6 +159,14 @@ export class Variable {
         return translator.translate();
     }
 
+    /**
+     * Get the max length of variables that are an array.
+     *
+     * @private
+     * @param {any[]} vars The vars to check on.
+     * @returns {*} Return the variable's array length that has the most elements.
+     * @memberof Variable
+     */
     private maxNumOfType(vars: any[]): any {
         let maxRepeaters = [];
 
@@ -135,6 +182,14 @@ export class Variable {
         return maxRepeaters;
     }
 
+    /**
+     * Get the location of variables in a text.
+     *
+     * @private
+     * @param {string} text The text to get variables from.
+     * @returns {ISyntaxType[]} The list of variables with their location.
+     * @memberof Variable
+     */
     private getLocalTypes(text: string): ISyntaxType[] {
         const variables = this.customTypes.getSyntax(text, "variables");
 
@@ -148,6 +203,14 @@ export class Variable {
         return includedVars;
     }
 
+    /**
+     * Get the variables that are an array.
+     *
+     * @private
+     * @param {ISyntaxType[]} variables The variables to search from.
+     * @returns {any[]} The array varibles that has an value of an array.
+     * @memberof Variable
+     */
     private getArrayVars(variables: ISyntaxType[]): any[] {
         const varNames = [];
 
@@ -162,6 +225,14 @@ export class Variable {
         return varNames;
     }
 
+    /**
+     * Get the var name from the variable found within the template file.
+     *
+     * @private
+     * @param {string} variable The variable as it was found within the template file.
+     * @returns {string} The variables name.
+     * @memberof Variable
+     */
     private getVarName(variable: string): string {
         const splitted = variable.slice(2, -1).split(".")[0].split("(");
 
