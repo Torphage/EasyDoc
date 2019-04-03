@@ -83,7 +83,9 @@ export class JavascriptParse extends BaseParse {
      */
     public parseParams(params: string): IParams {
         const paramList = params.replace(/[^,\w:]+/g, "").split(",");
-        const template = paramList.join(", ");
+
+        const templateList = paramList.map((param) => `$[${param}]`);
+        const template = templateList.join(", ");
 
         if (paramList.length === 1 && paramList[0].length === 0) {
             return {

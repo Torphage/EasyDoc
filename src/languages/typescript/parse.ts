@@ -86,7 +86,9 @@ export class TypescriptParse extends BaseParse {
 
         const paramList = paramsObj.map((param) => param.split(":")[0]);
         const paramTypes = paramsObj.map((param) => param.split(":")[1] !== "any" ? param.split(":")[1] : "*");
-        const template = paramList.join(", ");
+
+        const templateList = paramList.map((param) => `$[${param}]`);
+        const template = templateList.join(", ");
 
         if (paramList.length === 1 && paramList[0].length === 0) {
             return {
