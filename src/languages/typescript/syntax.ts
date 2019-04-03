@@ -29,7 +29,7 @@ export class Typescript extends WorkShop {
             PARAMS: params.paramList,
             PARAMS_TYPES: params.paramTypes,
             PARAMS_TEMPLATE: params.template,
-            RETURN_TYPE: parse.returnType.trim(),
+            RETURN_TYPE: parse.returnType.trim() !== "void" ? parse.returnType.trim() : undefined,
             BLOCK_COMMENT_START: this.getComment("BLOCK_COMMENT_START"),
             BLOCK_COMMENT_END: this.getComment("BLOCK_COMMENT_END"),
             COMMENT: this.getComment("COMMENT"),

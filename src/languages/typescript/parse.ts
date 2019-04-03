@@ -49,10 +49,10 @@ export class TypescriptParse extends BaseParse {
     }
 
     public parseParams(params: string): IParams {
-        const paramsObj = params.replace(/[^,\w:]+/g, "").split(",");
+        const paramsObj = params.replace(/[^.,\w:]+/g, "").split(",");
 
         const paramList = paramsObj.map((param) => param.split(":")[0]);
-        const paramTypes = paramsObj.map((param) => param.split(":")[1]);
+        const paramTypes = paramsObj.map((param) => param.split(":")[1] !== "any" ? param.split(":")[1] : "*");
         const template = paramList.join(", ");
 
         if (paramList.length === 1 && paramList[0].length === 0) {
