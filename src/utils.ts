@@ -1,19 +1,47 @@
+/**
+ * Some utility functions.
+ */
+
+/**
+ * Deep copy a variable.
+ *
+ * @export
+ * @param {*} variable The variable wanted a deep copy of.
+ * @returns {*} The deep copied variable.
+ */
 export function copy(variable: any): any {
     let clone: any;
 
     if (typeof variable === "string") {
         clone = variable.split("").join("");
     } else {
-        clone = Object.assign([], variable)
+        clone = Object.assign([], variable);
     }
     return clone;
 }
 
+/**
+ * Replace every character with preceding backslash, including the backslash, with two hashes.
+ *
+ * @export
+ * @param {string} str The string to replace characters in.
+ * @returns {string} The modified string.
+ */
 export function removeEscapeFromString(str: string): string {
     return str.replace(/\\./g, "##");
 }
 
-export function removeStringBetweenChar(str: string, char: string) {
+/**
+ * Replaces characters between characters with a hash, this is used only for counting
+ * the index of other characters without including anything withing the characters given in paramters.
+ * Will be used with different types of strings.
+ *
+ * @export
+ * @param {string} str The string to replace.
+ * @param {string} char The character to replace everything between.
+ * @returns {string} A new string where everything in between a given character is replaced with hashes.
+ */
+export function removeStringBetweenChar(str: string, char: string): string {
     let newStr = removeEscapeFromString(str);
     while (true) {
         const firstOccurence = newStr.indexOf(char);
@@ -28,14 +56,14 @@ export function removeStringBetweenChar(str: string, char: string) {
     return newStr;
 }
 
-String.prototype.regexIndexOf = function(regexp: RegExp, position?: number): number {
-    const indexOf = this.substring(position || 0).search(regexp);
+String.prototype.regexIndexOf = function(regex: RegExp, position?: number): number {
+    const indexOf = this.substring(position || 0).search(regex);
     return (indexOf >= 0) ? (indexOf + (position || 0)) : indexOf;
 };
 
-String.prototype.regexLastIndexOf = function(regexp: RegExp, position?: number): number {
-    regexp = (regexp.global) ?
-        regexp : new RegExp(regexp.source, "g" + (regexp.ignoreCase ? "i" : "") + (regexp.multiline ? "m" : ""));
+String.prototype.regexLastIndexOf = function(regex: RegExp, position?: number): number {
+    regex = (regex.global) ?
+        regex : new RegExp(regex.source, "g" + (regex.ignoreCase ? "i" : "") + (regex.multiline ? "m" : ""));
     if (typeof (position) === "undefined") {
         position = this.length;
     } else if (position < 0) {
@@ -46,9 +74,9 @@ String.prototype.regexLastIndexOf = function(regexp: RegExp, position?: number):
     let nextStop = 0;
     let result: RegExpExecArray;
     do {
-        result = regexp.exec(stringToWorkWith);
+        result = regex.exec(stringToWorkWith);
         lastIndexOf = result.index;
-        regexp.lastIndex = ++nextStop;
-    } while (regexp !== null);
+        regex.lastIndex = ++nextStop;
+    } while (regex !== null);
     return lastIndexOf;
 };
