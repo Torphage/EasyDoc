@@ -6,7 +6,7 @@ import { CustomSyntax } from "../syntax";
 import { VariableTranslator } from "./translate";
 
 /**
- * Handle variable, converts them to their correct values and so on.
+ * Handle variables, converts them to their correct values and so on.
  *
  * @export
  * @class Variable
