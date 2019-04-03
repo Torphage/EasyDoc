@@ -1,13 +1,28 @@
+/**
+ * Handle if the requierments for running EasyDoc are met.
+ */
 import * as path from "path";
 import * as vs from "vscode";
 import { Config } from "./config";
 import { Format } from "./format";
 
+/**
+ * Class that handle requirements if triggerString are met if a press on Enter was,
+ * detected. Otherwise if a command triggered the extension.
+ *
+ * @export
+ * @class EasyDoc
+ */
 export class EasyDoc {
     private config: vs.WorkspaceConfiguration;
     private document: vs.TextEditor;
     private dir: string;
 
+    /**
+     * Creates an instance of EasyDoc.
+     *
+     * @memberof EasyDoc
+     */
     constructor() {
         this.config = vs.workspace.getConfiguration("EasyDoc");
         this.document = vs.window.activeTextEditor;
@@ -15,12 +30,22 @@ export class EasyDoc {
     }
 
     // Checks whenever the triggertext
-    public async checkDoc(onEnter: boolean): Promise<any> {
+    /**
+     * Check each configuration and if the requirements are met.
+     *
+     * @param {boolean} onEnter A boolean value if the extension was triggered by pressing Enter.
+     * @returns {Promise<void>} void.
+     * @memberof EasyDoc
+     */
+    public async checkDoc(onEnter: boolean): Promise<void> {
         const syntaxDir: string[] = this.config.dir;
 
         const config = new Config();
         config.removeConfigWithRemovalOfFile(syntaxDir);
 
+        /**
+         * If the extension was trigged by a command
+         */
         if (!onEnter) {
 
             const choice = await this.quickPick(config);
@@ -37,6 +62,9 @@ export class EasyDoc {
             return;
         }
 
+        /**
+         * If the extension was trigged by pressing Enter.
+         */
         for (const dir of syntaxDir) {
             let dirPath: string;
 
@@ -66,7 +94,16 @@ export class EasyDoc {
         }
     }
 
-    private fixConfig(config: any, fileName: string): any {
+    /**
+     * Add, updates and removes configuration
+     *
+     * @private
+     * @param {Config} config The local package.json as an object, used to get the configurations.
+     * @param {string} fileName The filename of the configuration that is handled.
+     * @returns {*} the most best configurations based on multiple factors.
+     * @memberof EasyDoc
+     */
+    private fixConfig(config: Config, fileName: string): any {
         const extensionPackage = config.packageFiles.contributes.configuration.properties;
 
         const configName = `EasyDoc.${fileName}`;
@@ -93,10 +130,13 @@ export class EasyDoc {
     }
 
     /**
-     * Initialize and shows a QuickPick menu. This QuickPick will
+     * Initialize and show a QuickPick menu. This QuickPick will
      * show different files withing the dir attribute of config.
+     *
+     * @private
      * @param {Config} config he configuration of EasyDoc.
      * @returns {Thenable<string>} A promise that resolves to the selection.
+     * @memberof EasyDoc
      */
     private quickPick(config: Config): Thenable<string> {
         const items = this.getAllItems(config);
@@ -106,8 +146,11 @@ export class EasyDoc {
 
     /**
      * Get every file's name and diretory inside a given dir based on the configuration.
+     *
+     * @private
      * @param {Config} config The configuration of EasyDoc.
      * @returns {string[]} List of file's name and directory.
+     * @memberof EasyDoc
      */
     private getAllItems(config: Config): string[] {
         const items: string[] = [];
@@ -133,8 +176,11 @@ export class EasyDoc {
 
     /**
      * Get the text of the editor in front of the cursor, with the length of the triggerText.
+     *
+     * @private
      * @param {string} triggerText The text that the length of the result will be.
      * @returns {string} A string before the cursor with the length of triggerText..
+     * @memberof EasyDoc
      */
     private getEditorText(triggerText: string): string {
         const cursorPostition = this.document.selection.active;
