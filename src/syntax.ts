@@ -30,6 +30,9 @@ export class CustomSyntax {
 
             case "repeaters":
                 return this.getRepeaters(fileRows);
+
+            case "errorhandlers":
+                return this.getErrorHandlers(fileRows);
         }
     }
 
@@ -41,7 +44,7 @@ export class CustomSyntax {
      * @returns {ISyntaxType[]} The list of the location and values of a specific type.
      * @memberof CustomSyntax
      */
-    public matchRegex(fileRows: string, regex: RegExp): ISyntaxType[] {
+    private matchRegex(fileRows: string, regex: RegExp): ISyntaxType[] {
         const match: ISyntaxType[] = new Array();
 
         let rawMatch: RegExpExecArray;
@@ -108,6 +111,21 @@ export class CustomSyntax {
     private getRepeaters(fileRows: string): ISyntaxType[] {
         const repeaters = /(\$\<[^>]*\>\((?:.|\s)*?(?=\)\$))/g;
         const match = this.matchRegex(fileRows, repeaters);
+
+        return match;
+    }
+
+    /**
+     * Get the error block.
+     *
+     * @private
+     * @param {string} fileRows The text to search for errors.
+     * @returns {ISyntaxType[]} The error handlers.
+     * @memberof ErrorHandler
+     */
+    private getErrorHandlers(fileRows: string): ISyntaxType[] {
+        const regex = /\$\|((.|\s)*?\|\$)/g;
+        const match = this.matchRegex(fileRows, regex);
 
         return match;
     }
