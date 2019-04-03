@@ -1,12 +1,37 @@
-import { IParams, IParse } from "../../interfaces";
+/**
+ * A parser for Typescript.
+ */
+import { IParams } from "../../interfaces";
 import { copy, removeStringBetweenChar } from "../../utils";
 import { BaseParse } from "../parse";
 
+/**
+ * A parser for Typescript.
+ *
+ * @export
+ * @class TypescriptParse
+ * @extends {BaseParse}
+ */
 export class TypescriptParse extends BaseParse {
+
+    /**
+     * Creates an instance of TypescriptParse.
+     *
+     * @param {string} docType
+     * @memberof TypescriptParse
+     */
     constructor(docType: string) {
         super(docType);
     }
 
+    /**
+     * The parsed block of what to document.
+     *
+     * @abstract
+     * @param {string[]} rows The rows to get the block from.
+     * @returns {string[]} The rows of the block.
+     * @memberof BaseParse
+     */
     public parseBlock(newlineRows: string[]): string[] {
         const lines = this.splitLines(newlineRows);
 
@@ -48,6 +73,14 @@ export class TypescriptParse extends BaseParse {
         return lines.slice(0, blockIndex);
     }
 
+    /**
+     * The parsed params.
+     *
+     * @abstract
+     * @param {string} params The params to parse.
+     * @returns {IParams} The parsed params.
+     * @memberof BaseParse
+     */
     public parseParams(params: string): IParams {
         const paramsObj = params.replace(/[^.,\w:]+/g, "").split(",");
 
@@ -70,6 +103,14 @@ export class TypescriptParse extends BaseParse {
         };
     }
 
+    /**
+     * Split the lines to what the language actually represents.
+     *
+     * @private
+     * @param {string[]} rows The rows to split.
+     * @returns {string[]} The real representation of the rows.
+     * @memberof TypescriptParse
+     */
     private splitLines(rows: string[]): string[] {
         let escapeNewLine = false;
 
