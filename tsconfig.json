@@ -12,6 +12,7 @@
         "sourceMap": true,
         "rootDir": "src",
         "typeRoots": [
+            "node_modules/@types",
             "typings"
         ]
     },
