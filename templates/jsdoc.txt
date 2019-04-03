@@ -1,5 +1,6 @@
 /**
  * $[Description]$|
- * @param {${PARAMS_TYPES}} ${PARAMS} $[Description]|$
- * @returns {${RETURN_TYPE}} ${Description}
+ *
+ * @param {${PARAMS_TYPES}} ${PARAMS} $[Description]|$$|
+ * @returns {${RETURN_TYPE}} $[Description]|$
  */
