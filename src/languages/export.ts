@@ -1,3 +1,6 @@
+/**
+ * Export all the needed files in the language folder.
+ */
 export * from "./base";
 export * from "./workshop";
 export * from "./cpp/syntax";

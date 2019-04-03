@@ -1,6 +1,5 @@
 import { ILanguages } from "../interfaces";
 
-// function: /\s*(?<name>\w*)\((?:(?<paramType>\w*)+\s+(?<paramName>\w*)[,)])*/g,
 const languageSyntax: ILanguages = {
     Cpp: {
         regex: {
