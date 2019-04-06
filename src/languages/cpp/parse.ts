@@ -20,8 +20,8 @@ export class CppParse extends BaseParse {
      * @param {string} docType
      * @memberof CppParse
      */
-    constructor(docType: string) {
-        super(docType);
+    constructor(documentText: string, docType: string) {
+        super(documentText, docType);
     }
 
     /**
@@ -30,7 +30,7 @@ export class CppParse extends BaseParse {
      * @abstract
      * @param {string[]} rows The rows to get the block from.
      * @returns {string[]} The rows of the block.
-     * @memberof BaseParse
+     * @memberof CppParse
      */
     public parseBlock(newlineRows: string[]): string[] {
         const lines = this.splitLines(newlineRows);
@@ -79,9 +79,17 @@ export class CppParse extends BaseParse {
      * @abstract
      * @param {string} params The params to parse.
      * @returns {IParams} The parsed params.
-     * @memberof BaseParse
+     * @memberof CppParse
      */
     public parseParams(params: string): IParams {
+        if (params === undefined) {
+            return {
+                paramList: undefined,
+                paramTypes: undefined,
+                template: undefined,
+            };
+        }
+
         const paramsObj = params.replace(/[^,\w:]+/g, "").split(",");
 
         const paramList = paramsObj.map((param) => param.split(" ")[-1]);
@@ -111,7 +119,7 @@ export class CppParse extends BaseParse {
      * @private
      * @param {string[]} rows The rows to split.
      * @returns {string[]} The real representation of the rows.
-     * @memberof TypescriptParse
+     * @memberof CppParse
      */
     private splitLines(rows: string[]): string[] {
         let escapeNewLine = false;

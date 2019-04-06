@@ -19,8 +19,8 @@ export class HaskellParse extends BaseParse {
      * @param {string} docType
      * @memberof HaskellParse
      */
-    constructor(docType: string) {
-        super(docType);
+    constructor(documentText: string, docType: string) {
+        super(documentText, docType);
     }
 
     /**
@@ -29,7 +29,7 @@ export class HaskellParse extends BaseParse {
      * @abstract
      * @param {string[]} rows The rows to get the block from.
      * @returns {string[]} The rows of the block.
-     * @memberof BaseParse
+     * @memberof HaskellParse
      */
     public parseBlock(newlineRows: string[]): string[] {
         const lines = this.splitLines(newlineRows);
@@ -60,9 +60,16 @@ export class HaskellParse extends BaseParse {
      * @abstract
      * @param {string} params The params to parse.
      * @returns {IParams} The parsed params.
-     * @memberof BaseParse
+     * @memberof HaskellParse
      */
     public parseParams(params: string): IParams {
+        if (params === undefined) {
+            return {
+                paramList: undefined,
+                template: undefined,
+            };
+        }
+
         const paramList = params.replace(/[^,\w:]+/g, "").split(",");
 
         const templateList = paramList.map((param) => `$[${param}]`);
@@ -87,7 +94,7 @@ export class HaskellParse extends BaseParse {
      * @private
      * @param {string[]} rows The rows to split.
      * @returns {string[]} The real representation of the rows.
-     * @memberof TypescriptParse
+     * @memberof HaskellParse
      */
     private splitLines(rows: string[]): string[] {
         let escapeNewLine = false;
