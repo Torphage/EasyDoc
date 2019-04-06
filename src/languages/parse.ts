@@ -13,6 +13,7 @@ import { ILanguage, IParams } from "../interfaces";
  */
 export abstract class BaseParse {
     public blockStartIndex: number = 0;
+    protected documentText: string;
     protected allRegex: ILanguage;
     protected regex: RegExp;
 
@@ -22,7 +23,8 @@ export abstract class BaseParse {
      * @param {string} docType The type of document to parse.
      * @memberof BaseParse
      */
-    constructor(docType: string) {
+    constructor(documentText: string, docType: string) {
+        this.documentText = documentText;
         this.allRegex = regexExpressions[this.constructor.name.slice(0, -5)];
         this.regex = this.allRegex.regex[docType];
     }
