@@ -21,8 +21,8 @@ export class RubyParse extends BaseParse {
      * @param {string} docType
      * @memberof RubyParse
      */
-    constructor(docType: string) {
-        super(docType);
+    constructor(documentText: string, docType: string) {
+        super(documentText, docType);
         this.blockStarts = [
             "begin",
             "def",
@@ -38,7 +38,6 @@ export class RubyParse extends BaseParse {
     /**
      * The parsed block of what to document.
      *
-     * @abstract
      * @param {string[]} rows The rows to get the block from.
      * @returns {string[]} The rows of the block.
      * @memberof BaseParse
@@ -91,12 +90,18 @@ export class RubyParse extends BaseParse {
     /**
      * The parsed params.
      *
-     * @abstract
      * @param {string} params The params to parse.
      * @returns {IParams} The parsed params.
      * @memberof BaseParse
      */
     public parseParams(params: string): IParams {
+        if (params === undefined) {
+            return {
+                paramList: undefined,
+                template: undefined,
+            };
+        }
+
         const paramList = params.replace(/[^,\w:]+/g, "").split(",");
 
         const templateList = paramList.map((param) => `$[${param}]`);
@@ -116,18 +121,76 @@ export class RubyParse extends BaseParse {
     }
 
     /**
+     * The parsed information gathered from the parent node.
+     *
+     * @param {number} childIndex The function's start index.
+     * @returns {{ [key: string]: string }} A regular expression group consisting of
+     * the name of the parent and what constructor it is.
+     * @memberof RubyParse
+     */
+    public parseParent(childIndex: number): { [key: string]: string } {
+        let tempStr: string = copy(this.documentText);
+        for (const temp of this.allRegex.syntax.string) {
+            const char = temp.value;
+            tempStr = removeStringBetweenChar(tempStr, char);
+        }
+
+        const tmp = tempStr.split("\n");
+
+        let blockDepth = 0;
+        let blockIndex = 0;
+
+        const returningString = tmp.slice(0, childIndex);
+
+        for (const line of returningString.slice().reverse()) {
+            const matchEnd = new RegExp("^\\s*end").test(line);
+            if (matchEnd) {
+                blockDepth++;
+            }
+
+            for (const blockStart of this.blockStarts) {
+                let matchBlockStart: boolean;
+                if (blockStart !== "do") {
+                    matchBlockStart = new RegExp("^\\s*" + blockStart + "\\s").test(line);
+                } else {
+                    matchBlockStart = /\sdo\s(?:\|\w*\||\s)/g.test(line);
+                }
+
+                if (matchBlockStart) {
+                    blockDepth--;
+                    break;
+                }
+            }
+
+            blockIndex++;
+
+            if (blockDepth < 0) {
+                break;
+            }
+        }
+
+        const regex = /\s*(?<const>class|module|def)\s+(?<name>\w+)/g;
+        const parentLine = returningString[returningString.length - blockIndex];
+        const parent = regex.exec(parentLine);
+
+        // tslint:disable-next-line:max-line-length
+        return parent !== null ? parent.groups : {export: undefined, abstract: undefined, default: undefined, cosnt: undefined, name: undefined};
+    }
+
+    /**
      * Split the lines to what the language actually represents.
      *
      * @private
      * @param {string[]} rows The rows to split.
      * @returns {string[]} The real representation of the rows.
-     * @memberof TypescriptParse
+     * @memberof RubyParse
      */
     private splitLines(rows: string[]): string[] {
         let escapeNewLine = false;
 
         const outStr: string[] = [];
 
+        console.log(rows);
         for (const line of rows) {
             const newSplit = line.split(";");
 

@@ -20,17 +20,16 @@ export class TypescriptParse extends BaseParse {
      * @param {string} docType
      * @memberof TypescriptParse
      */
-    constructor(docType: string) {
-        super(docType);
+    constructor(documentText: string, docType: string) {
+        super(documentText, docType);
     }
 
     /**
      * The parsed block of what to document.
      *
-     * @abstract
      * @param {string[]} rows The rows to get the block from.
      * @returns {string[]} The rows of the block.
-     * @memberof BaseParse
+     * @memberof TypescriptParse
      */
     public parseBlock(newlineRows: string[]): string[] {
         const lines = this.splitLines(newlineRows);
@@ -45,22 +44,15 @@ export class TypescriptParse extends BaseParse {
 
         let openingBracket = 0;
         let closingBracket = 0;
-        let blockStarted = false;
         let blockIndex = 0;
 
         for (const line of tmpStr) {
-            if (line.includes("{")) {
-                blockStarted = true;
-                openingBracket++;
-            }
-
-            if (line.includes("}")) {
-                closingBracket++;
-            }
+            openingBracket += (line.match(/{/g) || []).length;
+            closingBracket += (line.match(/}/g) || []).length;
 
             blockIndex++;
 
-            if (!blockStarted) {
+            if (openingBracket === 0) {
                 this.blockStartIndex++;
                 continue;
             }
@@ -76,16 +68,23 @@ export class TypescriptParse extends BaseParse {
     /**
      * The parsed params.
      *
-     * @abstract
      * @param {string} params The params to parse.
      * @returns {IParams} The parsed params.
-     * @memberof BaseParse
+     * @memberof TypescriptParse
      */
     public parseParams(params: string): IParams {
-        const paramsObj = params.replace(/[^.,\w:]+/g, "").split(",");
+        if (params === undefined) {
+            return {
+                paramList: undefined,
+                paramTypes: undefined,
+                template: undefined,
+            };
+        }
 
-        const paramList = paramsObj.map((param) => param.split(":")[0]);
-        const paramTypes = paramsObj.map((param) => param.split(":")[1] !== "any" ? param.split(":")[1] : "*");
+        const paramsObj = params.split(",");
+
+        const paramList = paramsObj.map((param) => param.split(":")[0].trim());
+        const paramTypes = paramsObj.map((param) => param.split(":")[1] !== "any" ? param.split(":")[1].trim() : "*");
 
         const templateList = paramList.map((param) => `$[${param}]`);
         const template = templateList.join(", ");
@@ -103,6 +102,54 @@ export class TypescriptParse extends BaseParse {
             paramTypes,
             template,
         };
+    }
+
+    /**
+     * The parsed information gathered from the parent node.
+     *
+     * @param {number} childIndex The function's start index.
+     * @returns {{ [key: string]: string }} A regular expression group consisting of
+     * the name of the parent and what constructor it is.
+     * @memberof TypescriptParse
+     */
+    public parseParent(childIndex: number): { [key: string]: string } {
+        let tempStr: string = copy(this.documentText);
+        for (const temp of this.allRegex.syntax.string) {
+            const char = temp.value;
+            tempStr = removeStringBetweenChar(tempStr, char);
+        }
+
+        const tmp = tempStr.split("\n");
+
+        const returningString = tmp.slice(0, childIndex);
+
+        let openingBracket = 0;
+        let closingBracket = 0;
+        let blockIndex = 0;
+
+        for (const line of returningString.slice().reverse()) {
+            openingBracket += (line.match(/{/g) || []).length;
+            closingBracket += (line.match(/}/g) || []).length;
+
+            blockIndex++;
+
+            if (openingBracket === 0) {
+                this.blockStartIndex++;
+                continue;
+            }
+
+            if (openingBracket > closingBracket) {
+                break;
+            }
+        }
+
+        // tslint:disable-next-line:max-line-length
+        const regex = /\s*(?<export>export)?\s*(?<abstract>abstract)?\s*(?<default>private|protected|public)?\s*(?<const>class|function|module)?\s+(?<name>\w+)\s*/g;
+        const parentLine = returningString[returningString.length - blockIndex];
+        const parent = regex.exec(parentLine);
+
+        // tslint:disable-next-line:max-line-length
+        return parent !== null ? parent.groups : {export: undefined, abstract: undefined, default: undefined, cosnt: undefined, name: undefined};
     }
 
     /**
