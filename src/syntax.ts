@@ -121,10 +121,10 @@ export class CustomSyntax {
      * @private
      * @param {string} fileRows The text to search for errors.
      * @returns {ISyntaxType[]} The error handlers.
-     * @memberof ErrorHandler
+     * @memberof CustomSyntax
      */
     private getErrorHandlers(fileRows: string): ISyntaxType[] {
-        const regex = /\$\|((.|\s)*?\|\$)/g;
+        const regex = /\$\|((?:[^|]+|\$\|(?:[^$|]+|\$\|[^|$]*\|\$)*\|\$)*)\|\$/g;
         const match = this.matchRegex(fileRows, regex);
 
         return match;
