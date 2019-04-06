@@ -114,6 +114,7 @@
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-protected"><a href="_languages_cpp_parse_.cppparse.html#allregex" class="tsd-kind-icon">all<wbr>Regex</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><a href="_languages_cpp_parse_.cppparse.html#blockstartindex" class="tsd-kind-icon">block<wbr>Start<wbr>Index</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-protected"><a href="_languages_cpp_parse_.cppparse.html#documenttext" class="tsd-kind-icon">document<wbr>Text</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-protected"><a href="_languages_cpp_parse_.cppparse.html#regex" class="tsd-kind-icon">regex</a></li>
 							</ul>
 						</section>
@@ -135,14 +136,14 @@
 					<a name="constructor" class="tsd-anchor"></a>
 					<h3>constructor</h3>
 					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class tsd-is-overwrite">
-						<li class="tsd-signature tsd-kind-icon">new <wbr>Cpp<wbr>Parse<span class="tsd-signature-symbol">(</span>docType<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_languages_cpp_parse_.cppparse.html" class="tsd-signature-type">CppParse</a></li>
+						<li class="tsd-signature tsd-kind-icon">new <wbr>Cpp<wbr>Parse<span class="tsd-signature-symbol">(</span>documentText<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, docType<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_languages_cpp_parse_.cppparse.html" class="tsd-signature-type">CppParse</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<p>Overrides <a href="_languages_parse_.baseparse.html">BaseParse</a>.<a href="_languages_parse_.baseparse.html#constructor">constructor</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/Torphage/EasyDoc/blob/a42a424/src/languages/cpp/parse.ts#L15">languages/cpp/parse.ts:15</a></li>
+									<li>Defined in <a href="https://github.com/Torphage/EasyDoc/blob/269dff0/src/languages/cpp/parse.ts#L15">languages/cpp/parse.ts:15</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -157,6 +158,9 @@
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
+								<li>
+									<h5>documentText: <span class="tsd-signature-type">string</span></h5>
+								</li>
 								<li>
 									<h5>docType: <span class="tsd-signature-type">string</span></h5>
 								</li>
@@ -175,7 +179,7 @@
 					<aside class="tsd-sources">
 						<p>Inherited from <a href="_languages_parse_.baseparse.html">BaseParse</a>.<a href="_languages_parse_.baseparse.html#allregex">allRegex</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/Torphage/EasyDoc/blob/a42a424/src/languages/parse.ts#L16">languages/parse.ts:16</a></li>
+							<li>Defined in <a href="https://github.com/Torphage/EasyDoc/blob/269dff0/src/languages/parse.ts#L17">languages/parse.ts:17</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -186,7 +190,18 @@
 					<aside class="tsd-sources">
 						<p>Inherited from <a href="_languages_parse_.baseparse.html">BaseParse</a>.<a href="_languages_parse_.baseparse.html#blockstartindex">blockStartIndex</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/Torphage/EasyDoc/blob/a42a424/src/languages/parse.ts#L15">languages/parse.ts:15</a></li>
+							<li>Defined in <a href="https://github.com/Torphage/EasyDoc/blob/269dff0/src/languages/parse.ts#L15">languages/parse.ts:15</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-protected">
+					<a name="documenttext" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagProtected">Protected</span> document<wbr>Text</h3>
+					<div class="tsd-signature tsd-kind-icon">document<wbr>Text<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<aside class="tsd-sources">
+						<p>Inherited from <a href="_languages_parse_.baseparse.html">BaseParse</a>.<a href="_languages_parse_.baseparse.html#documenttext">documentText</a></p>
+						<ul>
+							<li>Defined in <a href="https://github.com/Torphage/EasyDoc/blob/269dff0/src/languages/parse.ts#L16">languages/parse.ts:16</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -197,7 +212,7 @@
 					<aside class="tsd-sources">
 						<p>Inherited from <a href="_languages_parse_.baseparse.html">BaseParse</a>.<a href="_languages_parse_.baseparse.html#regex">regex</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/Torphage/EasyDoc/blob/a42a424/src/languages/parse.ts#L17">languages/parse.ts:17</a></li>
+							<li>Defined in <a href="https://github.com/Torphage/EasyDoc/blob/269dff0/src/languages/parse.ts#L18">languages/parse.ts:18</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -215,7 +230,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_languages_parse_.baseparse.html">BaseParse</a>.<a href="_languages_parse_.baseparse.html#parse">parse</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/Torphage/EasyDoc/blob/a42a424/src/languages/parse.ts#L57">languages/parse.ts:57</a></li>
+									<li>Defined in <a href="https://github.com/Torphage/EasyDoc/blob/269dff0/src/languages/parse.ts#L59">languages/parse.ts:59</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -258,7 +273,7 @@
 							<aside class="tsd-sources">
 								<p>Overrides <a href="_languages_parse_.baseparse.html">BaseParse</a>.<a href="_languages_parse_.baseparse.html#parseblock">parseBlock</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/Torphage/EasyDoc/blob/a42a424/src/languages/cpp/parse.ts#L35">languages/cpp/parse.ts:35</a></li>
+									<li>Defined in <a href="https://github.com/Torphage/EasyDoc/blob/269dff0/src/languages/cpp/parse.ts#L35">languages/cpp/parse.ts:35</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -269,7 +284,7 @@
 									<dt>abstract</dt>
 									<dd></dd>
 									<dt>memberof</dt>
-									<dd><p>BaseParse</p>
+									<dd><p>CppParse</p>
 									</dd>
 								</dl>
 							</div>
@@ -295,7 +310,7 @@
 							<aside class="tsd-sources">
 								<p>Overrides <a href="_languages_parse_.baseparse.html">BaseParse</a>.<a href="_languages_parse_.baseparse.html#parseparams">parseParams</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/Torphage/EasyDoc/blob/a42a424/src/languages/cpp/parse.ts#L84">languages/cpp/parse.ts:84</a></li>
+									<li>Defined in <a href="https://github.com/Torphage/EasyDoc/blob/269dff0/src/languages/cpp/parse.ts#L84">languages/cpp/parse.ts:84</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -306,7 +321,7 @@
 									<dt>abstract</dt>
 									<dd></dd>
 									<dt>memberof</dt>
-									<dd><p>BaseParse</p>
+									<dd><p>CppParse</p>
 									</dd>
 								</dl>
 							</div>
@@ -334,7 +349,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/Torphage/EasyDoc/blob/a42a424/src/languages/cpp/parse.ts#L114">languages/cpp/parse.ts:114</a></li>
+									<li>Defined in <a href="https://github.com/Torphage/EasyDoc/blob/269dff0/src/languages/cpp/parse.ts#L124">languages/cpp/parse.ts:124</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -343,7 +358,7 @@
 								</div>
 								<dl class="tsd-comment-tags">
 									<dt>memberof</dt>
-									<dd><p>TypescriptParse</p>
+									<dd><p>CppParse</p>
 									</dd>
 								</dl>
 							</div>
@@ -389,6 +404,9 @@
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-inherited">
 								<a href="_languages_cpp_parse_.cppparse.html#blockstartindex" class="tsd-kind-icon">block<wbr>Start<wbr>Index</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-protected">
+								<a href="_languages_cpp_parse_.cppparse.html#documenttext" class="tsd-kind-icon">document<wbr>Text</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-protected">
 								<a href="_languages_cpp_parse_.cppparse.html#regex" class="tsd-kind-icon">regex</a>
