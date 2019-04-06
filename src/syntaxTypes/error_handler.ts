@@ -50,14 +50,16 @@ export class ErrorHandler {
                 const varName = this.getVarName(variable.text);
                 if (this.vars[varName] !== undefined) { continue; }
 
-                if (["PARAMS", "PARAMS_TEMPLATE"].includes(varName)) {
-                    text = `${beforeBlock}${afterBlock}`;
+                if (Object.keys(this.vars).includes(varName)) {
                     generateBlock = false;
                     break;
                 }
             }
+
             if (generateBlock) {
                 text = `${beforeBlock}${actualBlock}${afterBlock}`;
+            } else {
+                text = `${beforeBlock}${afterBlock}`;
             }
         } while (true);
 
@@ -70,7 +72,7 @@ export class ErrorHandler {
      * @private
      * @param {string} variable The variable as it was found within the template file.
      * @returns {string} The variables name.
-     * @memberof Variable
+     * @memberof ErrorHandler
      */
     private getVarName(variable: string): string {
         const splitted = variable.slice(2, -1).split(".")[0].split("(");
