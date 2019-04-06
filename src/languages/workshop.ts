@@ -26,7 +26,7 @@ export abstract class WorkShop {
     protected block: string[] = [];
     protected customTypes = new CustomSyntax();
     protected editor = vs.window.activeTextEditor;
-    private docRows: string;
+    protected docRows: string;
 
     /**
      * Creates an instance of WorkShop.
@@ -58,34 +58,26 @@ export abstract class WorkShop {
                 break;
 
             case "function":
-                this.setCodeBlock(onEnter);
-                this.vars = await this.getVariables();
+            const functionLineIndex = this.getFunctionStartLine(onEnter);
 
-                this.generateFunction(onEnter, true);
-                break;
+            this.setCodeBlock(functionLineIndex);
+            this.vars = await this.getVariables(functionLineIndex);
+
+            this.generateFunction(onEnter, true);
+            break;
         }
     }
-
-    /**
-     * Get the current column in the editor
-     *
-     * @protected
-     * @abstract
-     * @param {number} index The line index.
-     * @returns {number} The column the user is positioned at.
-     * @memberof WorkShop
-     */
-    protected abstract getCurrentColumn(index: number): number;
 
     /**
      * Get the variables based on the language.
      *
      * @protected
      * @abstract
+     * @param {number} index The start index of the function.
      * @returns {Promise<ISyntaxVariable>} An promise to return the variables.
      * @memberof WorkShop
      */
-    protected abstract getVariables(): Promise<ISyntaxVariable>;
+    protected abstract getVariables(index: number): Promise<ISyntaxVariable>;
 
     /**
      * Check if the cursor is correctly placed in the function.
@@ -116,6 +108,21 @@ export abstract class WorkShop {
         }
 
         return commentString;
+    }
+
+    /**
+     * Get the current column in the editor
+     *
+     * @protected
+     * @param {number} index The line index.
+     * @returns {number} The column the user is positioned at.
+     * @memberof WorkShop
+     */
+    protected getCurrentColumn(index: number): number {
+        const leftOfCurrentPos = this.syntaxFile.slice(0, index);
+        const leftIndex = leftOfCurrentPos.lastIndexOf("\n");
+        const currentColumn = leftOfCurrentPos.length - leftIndex;
+        return currentColumn;
     }
 
     /**
@@ -153,7 +160,8 @@ export abstract class WorkShop {
         const functionLineString = this.getFunctionStartLine(onEnter);
 
         if (strictPlace) {
-            if (functionLineString.length === this.docRows.split("\n").splice(this.position.line).length) {
+            const blockAndBelowString = this.docRows.split("\n").splice(functionLineString);
+            if (blockAndBelowString.length === this.docRows.split("\n").splice(this.position.line).length) {
                 await this.waitForInsertLine();
             }
         }
@@ -201,10 +209,10 @@ export abstract class WorkShop {
      *
      * @private
      * @param {boolean} onEnter If extension was activated by pressing enter.
-     * @returns {string[]} Returns all rows below function start line.
+     * @returns {number} The index of the function's start line.
      * @memberof WorkShop
      */
-    private getFunctionStartLine(onEnter: boolean): string[] {
+    private getFunctionStartLine(onEnter: boolean): number {
         let functionLineIndex: number;
 
         if (!onEnter) {
@@ -215,27 +223,25 @@ export abstract class WorkShop {
             functionLineIndex = this.position.line - 1;
         }
 
-        const functionLineString = this.docRows.split("\n").splice(functionLineIndex);
-
-        return functionLineString;
+        return functionLineIndex;
     }
 
     /**
      * Set the code block.
      *
      * @private
-     * @param {boolean} onEnter If extension was activated by pressing enter.
+     * @param {number} functionLineIndex The start index of the function.
      * @memberof WorkShop
      */
-    private setCodeBlock(onEnter: boolean): void {
-        const functionLineString = this.getFunctionStartLine(onEnter);
-        const correctlyPlacedFunction = this.correctlyPlacedFunction(functionLineString[0]);
+    private setCodeBlock(functionLineIndex: number): void {
+        const blockAndBelowString = this.docRows.slice().split("\n").splice(functionLineIndex);
+        const correctlyPlacedFunction = this.correctlyPlacedFunction(blockAndBelowString[0]);
 
         if (!correctlyPlacedFunction) {
             return;
         }
 
-        this.block = this.parse.parseBlock(functionLineString);
+        this.block = this.parse.parseBlock(blockAndBelowString);
     }
 
     /**

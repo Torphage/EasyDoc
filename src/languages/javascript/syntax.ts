@@ -24,7 +24,7 @@ export class Javascript extends WorkShop {
      */
     constructor(syntaxFile: string, docType: string) {
         super(syntaxFile);
-        this.parse = new JavascriptParse(docType);
+        this.parse = new JavascriptParse(this.docRows, docType);
     }
 
     /**
@@ -33,7 +33,7 @@ export class Javascript extends WorkShop {
      * @protected
      * @param {string} functionLineIndex The row to search on.
      * @returns {boolean} If cursor is correctly placed.
-     * @memberof WorkShop
+     * @memberof Javascript
      */
     protected correctlyPlacedFunction(functionLineIndex: string): boolean {
         const regex = /\w*\(|function \s*\(/g;
@@ -49,17 +49,28 @@ export class Javascript extends WorkShop {
      * Get the variables based on the language.
      *
      * @protected
+     * @param {number} index The start index of the function.
      * @returns {Promise<ISyntaxVariable>} An promise to return the variables.
-     * @memberof WorkShop
+     * @memberof Javascript
      */
-    protected getVariables(): Promise<ISyntaxVariable> {
+    protected getVariables(index: number): Promise<ISyntaxVariable> {
         const parse = this.parse.parse(this.block);
         const params = this.parse.parseParams(parse.params);
 
         const variables: ISyntaxVariable =  {
             NAME: parse.name,
             PARAMS: params.paramList,
+            PARAMS_TYPES: undefined,
             PARAMS_TEMPLATE: params.template,
+            ABSTRACT: undefined,
+            EXPORT: undefined,
+            ACCESS: undefined,
+            CONST: undefined,
+            RELATION: undefined,
+            RELATIONNAME: undefined,
+            PARENT: undefined,
+            PARENT_CONST: undefined,
+            RETURN_TYPE: undefined,
             BLOCK_COMMENT_START: this.getComment("BLOCK_COMMENT_START"),
             BLOCK_COMMENT_END: this.getComment("BLOCK_COMMENT_END"),
             COMMENT: this.getComment("COMMENT"),
@@ -69,20 +80,5 @@ export class Javascript extends WorkShop {
             resolve(variables);
             reject(undefined);
         });
-    }
-
-    /**
-     * Get the current column in the editor
-     *
-     * @protected
-     * @param {number} index The line index.
-     * @returns {number} The column the user is positioned at.
-     * @memberof WorkShop
-     */
-    protected getCurrentColumn(index: number): number {
-        const leftOfCurrentPos = this.syntaxFile.slice(0, index);
-        const leftIndex = leftOfCurrentPos.lastIndexOf("\n");
-        const currentColumn = leftOfCurrentPos.length - leftIndex;
-        return currentColumn;
     }
 }
