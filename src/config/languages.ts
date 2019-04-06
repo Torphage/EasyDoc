@@ -113,7 +113,8 @@ const languageSyntax: ILanguages = {
     },
     Ruby: {
         regex: {
-            function: /^\s*(?:module|class|def)(?:\s*self\.|\s*)(?<name>\w+[\=\?\!]?)\s*\(?(?<params>[^)\n]*)/g,
+            // tslint:disable-next-line:max-line-length
+            function: /^\s*(?<const>module|class|def)(?:\s*(?<self>self)\.|\s*)(?<name>\w+[\=\?\!]?)\s*(?:(?<relation>\<)?\s+(?<relationName>\w+)?|\(?(?<params>[^)\n]*)?)?/g,
         },
         syntax: {
             string: [
@@ -139,7 +140,8 @@ const languageSyntax: ILanguages = {
     },
     Typescript: {
         regex: {
-            function: /\s*(?<name>\w+)\s*\((?<params>[^)]*)\)\:\s*(?<returnType>[^{]*)/g,
+            // tslint:disable-next-line:max-line-length
+            function: /\s*(?<export>export)?\s*(?<abstract>abstract)?\s*(?<default>private|protected|public)?\s*(?<const>class|function|module)?\s+(?<name>\w+)\s*(?:(?<relation>extends|implements)?\s+(?<relationName>\w*)?|(?:\s*\((?<params>[^)]*)\)\:\s*(?<returnType>(?:\{(?:[^}{]+|\{(?:[^}{]+|\{[^}{]*\})*\})*\})|[^}]*)\s*\{))?\s*?/g,
         },
         syntax: {
             string: [
