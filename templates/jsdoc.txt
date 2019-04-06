@@ -1,6 +1,12 @@
 /**
- * $[Description]$|
- *
- * @param {${PARAMS_TYPES}} ${PARAMS} $[Description]|$$|
- * @returns {${RETURN_TYPE}} $[Description]|$
+ * $[Description]
+ *$|
+ * @${EXPORT}|$$|
+ * @${ACCESS}|$$|
+ * @${ABSTRACT}|$$|
+ * @${CONST} ${NAME}|$$|
+ * @param$| {${PARAMS_TYPES}}|$ ${PARAMS} $[Description]|$$|
+ * @returns {${RETURN_TYPE}} $[Description]|$$|
+ * @${RELATION} {${RELATIONNAME}}|$$|
+ * @memberof ${PARENT}|$
  */
