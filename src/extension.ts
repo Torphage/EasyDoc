@@ -1,15 +1,22 @@
 /**
- * The start point of the extension.
+ * The entry point of the extension. Visual Studio Code will look here for when to start the
+ * extension. Activasion events are also handled here.
+ */
+
+/**
+ * EasyDoc.
  */
 "use strict";
 import * as vs from "vscode";
 import { EasyDoc } from "./easydoc";
 
 /**
- * Is called on activasion of the extension.
+ * The entry point of the extension. The command "extension.EasyDoc" and onDidChangeTextDocument
+ * are added as subscriptions to the extension via the context sent as an argument.
  *
  * @export
- * @param {vs.ExtensionContext} context The extension context.
+ * @param {vs.ExtensionContext} context A collection of utilities private to the extension.
+ * This parameter must be provided as the first parameter to the activate-call in order for the extension to work.
  */
 export function activate(context: vs.ExtensionContext): void {
     context.subscriptions.push(
@@ -27,11 +34,11 @@ export function activate(context: vs.ExtensionContext): void {
 }
 
 /**
- * Detect if Enter was pressed.
+ * Read the text document change and determines if Enter was pressed by checking if a newline was added.
  *
- * @param {vs.TextDocumentChangeEvent} event The text document change event, is
- * read to see if a new line was detected.
- * @returns {boolean} Returns if Enter was pressed.
+ * @param {vs.TextDocumentChangeEvent} event The text document change event. All the changes to the document
+ * are stored here.
+ * @returns {boolean} If true if Enter was pressed, otherwise false.
  */
 function generateOnEnter(event: vs.TextDocumentChangeEvent): boolean {
     if (vs.window.activeTextEditor.document !== event.document) { return; }
