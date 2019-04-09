@@ -72,8 +72,8 @@
 			<section class="tsd-panel tsd-comment">
 				<div class="tsd-comment tsd-typography">
 					<div class="lead">
-						<p>Handle the configuration. Reading the configurations files, add configurations,
-						updates configurations, etc.</p>
+						<p>Handle the configuration. This includes reading the configurations files, add configurations,
+						update configurations, removing old configurations and etc.</p>
 					</div>
 					<dl class="tsd-comment-tags">
 						<dt>export</dt>
@@ -96,6 +96,12 @@
 				<h2>Index</h2>
 				<section class="tsd-panel tsd-index-panel">
 					<div class="tsd-index-content">
+						<section class="tsd-index-section ">
+							<h3>Constructors</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-constructor tsd-parent-kind-class"><a href="_config_.config.html#constructor" class="tsd-kind-icon">constructor</a></li>
+							</ul>
+						</section>
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
@@ -121,6 +127,36 @@
 				</section>
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
+				<h2>Constructors</h2>
+				<section class="tsd-panel tsd-member tsd-kind-constructor tsd-parent-kind-class">
+					<a name="constructor" class="tsd-anchor"></a>
+					<h3>constructor</h3>
+					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">new <wbr>Config<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_config_.config.html" class="tsd-signature-type">Config</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/Torphage/EasyDoc/blob/1711634/src/config.ts#L36">config.ts:36</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Creates an instance of Config.</p>
+								</div>
+								<dl class="tsd-comment-tags">
+									<dt>memberof</dt>
+									<dd><p>Config</p>
+									</dd>
+								</dl>
+							</div>
+							<h4 class="tsd-returns-title">Returns <a href="_config_.config.html" class="tsd-signature-type">Config</a></h4>
+						</li>
+					</ul>
+				</section>
+			</section>
+			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
 					<a name="config" class="tsd-anchor"></a>
@@ -128,9 +164,14 @@
 					<div class="tsd-signature tsd-kind-icon">config<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">WorkspaceConfiguration</span><span class="tsd-signature-symbol"> =&nbsp;vs.workspace.getConfiguration(&quot;EasyDoc&quot;)</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/Torphage/EasyDoc/blob/269dff0/src/config.ts#L16">config.ts:16</a></li>
+							<li>Defined in <a href="https://github.com/Torphage/EasyDoc/blob/1711634/src/config.ts#L26">config.ts:26</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>The configurations for EasyDoc found by vscode settings.</p>
+						</div>
+					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
 					<a name="dir" class="tsd-anchor"></a>
@@ -138,19 +179,29 @@
 					<div class="tsd-signature tsd-kind-icon">dir<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;vs.extensions.getExtension(&quot;Torphage.easydoc&quot;).extensionPath</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/Torphage/EasyDoc/blob/269dff0/src/config.ts#L17">config.ts:17</a></li>
+							<li>Defined in <a href="https://github.com/Torphage/EasyDoc/blob/1711634/src/config.ts#L31">config.ts:31</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>The absolute directory of where the extension is installed.</p>
+						</div>
+					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
 					<a name="packagefiles" class="tsd-anchor"></a>
 					<h3>package<wbr>Files</h3>
-					<div class="tsd-signature tsd-kind-icon">package<wbr>Files<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">any</span><span class="tsd-signature-symbol"> =&nbsp;this.getPackageJSON()</span></div>
+					<div class="tsd-signature tsd-kind-icon">package<wbr>Files<span class="tsd-signature-symbol">:</span> <a href="../interfaces/_interfaces_.ipackage.html" class="tsd-signature-type">IPackage</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/Torphage/EasyDoc/blob/269dff0/src/config.ts#L18">config.ts:18</a></li>
+							<li>Defined in <a href="https://github.com/Torphage/EasyDoc/blob/1711634/src/config.ts#L36">config.ts:36</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>The configurations for EasyDoc found in package.json.</p>
+						</div>
+					</div>
 				</section>
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
@@ -159,18 +210,18 @@
 					<a name="addconfig" class="tsd-anchor"></a>
 					<h3>add<wbr>Config</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">add<wbr>Config<span class="tsd-signature-symbol">(</span>configName<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+						<li class="tsd-signature tsd-kind-icon">add<wbr>Config<span class="tsd-signature-symbol">(</span>configName<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/Torphage/EasyDoc/blob/269dff0/src/config.ts#L60">config.ts:60</a></li>
+									<li>Defined in <a href="https://github.com/Torphage/EasyDoc/blob/1711634/src/config.ts#L86">config.ts:86</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Dynamically adds configuration to the package.json, only do this to be able
+									<p>Dynamically add configurationa to the package.json, only do this to be able
 									to add configurations to the vscode config file instead of having my own.</p>
 								</div>
 								<dl class="tsd-comment-tags">
@@ -182,7 +233,7 @@
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>configName: <span class="tsd-signature-type">any</span></h5>
+									<h5>configName: <span class="tsd-signature-type">string</span></h5>
 									<div class="tsd-comment tsd-typography">
 										<p>The name of the configuration to be added.</p>
 									</div>
@@ -196,13 +247,13 @@
 					<a name="addmissingkeys" class="tsd-anchor"></a>
 					<h3>add<wbr>Missing<wbr>Keys</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">add<wbr>Missing<wbr>Keys<span class="tsd-signature-symbol">(</span>fileConfig<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span>, missingKeys<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+						<li class="tsd-signature tsd-kind-icon">add<wbr>Missing<wbr>Keys<span class="tsd-signature-symbol">(</span>fileConfig<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, missingKeys<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/Torphage/EasyDoc/blob/269dff0/src/config.ts#L115">config.ts:115</a></li>
+									<li>Defined in <a href="https://github.com/Torphage/EasyDoc/blob/1711634/src/config.ts#L136">config.ts:136</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -218,16 +269,13 @@
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>fileConfig: <span class="tsd-signature-type">any</span></h5>
+									<h5>fileConfig: <span class="tsd-signature-type">string</span></h5>
 									<div class="tsd-comment tsd-typography">
 										<p>The configuration that keys should be added into.</p>
 									</div>
 								</li>
 								<li>
-									<h5>missingKeys: <span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">[]</span></h5>
-									<div class="tsd-comment tsd-typography">
-										<p>The keys that should be added.</p>
-									</div>
+									<h5>missingKeys: <span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol">&gt;</span></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -244,7 +292,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/Torphage/EasyDoc/blob/269dff0/src/config.ts#L151">config.ts:151</a></li>
+									<li>Defined in <a href="https://github.com/Torphage/EasyDoc/blob/1711634/src/config.ts#L171">config.ts:171</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -281,12 +329,12 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/Torphage/EasyDoc/blob/269dff0/src/config.ts#L27">config.ts:27</a></li>
+									<li>Defined in <a href="https://github.com/Torphage/EasyDoc/blob/1711634/src/config.ts#L54">config.ts:54</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Get list of files in a given directory. Source was found on <a href="https://gist.github.com/kethinov/6658166">https://gist.github.com/kethinov/6658166</a></p>
+									<p>Get the array of files found within a directory with the file extension &quot;.txt&quot;.</p>
 								</div>
 								<dl class="tsd-comment-tags">
 									<dt>memberof</dt>
@@ -299,12 +347,12 @@
 								<li>
 									<h5>dir: <span class="tsd-signature-type">string</span></h5>
 									<div class="tsd-comment tsd-typography">
-										<p>The directory to search for files in.</p>
+										<p>The directory to search in.</p>
 									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></h4>
-							<p>An array of files within gthe given directory.</p>
+							<p>The files within the directory.</p>
 						</li>
 					</ul>
 				</section>
@@ -312,13 +360,13 @@
 					<a name="getmissingkeys" class="tsd-anchor"></a>
 					<h3>get<wbr>Missing<wbr>Keys</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">get<wbr>Missing<wbr>Keys<span class="tsd-signature-symbol">(</span>fileConfig<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">[]</span></li>
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Missing<wbr>Keys<span class="tsd-signature-symbol">(</span>fileConfig<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/Torphage/EasyDoc/blob/269dff0/src/config.ts#L85">config.ts:85</a></li>
+									<li>Defined in <a href="https://github.com/Torphage/EasyDoc/blob/1711634/src/config.ts#L106">config.ts:106</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -340,8 +388,10 @@
 									</div>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">[]</span></h4>
-							<p>A list of missing keys.</p>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<blockquote>
+								<p>} A list of missing keys.</p>
+							</blockquote>
 						</li>
 					</ul>
 				</section>
@@ -349,18 +399,18 @@
 					<a name="getpackagejson" class="tsd-anchor"></a>
 					<h3>get<wbr>PackageJSON</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">get<wbr>PackageJSON<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span></li>
+						<li class="tsd-signature tsd-kind-icon">get<wbr>PackageJSON<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/Torphage/EasyDoc/blob/269dff0/src/config.ts#L47">config.ts:47</a></li>
+									<li>Defined in <a href="https://github.com/Torphage/EasyDoc/blob/1711634/src/config.ts#L73">config.ts:73</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Get the package.json as object. Used to get the configurations stored here.</p>
+									<p>Read the <code>package.json</code> file and stores it in <a href="_config_.config.html#packagefiles">Config.packageFiles</a>.</p>
 								</div>
 								<dl class="tsd-comment-tags">
 									<dt>memberof</dt>
@@ -368,8 +418,7 @@
 									</dd>
 								</dl>
 							</div>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">any</span></h4>
-							<p>Package.json as an object.</p>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -383,7 +432,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/Torphage/EasyDoc/blob/269dff0/src/config.ts#L129">config.ts:129</a></li>
+									<li>Defined in <a href="https://github.com/Torphage/EasyDoc/blob/1711634/src/config.ts#L150">config.ts:150</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -419,7 +468,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/Torphage/EasyDoc/blob/269dff0/src/config.ts#L179">config.ts:179</a></li>
+									<li>Defined in <a href="https://github.com/Torphage/EasyDoc/blob/1711634/src/config.ts#L199">config.ts:199</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -456,6 +505,9 @@
 					<li class="current tsd-kind-class tsd-parent-kind-external-module">
 						<a href="_config_.config.html" class="tsd-kind-icon">Config</a>
 						<ul>
+							<li class=" tsd-kind-constructor tsd-parent-kind-class">
+								<a href="_config_.config.html#constructor" class="tsd-kind-icon">constructor</a>
+							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class">
 								<a href="_config_.config.html#config" class="tsd-kind-icon">config</a>
 							</li>

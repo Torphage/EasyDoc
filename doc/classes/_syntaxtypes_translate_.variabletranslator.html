@@ -104,7 +104,6 @@
 						<section class="tsd-index-section tsd-is-private tsd-is-private-protected">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="_syntaxtypes_translate_.variabletranslator.html#text" class="tsd-kind-icon">text</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="_syntaxtypes_translate_.variabletranslator.html#varname" class="tsd-kind-icon">var<wbr>Name</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="_syntaxtypes_translate_.variabletranslator.html#varvalue" class="tsd-kind-icon">var<wbr>Value</a></li>
 							</ul>
@@ -127,13 +126,13 @@
 					<a name="constructor" class="tsd-anchor"></a>
 					<h3>constructor</h3>
 					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">new <wbr>Variable<wbr>Translator<span class="tsd-signature-symbol">(</span>text<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, varName<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, varValue<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_syntaxtypes_translate_.variabletranslator.html" class="tsd-signature-type">VariableTranslator</a></li>
+						<li class="tsd-signature tsd-kind-icon">new <wbr>Variable<wbr>Translator<span class="tsd-signature-symbol">(</span>varName<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, varValue<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_syntaxtypes_translate_.variabletranslator.html" class="tsd-signature-type">VariableTranslator</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/Torphage/EasyDoc/blob/269dff0/src/syntaxTypes/translate.ts#L15">syntaxTypes/translate.ts:15</a></li>
+									<li>Defined in <a href="https://github.com/Torphage/EasyDoc/blob/1711634/src/syntaxTypes/translate.ts#L34">syntaxTypes/translate.ts:34</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -148,14 +147,6 @@
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
-								<li>
-									<h5>text: <span class="tsd-signature-type">string</span></h5>
-									<div class="tsd-comment tsd-typography">
-										<div class="lead">
-											<p>The text to translate.</p>
-										</div>
-									</div>
-								</li>
 								<li>
 									<h5>varName: <span class="tsd-signature-type">string</span></h5>
 									<div class="tsd-comment tsd-typography">
@@ -181,24 +172,27 @@
 			<section class="tsd-panel-group tsd-member-group tsd-is-private tsd-is-private-protected">
 				<h2>Properties</h2>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
-					<a name="text" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagPrivate">Private</span> text</h3>
-					<div class="tsd-signature tsd-kind-icon">text<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/Torphage/EasyDoc/blob/269dff0/src/syntaxTypes/translate.ts#L13">syntaxTypes/translate.ts:13</a></li>
-						</ul>
-					</aside>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
 					<a name="varname" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagPrivate">Private</span> var<wbr>Name</h3>
 					<div class="tsd-signature tsd-kind-icon">var<wbr>Name<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/Torphage/EasyDoc/blob/269dff0/src/syntaxTypes/translate.ts#L14">syntaxTypes/translate.ts:14</a></li>
+							<li>Defined in <a href="https://github.com/Torphage/EasyDoc/blob/1711634/src/syntaxTypes/translate.ts#L25">syntaxTypes/translate.ts:25</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>The name of the variable.</p>
+						</div>
+						<dl class="tsd-comment-tags">
+							<dt>type</dt>
+							<dd><p>{string}</p>
+							</dd>
+							<dt>memberof</dt>
+							<dd><p>VariableTranslator</p>
+							</dd>
+						</dl>
+					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
 					<a name="varvalue" class="tsd-anchor"></a>
@@ -206,9 +200,22 @@
 					<div class="tsd-signature tsd-kind-icon">var<wbr>Value<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/Torphage/EasyDoc/blob/269dff0/src/syntaxTypes/translate.ts#L15">syntaxTypes/translate.ts:15</a></li>
+							<li>Defined in <a href="https://github.com/Torphage/EasyDoc/blob/1711634/src/syntaxTypes/translate.ts#L34">syntaxTypes/translate.ts:34</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>The value of the variable as seen in the template file.</p>
+						</div>
+						<dl class="tsd-comment-tags">
+							<dt>type</dt>
+							<dd><p>{string}</p>
+							</dd>
+							<dt>memberof</dt>
+							<dd><p>VariableTranslator</p>
+							</dd>
+						</dl>
+					</div>
 				</section>
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
@@ -223,7 +230,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/Torphage/EasyDoc/blob/269dff0/src/syntaxTypes/translate.ts#L96">syntaxTypes/translate.ts:96</a></li>
+									<li>Defined in <a href="https://github.com/Torphage/EasyDoc/blob/1711634/src/syntaxTypes/translate.ts#L116">syntaxTypes/translate.ts:116</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -266,7 +273,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/Torphage/EasyDoc/blob/269dff0/src/syntaxTypes/translate.ts#L134">syntaxTypes/translate.ts:134</a></li>
+									<li>Defined in <a href="https://github.com/Torphage/EasyDoc/blob/1711634/src/syntaxTypes/translate.ts#L154">syntaxTypes/translate.ts:154</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -306,7 +313,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/Torphage/EasyDoc/blob/269dff0/src/syntaxTypes/translate.ts#L80">syntaxTypes/translate.ts:80</a></li>
+									<li>Defined in <a href="https://github.com/Torphage/EasyDoc/blob/1711634/src/syntaxTypes/translate.ts#L100">syntaxTypes/translate.ts:100</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -337,13 +344,13 @@
 					<a name="translate" class="tsd-anchor"></a>
 					<h3>translate</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">translate<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span></li>
+						<li class="tsd-signature tsd-kind-icon">translate<span class="tsd-signature-symbol">(</span>text<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/Torphage/EasyDoc/blob/269dff0/src/syntaxTypes/translate.ts#L37">syntaxTypes/translate.ts:37</a></li>
+									<li>Defined in <a href="https://github.com/Torphage/EasyDoc/blob/1711634/src/syntaxTypes/translate.ts#L55">syntaxTypes/translate.ts:55</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -356,6 +363,15 @@
 									</dd>
 								</dl>
 							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>text: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The text to translate.</p>
+									</div>
+								</li>
+							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">any</span></h4>
 							<p>The value of the translated variable.</p>
 						</li>
@@ -383,9 +399,6 @@
 						<ul>
 							<li class=" tsd-kind-constructor tsd-parent-kind-class">
 								<a href="_syntaxtypes_translate_.variabletranslator.html#constructor" class="tsd-kind-icon">constructor</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
-								<a href="_syntaxtypes_translate_.variabletranslator.html#text" class="tsd-kind-icon">text</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
 								<a href="_syntaxtypes_translate_.variabletranslator.html#varname" class="tsd-kind-icon">var<wbr>Name</a>

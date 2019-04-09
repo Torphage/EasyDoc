@@ -66,6 +66,14 @@
 <div class="container container-main">
 	<div class="row">
 		<div class="col-8 col-content">
+			<section class="tsd-panel tsd-comment">
+				<div class="tsd-comment tsd-typography">
+					<div class="lead">
+						<p>The entry point of the extension. vscode will look here for when to start the
+						extension. Activasion events are also handled here.</p>
+					</div>
+				</div>
+			</section>
 			<section class="tsd-panel-group tsd-index-group">
 				<h2>Index</h2>
 				<section class="tsd-panel tsd-index-panel">
@@ -92,12 +100,13 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/Torphage/EasyDoc/blob/269dff0/src/extension.ts#L14">extension.ts:14</a></li>
+									<li>Defined in <a href="https://github.com/Torphage/EasyDoc/blob/1711634/src/extension.ts#L21">extension.ts:21</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Is called on activasion of the extension.</p>
+									<p>The entry point of the extension. The command &quot;extension.EasyDoc&quot; and onDidChangeTextDocument
+									are added as subscriptions to the extension via the context sent as an argument.</p>
 								</div>
 								<dl class="tsd-comment-tags">
 									<dt>export</dt>
@@ -109,7 +118,8 @@
 								<li>
 									<h5>context: <span class="tsd-signature-type">vs.ExtensionContext</span></h5>
 									<div class="tsd-comment tsd-typography">
-										<p>The extension context.</p>
+										<p>A collection of utilities private to the extension.
+										This parameter must be provided as the first parameter to the activate-call in order for the extension to work.</p>
 									</div>
 								</li>
 							</ul>
@@ -127,12 +137,12 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/Torphage/EasyDoc/blob/269dff0/src/extension.ts#L36">extension.ts:36</a></li>
+									<li>Defined in <a href="https://github.com/Torphage/EasyDoc/blob/1711634/src/extension.ts#L43">extension.ts:43</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Detect if Enter was pressed.</p>
+									<p>Read the chenges to the text document and determines if Enter was pressed by checking if a newline was added.</p>
 								</div>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -140,13 +150,13 @@
 								<li>
 									<h5>event: <span class="tsd-signature-type">vs.TextDocumentChangeEvent</span></h5>
 									<div class="tsd-comment tsd-typography">
-										<p>The text document change event, is
-										read to see if a new line was detected.</p>
+										<p>The text document change event. All the changes to the document
+										are stored here.</p>
 									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
-							<p>Returns if Enter was pressed.</p>
+							<p>If true if Enter was pressed, otherwise false.</p>
 						</li>
 					</ul>
 				</section>
