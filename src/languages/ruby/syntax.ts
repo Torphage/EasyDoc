@@ -1,6 +1,10 @@
 /**
  * Implementation of Ruby.
  */
+
+/**
+ * EasyDoc.
+ */
 import { ISyntaxVariable } from "../../interfaces";
 import { WorkShop } from "../workshop";
 import { RubyParse } from "./parse";
@@ -13,13 +17,21 @@ import { RubyParse } from "./parse";
  * @extends {WorkShop}
  */
 export class Ruby extends WorkShop {
+
+    /**
+     * The Ruby parser.
+     *
+     * @protected
+     * @type {RubyParse}
+     * @memberof Ruby
+     */
     protected parse: RubyParse;
 
     /**
      * Creates an instance of Ruby.
      *
-     * @param {string} syntaxFile
-     * @param {string} docType
+     * @param {string} syntaxFile The template file text.
+     * @param {string} docType The type of documentation to make.
      * @memberof Ruby
      */
     constructor(syntaxFile: string, docType: string) {

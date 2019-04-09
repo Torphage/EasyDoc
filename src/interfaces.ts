@@ -1,4 +1,126 @@
 /**
+ * Store all the interfaces used throughout the program here.
+ */
+
+/**
+ * The package.json's configurations's default values.
+ *
+ * @interface IDefaultObject
+ */
+interface IDefaultObject {
+
+    /**
+     * If the documentation should be commented about or below of what to document.
+     *
+     * @type {boolean}
+     * @memberof IDefaultObject
+     */
+    commentAboveTarget: boolean;
+
+    /**
+     * What type of documentation the template file is made for. This will determine
+     * what variables that can be used within the template file.
+     *
+     * @type {string}
+     * @memberof IDefaultObject
+     */
+    docType: string;
+
+    /**
+     * What string before the cusror that will trigger the extension on the press of Enter.
+     *
+     * @type {string}
+     * @memberof IDefaultObject
+     */
+    triggerString: string;
+}
+
+/**
+ * The interface for each configuration in package.json.
+ *
+ * @interface IConfiguration
+ */
+interface IConfiguration {
+
+    /**
+     * The type of the configuration.
+     *
+     * @type {string}
+     * @memberof IConfiguration
+     */
+    type: string;
+
+    /**
+     * The default values for the configuration.
+     *
+     * @type {(string[] | IDefaultObject)}
+     * @memberof IConfiguration
+     */
+    default: string[] | IDefaultObject;
+}
+
+/**
+ * The configurations of EasyDoc.
+ *
+ * @interface IConfigurations
+ */
+interface IConfigurations {
+
+    /**
+     * The title of EasyDoc's configurations.
+     *
+     * @type {string}
+     * @memberof IConfigurations
+     */
+    title: string;
+
+    /**
+     * The properties of all EasyDoc's configurations. This is all of the
+     * configurations of EasyDoc.
+     *
+     * @type {{ [key: string]: IConfiguration }}
+     * @memberof IConfigurations
+     */
+    properties: { [key: string]: IConfiguration };
+}
+
+/**
+ * The contributes in package.json.
+ *
+ * @interface IContributes
+ */
+interface IContributes {
+
+    /**
+     * The configurations of EasyDoc.
+     *
+     * @type {IConfigurations}
+     * @memberof IContributes
+     */
+    configuration: IConfigurations;
+
+    [key: string]: any;
+}
+
+/**
+ * The entire package.json.
+ *
+ * @interface IPackage
+ */
+interface IPackage {
+
+    /**
+     * The contributes in package.json.
+     *
+     * @type {IContributes}
+     * @memberof IPackage
+     */
+    contributes: IContributes;
+
+    [key: string]: any;
+}
+
+/**
  * Store information about a syntax type's text value and its location.
  *
  * @interface ISyntaxType
@@ -328,6 +450,8 @@ interface ILanguages {
 }
 
 export {
+    IDefaultObject,
+    IPackage,
     ISyntaxType,
     ISyntaxVariable,
     ILanguage,

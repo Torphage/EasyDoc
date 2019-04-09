@@ -1,6 +1,10 @@
 /**
  * Handle placeholders.
  */
+
+/**
+ * EasyDoc.
+ */
 import * as vs from "vscode";
 import { ISyntaxType } from "../interfaces";
 import { CustomSyntax } from "../syntax";

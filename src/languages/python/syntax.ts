@@ -1,6 +1,10 @@
 /**
  * Implementation of Python
  */
+
+/**
+ * EasyDoc.
+ */
 import { ISyntaxVariable } from "../../interfaces";
 import { WorkShop } from "../workshop";
 import { PythonParse } from "./parse";
@@ -13,13 +17,21 @@ import { PythonParse } from "./parse";
  * @extends {WorkShop}
  */
 export class Python extends WorkShop {
+
+    /**
+     * The Python parser.
+     *
+     * @protected
+     * @type {PythonParse}
+     * @memberof Python
+     */
     protected parse: PythonParse;
 
     /**
      * Creates an instance of Python.
      *
-     * @param {string} syntaxFile
-     * @param {string} docType
+     * @param {string} syntaxFile The template file text.
+     * @param {string} docType The type of documentation to make.
      * @memberof Python
      */
     constructor(syntaxFile: string, docType: string) {

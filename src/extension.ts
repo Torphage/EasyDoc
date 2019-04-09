@@ -1,5 +1,5 @@
 /**
- * The entry point of the extension. Visual Studio Code will look here for when to start the
+ * The entry point of the extension. vscode will look here for when to start the
  * extension. Activasion events are also handled here.
  */
 
@@ -34,7 +34,7 @@ export function activate(context: vs.ExtensionContext): void {
 }
 
 /**
- * Read the text document change and determines if Enter was pressed by checking if a newline was added.
+ * Read the chenges to the text document and determines if Enter was pressed by checking if a newline was added.
  *
  * @param {vs.TextDocumentChangeEvent} event The text document change event. All the changes to the document
  * are stored here.

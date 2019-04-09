@@ -1,6 +1,10 @@
 /**
  * Handle the error handlers.
  */
+
+/**
+ * EasyDoc.
+ */
 import { ISyntaxType, ISyntaxVariable } from "../interfaces";
 import { CustomSyntax } from "../syntax";
 
@@ -11,14 +15,20 @@ import { CustomSyntax } from "../syntax";
  * @class ErrorHandler
  */
 export class ErrorHandler {
-    private customTypes = new CustomSyntax();
 
+    /**
+     * The available variables, defined by the Syntax class.
+     *
+     * @private
+     * @type {ISyntaxVariable}
+     * @memberof ErrorHandler
+     */
     private vars: ISyntaxVariable;
 
     /**
      * Creates an instance of ErrorHandler.
      *
-     * @param {ISyntaxVariable} vars
+     * @param {ISyntaxVariable} vars The available variables, defined by the Syntax class.
      * @memberof ErrorHandler
      */
     constructor(vars: ISyntaxVariable) {
@@ -34,12 +44,13 @@ export class ErrorHandler {
      */
     public handle(text: string): string {
         let block: ISyntaxType;
+        const customTypes = new CustomSyntax();
 
         do {
-            block = this.customTypes.getSyntax(text, "errorhandlers")[0];
+            block = customTypes.getSyntax(text, "errorhandlers")[0];
             if (block === undefined) { break; }
 
-            const variables = this.customTypes.getSyntax(block.text, "variables");
+            const variables = customTypes.getSyntax(block.text, "variables");
             let generateBlock = true;
 
             const beforeBlock = text.substr(0, block.start);

@@ -1,6 +1,10 @@
 /**
  * A parser for Cpp.
  */
+
+/**
+ * EasyDoc.
+ */
 import { IParams } from "../../interfaces";
 import { copy, removeStringBetweenChar } from "../../utils";
 import { BaseParse } from "../parse";

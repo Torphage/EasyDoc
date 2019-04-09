@@ -1,6 +1,10 @@
 /**
  * A parser for Haskell.
  */
+
+/**
+ * EasyDoc.
+ */
 import { IParams } from "../../interfaces";
 import { BaseParse } from "../parse";
 

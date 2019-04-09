@@ -1,6 +1,10 @@
 /**
  * A parser for Typescript.
  */
+
+/**
+ * EasyDoc.
+ */
 import { IParams } from "../../interfaces";
 import { copy, removeStringBetweenChar } from "../../utils";
 import { BaseParse } from "../parse";

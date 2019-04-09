@@ -1,6 +1,10 @@
 /**
  * Handle everything about the variable type.
  */
+
+/**
+ * EasyDoc.
+ */
 import { ISyntaxType, ISyntaxVariable } from "../interfaces";
 import { CustomSyntax } from "../syntax";
 import { VariableTranslator } from "./translate";
@@ -12,11 +16,24 @@ import { VariableTranslator } from "./translate";
  * @class Variable
  */
 export class Variable {
-    private vars: ISyntaxVariable;
-    private text: string;
 
-    private customTypes = new CustomSyntax();
-    private index = 0;
+    /**
+     * The variables found within the template file.
+     *
+     * @private
+     * @type {ISyntaxVariable}
+     * @memberof Variable
+     */
+    private vars: ISyntaxVariable;
+
+    /**
+     * The line index of the text.
+     *
+     * @private
+     * @type {number}
+     * @memberof Variable
+     */
+    private index: number = 0;
 
     /**
      * Creates an instance of Variable.
@@ -37,10 +54,8 @@ export class Variable {
      * @memberof Variable
      */
     public generate(text: string): string {
-        this.text = text;
-
         const snippet = [];
-        const textLines = this.text.split("\n");
+        const textLines = text.split("\n");
 
         for (this.index = 0; this.index < textLines.length; this.index++) {
 
@@ -87,13 +102,22 @@ export class Variable {
             str = new Array(maxRepeaters.length).fill(text);
         }
 
+        /**
+         * Goes through the vairables found in the currect text.
+         */
         localVars.forEach((variable) => {
             const newVar = this.getTypeValue(variable);
 
             const first = text.substring(0, variable.start + offset);
             const second = text.substring(variable.start + variable.length + offset);
 
+            /**
+             * If the variable is a `string` handle it here.
+             */
             if (typeof newVar === "string") {
+                /**
+                 * If the variable should be repeated on mulitple lines or not.
+                 */
                 if (repeatEachLine) {
                     for (let i = 0; i < maxRepeaters.length; i++) {
                         const tempOffset = offset + str[i].length - text.length;
@@ -102,6 +126,9 @@ export class Variable {
 
                         str[i] = `${ifirst}${newVar}${isecond}`;
                     }
+                /**
+                 * If the variable should only be used on the current row.
+                 */
                 } else {
                     text = `${first}${newVar}${second}`;
 
@@ -109,7 +136,13 @@ export class Variable {
 
                     str = [text];
                 }
+            /**
+             * If the variable is a `Array` handle it here.
+             */
             } else {
+                /**
+                 * If the variable should be repeated on mulitple lines or not.
+                 */
                 if (repeatEachLine) {
                     for (let i = 0; i < maxRepeaters.length; i++) {
                         const tempOffset = offset + str[i].length - text.length;
@@ -118,6 +151,9 @@ export class Variable {
 
                         str[i] = `${ifirst}${newVar[i]}${isecond}`;
                     }
+                /**
+                 * If the variable should only be used on the current row.
+                 */
                 } else {
                     for (let i = 0; i < maxRepeaters.length; i++) {
                         let varValue: string;
@@ -153,10 +189,9 @@ export class Variable {
 
         if (tempVar === undefined) { return tempVar; }
 
-        const translator = new VariableTranslator(
-            variable.text.slice(2, -1), varName, tempVar);
+        const translator = new VariableTranslator(varName, tempVar);
 
-        return translator.translate();
+        return translator.translate(variable.text.slice(2, -1));
     }
 
     /**
@@ -191,7 +226,8 @@ export class Variable {
      * @memberof Variable
      */
     private getLocalTypes(text: string): ISyntaxType[] {
-        const variables = this.customTypes.getSyntax(text, "variables");
+        const customTypes = new CustomSyntax();
+        const variables = customTypes.getSyntax(text, "variables");
 
         const includedVars = [];
         for (const variable of variables) {

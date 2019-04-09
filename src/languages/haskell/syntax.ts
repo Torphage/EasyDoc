@@ -1,6 +1,10 @@
 /**
  * Implementation of Haskell.
  */
+
+/**
+ * EasyDoc.
+ */
 import { ISyntaxVariable } from "../../interfaces";
 import { WorkShop } from "../workshop";
 import { HaskellParse } from "./parse";
@@ -13,6 +17,14 @@ import { HaskellParse } from "./parse";
  * @extends {WorkShop}
  */
 export class Haskell extends WorkShop {
+
+    /**
+     * The Haskell parser.
+     *
+     * @protected
+     * @type {HaskellParse}
+     * @memberof Haskell
+     */
     protected parse: HaskellParse;
 
     /**

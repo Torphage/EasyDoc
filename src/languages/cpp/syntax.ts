@@ -1,6 +1,10 @@
 /**
  * Implementation of Cpp.
  */
+
+/**
+ * EasyDoc.
+ */
 import { ISyntaxVariable } from "../../interfaces";
 import { WorkShop } from "../workshop";
 import { CppParse } from "./parse";
@@ -13,13 +17,21 @@ import { CppParse } from "./parse";
  * @extends {WorkShop}
  */
 export class Cpp extends WorkShop {
+
+    /**
+     * The Cpp parser.
+     *
+     * @protected
+     * @type {CppParse}
+     * @memberof Cpp
+     */
     protected parse: CppParse;
 
     /**
      * Creates an instance of Cpp.
      *
-     * @param {string} syntaxFile
-     * @param {string} docType
+     * @param {string} syntaxFile The template file text.
+     * @param {string} docType The type of documentation to make.
      * @memberof Cpp
      */
     constructor(syntaxFile: string, docType: string) {

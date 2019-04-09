@@ -1,6 +1,10 @@
 /**
  * Set the language and initialize the correct Syntax Class based on it.
  */
+
+ /**
+  * EasyDoc.
+  */
 import * as fs from "fs";
 import * as vs from "vscode";
 import * as languages from "./languages/export";

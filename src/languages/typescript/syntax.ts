@@ -1,6 +1,10 @@
 /**
  * Implementation of Typescript.
  */
+
+/**
+ * EasyDoc.
+ */
 import { ISyntaxVariable } from "../../interfaces";
 import { WorkShop } from "../workshop";
 import { TypescriptParse } from "./parse";
@@ -13,13 +17,21 @@ import { TypescriptParse } from "./parse";
  * @extends {WorkShop}
  */
 export class Typescript extends WorkShop {
+
+    /**
+     * The Typescript parser.
+     *
+     * @protected
+     * @type {TypescriptParse}
+     * @memberof Typescript
+     */
     protected parse: TypescriptParse;
 
     /**
      * Creates an instance of Typescript.
      *
-     * @param {string} syntaxFile
-     * @param {string} docType
+     * @param {string} syntaxFile The template file text.
+     * @param {string} docType The type of documentation to make.
      * @memberof Typescript
      */
     constructor(syntaxFile: string, docType: string) {

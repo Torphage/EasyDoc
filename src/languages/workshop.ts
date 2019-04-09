@@ -1,10 +1,14 @@
 /**
  * The Workshop, where all the functions is called from after the requirements have been met.
  */
+
+/**
+ * EasyDoc.
+ */
 import * as fs from "fs";
 import * as vs from "vscode";
 import regexFile from "../config/languages";
-import { ISyntaxVariable } from "../interfaces";
+import { IDefaultObject, ISyntaxVariable } from "../interfaces";
 import { CustomSyntax } from "../syntax";
 import { ErrorHandler, Placeholder, Repeater, Variable } from "../syntaxTypes/export";
 
@@ -16,16 +20,83 @@ import { ErrorHandler, Placeholder, Repeater, Variable } from "../syntaxTypes/ex
  * @class WorkShop
  */
 export abstract class WorkShop {
+
+    /**
+     * The template file text.
+     *
+     * @protected
+     * @type {string}
+     * @memberof WorkShop
+     */
     protected syntaxFile: string;
-    protected config: any;
+
+    /**
+     * The configuration of the template file in use.
+     *
+     * @protected
+     * @type {IDefaultObject}
+     * @memberof WorkShop
+     */
+    protected config: IDefaultObject;
+
+    /**
+     * The available variables.
+     *
+     * @protected
+     * @type {ISyntaxVariable}
+     * @memberof WorkShop
+     */
     protected vars: ISyntaxVariable;
+
+    /**
+     * The parser that corresponds the the current class.
+     *
+     * @protected
+     * @type {*}
+     * @memberof WorkShop
+     */
     protected parse: any;
 
+    /**
+     * The active text editor document..
+     *
+     * @protected
+     * @memberof WorkShop
+     */
     protected document = vs.window.activeTextEditor.document;
+
+    /**
+     * The cursors' current position within the [[WorkShop.document]]
+     *
+     * @protected
+     * @memberof WorkShop
+     */
     protected position = vs.window.activeTextEditor.selection.active;
+
+    /**
+     * The wanted block from the parser.
+     *
+     * @protected
+     * @type {string[]}
+     * @memberof WorkShop
+     */
     protected block: string[] = [];
-    protected customTypes = new CustomSyntax();
+
+    /**
+     * The active text editor.
+     *
+     * @protected
+     * @memberof WorkShop
+     */
     protected editor = vs.window.activeTextEditor;
+
+    /**
+     * The document rows.
+     *
+     * @protected
+     * @type {string}
+     * @memberof WorkShop
+     */
     protected docRows: string;
 
     /**
@@ -245,7 +316,7 @@ export abstract class WorkShop {
     }
 
     /**
-     * Delete the trigger string.
+     * Delete the triggerText string.
      *
      * @private
      * @returns {(Promise<Thenable<{}>|undefined>)} A promise.

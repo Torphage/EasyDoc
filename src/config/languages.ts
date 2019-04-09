@@ -1,5 +1,17 @@
+/**
+ * The syntax and regular expressions for every language are stored here.
+ */
+
+/**
+ * EasyDoc.
+ */
 import { ILanguages } from "../interfaces";
 
+/**
+ * The syntax and regular expressions for each supported languages.
+ *
+ * @type {ILanguags}
+ */
 const languageSyntax: ILanguages = {
     Cpp: {
         regex: {

@@ -1,6 +1,10 @@
 /**
  * A parser for Python.
  */
+
+/**
+ * EasyDoc.
+ */
 import { IParams } from "../../interfaces";
 import { BaseParse } from "../parse";
 

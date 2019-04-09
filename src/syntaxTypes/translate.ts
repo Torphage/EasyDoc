@@ -1,6 +1,10 @@
 /**
  * Translates variables.
  */
+
+/**
+ * EasyDoc.
+ */
 import { copy } from "../utils";
 
 /**
@@ -10,20 +14,33 @@ import { copy } from "../utils";
  * @class VariableTranslator
  */
 export class VariableTranslator {
-    private text: string;
+
+    /**
+     * The name of the variable.
+     *
+     * @private
+     * @type {string}
+     * @memberof VariableTranslator
+     */
     private varName: string;
+
+    /**
+     * The value of the variable as seen in the template file.
+     *
+     * @private
+     * @type {string}
+     * @memberof VariableTranslator
+     */
     private varValue: string;
 
     /**
      * Creates an instance of VariableTranslator.
      *
-     * @param {string} text The text to translate.
      * @param {string} varName The variable name.
      * @param {*} varValue The variable value.
      * @memberof VariableTranslator
      */
-    constructor(text: string, varName: string, varValue: any) {
-        this.text = text.replace(/(\s)/g, "");
+    constructor(varName: string, varValue: any) {
         this.varName = varName;
         this.varValue = varValue;
     }
@@ -31,22 +48,25 @@ export class VariableTranslator {
     /**
      * Translate a variable.
      *
+     * @param {string} text The text to translate.
      * @returns {*} The value of the translated variable.
      * @memberof VariableTranslator
      */
-    public translate(): any {
+    public translate(text: string): any {
         let advancedSyntax: RegExpMatchArray;
         let varName = copy(this.varValue);
-        let text: string = copy(this.text);
+
+        const cleanText = text.replace(/(\s)/g, "");
+        let tempText: string = copy(cleanText);
 
         do {
-            advancedSyntax = this.isAdvancedSyntax(text);
+            advancedSyntax = this.isAdvancedSyntax(tempText);
 
             if (advancedSyntax === null) {
                 break;
             }
 
-            const splitted = text.split(this.varName);
+            const splitted = tempText.split(this.varName);
 
             if (splitted[1][0] === ".") {
                 const regex = /^\.\w*/g;
@@ -54,15 +74,15 @@ export class VariableTranslator {
 
                 varName = this.handleProperty(property, varName);
 
-                text = text.replace(`${this.varName}.${property}`, this.varName);
+                tempText = tempText.replace(`${this.varName}.${property}`, this.varName);
             }
             if (splitted[1][0] === ")") {
-                const func = this.text.substring(
+                const func = cleanText.substring(
                     splitted[0].slice(0, -1).lastIndexOf("(") + 1, splitted[1].indexOf(")") + splitted[0].length - 1);
 
                 varName = this.handleFunction(func, varName);
 
-                text = text.replace(`${func}(${this.varName})`, this.varName);
+                tempText = tempText.replace(`${func}(${this.varName})`, this.varName);
             }
         } while (advancedSyntax);
 

@@ -1,6 +1,10 @@
 /**
  * This is where the locations and positions of the different regular expressions are given from.
  */
+
+/**
+ * EasyDoc.
+ */
 import { ISyntaxType } from "./interfaces";
 
 /**

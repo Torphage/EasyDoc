@@ -1,6 +1,10 @@
 /**
  * Where parsing of a language is implemented.
  */
+
+/**
+ * EasyDoc.
+ */
 import regexExpressions from "../config/languages";
 import { ILanguage, IParams } from "../interfaces";
 
@@ -12,9 +16,41 @@ import { ILanguage, IParams } from "../interfaces";
  * @class BaseParse
  */
 export abstract class BaseParse {
+
+    /**
+     * The index of when the contructor's block  start. This is used for when a cunstructor spans
+     * multiple lines.
+     *
+     * @type {number}
+     * @memberof BaseParse
+     */
     public blockStartIndex: number = 0;
+
+    /**
+     * The document text.
+     *
+     * @protected
+     * @type {string}
+     * @memberof BaseParse
+     */
     protected documentText: string;
+
+    /**
+     * The regular expressions and syntaxes for a language.
+     *
+     * @protected
+     * @type {ILanguage}
+     * @memberof BaseParse
+     */
     protected allRegex: ILanguage;
+
+    /**
+     * The regular expression of what to match.
+     *
+     * @protected
+     * @type {RegExp}
+     * @memberof BaseParse
+     */
     protected regex: RegExp;
 
     /**

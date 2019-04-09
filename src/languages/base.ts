@@ -1,6 +1,10 @@
 /**
  * The base implementation of WorkShop.
  */
+
+/**
+ * EasyDoc.
+ */
 import { ISyntaxVariable } from "../interfaces";
 import { WorkShop } from "./workshop";
 

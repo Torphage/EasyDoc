@@ -1,6 +1,10 @@
 /**
  * Implementation of Javascript.
  */
+
+/**
+ * EasyDoc.
+ */
 import { ISyntaxVariable } from "../../interfaces";
 import { WorkShop } from "../workshop";
 import { JavascriptParse } from "./parse";
@@ -13,13 +17,21 @@ import { JavascriptParse } from "./parse";
  * @extends {WorkShop}
  */
 export class Javascript extends WorkShop {
+
+    /**
+     * The Javascript parser.
+     *
+     * @protected
+     * @type {JavascriptParse}
+     * @memberof Javascript
+     */
     protected parse: JavascriptParse;
 
     /**
      * Creates an instance of Javascript.
      *
-     * @param {string} syntaxFile
-     * @param {string} docType
+     * @param {string} syntaxFile The template file text.
+     * @param {string} docType The type of documentation to make.
      * @memberof Javascript
      */
     constructor(syntaxFile: string, docType: string) {

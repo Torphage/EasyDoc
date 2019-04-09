@@ -1,6 +1,10 @@
 /**
  * Handle everything about the variable type.
  */
+
+/**
+ * EasyDoc.
+ */
 import { IRepeater, ISyntaxType, ISyntaxVariable } from "../interfaces";
 import { CustomSyntax } from "../syntax";
 
@@ -11,12 +15,20 @@ import { CustomSyntax } from "../syntax";
  * @class Repeater
  */
 export class Repeater {
+
+    /**
+     * The variables found within the template file.
+     *
+     * @private
+     * @type {ISyntaxVariable}
+     * @memberof Repeater
+     */
     private vars: ISyntaxVariable;
 
     /**
      * Creates an instance of Repeater.
      *
-     * @param {ISyntaxVariable} vars
+     * @param {ISyntaxVariable} vars The available variables, defined by the Syntax class.
      * @memberof Repeater
      */
     constructor(vars: ISyntaxVariable) {
