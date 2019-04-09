@@ -52,7 +52,6 @@
                 "EasyDoc.testing": {
                     "type": "object",
                     "default": {
-                        "alignIndentation": true,
                         "commentAboveTarget": false,
                         "docType": "function",
                         "triggerString": "EasyDoc_testing"
@@ -63,8 +62,7 @@
                     "default": {
                         "commentAboveTarget": true,
                         "docType": "function",
-                        "triggerString": "###",
-                        "alignIndentation": true
+                        "triggerString": "###"
                     }
                 },
                 "EasyDoc.for_each": {
@@ -72,14 +70,12 @@
                     "default": {
                         "commentAboveTarget": false,
                         "docType": "block",
-                        "alignIndentation": true,
                         "triggerString": "$$$"
                     }
                 },
                 "EasyDoc.jsdoc": {
                     "type": "object",
                     "default": {
-                        "alignIndentation": true,
                         "commentAboveTarget": true,
                         "docType": "function",
                         "triggerString": "///"

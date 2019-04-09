@@ -1,31 +1,54 @@
 /**
- * Handles everything about EasyDoc's configurations.
+ * Handles everything about EasyDoc's configurations, both the ones found by vscode and
+ * the ones found in package.json.
  */
+
+ /**
+  * EasyDoc.
+  */
 import * as fs from "fs";
 import * as path from "path";
 import * as vs from "vscode";
+import { IPackage } from "./interfaces";
 
 /**
- * Handle the configuration. Reading the configurations files, add configurations,
- * updates configurations, etc.
+ * Handle the configuration. This includes reading the configurations files, add configurations,
+ * update configurations, removing old configurations and etc.
  *
  * @export
  * @class Config
  */
 export class Config {
-    public config = vs.workspace.getConfiguration("EasyDoc");
-    public dir = vs.extensions.getExtension("Torphage.easydoc").extensionPath;
-    public packageFiles: any;
 
+    /**
+     * The configurations for EasyDoc found by vscode settings.
+     */
+    public config = vs.workspace.getConfiguration("EasyDoc");
+
+    /**
+     * The absolute directory of where the extension is installed.
+     */
+    public dir = vs.extensions.getExtension("Torphage.easydoc").extensionPath;
+
+    /**
+     * The configurations for EasyDoc found in package.json.
+     */
+    public packageFiles: IPackage;
+
+    /**
+     * Creates an instance of Config.
+     *
+     * @memberof Config
+     */
     constructor() {
         this.getPackageJSON();
     }
 
     /**
-     * Get list of files in a given directory. Source was found on https://gist.github.com/kethinov/6658166
+     * Get the array of files found within a directory with the file extension ".txt".
      *
-     * @param {string} dir The directory to search for files in.
-     * @returns {string[]} An array of files within gthe given directory.
+     * @param {string} dir The directory to search in.
+     * @returns {string[]} The files within the directory.
      * @memberof Config
      */
     public dirSync(dir: string): string[] {
@@ -43,29 +66,27 @@ export class Config {
     }
 
     /**
-     * Get the package.json as object. Used to get the configurations stored here.
+     * Read the `package.json` file and stores it in [[Config.packageFiles]].
      *
-     * @returns {*} Package.json as an object.
      * @memberof Config
      */
-    public getPackageJSON(): any {
-        const json = JSON.parse(fs.readFileSync(`${this.dir}/package.json`, "utf-8"));
+    public getPackageJSON(): void {
+        const json: IPackage = JSON.parse(fs.readFileSync(`${this.dir}/package.json`, "utf-8"));
 
         this.packageFiles = json;
     }
 
     /**
-     * Dynamically adds configuration to the package.json, only do this to be able
+     * Dynamically add configurationa to the package.json, only do this to be able
      * to add configurations to the vscode config file instead of having my own.
      *
-     * @param {*} configName The name of the configuration to be added.
+     * @param {string} configName The name of the configuration to be added.
      * @memberof Config
      */
-    public addConfig(configName: any): void {
+    public addConfig(configName: string): void {
         this.packageFiles.contributes.configuration.properties[configName] = {
             type: "object",
             default: {
-                alignIndentation: true,
                 commentAboveTarget: false,
                 docType: "function",
                 triggerString: "$$$",
@@ -79,10 +100,10 @@ export class Config {
      * Get keys not found in the current configurations that should be added.
      *
      * @param {string} fileConfig The configuration name that should get its keys up to date.
-     * @returns {any[]} A list of missing keys.
+     * @returns {Array<{ keyName: string, keyValue: string }>} A list of missing keys.
      * @memberof Config
      */
-    public getMissingKeys(fileConfig: string): any[] {
+    public getMissingKeys(fileConfig: string): Array<{ keyName: string, keyValue: string }> {
         const ConfigKeys: any = {
             alignIndentation: true,
             commentAboveTarget: false,
@@ -108,11 +129,11 @@ export class Config {
     /**
      * Add the missing keys to a specific configuration.
      *
-     * @param {*} fileConfig The configuration that keys should be added into.
-     * @param {any[]} missingKeys The keys that should be added.
+     * @param {string} fileConfig The configuration that keys should be added into.
+     * @param {Array<{ keyName: string, keyValue: string }>} missingKeys The keys that should be added.
      * @memberof Config
      */
-    public addMissingKeys(fileConfig: any, missingKeys: any[]): void {
+    public addMissingKeys(fileConfig: string, missingKeys: Array<{ keyName: string, keyValue: string }>): void {
         for (const key of missingKeys) {
             this.packageFiles.contributes.configuration.properties[fileConfig].default[key.keyName] = key.keyValue;
         }
@@ -175,7 +196,7 @@ export class Config {
      *
      * @memberof Config
      */
-    public async writeToPackage(): Promise<void> {
+    public writeToPackage(): void {
         fs.writeFileSync(this.dir + "/package.json", JSON.stringify(this.packageFiles, null, 4));
 
         this.getPackageJSON();
