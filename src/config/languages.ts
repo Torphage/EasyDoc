@@ -27,8 +27,8 @@ const languageSyntax: ILanguages = {
                 },
             ],
             comment: {
-                BLOCK_COMMENT_START: "*/",
-                BLOCK_COMMENT_END: "/*",
+                BLOCK_COMMENT_START: "/*",
+                BLOCK_COMMENT_END: "*/",
                 COMMENT: "//",
             },
         },
