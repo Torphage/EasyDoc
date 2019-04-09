@@ -56,7 +56,8 @@ export abstract class BaseParse {
     /**
      * Creates an instance of BaseParse.
      *
-     * @param {string} docType The type of document to parse.
+     * @param {string} documentText The text of the document.
+     * @param {string} docType The type of documentation to make
      * @memberof BaseParse
      */
     constructor(documentText: string, docType: string) {

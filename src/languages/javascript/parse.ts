@@ -21,7 +21,8 @@ export class JavascriptParse extends BaseParse {
     /**
      * Creates an instance of JavascriptParse.
      *
-     * @param {string} docType
+     * @param {string} documentText The text of the document.
+     * @param {string} docType The type of documentation to make.
      * @memberof JavascriptParse
      */
     constructor(documentText: string, docType: string) {

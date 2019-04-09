@@ -20,7 +20,8 @@ export class PythonParse extends BaseParse {
     /**
      * Creates an instance of PythonParse.
      *
-     * @param {string} docType
+     * @param {string} documentText The text of the document.
+     * @param {string} docType The type of documentation to make.
      * @memberof PythonParse
      */
     constructor(documentText: string, docType: string) {

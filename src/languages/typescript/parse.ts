@@ -21,7 +21,8 @@ export class TypescriptParse extends BaseParse {
     /**
      * Creates an instance of TypescriptParse.
      *
-     * @param {string} docType
+     * @param {string} documentText The text of the document.
+     * @param {string} docType The type of documentation to make.
      * @memberof TypescriptParse
      */
     constructor(documentText: string, docType: string) {

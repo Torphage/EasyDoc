@@ -17,12 +17,21 @@ import { BaseParse } from "../parse";
  * @extends {BaseParse}
  */
 export class RubyParse extends BaseParse {
+
+    /**
+     * The block starts that ruby supports.
+     *
+     * @private
+     * @type {string[]}
+     * @memberof RubyParse
+     */
     private blockStarts: string[];
 
     /**
      * Creates an instance of RubyParse.
      *
-     * @param {string} docType
+     * @param {string} documentText The text of the document.
+     * @param {string} docType The type of documentation to make.
      * @memberof RubyParse
      */
     constructor(documentText: string, docType: string) {

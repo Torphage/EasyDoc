@@ -21,7 +21,8 @@ export class CppParse extends BaseParse {
     /**
      * Creates an instance of CppParse.
      *
-     * @param {string} docType
+     * @param {string} documentText The text of the document.
+     * @param {string} docType The type of documentation to make.
      * @memberof CppParse
      */
     constructor(documentText: string, docType: string) {
