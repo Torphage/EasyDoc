@@ -15,7 +15,11 @@ import * as vs from "vscode";
 export class Config {
     public config = vs.workspace.getConfiguration("EasyDoc");
     public dir = vs.extensions.getExtension("Torphage.easydoc").extensionPath;
-    public packageFiles = this.getPackageJSON();
+    public packageFiles: any;
+
+    constructor() {
+        this.getPackageJSON();
+    }
 
     /**
      * Get list of files in a given directory. Source was found on https://gist.github.com/kethinov/6658166
@@ -47,7 +51,7 @@ export class Config {
     public getPackageJSON(): any {
         const json = JSON.parse(fs.readFileSync(`${this.dir}/package.json`, "utf-8"));
 
-        return json;
+        this.packageFiles = json;
     }
 
     /**
@@ -68,11 +72,7 @@ export class Config {
             },
         };
 
-        fs.writeFile(this.dir + "/package.json", JSON.stringify(this.packageFiles, null, 4), (err) => {
-            if (err) {
-                return;
-            }
-        });
+        this.writeToPackage();
     }
 
     /**
@@ -127,8 +127,7 @@ export class Config {
      * @memberof Config
      */
     public removeConfigWithRemovalOfFile(syntaxDir: string[]): void {
-        const packageJSON = this.getPackageJSON();
-        const configs = packageJSON.contributes.configuration.properties;
+        const configs = this.packageFiles.contributes.configuration.properties;
 
         const allFiles = this.allFilesInDirs(syntaxDir);
 
@@ -176,11 +175,9 @@ export class Config {
      *
      * @memberof Config
      */
-    public writeToPackage(): void {
-        fs.writeFile(this.dir + "/package.json", JSON.stringify(this.packageFiles, null, 4), (err) => {
-            if (err) {
-                return;
-            }
-        });
+    public async writeToPackage(): Promise<void> {
+        fs.writeFileSync(this.dir + "/package.json", JSON.stringify(this.packageFiles, null, 4));
+
+        this.getPackageJSON();
     }
 }
