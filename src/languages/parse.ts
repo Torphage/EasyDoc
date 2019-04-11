@@ -7,6 +7,7 @@
  */
 import regexExpressions from "../config/languages";
 import { ILanguage, IParams } from "../interfaces";
+import { copy, removeStringBetweenChar } from "../utils";
 
 /**
  * The Class where the parsing of a language is implemented.
@@ -98,5 +99,54 @@ export abstract class BaseParse {
         const match = this.regex.exec(rows[0]);
 
         return match.groups;
+    }
+
+    /**
+     * Escape every character in a string by returning a copy of the input string with the strings replaced with
+     * only hashes.
+     *
+     * @protected
+     * @param {string[]} newlineRows The input text to replace every string in.
+     * @returns {string} Return a copy of the input string with every character inside the strings with hashes.
+     * @memberof BaseParse
+     */
+    protected escapeStrings(newlineRows: string[]): string {
+        let tempStr: string = copy(newlineRows.join("\n"));
+
+        for (const temp of this.allRegex.syntax.string) {
+            const char = temp.value;
+            tempStr = removeStringBetweenChar(tempStr, char);
+        }
+        return tempStr;
+    }
+
+    /**
+     * Escape every character in a string by returning a copy of the input string with the comments replaced with
+     * only hashes.
+     *
+     * @protected
+     * @param {string[]} newlineRows The input text to replace every comment in.
+     * @returns {string} Return a copy of the input string with every character inside the comments with hashes.
+     * @memberof BaseParse
+     */
+    protected escapeComments(newlineRows: string[]): string {
+        let tempStr: string = copy(newlineRows.join("\n"));
+
+        const comments = this.allRegex.syntax.comment;
+
+        const singleLineRegex = new RegExp(`${comments.COMMENT}.*$`, "gm");
+        tempStr = tempStr.replace(
+            singleLineRegex,
+            (a, b, c) => "#".repeat(
+                c.slice(b).split("\n")[0].slice(0, a.length).length,
+            ),
+        );
+
+        tempStr = removeStringBetweenChar(tempStr,
+            comments.BLOCK_COMMENT_START,
+            comments.BLOCK_COMMENT_END,
+        );
+
+        return tempStr;
     }
 }
