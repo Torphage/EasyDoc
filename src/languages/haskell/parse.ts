@@ -94,6 +94,49 @@ export class HaskellParse extends BaseParse {
     }
 
     /**
+     * The parsed information gathered from the parent node.
+     *
+     * @param {number} childIndex The function's start index.
+     * @returns {{ [key: string]: string }} A regular expression group consisting of
+     * the name of the parent and what constructor it is.
+     * @memberof TypescriptParse
+     */
+    public parseParent(childIndex: number): { [key: string]: string } {
+        const newlineRows = this.documentText.split("\n");
+
+        let tempStr = this.escapeStrings(newlineRows);
+        tempStr = this.escapeComments(tempStr.split("\n"));
+
+        const tmp = tempStr.split("\n");
+        const returningString = tmp.slice(0, childIndex);
+
+        const indentationRegex = /^(\s)*/g;
+        const startIndentation = this.documentText[childIndex].match(indentationRegex);
+
+        let blockIndex = 0;
+
+        for (const line of returningString.slice().reverse()) {
+            const indentation = line.match(indentationRegex);
+            if (line.length === 0) {
+                continue;
+            }
+
+            if (indentation < startIndentation) {
+                break;
+            }
+
+            blockIndex++;
+        }
+
+        const parentLine = returningString[returningString.length - blockIndex];
+        this.regex.lastIndex = 0;
+        const parent = this.regex.exec(parentLine);
+
+        // tslint:disable-next-line:max-line-length
+        return parent !== null ? parent.groups : {export: undefined, abstract: undefined, default: undefined, cosnt: undefined, name: undefined};
+    }
+
+    /**
      * Split the lines to what the language actually represents.
      *
      * @private

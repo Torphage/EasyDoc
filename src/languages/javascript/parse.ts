@@ -6,7 +6,6 @@
  * EasyDoc.
  */
 import { IParams } from "../../interfaces";
-import { copy, removeStringBetweenChar } from "../../utils";
 import { BaseParse } from "../parse";
 
 /**
@@ -40,11 +39,8 @@ export class JavascriptParse extends BaseParse {
     public parseBlock(newlineRows: string[]): string[] {
         const lines = this.splitLines(newlineRows);
 
-        let tempStr: string = copy(newlineRows.join("\n"));
-        for (const temp of this.allRegex.syntax.string) {
-            const char = temp.value;
-            tempStr = removeStringBetweenChar(tempStr, char);
-        }
+        let tempStr = this.escapeStrings(newlineRows);
+        tempStr = this.escapeComments(tempStr.split("\n"));
 
         const tmpStr = tempStr.split("\n");
 
@@ -110,6 +106,52 @@ export class JavascriptParse extends BaseParse {
             paramList,
             template,
         };
+    }
+
+    /**
+     * The parsed information gathered from the parent node.
+     *
+     * @param {number} childIndex The function's start index.
+     * @returns {{ [key: string]: string }} A regular expression group consisting of
+     * the name of the parent and what constructor it is.
+     * @memberof TypescriptParse
+     */
+    public parseParent(childIndex: number): { [key: string]: string } {
+        const newlineRows = this.documentText.split("\n");
+
+        let tempStr = this.escapeStrings(newlineRows);
+        tempStr = this.escapeComments(tempStr.split("\n"));
+
+        const tmp = tempStr.split("\n");
+
+        const returningString = tmp.slice(0, childIndex);
+
+        let openingBracket = 0;
+        let closingBracket = 0;
+        let blockIndex = 0;
+
+        for (const line of returningString.slice().reverse()) {
+            openingBracket += (line.match(/{/g) || []).length;
+            closingBracket += (line.match(/}/g) || []).length;
+
+            blockIndex++;
+
+            if (openingBracket === 0) {
+                this.blockStartIndex++;
+                continue;
+            }
+
+            if (openingBracket > closingBracket) {
+                break;
+            }
+        }
+
+        const parentLine = returningString[returningString.length - blockIndex];
+        this.regex.lastIndex = 0;
+        const parent = this.regex.exec(parentLine);
+
+        // tslint:disable-next-line:max-line-length
+        return parent !== null ? parent.groups : {export: undefined, abstract: undefined, default: undefined, cosnt: undefined, name: undefined};
     }
 
     /**
