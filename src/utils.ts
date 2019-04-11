@@ -39,6 +39,7 @@ export function removeEscapeFromString(str: string): string {
  * @export
  * @param {string} str The string to replace.
  * @param {string} char The character to replace everything between.
+ * @param {string} char The optional character if you want to match between two different characters.
  * @returns {string} A new string where everything in between a given character is replaced with hashes.
  */
 export function removeStringBetweenChar(str: string, char: string, lastChar?: string): string {
