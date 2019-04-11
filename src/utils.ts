@@ -41,12 +41,12 @@ export function removeEscapeFromString(str: string): string {
  * @param {string} char The character to replace everything between.
  * @returns {string} A new string where everything in between a given character is replaced with hashes.
  */
-export function removeStringBetweenChar(str: string, char: string): string {
+export function removeStringBetweenChar(str: string, char: string, lastChar?: string): string {
     let newStr = removeEscapeFromString(str);
     while (true) {
         const firstOccurence = newStr.indexOf(char);
         if (firstOccurence === -1) { break; }
-        const secondOccurence = newStr.indexOf(char, firstOccurence + 1);
+        const secondOccurence = newStr.indexOf(lastChar ? lastChar : char, firstOccurence + 1);
         if (secondOccurence === -1) { break; }
 
         const partString = newStr.slice(firstOccurence, secondOccurence + 1);
