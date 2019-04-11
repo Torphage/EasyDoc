@@ -105,7 +105,6 @@ export class Config {
      */
     public getMissingKeys(fileConfig: string): Array<{ keyName: string, keyValue: string }> {
         const ConfigKeys: any = {
-            alignIndentation: true,
             commentAboveTarget: false,
             docType: "function",
             triggerString: "$$$",
