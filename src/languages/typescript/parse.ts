@@ -6,7 +6,6 @@
  * EasyDoc.
  */
 import { IParams } from "../../interfaces";
-import { copy, removeStringBetweenChar } from "../../utils";
 import { BaseParse } from "../parse";
 
 /**
@@ -39,11 +38,8 @@ export class TypescriptParse extends BaseParse {
     public parseBlock(newlineRows: string[]): string[] {
         const lines = this.splitLines(newlineRows);
 
-        let tempStr: string = copy(newlineRows.join("\n"));
-        for (const temp of this.allRegex.syntax.string) {
-            const char = temp.value;
-            tempStr = removeStringBetweenChar(tempStr, char);
-        }
+        let tempStr = this.escapeStrings(newlineRows);
+        tempStr = this.escapeComments(tempStr.split("\n"));
 
         const tmpStr = tempStr.split("\n");
 
@@ -118,11 +114,10 @@ export class TypescriptParse extends BaseParse {
      * @memberof TypescriptParse
      */
     public parseParent(childIndex: number): { [key: string]: string } {
-        let tempStr: string = copy(this.documentText);
-        for (const temp of this.allRegex.syntax.string) {
-            const char = temp.value;
-            tempStr = removeStringBetweenChar(tempStr, char);
-        }
+        const newlineRows = this.documentText.split("\n");
+
+        let tempStr = this.escapeStrings(newlineRows);
+        tempStr = this.escapeComments(tempStr.split("\n"));
 
         const tmp = tempStr.split("\n");
 
@@ -149,9 +144,9 @@ export class TypescriptParse extends BaseParse {
         }
 
         // tslint:disable-next-line:max-line-length
-        const regex = /\s*(?<export>export)?\s*(?<abstract>abstract)?\s*(?<default>private|protected|public)?\s*(?<const>class|function|module)?\s+(?<name>\w+)\s*/g;
         const parentLine = returningString[returningString.length - blockIndex];
-        const parent = regex.exec(parentLine);
+        this.regex.lastIndex = 0;
+        const parent = this.regex.exec(parentLine);
 
         // tslint:disable-next-line:max-line-length
         return parent !== null ? parent.groups : {export: undefined, abstract: undefined, default: undefined, cosnt: undefined, name: undefined};

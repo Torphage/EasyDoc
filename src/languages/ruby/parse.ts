@@ -6,7 +6,6 @@
  * EasyDoc.
  */
 import { IParams } from "../../interfaces";
-import { copy, removeStringBetweenChar } from "../../utils";
 import { BaseParse } from "../parse";
 
 /**
@@ -58,18 +57,15 @@ export class RubyParse extends BaseParse {
     public parseBlock(newlineRows: string[]): string[] {
         const lines = this.splitLines(newlineRows);
 
-        let tempStr: string = copy(newlineRows.join("\n"));
-        for (const temp of this.allRegex.syntax.string) {
-            const char = temp.value;
-            tempStr = removeStringBetweenChar(tempStr, char);
-        }
+        let tempStr = this.escapeStrings(newlineRows);
+        tempStr = this.escapeComments(tempStr.split("\n"));
 
-        const tmpStr = tempStr.split("\n");
+        const tmp = tempStr.split("\n");
 
         let blockDepth = 0;
         let blockIndex = 0;
 
-        for (const line of tmpStr) {
+        for (const line of tmp) {
             const matchEnd = new RegExp("^\\s*end").test(line);
 
             if (matchEnd) {
@@ -142,11 +138,10 @@ export class RubyParse extends BaseParse {
      * @memberof RubyParse
      */
     public parseParent(childIndex: number): { [key: string]: string } {
-        let tempStr: string = copy(this.documentText);
-        for (const temp of this.allRegex.syntax.string) {
-            const char = temp.value;
-            tempStr = removeStringBetweenChar(tempStr, char);
-        }
+        const newlineRows = this.documentText.split("\n");
+
+        let tempStr = this.escapeStrings(newlineRows);
+        tempStr = this.escapeComments(tempStr.split("\n"));
 
         const tmp = tempStr.split("\n");
 
@@ -182,9 +177,9 @@ export class RubyParse extends BaseParse {
             }
         }
 
-        const regex = /\s*(?<const>class|module|def)\s+(?<name>\w+)/g;
         const parentLine = returningString[returningString.length - blockIndex];
-        const parent = regex.exec(parentLine);
+        this.regex.lastIndex = 0;
+        const parent = this.regex.exec(parentLine);
 
         // tslint:disable-next-line:max-line-length
         return parent !== null ? parent.groups : {export: undefined, abstract: undefined, default: undefined, cosnt: undefined, name: undefined};
@@ -203,7 +198,6 @@ export class RubyParse extends BaseParse {
 
         const outStr: string[] = [];
 
-        console.log(rows);
         for (const line of rows) {
             const newSplit = line.split(";");
 
