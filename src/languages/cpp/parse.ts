@@ -91,10 +91,12 @@ export class CppParse extends BaseParse {
             };
         }
 
-        const paramsObj = params.replace(/[^,\w:]+/g, "").split(",");
+        const paramsObj = params.split(",").map((param) => param.trim());
 
-        const paramList = paramsObj.map((param) => param.split(" ")[-1]);
-        const paramTypes = paramsObj.map((param) => param.replace(` ${param.split(" ")[-1]}`, ""));
+        const paramList = paramsObj.map(
+            (param) => param.split(" ")[param.split(" ").length - 1]);
+        const paramTypes = paramsObj.map(
+            (param) => param.replace(` ${param.split(" ")[param.split(" ").length - 1]}`, ""));
 
         const templateList = paramList.map((param) => `$[${param}]`);
         const template = templateList.join(", ");
