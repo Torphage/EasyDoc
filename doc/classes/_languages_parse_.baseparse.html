@@ -135,6 +135,8 @@
 						<section class="tsd-index-section ">
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-protected"><a href="_languages_parse_.baseparse.html#escapecomments" class="tsd-kind-icon">escape<wbr>Comments</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-protected"><a href="_languages_parse_.baseparse.html#escapestrings" class="tsd-kind-icon">escape<wbr>Strings</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_languages_parse_.baseparse.html#parse" class="tsd-kind-icon">parse</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_languages_parse_.baseparse.html#parseblock" class="tsd-kind-icon">parse<wbr>Block</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_languages_parse_.baseparse.html#parseparams" class="tsd-kind-icon">parse<wbr>Params</a></li>
@@ -155,7 +157,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/Torphage/EasyDoc/blob/19caf38/src/languages/parse.ts#L54">languages/parse.ts:54</a></li>
+									<li>Defined in <a href="https://github.com/Torphage/EasyDoc/blob/6d24007/src/languages/parse.ts#L55">languages/parse.ts:55</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -200,7 +202,7 @@
 					<div class="tsd-signature tsd-kind-icon">all<wbr>Regex<span class="tsd-signature-symbol">:</span> <a href="../interfaces/_interfaces_.ilanguage.html" class="tsd-signature-type">ILanguage</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/Torphage/EasyDoc/blob/19caf38/src/languages/parse.ts#L45">languages/parse.ts:45</a></li>
+							<li>Defined in <a href="https://github.com/Torphage/EasyDoc/blob/6d24007/src/languages/parse.ts#L46">languages/parse.ts:46</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -223,7 +225,7 @@
 					<div class="tsd-signature tsd-kind-icon">block<wbr>Start<wbr>Index<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;0</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/Torphage/EasyDoc/blob/19caf38/src/languages/parse.ts#L27">languages/parse.ts:27</a></li>
+							<li>Defined in <a href="https://github.com/Torphage/EasyDoc/blob/6d24007/src/languages/parse.ts#L28">languages/parse.ts:28</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -247,7 +249,7 @@
 					<div class="tsd-signature tsd-kind-icon">document<wbr>Text<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/Torphage/EasyDoc/blob/19caf38/src/languages/parse.ts#L36">languages/parse.ts:36</a></li>
+							<li>Defined in <a href="https://github.com/Torphage/EasyDoc/blob/6d24007/src/languages/parse.ts#L37">languages/parse.ts:37</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -270,7 +272,7 @@
 					<div class="tsd-signature tsd-kind-icon">regex<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">RegExp</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/Torphage/EasyDoc/blob/19caf38/src/languages/parse.ts#L54">languages/parse.ts:54</a></li>
+							<li>Defined in <a href="https://github.com/Torphage/EasyDoc/blob/6d24007/src/languages/parse.ts#L55">languages/parse.ts:55</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -290,6 +292,82 @@
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Methods</h2>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-protected">
+					<a name="escapecomments" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagProtected">Protected</span> escape<wbr>Comments</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-protected">
+						<li class="tsd-signature tsd-kind-icon">escape<wbr>Comments<span class="tsd-signature-symbol">(</span>newlineRows<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/Torphage/EasyDoc/blob/6d24007/src/languages/parse.ts#L132">languages/parse.ts:132</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Escape every character in a string by returning a copy of the input string with the comments replaced with
+									only hashes.</p>
+								</div>
+								<dl class="tsd-comment-tags">
+									<dt>memberof</dt>
+									<dd><p>BaseParse</p>
+									</dd>
+								</dl>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>newlineRows: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The input text to replace every comment in.</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
+							<p>Return a copy of the input string with every character inside the comments with hashes.</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-protected">
+					<a name="escapestrings" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagProtected">Protected</span> escape<wbr>Strings</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-protected">
+						<li class="tsd-signature tsd-kind-icon">escape<wbr>Strings<span class="tsd-signature-symbol">(</span>newlineRows<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/Torphage/EasyDoc/blob/6d24007/src/languages/parse.ts#L113">languages/parse.ts:113</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Escape every character in a string by returning a copy of the input string with the strings replaced with
+									only hashes.</p>
+								</div>
+								<dl class="tsd-comment-tags">
+									<dt>memberof</dt>
+									<dd><p>BaseParse</p>
+									</dd>
+								</dl>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>newlineRows: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The input text to replace every string in.</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
+							<p>Return a copy of the input string with every character inside the strings with hashes.</p>
+						</li>
+					</ul>
+				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
 					<a name="parse" class="tsd-anchor"></a>
 					<h3>parse</h3>
@@ -300,7 +378,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/Torphage/EasyDoc/blob/19caf38/src/languages/parse.ts#L96">languages/parse.ts:96</a></li>
+									<li>Defined in <a href="https://github.com/Torphage/EasyDoc/blob/6d24007/src/languages/parse.ts#L97">languages/parse.ts:97</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -342,7 +420,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/Torphage/EasyDoc/blob/19caf38/src/languages/parse.ts#L77">languages/parse.ts:77</a></li>
+									<li>Defined in <a href="https://github.com/Torphage/EasyDoc/blob/6d24007/src/languages/parse.ts#L78">languages/parse.ts:78</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -381,7 +459,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/Torphage/EasyDoc/blob/19caf38/src/languages/parse.ts#L87">languages/parse.ts:87</a></li>
+									<li>Defined in <a href="https://github.com/Torphage/EasyDoc/blob/6d24007/src/languages/parse.ts#L88">languages/parse.ts:88</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -444,6 +522,12 @@
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-protected">
 								<a href="_languages_parse_.baseparse.html#regex" class="tsd-kind-icon">regex</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-protected">
+								<a href="_languages_parse_.baseparse.html#escapecomments" class="tsd-kind-icon">escape<wbr>Comments</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-protected">
+								<a href="_languages_parse_.baseparse.html#escapestrings" class="tsd-kind-icon">escape<wbr>Strings</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="_languages_parse_.baseparse.html#parse" class="tsd-kind-icon">parse</a>
