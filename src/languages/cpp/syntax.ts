@@ -82,7 +82,7 @@ export class Cpp extends WorkShop {
             RELATIONNAME: undefined,
             PARENT: undefined,
             PARENT_CONST: undefined,
-            RETURN_TYPE: undefined,
+            RETURN_TYPE: parse.returnType,
             BLOCK_COMMENT_START: this.getComment("BLOCK_COMMENT_START"),
             BLOCK_COMMENT_END: this.getComment("BLOCK_COMMENT_END"),
             COMMENT: this.getComment("COMMENT"),
