@@ -15,7 +15,7 @@ import { ILanguages } from "../interfaces";
 const languageSyntax: ILanguages = {
     Cpp: {
         regex: {
-            function: /\s*(?<returnType>\w+)\s+(?<name>\w+)\s*\((?<params>[^)]*)/g,
+            function: /\s*(?<returnType>\w+[\w\s*&]*)\s+(?<name>\w+)\s*\((?<params>[^)]*)/g,
         },
         syntax: {
             string: [
