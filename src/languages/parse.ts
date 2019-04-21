@@ -96,7 +96,7 @@ export abstract class BaseParse {
      */
     public parse(rows: string[]): {[key: string]: string} {
         this.regex.lastIndex = 0;
-        const match = this.regex.exec(rows[0]);
+        const match = this.regex.exec(rows.join("\n"));
 
         return match.groups;
     }
