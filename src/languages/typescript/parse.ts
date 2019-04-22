@@ -82,10 +82,41 @@ export class TypescriptParse extends BaseParse {
             };
         }
 
-        const paramsObj = params.split(",");
+        let paramsObj: string[] = [];
+        if (((params.match(/{/g) || []).length === 0) && ((params.match(/}/g) || []).length === 0)) {
+            paramsObj = params.split(",");
+        } else {
+            let openingBracket = 0;
+            let closingBracket = 0;
+            let temp = "";
 
-        const paramList = paramsObj.map((param) => param.split(":")[0].trim());
-        const paramTypes = paramsObj.map((param) => param.split(":")[1] !== "any" ? param.split(":")[1].trim() : "*");
+            for (const char of params) {
+                if (char === "{") {
+                    openingBracket++;
+                } else if (char === "}") {
+                    closingBracket++;
+                }
+
+                if (openingBracket <= closingBracket) {
+                    if (char !== ",") {
+                        temp += char;
+                    } else {
+                        paramsObj.push(temp.trim());
+                        temp = "";
+                    }
+                } else {
+                    temp += char;
+                }
+            }
+
+            paramsObj.push(temp.trim());
+        }
+
+        const paramList = paramsObj.map(
+            (param) => param.split(":")[0].trim());
+        const paramTypes = paramsObj.map((param) =>
+            param.split(":").slice(1).join(":").trim() !== "any" ? param.split(":").slice(1).join(":").trim() : "*",
+        );
 
         const templateList = paramList.map((param) => `$[${param}]`);
         const template = templateList.join(", ");
