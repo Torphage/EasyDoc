@@ -153,7 +153,7 @@ const languageSyntax: ILanguages = {
     Typescript: {
         regex: {
             // tslint:disable-next-line:max-line-length
-            function: /\s*(?<export>export)?\s*(?<abstract>abstract)?\s*(?<default>private|protected|public)?\s*(?<const>class|function|module)?\s+(?<name>\w+)\s*(?:(?<relation>extends|implements)?\s+(?<relationName>\w*)?|(?:\s*\((?<params>[^)]*)\)\:\s*(?<returnType>(?:\{(?:[^}{]+|\{(?:[^}{]+|\{[^}{]*\})*\})*\})|[^}]*)\s*\{))?\s*?/g,
+            function: /\s*(?<export>export)?\s*(?<abstract>abstract)?\s*(?<default>private|protected|public)?\s*(?<const>class|function|module)?\s+(?<name>\w+)\s*(?:(?<relation>extends|implements)?\s+(?<relationName>\w*)?|(?:\s*\((?<params>[^)]*)\)(?:[^:]|\:\s*(?<returnType>(?:\{(?:[^}{]+|\{(?:[^}{]+|\{[^}{]*\})*\})*\})|[^{]*)\s*\{)))?\s*?/g,
         },
         syntax: {
             string: [
