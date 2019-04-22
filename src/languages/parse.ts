@@ -142,9 +142,24 @@ export abstract class BaseParse {
             ),
         );
 
-        tempStr = removeStringBetweenChar(tempStr,
-            comments.BLOCK_COMMENT_START,
-            comments.BLOCK_COMMENT_END,
+        const start = comments.BLOCK_COMMENT_START.replace(
+            /[(){}/\\]/,
+            (match) => {
+                return `\\${match}`;
+            },
+        );
+        const end = comments.BLOCK_COMMENT_START.replace(
+            /[(){}/\\]/,
+            (match) => {
+                return `\\${match}`;
+            },
+        );
+
+        const multiLineRegex = new RegExp(`${start}.*${end}`, "gm");
+        tempStr = tempStr.replace(
+            multiLineRegex,
+            (a) => "#".repeat(
+                a.slice(0, a.length - a.split("\n").length + 1).length) + "\n".repeat(a.split("\n").length - 1),
         );
 
         return tempStr;
