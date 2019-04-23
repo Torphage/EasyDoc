@@ -80,7 +80,7 @@ export class JavascriptParse extends BaseParse {
      * @abstract
      * @param {string} params The params to parse.
      * @returns {IParams} The parsed params.
-     * @memberof BaseParse
+     * @memberof JavascriptParse
      */
     public parseParams(params: string): IParams {
         if (params === undefined) {
@@ -114,7 +114,7 @@ export class JavascriptParse extends BaseParse {
      * @param {number} childIndex The function's start index.
      * @returns {{ [key: string]: string }} A regular expression group consisting of
      * the name of the parent and what constructor it is.
-     * @memberof TypescriptParse
+     * @memberof JavascriptParse
      */
     public parseParent(childIndex: number): { [key: string]: string } {
         const newlineRows = this.documentText.split("\n");
@@ -160,7 +160,7 @@ export class JavascriptParse extends BaseParse {
      * @private
      * @param {string[]} rows The rows to split.
      * @returns {string[]} The real representation of the rows.
-     * @memberof TypescriptParse
+     * @memberof JavascriptParse
      */
     private splitLines(rows: string[]): string[] {
         let escapeNewLine = false;
