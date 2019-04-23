@@ -30,32 +30,26 @@ export class Base extends WorkShop {
     /**
      * Check if the cursor is correctly placed in the function.
      *
-     * @protected
-     * @abstract
      * @param {string} row The row to search on.
      * @returns {boolean} If cursor is correctly placed.
-     * @memberof WorkShop
+     * @memberof Base
      */
     public correctlyPlacedFunction(functionLineIndex: string): boolean { return; }
 
     /**
      * Get the current column in the editor
      *
-     * @protected
-     * @abstract
      * @param {number} index The line index.
      * @returns {number} The column the user is positioned at.
-     * @memberof WorkShop
+     * @memberof Base
      */
     public getCurrentColumn(index: number): number { return; }
 
     /**
      * Get the variables based on the language.
      *
-     * @protected
-     * @abstract
      * @returns {Promise<ISyntaxVariable>} An promise to return the variables.
-     * @memberof WorkShop
+     * @memberof Base
      */
     public getVariables(): Promise<ISyntaxVariable> {
         const variables: ISyntaxVariable = {
