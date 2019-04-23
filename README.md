@@ -80,4 +80,4 @@ The usage of EasyDoc can be found [here](https://github.com/Torphage/EasyDoc/wik
 
 * A detailed explanation for the syntax of the template file can be found [here](https://github.com/Torphage/EasyDoc/wiki/Template-Syntax). Additional examples to help that shows more visually can be found here [here](https://github.com/Torphage/EasyDoc/wiki/Simple-Syntax-Explanation)
 * Examples of working template files can be found [here](https://github.com/Torphage/EasyDoc/wiki/Template-Examples)
-* Generated documentation of the source. Ode can be found [here](https://torphage.github.io/EasyDoc/)
+* Generated documentation of the source code can be found [here](https://torphage.github.io/EasyDoc/)
