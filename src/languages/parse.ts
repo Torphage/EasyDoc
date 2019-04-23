@@ -142,20 +142,10 @@ export abstract class BaseParse {
             ),
         );
 
-        const start = comments.BLOCK_COMMENT_START.replace(
-            /[(){}/\\]/,
-            (match) => {
-                return `\\${match}`;
-            },
-        );
-        const end = comments.BLOCK_COMMENT_START.replace(
-            /[(){}/\\]/,
-            (match) => {
-                return `\\${match}`;
-            },
-        );
+        const start = comments.BLOCK_COMMENT_START;
+        const end = comments.BLOCK_COMMENT_END;
 
-        const multiLineRegex = new RegExp(`${start}.*${end}`, "gm");
+        const multiLineRegex = new RegExp(`${start}.*?(?=${end})${end}`, "gs");
         tempStr = tempStr.replace(
             multiLineRegex,
             (a) => "#".repeat(
