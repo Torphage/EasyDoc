@@ -57,7 +57,7 @@ export class Repeater {
 
                 snippet.push(snippetObj.snippetStr);
 
-                i += snippetObj.offset;
+                i += snippetObj.offset - 1;
             } else {
                 snippet.push(text[i]);
             }
