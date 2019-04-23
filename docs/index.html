@@ -1,0 +1,308 @@
+<!doctype html>
+<html class="default no-js">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>easydoc</title>
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="assets/css/main.css">
+</head>
+<body>
+<header>
+	<div class="tsd-page-toolbar">
+		<div class="container">
+			<div class="table-wrap">
+				<div class="table-cell" id="tsd-search" data-index="assets/js/search.js" data-base=".">
+					<div class="field">
+						<label for="tsd-search-field" class="tsd-widget search no-caption">Search</label>
+						<input id="tsd-search-field" type="text" />
+					</div>
+					<ul class="results">
+						<li class="state loading">Preparing search index...</li>
+						<li class="state failure">The search index is not available</li>
+					</ul>
+					<a href="index.html" class="title">easydoc</a>
+				</div>
+				<div class="table-cell" id="tsd-widgets">
+					<div id="tsd-filter">
+						<a href="#" class="tsd-widget options no-caption" data-toggle="options">Options</a>
+						<div class="tsd-filter-group">
+							<div class="tsd-select" id="tsd-filter-visibility">
+								<span class="tsd-select-label">All</span>
+								<ul class="tsd-select-list">
+									<li data-value="public">Public</li>
+									<li data-value="protected">Public/Protected</li>
+									<li data-value="private" class="selected">All</li>
+								</ul>
+							</div>
+							<input type="checkbox" id="tsd-filter-inherited" checked />
+							<label class="tsd-widget" for="tsd-filter-inherited">Inherited</label>
+							<input type="checkbox" id="tsd-filter-externals" checked />
+							<label class="tsd-widget" for="tsd-filter-externals">Externals</label>
+							<input type="checkbox" id="tsd-filter-only-exported" />
+							<label class="tsd-widget" for="tsd-filter-only-exported">Only exported</label>
+						</div>
+					</div>
+					<a href="#" class="tsd-widget menu no-caption" data-toggle="menu">Menu</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="tsd-page-title">
+		<div class="container">
+			<ul class="tsd-breadcrumb">
+				<li>
+					<a href="globals.html">Globals</a>
+				</li>
+			</ul>
+			<h1> easydoc</h1>
+		</div>
+	</div>
+</header>
+<div class="container container-main">
+	<div class="row">
+		<div class="col-8 col-content">
+			<div class="tsd-panel tsd-typography">
+				<h1 id="easydoc">EasyDoc</h1>
+				<p>An extension that makes it easier to document your code with the help of custom made template files.</p>
+				<h2 id="features">Features</h2>
+				<ul>
+					<li>Generates snippet from custom made template files</li>
+					<li>Built with documentation in mind but support normal snippets just as well</li>
+					<li>Aims to support every documentation format</li>
+					<li>Currently supports, with more to come:<ul>
+							<li>C++</li>
+							<li>Haskell</li>
+							<li>Javascript</li>
+							<li>Python</li>
+							<li>Ruby</li>
+							<li>Typescript</li>
+						</ul>
+					</li>
+				</ul>
+				<h2 id="basics">Basics</h2>
+				<p>Some basic info about what EasyDoc do and what it can do.</p>
+				<ul>
+					<li>EasyDoc works by reading a file, which will be called a template file. This file is read by EasyDoc and will generate a appropriate result based on different conditions</li>
+					<li>EasyDoc allows all forms of text to be included except some limitations where a conflict would emerge with the different syntaxes that is supported. Info about the different syntaxes, including what they are capable of and how you can use them is available at <a href="#Docs">Docs</a></li>
+					<li>These template files can generate normal snippets or if specific conditions are met include different variables, more info at <a href="#Docs">Docs</a></li>
+					<li>Every template file has its own configurations, with the file name and configuration name matching</li>
+					<li>EasyDoc can be run by either writing in a preselected text and pressing enter or by doing a series of methods for activating the same command, more info at <a href="#Usage">Usage</a></li>
+				</ul>
+				<h2 id="installation">Installation</h2>
+				<p>You can either install the extension from the <code>Extensions</code> tab in VS-Code:</p>
+				<ol>
+					<li>Press <code>Ctrl+Shift+X</code> to bring up the extension tab</li>
+					<li>Search for <code>EasyDoc</code></li>
+					<li>Select the extension and install it by pressing the <code>Install</code> button</li>
+				</ol>
+				<p>or by downloading it from <a href="https://marketplace.visualstudio.com/items?itemName=Torphage.easydoc">Visual Studio Code Marketplace</a></p>
+				<h2 id="setup">Setup</h2>
+				<p>Easydoc requires a small setup in order to be able to use all of its features.</p>
+				<p>In <a href="/.vscode/settings.json">settings.json</a>, add a property named <code>EasyDoc.dir</code> and this will come up:</p>
+				<pre><code class="language-JSON">&quot;EasyDoc.dir&quot;: [
+    &quot;./templates&quot;
+]</code></pre>
+				<p>This is the directories where EasyDoc searches for template files. The template files have to end with the file extension <code>.txt</code>.</p>
+				<p>When a file has been found within any of the directories within <code>EasyDoc.dir</code> a configuration will be created for each and every file. The configuration name will be the same as the files names. So if you put a file named <code>foo.txt</code> withing a directory included in <code>EasyDoc.dir</code>, a configuration would be made with the name <code>EasyDoc.foo</code>. EasyDoc will only check for new files every time you try to run it.</p>
+				<p>If intellisense does not find your newly generated configuration, do not worry. It will come back if you restart your editor, but is not required for EasyDoc to detect the configurations.</p>
+				<p>The default configuration, in this example on a file named <code>foo.txt</code>, looks like this:</p>
+				<pre><code class="language-JSON">&quot;EasyDoc.foo&quot;: {
+    &quot;alignIndentation&quot;: true,
+    &quot;commentAboveTarget&quot;: false,
+    &quot;docType&quot;: &quot;function&quot;,
+    &quot;triggerString&quot;: &quot;$$$&quot;
+}</code></pre>
+				<p>For what to type in template, please look at <a href="#Docs">Docs</a></p>
+				<h3 id="notes">Notes</h3>
+				<p><code>&quot;./templates&quot;</code> is the path of preinstalled samples ready to use, they are located within the extension folder. In order to add custom paths you need to use <strong>absolute paths</strong>.</p>
+				<p>Naming your template file <code>dir.txt</code> is not allowed due to <code>EasyDoc.dir</code> already being defined.</p>
+				<h2 id="usage">Usage</h2>
+				<p>The usage of EasyDoc can be found <a href="https://github.com/Torphage/EasyDoc/wiki/usage">here</a>.</p>
+				<h2 id="docs">Docs</h2>
+				<ul>
+					<li>A detailed explanation for the syntax of the template file can be found <a href="https://github.com/Torphage/EasyDoc/wiki/Template-Syntax">here</a>. Additional examples to help that shows more visually can be found here <a href="https://github.com/Torphage/EasyDoc/wiki/Simple-Syntax-Explanation">here</a></li>
+					<li>Examples of working template files can be found <a href="https://github.com/Torphage/EasyDoc/wiki/Template-Examples">here</a></li>
+					<li>Generated documentation of the source code can be found <a href="https://torphage.github.io/EasyDoc/">here</a></li>
+				</ul>
+			</div>
+		</div>
+		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
+			<nav class="tsd-navigation primary">
+				<ul>
+					<li class="globals  ">
+						<a href="globals.html"><em>Globals</em></a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_config_.html">"config"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_config_languages_.html">"config/languages"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_easydoc_.html">"easydoc"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_extension_.html">"extension"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_format_.html">"format"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_interfaces_.html">"interfaces"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_languages_base_.html">"languages/base"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_languages_cpp_parse_.html">"languages/cpp/parse"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_languages_cpp_syntax_.html">"languages/cpp/syntax"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_languages_export_.html">"languages/export"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_languages_haskell_parse_.html">"languages/haskell/parse"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_languages_haskell_syntax_.html">"languages/haskell/syntax"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_languages_javascript_parse_.html">"languages/javascript/parse"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_languages_javascript_syntax_.html">"languages/javascript/syntax"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_languages_parse_.html">"languages/parse"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_languages_python_parse_.html">"languages/python/parse"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_languages_python_syntax_.html">"languages/python/syntax"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_languages_ruby_parse_.html">"languages/ruby/parse"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_languages_ruby_syntax_.html">"languages/ruby/syntax"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_languages_typescript_parse_.html">"languages/typescript/parse"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_languages_typescript_syntax_.html">"languages/typescript/syntax"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_languages_workshop_.html">"languages/workshop"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_syntax_.html">"syntax"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_syntaxtypes_error_handler_.html">"syntax<wbr>Types/error_<wbr>handler"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_syntaxtypes_export_.html">"syntax<wbr>Types/export"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_syntaxtypes_placeholder_.html">"syntax<wbr>Types/placeholder"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_syntaxtypes_repeater_.html">"syntax<wbr>Types/repeater"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_syntaxtypes_translate_.html">"syntax<wbr>Types/translate"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_syntaxtypes_variable_.html">"syntax<wbr>Types/variable"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_test_extension_test_.html">"test/extension.test"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_test_index_.html">"test/index"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_utils_.html">"utils"</a>
+					</li>
+				</ul>
+			</nav>
+			<nav class="tsd-navigation secondary menu-sticky">
+				<ul class="before-current">
+				</ul>
+			</nav>
+		</div>
+	</div>
+</div>
+<footer class="with-border-bottom">
+	<div class="container">
+		<h2>Legend</h2>
+		<div class="tsd-legend-group">
+			<ul class="tsd-legend">
+				<li class="tsd-kind-module"><span class="tsd-kind-icon">Module</span></li>
+				<li class="tsd-kind-object-literal"><span class="tsd-kind-icon">Object literal</span></li>
+				<li class="tsd-kind-variable"><span class="tsd-kind-icon">Variable</span></li>
+				<li class="tsd-kind-function"><span class="tsd-kind-icon">Function</span></li>
+				<li class="tsd-kind-function tsd-has-type-parameter"><span class="tsd-kind-icon">Function with type parameter</span></li>
+				<li class="tsd-kind-index-signature"><span class="tsd-kind-icon">Index signature</span></li>
+				<li class="tsd-kind-type-alias"><span class="tsd-kind-icon">Type alias</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-enum"><span class="tsd-kind-icon">Enumeration</span></li>
+				<li class="tsd-kind-enum-member"><span class="tsd-kind-icon">Enumeration member</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-enum"><span class="tsd-kind-icon">Property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-enum"><span class="tsd-kind-icon">Method</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-interface"><span class="tsd-kind-icon">Interface</span></li>
+				<li class="tsd-kind-interface tsd-has-type-parameter"><span class="tsd-kind-icon">Interface with type parameter</span></li>
+				<li class="tsd-kind-constructor tsd-parent-kind-interface"><span class="tsd-kind-icon">Constructor</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-interface"><span class="tsd-kind-icon">Property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-interface"><span class="tsd-kind-icon">Method</span></li>
+				<li class="tsd-kind-index-signature tsd-parent-kind-interface"><span class="tsd-kind-icon">Index signature</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-class"><span class="tsd-kind-icon">Class</span></li>
+				<li class="tsd-kind-class tsd-has-type-parameter"><span class="tsd-kind-icon">Class with type parameter</span></li>
+				<li class="tsd-kind-constructor tsd-parent-kind-class"><span class="tsd-kind-icon">Constructor</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-class"><span class="tsd-kind-icon">Property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class"><span class="tsd-kind-icon">Method</span></li>
+				<li class="tsd-kind-accessor tsd-parent-kind-class"><span class="tsd-kind-icon">Accessor</span></li>
+				<li class="tsd-kind-index-signature tsd-parent-kind-class"><span class="tsd-kind-icon">Index signature</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-constructor tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited constructor</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited method</span></li>
+				<li class="tsd-kind-accessor tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited accessor</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-protected"><span class="tsd-kind-icon">Protected property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-protected"><span class="tsd-kind-icon">Protected method</span></li>
+				<li class="tsd-kind-accessor tsd-parent-kind-class tsd-is-protected"><span class="tsd-kind-icon">Protected accessor</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private method</span></li>
+				<li class="tsd-kind-accessor tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private accessor</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-static"><span class="tsd-kind-icon">Static property</span></li>
+				<li class="tsd-kind-call-signature tsd-parent-kind-class tsd-is-static"><span class="tsd-kind-icon">Static method</span></li>
+			</ul>
+		</div>
+	</div>
+</footer>
+<div class="container tsd-generator">
+	<p>Generated using <a href="http://typedoc.org/" target="_blank">TypeDoc</a></p>
+</div>
+<div class="overlay"></div>
+<script src="assets/js/main.js"></script>
+<script>if (location.protocol == 'file:') document.write('<script src="assets/js/search.js"><' + '/script>');</script>
+</body>
+</html>

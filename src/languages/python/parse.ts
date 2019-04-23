@@ -99,7 +99,7 @@ export class PythonParse extends BaseParse {
      * @param {number} childIndex The function's start index.
      * @returns {{ [key: string]: string }} A regular expression group consisting of
      * the name of the parent and what constructor it is.
-     * @memberof TypescriptParse
+     * @memberof PythonParse
      */
     public parseParent(childIndex: number): { [key: string]: string } {
         const newlineRows = this.documentText.split("\n");

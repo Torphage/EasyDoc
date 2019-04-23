@@ -61,17 +61,19 @@ export abstract class WorkShop {
      * The active text editor document..
      *
      * @protected
+     * @type {vs.TextDocument}
      * @memberof WorkShop
      */
-    protected document = vs.window.activeTextEditor.document;
+    protected document: vs.TextDocument = vs.window.activeTextEditor.document;
 
     /**
-     * The cursors' current position within the [[WorkShop.document]]
+     * The cursor's current position within the [[WorkShop.document]]
      *
      * @protected
+     * @type {vs.Position}
      * @memberof WorkShop
      */
-    protected position = vs.window.activeTextEditor.selection.active;
+    protected position: vs.Position = vs.window.activeTextEditor.selection.active;
 
     /**
      * The wanted block from the parser.
@@ -86,9 +88,10 @@ export abstract class WorkShop {
      * The active text editor.
      *
      * @protected
+     * @type {vs.TextEditor}
      * @memberof WorkShop
      */
-    protected editor = vs.window.activeTextEditor;
+    protected editor: vs.TextEditor = vs.window.activeTextEditor;
 
     /**
      * The document rows.

@@ -10,7 +10,7 @@ import { ILanguages } from "../interfaces";
 /**
  * The syntax and regular expressions for each supported languages.
  *
- * @type {ILanguags}
+ * @type {ILanguages}
  */
 const languageSyntax: ILanguages = {
     Cpp: {
@@ -27,9 +27,9 @@ const languageSyntax: ILanguages = {
                 },
             ],
             comment: {
-                BLOCK_COMMENT_START: "/*",
-                BLOCK_COMMENT_END: "*/",
-                COMMENT: "//",
+                BLOCK_COMMENT_START: "\\/\\*",
+                BLOCK_COMMENT_END: "\\*\\/",
+                COMMENT: "\\/\\/",
             },
         },
     },
@@ -53,9 +53,9 @@ const languageSyntax: ILanguages = {
                 },
             ],
             comment: {
-                BLOCK_COMMENT_START: "{-",
-                BLOCK_COMMENT_END: "-}",
-                COMMENT: "--",
+                BLOCK_COMMENT_START: "\\{\\-",
+                BLOCK_COMMENT_END: "\\-\\}",
+                COMMENT: "\\-\\-",
             },
         },
     },
@@ -85,9 +85,9 @@ const languageSyntax: ILanguages = {
                 },
             ],
             comment: {
-                BLOCK_COMMENT_START: "/*",
-                BLOCK_COMMENT_END: "*/",
-                COMMENT: "//",
+                BLOCK_COMMENT_START: "\\/\\*",
+                BLOCK_COMMENT_END: "\\*\\/",
+                COMMENT: "\\/\\/",
             },
         },
     },
@@ -117,9 +117,9 @@ const languageSyntax: ILanguages = {
                 },
             ],
             comment: {
-                BLOCK_COMMENT_START: "\"\"\"",
-                BLOCK_COMMENT_END: "\"\"\"",
-                COMMENT: "#",
+                BLOCK_COMMENT_START: "\\\"\\\"\\\"",
+                BLOCK_COMMENT_END: "\\\"\\\"\\\"",
+                COMMENT: "\\#",
             },
         },
     },
@@ -144,9 +144,9 @@ const languageSyntax: ILanguages = {
                 },
             ],
             comment: {
-                BLOCK_COMMENT_START: "=begin",
-                BLOCK_COMMENT_END: "=end",
-                COMMENT: "#",
+                BLOCK_COMMENT_START: "\\=begin",
+                BLOCK_COMMENT_END: "\\=end",
+                COMMENT: "\\#",
             },
         },
     },
@@ -177,9 +177,9 @@ const languageSyntax: ILanguages = {
                 },
             ],
             comment: {
-                BLOCK_COMMENT_START: "/*",
-                BLOCK_COMMENT_END: "*/",
-                COMMENT: "//",
+                BLOCK_COMMENT_START: "\\/\\*",
+                BLOCK_COMMENT_END: "\\*\\/",
+                COMMENT: "\\/\\/",
             },
         },
     },

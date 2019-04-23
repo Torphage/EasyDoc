@@ -52,7 +52,7 @@ export class RubyParse extends BaseParse {
      *
      * @param {string[]} rows The rows to get the block from.
      * @returns {string[]} The rows of the block.
-     * @memberof BaseParse
+     * @memberof RubyParse
      */
     public parseBlock(newlineRows: string[]): string[] {
         const lines = this.splitLines(newlineRows);
@@ -101,7 +101,7 @@ export class RubyParse extends BaseParse {
      *
      * @param {string} params The params to parse.
      * @returns {IParams} The parsed params.
-     * @memberof BaseParse
+     * @memberof RubyParse
      */
     public parseParams(params: string): IParams {
         if (params === undefined) {
