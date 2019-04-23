@@ -225,9 +225,11 @@ export abstract class WorkShop {
             await this.delTriggerString();
         }
 
-        if (!this.config.commentAboveTarget) {
-            for (let i = 0; i < this.parse.blockStartIndex; i++) {
-                await this.stepDownInEditor();
+        if (this.config.docType !== "block") {
+            if (!this.config.commentAboveTarget) {
+                for (let i = 0; i < this.parse.blockStartIndex; i++) {
+                    await this.stepDownInEditor();
+                }
             }
         }
 
