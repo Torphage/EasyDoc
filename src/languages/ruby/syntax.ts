@@ -48,7 +48,8 @@ export class Ruby extends WorkShop {
      * @memberof Ruby
      */
     protected correctlyPlacedFunction(functionLineIndex: string): boolean {
-        const regex = /^\s*(?:module|class|def)\s/g;
+        // tslint:disable-next-line:max-line-length
+        const regex = /^\s*(?:(?<const>module|class|def)(?:\s+(?<self>self)\.|\s+)(?<name>\w+[\=\?\!]?)\s*(?:(?<relation>\<)?\s+(?<relationName>\w+)?|\(?(?<params>[^)\n]*)?)?|^\s*(?<block>get|post|put|patch|delete|options|link|unlink)\s*(?:\(['"]|['"])(?<route>[^'")]*)['")]*\s*)/g;
 
         if (regex.exec(functionLineIndex) !== null) {
             return true;
@@ -87,6 +88,8 @@ export class Ruby extends WorkShop {
             BLOCK_COMMENT_START: this.getComment("BLOCK_COMMENT_START"),
             BLOCK_COMMENT_END: this.getComment("BLOCK_COMMENT_END"),
             COMMENT: this.getComment("COMMENT"),
+            BLOCK: parse.block,
+            ROUTE: parse.route,
         };
 
         return new Promise((resolve, reject) => {
