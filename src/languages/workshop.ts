@@ -181,7 +181,7 @@ export abstract class WorkShop {
             commentString = "";
         }
 
-        return commentString;
+        return commentString.replace(/\\(.)/g, "$1");
     }
 
     /**
