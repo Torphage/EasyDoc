@@ -1,4 +1,6 @@
-${COMMENT} $[Description]
+${COMMENT}$| ${BLOCK} -|$ $[Description]$|
+${COMMENT}
+${COMMENT} Route - ${ROUTE}|$
 ${COMMENT} $|
 ${COMMENT} ${PARAMS}${align(PARAMS)} - $[Description].
 ${COMMENT} |$$|
