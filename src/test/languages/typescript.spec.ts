@@ -50,7 +50,7 @@ describe("Language: Typescript", () => {
                         regexExpressions.Typescript.regex.function,
                         "abstract",
                         // tslint:disable-next-line:max-line-length
-                        "export abstract function testFunction(test: string, obj: { myBoy: string, try: number }, hi: string[]): { myBoy: string, try: number } {}",
+                        "abstract(abstract: string, obj: { myBoy: string, try: number }, hi: string[]): { myBoy: string, abstract: number } {}",
                         );
                     expect(result).to.not.eql("abstract");
                 })
