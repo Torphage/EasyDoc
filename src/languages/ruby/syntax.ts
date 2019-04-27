@@ -69,11 +69,21 @@ export class Ruby extends WorkShop {
     protected getVariables(index: number): Promise<ISyntaxVariable> {
         const parse = this.parse.parse(this.block);
         const params = this.parse.parseParams(parse.params);
+
+        let paramTypes: string[];
+        if (parse.route) {
+            // tslint:disable-next-line:max-line-length
+            paramTypes = parse.route.split(":").slice(1).map((str) => (str.indexOf("/") > -1) ? str.slice(0, str.indexOf("/")) : str);
+            if (!paramTypes.length) {
+                paramTypes = undefined;
+            }
+        }
+
         const parent = this.parse.parseParent(index);
 
         const variables: ISyntaxVariable =  {
             NAME: parse.name,
-            PARAMS: params.paramList,
+            PARAMS: params.paramList ? params.paramList : paramTypes,
             PARAMS_TYPES: undefined,
             PARAMS_TEMPLATE: params.template,
             ABSTRACT: undefined,
