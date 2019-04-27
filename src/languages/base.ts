@@ -53,9 +53,24 @@ export class Base extends WorkShop {
      */
     public getVariables(): Promise<ISyntaxVariable> {
         const variables: ISyntaxVariable = {
+            NAME: undefined,
+            PARAMS: undefined,
+            PARAMS_TYPES: undefined,
+            PARAMS_TEMPLATE: undefined,
+            ABSTRACT: undefined,
+            EXPORT: undefined,
+            ACCESS: undefined,
+            CONST: undefined,
+            RELATION: undefined,
+            RELATIONNAME: undefined,
+            PARENT: undefined,
+            PARENT_CONST: undefined,
+            RETURN_TYPE: undefined,
             BLOCK_COMMENT_START: this.getComment("BLOCK_COMMENT_START"),
             BLOCK_COMMENT_END: this.getComment("BLOCK_COMMENT_END"),
             COMMENT: this.getComment("COMMENT"),
+            BLOCK: undefined,
+            ROUTE: undefined,
         };
 
         return new Promise((resolve, reject) => {
