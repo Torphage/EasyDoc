@@ -169,19 +169,16 @@ export abstract class WorkShop {
      *
      * @protected
      * @param {string} variable What comment wanted.
-     * @returns {string} The comment string.
+     * @returns {string | undefined} The comment string.
      * @memberof WorkShop
      */
-    protected getComment(variable: string): string {
-        let commentString: string;
-
+    protected getComment(variable: string): string | undefined {
         if (this.constructor.name in regexFile) {
-            commentString = regexFile[this.constructor.name].syntax.comment[variable];
+            const commentString: string = regexFile[this.constructor.name].syntax.comment[variable];
+            return commentString.replace(/\\(.)/g, "$1");
         } else {
-            commentString = "";
+            return undefined;
         }
-
-        return commentString.replace(/\\(.)/g, "$1");
     }
 
     /**
