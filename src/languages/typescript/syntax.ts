@@ -90,6 +90,8 @@ export class Typescript extends WorkShop {
             BLOCK_COMMENT_START: this.getComment("BLOCK_COMMENT_START"),
             BLOCK_COMMENT_END: this.getComment("BLOCK_COMMENT_END"),
             COMMENT: this.getComment("COMMENT"),
+            BLOCK: undefined,
+            ROUTE: undefined,
         };
 
         return new Promise((resolve, reject) => {

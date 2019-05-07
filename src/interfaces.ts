@@ -158,7 +158,161 @@ interface ISyntaxType {
  * @interface ISyntaxVariable
  */
 interface ISyntaxVariable {
-    [key: string]: any;
+
+    /**
+     * The name of what is documented. If it's a function it's the name of the function,
+     * if it's class it's the name of the class.
+     *
+     * @type {(string | undefined)}
+     * @memberof ISyntaxVariable
+     */
+    NAME: string | undefined;
+
+    /**
+     * The parametrs of a function as a list. If it's a sinatra block instead of a function,
+     * it instead returns the optional route paths.
+     *
+     * @type {(string[] | undefined)}
+     * @memberof ISyntaxVariable
+     */
+    PARAMS: string[] | undefined;
+
+    /**
+     * The type of each parameter as a list. It lines up with the [[IsyntaxVariable.PARAMS]]
+     * if every parameter is documented.
+     *
+     * @type {(string[] | undefined)}
+     * @memberof ISyntaxVariable
+     */
+    PARAMS_TYPES: string[] | undefined;
+
+    /**
+     * The parameters returned as a string. If [[ISyntaxVariable.PARAMS]] returned
+     * [foo, bar, baz] this would instead return "foo, bar, baz".
+     *
+     * @type {(string | undefined)}
+     * @memberof ISyntaxVariable
+     */
+    PARAMS_TEMPLATE: string | undefined;
+
+    /**
+     * The abstract property of a definition. Returns the set of characters that is used
+     * to represent the abstract property in that specific language.
+     *
+     * @type {(string | undefined)}
+     * @memberof ISyntaxVariable
+     */
+    ABSTRACT: string | undefined;
+
+    /**
+     * The export property of a definition. Returns the set of characters that is used
+     * to represent the export property in that specific language.
+     *
+     * @type {(string | undefined)}
+     * @memberof ISyntaxVariable
+     */
+    EXPORT: string | undefined;
+
+    /**
+     * The attribute's visibility, could for example be private or protected if it's
+     * supported by the language.
+     *
+     * @type {(string | undefined)}
+     * @memberof ISyntaxVariable
+     */
+    ACCESS: string | undefined;
+
+    /**
+     * The constructor, is normally either a function, class or a module.
+     *
+     * @type {(string | undefined)}
+     * @memberof ISyntaxVariable
+     */
+    CONST: string | undefined;
+
+    /**
+     * The type of relation it has with a class, module or even interfaces for
+     * the languages that supports it. It returns if it extends of another object
+     * or if it implements.
+     *
+     * @type {(string | undefined)}
+     * @memberof ISyntaxVariable
+     */
+    RELATION: string | undefined;
+
+    /**
+     * The name of what it has a relation with. It only exists if
+     * [[ISyntaxVariable.RELATION]] is defined.
+     *
+     * @type {(string | undefined)}
+     * @memberof ISyntaxVariable
+     */
+    RELATIONNAME: string | undefined;
+
+    /**
+     * The [[ISyntaxVariable.NAME]] of the parent node.
+     *
+     * @type {(string | undefined)}
+     * @memberof ISyntaxVariable
+     */
+    PARENT: string | undefined;
+
+    /**
+     * The [[ISyntaxVariable.CONST]] of the parent node.
+     *
+     * @type {(string | undefined)}
+     * @memberof ISyntaxVariable
+     */
+    PARENT_CONST: string | undefined;
+
+    /**
+     * The type of the return value.
+     *
+     * @type {(string | undefined)}
+     * @memberof ISyntaxVariable
+     */
+    RETURN_TYPE: string | undefined;
+
+    /**
+     * The start of a block comment in a specific language.
+     *
+     * @type {(string | undefined)}
+     * @memberof ISyntaxVariable
+     */
+    BLOCK_COMMENT_START: string | undefined;
+
+    /**
+     * The end of a block comment in a specific language.
+     *
+     * @type {(string | undefined)}
+     * @memberof ISyntaxVariable
+     */
+    BLOCK_COMMENT_END: string | undefined;
+
+    /**
+     * The characters which makes up a line comment in a specific language.
+     *
+     * @type {(string | undefined)}
+     * @memberof ISyntaxVariable
+     */
+    COMMENT: string | undefined;
+
+    /**
+     * In a Sinatra application, return the block of an object. Could for be any of
+     * GET, POST, PUT, PATCH, DELETE, OPTIONS, LINK, UNLINK
+     *
+     * @type {(string | undefined)}
+     * @memberof ISyntaxVariable
+     */
+    BLOCK: string | undefined;
+
+    /**
+     * In a Sinatra application, return the route of a block.
+     *
+     * @type {(string | undefined)}
+     * @memberof ISyntaxVariable
+     */
+    ROUTE: string | undefined;
 }
 
 /**
