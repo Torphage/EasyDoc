@@ -126,7 +126,7 @@ const languageSyntax: ILanguages = {
     Ruby: {
         regex: {
             // tslint:disable-next-line:max-line-length
-            function: /^\s*(?:(?<const>module|class|def)(?:\s+(?<self>self)\.|\s+)(?<name>\w+[\=\?\!]?)\s*(?:(?<relation>\<)?\s+(?<relationName>\w+)?|\(?(?<params>[^)\n]*)?)?|^\s*(?<block>get|post|put|patch|delete|options|link|unlink)\s*(?:\(['"]|['"])(?<route>[^'")]*)['")]*\s*)/g,
+            function: /^\s*(?:(?<const>module|class|def)(?:\s+(?<self>self)\.|\s+)(?<name>\w+[\=\?\!]?)(?:\s*(?<relation>\<)\s+(?<relationName>\w+)?|\(?(?<params>[^)\n]*)?)?|^\s*(?<block>get|post|put|patch|delete|options|link|unlink)\s*(?:\(['"]|['"])(?<route>[^'")]*)['")]*\s*)/g,
         },
         syntax: {
             string: [
